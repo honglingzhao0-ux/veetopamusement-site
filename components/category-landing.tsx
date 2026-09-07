@@ -144,10 +144,8 @@ export default function CategoryLanding({
       <section className="cta-band">
         <div className="container">
           <div>
-            <p className="kicker kicker--light">Get a Quote</p>
-            <h2 className="h-lg" style={{ color: "#fff" }}>
-              Need {category.name.toLowerCase()} for Your Venue?
-            </h2>
+            <p className="kicker">Get a Quote</p>
+            <h2 className="h-lg">Need {category.name.toLowerCase()} for Your Venue?</h2>
             <p>
               Tell us your quantity and destination port - our export team will
               confirm pricing, MOQ and delivery time in the quotation.

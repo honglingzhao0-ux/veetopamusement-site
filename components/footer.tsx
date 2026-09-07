@@ -13,7 +13,7 @@ export default function Footer() {
         <div className="footer-grid">
           <div className="footer-brand">
             <Link href="/" aria-label="VEETOP Amusement - Home">
-              <Logo light />
+              <Logo />
             </Link>
             <p>
               Game &amp; amusement equipment manufacturer supplying arcades,

@@ -11,7 +11,7 @@ export default function Logo({ light = false }: { light?: boolean }) {
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <path
             d="M4 4h6.4L20 20h-6.4L4 4Z"
-            fill="#f4511e"
+            fill="#ff6a00"
             opacity="0.95"
           />
           <path d="M11 4h3L24 20h-3L11 4Z" fill="#fff" opacity="0.92" />

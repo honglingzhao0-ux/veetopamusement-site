@@ -37,7 +37,7 @@ export default function ThankYouPage() {
             <svg width="38" height="38" viewBox="0 0 24 24" fill="none">
               <path
                 d="M20 6 9 17l-5-5"
-                stroke="#f4511e"
+                stroke="#ff6a00"
                 strokeWidth="2.6"
                 strokeLinecap="round"
                 strokeLinejoin="round"

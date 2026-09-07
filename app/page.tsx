@@ -1,7 +1,6 @@
-import type { CSSProperties } from "react";
 import Link from "next/link";
 import site from "@/site.config";
-import { getCategories, getAllProducts, getCategoryById } from "@/lib/products";
+import { getCategories, getAllProducts } from "@/lib/products";
 import ProductCard from "@/components/product-card";
 
 export default function HomePage() {
@@ -21,7 +20,7 @@ export default function HomePage() {
       <section className="hero">
         <div className="container hero__inner">
           <div className="hero__copy">
-            <p className="kicker kicker--light">Game &amp; Amusement Equipment Manufacturer</p>
+            <p className="kicker">Game &amp; Amusement Equipment Manufacturer</p>
             <h1 className="hero__title">
               Factory-Direct{" "}
               <span className="accent-line">Arcade &amp; Amusement</span>{" "}
@@ -48,72 +47,6 @@ export default function HomePage() {
               <li>Export to 150+ countries</li>
             </ul>
           </div>
-
-          <div className="hero__art" aria-hidden="true">
-            <div className="stage">
-              <div className="stage__tag">
-                <span>Product Blueprint</span>
-              </div>
-              <div className="stage__fig">
-                <svg viewBox="0 0 300 400" fill="none">
-                  {/* cabinet */}
-                  <path
-                    d="M74 384V168C74 92 128 62 150 62c22 0 76 30 76 106v216"
-                    stroke="#ffffff"
-                    strokeOpacity="0.85"
-                    strokeWidth="3"
-                  />
-                  {/* marquee */}
-                  <path
-                    d="M98 120c0-22 20-34 52-34s52 12 52 34"
-                    stroke="#f4511e"
-                    strokeWidth="3"
-                  />
-                  {/* screen */}
-                  <rect x="96" y="138" width="108" height="104" rx="6" stroke="#fff" strokeOpacity="0.7" strokeWidth="2" />
-                  <rect x="104" y="146" width="92" height="88" rx="4" stroke="#fff" strokeOpacity="0.35" strokeWidth="1.5" />
-                  {/* screen glow */}
-                  <rect x="106" y="148" width="40" height="40" fill="#f4511e" opacity="0.55" />
-                  {/* control deck */}
-                  <path d="M88 268h124" stroke="#fff" strokeOpacity="0.85" strokeWidth="3" />
-                  {/* joystick */}
-                  <circle cx="132" cy="292" r="9" stroke="#fff" strokeWidth="2.5" />
-                  <path d="M132 283v-16m0 0-8-10m8 10 8-10" stroke="#f4511e" strokeWidth="2.5" strokeLinecap="round" />
-                  {/* buttons */}
-                  <circle cx="176" cy="288" r="7" stroke="#fff" strokeWidth="2.5" />
-                  <circle cx="198" cy="288" r="7" stroke="#fff" strokeWidth="2.5" />
-                  <circle cx="220" cy="288" r="7" stroke="#fff" strokeWidth="2.5" />
-                  {/* coin slot */}
-                  <circle cx="150" cy="330" r="8" stroke="#fff" strokeWidth="2.5" />
-                  <rect x="120" y="318" width="60" height="24" rx="4" stroke="#fff" strokeOpacity="0.4" strokeWidth="1.5" />
-                  {/* base */}
-                  <path d="M74 384h152" stroke="#f4511e" strokeWidth="3" />
-                  {/* dimension line */}
-                  <path d="M20 60v310M20 60l-7 12m7-12 7 12" stroke="#fff" strokeOpacity="0.4" strokeWidth="1.5" />
-                  <text x="20" y="44" textAnchor="middle" fill="#fff" fillOpacity="0.45" fontSize="11" fontFamily="Consolas, monospace">H 2150</text>
-                  <path d="M30 392h240M30 392l-7-12m7 12 7-12" stroke="#fff" strokeOpacity="0.4" strokeWidth="1.5" />
-                  <text x="150" y="376" textAnchor="middle" fill="#fff" fillOpacity="0.45" fontSize="11" fontFamily="Consolas, monospace">W 800 mm</text>
-                </svg>
-              </div>
-            </div>
-          </div>
-
-          <div className="hero__stats">
-            <div className="hero-stat">
-              <div className="hero-stat__num">
-                {site.companyFacts.yearsInBusiness}
-              </div>
-              <div className="hero-stat__label">Years in Industry</div>
-            </div>
-            <div className="hero-stat">
-              <div className="hero-stat__num">{site.companyFacts.exportCountries}</div>
-              <div className="hero-stat__label">Countries Exported</div>
-            </div>
-            <div className="hero-stat">
-              <div className="hero-stat__num">{site.companyFacts.marketShare}</div>
-              <div className="hero-stat__label">Market Share</div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -134,20 +67,12 @@ export default function HomePage() {
             </Link>
           </div>
           <ul className="cat-grid">
-            {categories.map((cat, i) => {
+            {categories.map((cat) => {
               const count = all.filter((p) => p.category === cat.id).length;
               return (
                 <li key={cat.id}>
-                  <Link
-                    className="cat-card"
-                    href={`/products/${cat.slug}/`}
-                    style={
-                      {
-                        "--card-accent": `hsl(${(i * 47 + 12) % 360} 70% 52%)`,
-                      } as React.CSSProperties
-                    }
-                  >
-                    <span className="cat-card__idx">0{i + 1}</span>
+                  <Link className="cat-card" href={`/products/${cat.slug}/`}>
+                    <span className="cat-card__idx">0{cat.order}</span>
                     <h3 className="cat-card__name">{cat.name}</h3>
                     <p className="cat-card__blurb">{cat.tagline}</p>
                     <span className="cat-card__foot">
@@ -203,7 +128,7 @@ export default function HomePage() {
               <li>In-house R&amp;D, cabinet production and software team under one roof.</li>
               <li>Full OEM/ODM: custom cabinet size, artwork, game sets, languages, voltage &amp; plugs.</li>
               <li>Function and quality checks before shipment.</li>
-              <li>Spare-parts inventory &amp; video-guide support for operators worldwide.</li>
+              <li>Spare-parts inventory and factory-trained service guidance for operators worldwide.</li>
             </ul>
           </div>
           <div>
@@ -217,7 +142,7 @@ export default function HomePage() {
                 {
                   n: "02",
                   t: "Quality Control",
-                  d: "ISO-guided process with burn-in and function testing.",
+                  d: "Function and quality checks on every machine before shipment.",
                 },
                 {
                   n: "03",
@@ -248,16 +173,14 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ---------- OEM CTA BAND ---------- */}
-      <section className="section section--dark" id="oem-odm">
+      {/* ---------- OEM / ODM ---------- */}
+      <section className="section section--tint" id="oem-odm">
         <div className="container">
           <div className="section-head">
             <div>
-              <p className="kicker kicker--light">OEM / ODM</p>
-              <h2 className="h-xl" style={{ color: "#fff" }}>
-                Build Your Own Brand of Machines
-              </h2>
-              <p className="lede--light" style={{ color: "rgba(255,255,255,0.7)" }}>
+              <p className="kicker">OEM / ODM</p>
+              <h2 className="h-xl">Build Your Own Brand of Machines</h2>
+              <p className="lede">
                 From cabinet artwork to game software and control hardware, we
                 turn your concept into production-ready, market-ready machines.
               </p>
@@ -267,23 +190,69 @@ export default function HomePage() {
             </Link>
           </div>
           <ul className="steps">
-            <li>
-              <h3>Inquiry &amp; Brief</h3>
-              <p>Share your idea, reference or existing product link.</p>
-            </li>
-            <li>
-              <h3>Design &amp; Sample</h3>
-              <p>CAD, artwork and prototype aligned before mass production.</p>
-            </li>
-            <li>
-              <h3>Production</h3>
-              <p>Certified components, in-line QC and full aging tests.</p>
-            </li>
-            <li>
-              <h3>Ship &amp; Support</h3>
-              <p>Documentation, parts kit and after-sales assistance.</p>
-            </li>
+            {[
+              {
+                n: "01",
+                t: "Inquiry & Brief",
+                d: "Share your idea, reference or existing product link.",
+              },
+              {
+                n: "02",
+                t: "Design & Sample",
+                d: "CAD, artwork and prototype aligned before mass production.",
+              },
+              {
+                n: "03",
+                t: "Production",
+                d: "In-line QC and full function testing before mass production.",
+              },
+              {
+                n: "04",
+                t: "Ship & Support",
+                d: "Export documentation, spare parts and after-sales assistance.",
+              },
+            ].map((s) => (
+              <li key={s.n} data-n={s.n}>
+                <h3>{s.t}</h3>
+                <p>{s.d}</p>
+              </li>
+            ))}
           </ul>
+        </div>
+      </section>
+
+      {/* ---------- GLOBAL REACH ---------- */}
+      <section className="section">
+        <div className="container">
+          <div className="section-head">
+            <div>
+              <p className="kicker">Global Reach</p>
+              <h2 className="h-xl">Exporting to 150+ Countries</h2>
+              <p>
+                From our factory in Guangzhou, machines ship to operators
+                worldwide - including Thailand, Brazil, the United States and
+                Japan.
+              </p>
+            </div>
+          </div>
+          <div className="stats-grid" style={{ marginTop: 12 }}>
+            <div className="stat-cell">
+              <div className="stat-cell__num">{site.companyFacts.yearsInBusiness}</div>
+              <div className="stat-cell__label">Years in Industry</div>
+            </div>
+            <div className="stat-cell">
+              <div className="stat-cell__num">{site.companyFacts.exportCountries}</div>
+              <div className="stat-cell__label">Countries Exported</div>
+            </div>
+            <div className="stat-cell">
+              <div className="stat-cell__num">{site.companyFacts.marketShare}</div>
+              <div className="stat-cell__label">Market Share</div>
+            </div>
+            <div className="stat-cell">
+              <div className="stat-cell__num">{site.companyFacts.certifications.join("")}</div>
+              <div className="stat-cell__label">Certification</div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -291,10 +260,8 @@ export default function HomePage() {
       <section className="cta-band">
         <div className="container">
           <div>
-            <p className="kicker kicker--light">Get a Quote</p>
-            <h2 className="h-lg" style={{ color: "#fff" }}>
-              Ready to Source for Your Venue?
-            </h2>
+            <p className="kicker">Get a Quote</p>
+            <h2 className="h-lg">Ready to Source for Your Venue?</h2>
             <p>
               Send your target models and quantity - our export team will
               confirm price, MOQ and delivery time in the quotation.
