@@ -1,0 +1,31 @@
+{
+  "slug": "twin-claw-crane",
+  "name": "Twin Double Claw Crane",
+  "model": "VT-CRN-602",
+  "category": "claw-crane-machines",
+  "headline": "Two independent crane bays in one high-traffic cabinet",
+  "description": "A twin-bay crane machine with two fully independent claw systems, doubling play capacity per square meter. Ideal for busy mall locations where queues form at single cranes. This is a sample placeholder product - full spec subject to change.",
+  "images": ["/images/products/twin-claw-crane.svg"],
+  "specs": [
+    { "label": "Machine Size", "value": "W1500 x D800 x H1900 mm" },
+    { "label": "Power", "value": "250W (max)" },
+    { "label": "Voltage", "value": "AC 110-240V 50/60Hz" },
+    { "label": "Net Weight", "value": "220 kg" },
+    { "label": "Players", "value": "2 (two bays)" },
+    { "label": "Prize Door", "value": "Independent pickup per bay" }
+  ],
+  "features": [
+    "Two separate game bays with individual win-rate settings",
+    "Independent cash boxes & coin systems per bay",
+    "High-visibility LED frames with animated light shows",
+    "Reinforced chassis for heavy public traffic",
+    "Front glass with anti-scratch coating",
+    "Optional themed cabinet artwork (OEM customization)"
+  ],
+  "applications": ["Shopping Malls", "Supermarkets", "Family Entertainment Centers", "Cinema Lobbies", "Transport Hubs"],
+  "moq": 1,
+  "leadTime": "20-35 days",
+  "certifications": ["CE", "RoHS", "UL"],
+  "warranty": "12 months",
+  "sample": true
+}

@@ -1,0 +1,31 @@
+{
+  "slug": "spin-win-ticket-game",
+  "name": "Electronic Spin & Win Ticket Game",
+  "model": "VT-RDM-1800",
+  "category": "redemption-ticket-games",
+  "headline": "Simple-to-play spin game with instant ticket rewards",
+  "description": "An electronic wheel-spin redemption game: players spin for ticket values with bonus rounds and light chases. Low skill barrier makes it friendly for children and casual players. This is a sample placeholder product - full spec subject to change.",
+  "images": ["/images/products/spin-win-ticket-game.svg"],
+  "specs": [
+    { "label": "Machine Size", "value": "W800 x D900 x H2000 mm" },
+    { "label": "Screen", "value": "21.5\" LCD score display" },
+    { "label": "Power", "value": "200W (max)" },
+    { "label": "Voltage", "value": "AC 110-240V 50/60Hz" },
+    { "label": "Net Weight", "value": "150 kg" },
+    { "label": "Payout", "value": "Ticket dispenser (built-in)" }
+  ],
+  "features": [
+    "Large illuminated spin wheel with smooth servo motion",
+    "Instant ticket payout with printable bonus tickets",
+    "Multiple game modes: quick spin, bonus chase, jackpot",
+    "Coin / token / bill / card operation options",
+    "Compact footprint suits redemption walls & counters",
+    "Adjustable payout percentages in operator menu"
+  ],
+  "applications": ["Family Entertainment Centers", "Arcades", "Restaurants", "Cinema Lobbies", "Kiosk Areas"],
+  "moq": 1,
+  "leadTime": "15-30 days",
+  "certifications": ["CE", "RoHS"],
+  "warranty": "12 months",
+  "sample": true
+}

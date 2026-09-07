@@ -1,0 +1,31 @@
+{
+  "slug": "soccer-kick-skill-game",
+  "name": "Soccer Kick Skill Game",
+  "model": "VT-SPT-2600",
+  "category": "sports-skill-games",
+  "headline": "Penalty-style soccer shooting target game",
+  "description": "Players strike a ball into electronic target zones that light up for points and combos. Compact single-unit design popular in bars and family centers across football-loving markets. This is a sample placeholder product - full spec subject to change.",
+  "images": ["/images/products/soccer-kick-skill-game.svg"],
+  "specs": [
+    { "label": "Machine Size", "value": "W1500 x D600 x H2200 mm" },
+    { "label": "Screen", "value": "32\" LED target panel" },
+    { "label": "Power", "value": "220W (max)" },
+    { "label": "Voltage", "value": "AC 110-240V 50/60Hz" },
+    { "label": "Net Weight", "value": "160 kg" },
+    { "label": "Players", "value": "1-2, multi-round modes" }
+  ],
+  "features": [
+    "Touch-sensitive LED target zones with instant scoring",
+    "Combo & bonus-round mechanics for competitive play",
+    "Automatic ball return; no staff needed",
+    "Ticket payout and leaderboard modes",
+    "Themed artwork customizable for club colors (OEM)",
+    "Shatter-resistant ball shield for safety"
+  ],
+  "applications": ["Sports Bars", "Family Entertainment Centers", "Arcades", "Fan Zones", "Community Events"],
+  "moq": 1,
+  "leadTime": "15-30 days",
+  "certifications": ["CE", "RoHS"],
+  "warranty": "12 months",
+  "sample": true
+}

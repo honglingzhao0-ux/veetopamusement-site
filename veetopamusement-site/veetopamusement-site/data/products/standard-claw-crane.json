@@ -1,0 +1,54 @@
+{
+  "slug": "standard-claw-crane",
+  "name": "Single-Player Standard Claw Crane",
+  "model": "VT-CRN-601",
+  "category": "claw-crane-machines",
+  "headline": "Classic single claw crane with adjustable win rate",
+  "description": "The reliable workhorse claw crane: smooth X/Y joystick control, adjustable claw strength and a theft-proof prize chamber with easy top loading. Widely used across malls and FECs worldwide. This is a sample placeholder product - full spec subject to change.",
+  "images": ["/images/products/standard-claw-crane.svg"],
+  "specs": [
+    { "label": "Machine Size", "value": "W750 x D750 x H1900 mm" },
+    { "label": "Power", "value": "150W (max)" },
+    { "label": "Voltage", "value": "AC 110-240V 50/60Hz" },
+    { "label": "Net Weight", "value": "130 kg" },
+    { "label": "Players", "value": "1" },
+    { "label": "Prize Door", "value": "Front pickup door + top load" }
+  ],
+  "features": [
+    "Precision stepper motors for smooth X/Y/Z movement",
+    "Claw strength adjustable from weak to strong win rates",
+    "LED cabinet lighting with music & attract mode",
+    "Secure cash box with keyed locks, easy service access",
+    "Optional bill acceptor and card reader",
+    "Coin / token compatible electronics with self-diagnosis"
+  ],
+  "applications": ["Shopping Malls", "Supermarkets", "Family Entertainment Centers", "Cinema Lobbies", "Restaurants"],
+  "moq": 1,
+  "leadTime": "15-30 days",
+  "certifications": ["CE", "RoHS"],
+  "warranty": "12 months",
+  "sample": true,
+  "seoDescription": "Commercial single claw crane with adjustable win rate for malls & FECs. VT-CRN-601: W750 x D750 x H1900mm, 150W, CE & RoHS. MOQ 1, 12-month warranty, OEM/ODM available.",
+  "faqs": [
+    {
+      "q": "What is the MOQ for the VT-CRN-601 claw crane?",
+      "a": "MOQ is 1 unit. Mixed models in one container are welcome."
+    },
+    {
+      "q": "How long is the warranty and what does it cover?",
+      "a": "12-month warranty covering non-artificial defects, with spare parts shipped by express courier."
+    },
+    {
+      "q": "Can you customize the cabinet artwork and brand logo?",
+      "a": "Yes - OEM/ODM cabinet size, artwork, software languages, voltage and plugs are all customizable."
+    },
+    {
+      "q": "Do you offer remote technical support after delivery?",
+      "a": "Yes, video guides and online support; remote diagnostics are available for software issues."
+    },
+    {
+      "q": "What payment terms do you accept?",
+      "a": "T/T, L/C and Western Union. Sample orders are supported."
+    }
+  ]
+}

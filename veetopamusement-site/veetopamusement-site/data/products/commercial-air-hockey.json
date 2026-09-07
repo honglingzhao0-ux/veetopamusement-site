@@ -1,0 +1,31 @@
+{
+  "slug": "commercial-air-hockey",
+  "name": "Commercial Air Hockey Table (8ft)",
+  "model": "VT-SPT-5000",
+  "category": "sports-skill-games",
+  "headline": "Tournament-grade 8ft air hockey built for coin operation",
+  "description": "A full-size commercial air hockey table with a powerful air system, tournament rails and coin-op electronics. Fast puck glide and durable laminate surfaces withstand years of league play. This is a sample placeholder product - full spec subject to change.",
+  "images": ["/images/products/commercial-air-hockey.svg"],
+  "specs": [
+    { "label": "Table Size", "value": "L2440 x W1220 x H800 mm" },
+    { "label": "Playing Field", "value": "8ft (standard tournament size)" },
+    { "label": "Power", "value": "450W blower system" },
+    { "label": "Voltage", "value": "AC 110-240V 50/60Hz" },
+    { "label": "Net Weight", "value": "260 kg" },
+    { "label": "Players", "value": "2-4" }
+  ],
+  "features": [
+    "High-pressure air blower for friction-free glide",
+    "Heavy-duty 1\" laminate playing surface, scratch resistant",
+    "Pro-grade rails, rebound system and pusher/mallet set",
+    "Coin-op time control with LED countdown display",
+    "Ball-return trough and scorer reset buttons",
+    "Leveling feet for uneven venue floors"
+  ],
+  "applications": ["Arcades", "Game Bars", "Bowling Alleys", "Student Centers", "Sports Bars"],
+  "moq": 1,
+  "leadTime": "15-30 days",
+  "certifications": ["CE", "RoHS", "UL"],
+  "warranty": "12 months",
+  "sample": true
+}

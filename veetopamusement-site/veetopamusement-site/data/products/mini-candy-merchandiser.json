@@ -1,0 +1,31 @@
+{
+  "slug": "mini-candy-merchandiser",
+  "name": "Mini Candy Merchandiser (Tabletop)",
+  "model": "VT-PZD-3100",
+  "category": "prize-merchandisers",
+  "headline": "Compact candy/toy vendor with every-play-a-win fun",
+  "description": "A tabletop candy merchandiser that vends candy or capsule toys through skill play, sized for counters where floor space is limited. Colorful and low-cost to operate. This is a sample placeholder product - full spec subject to change.",
+  "images": ["/images/products/mini-candy-merchandiser.svg"],
+  "specs": [
+    { "label": "Machine Size", "value": "W480 x D480 x H950 mm" },
+    { "label": "Power", "value": "70W (max)" },
+    { "label": "Voltage", "value": "AC 110-240V 50/60Hz" },
+    { "label": "Net Weight", "value": "40 kg" },
+    { "label": "Product", "value": "Candy, capsule toys, keychains" },
+    { "label": "Capacity", "value": "~300 pcs per fill" }
+  ],
+  "features": [
+    "Skill-play dispensing with guaranteed-winner setting",
+    "Bright acrylic body and LED top signage",
+    "Tool-free front refill in under a minute",
+    "Coin / token / QR payment options",
+    "Anti-theft locking and low-stock indicator",
+    "Optional floor stand and themed skins (OEM)"
+  ],
+  "applications": ["Convenience Stores", "Restaurants", "Retail Counters", "Pharmacies", "Checkout Areas"],
+  "moq": 2,
+  "leadTime": "10-20 days",
+  "certifications": ["CE", "RoHS"],
+  "warranty": "12 months",
+  "sample": true
+}

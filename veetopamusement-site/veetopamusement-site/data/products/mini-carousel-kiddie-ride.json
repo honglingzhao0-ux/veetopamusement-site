@@ -1,0 +1,31 @@
+{
+  "slug": "mini-carousel-kiddie-ride",
+  "name": "Mini Carousel (4-Seat)",
+  "model": "VT-KID-400",
+  "category": "kiddie-rides",
+  "headline": "Four-seat rotating carousel for family traffic areas",
+  "description": "A compact four-seat carousel with rotating platform, uplifting music and colorful LED canopy. Multiple kids ride together, making it a top earner in supermarkets and malls. This is a sample placeholder product - full spec subject to change.",
+  "images": ["/images/products/mini-carousel-kiddie-ride.svg"],
+  "specs": [
+    { "label": "Machine Size", "value": "D2800 x H2600 mm (canopy)" },
+    { "label": "Power", "value": "750W drive motor" },
+    { "label": "Voltage", "value": "AC 220-240V 50/60Hz (110V optional)" },
+    { "label": "Net Weight", "value": "800 kg" },
+    { "label": "Seats", "value": "4 animal/vehicle seats" },
+    { "label": "Max Load", "value": "240 kg" }
+  ],
+  "features": [
+    "Slow, smooth rotation with emergency stop button",
+    "4 themed seats: horse, car, helicopter & bear",
+    "Colorful LED canopy with music player (MP3)",
+    "Coin / token / remote-control operation",
+    "Steel frame with powder coating, weather-resistant",
+    "Quick assembly - ships in 3 main sections"
+  ],
+  "applications": ["Supermarkets", "Shopping Malls", "Restaurants", "Playgrounds", "Festival Events"],
+  "moq": 1,
+  "leadTime": "25-40 days",
+  "certifications": ["CE", "RoHS"],
+  "warranty": "12 months",
+  "sample": true
+}

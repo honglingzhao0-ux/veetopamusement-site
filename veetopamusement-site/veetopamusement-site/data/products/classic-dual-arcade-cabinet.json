@@ -1,0 +1,31 @@
+{
+  "slug": "classic-dual-arcade-cabinet",
+  "name": "Classic Dual-Player Arcade Cabinet",
+  "model": "VT-ARC-2000",
+  "category": "arcade-video-games",
+  "headline": "Commercial dual-player video cabinet for fighting & classic games",
+  "description": "A heavyweight commercial arcade cabinet designed for two players with joystick + 6-button controls, LED T-molding and an anti-glare screen. Built on open PC-based hardware so game sets can be swapped or customized. This is a sample placeholder product - full spec subject to change.",
+  "images": ["/images/products/classic-dual-arcade-cabinet.svg"],
+  "specs": [
+    { "label": "Machine Size", "value": "W800 x D900 x H2150 mm" },
+    { "label": "Screen", "value": "32\" LCD, 1920x1080, anti-glare" },
+    { "label": "Power", "value": "220W (max)" },
+    { "label": "Voltage", "value": "AC 110-240V 50/60Hz" },
+    { "label": "Net Weight", "value": "180 kg" },
+    { "label": "Players", "value": "2" }
+  ],
+  "features": [
+    "Heavy-duty MDF cabinet with powder-coated steel control deck",
+    "Open PC platform - supports game-set swap & custom software (OEM)",
+    "LED T-molding & marquee with long-life lighting",
+    "Coin / token / bill acceptor options",
+    "Master volume & operator service menu with security lock",
+    "Stackable, screw-in assembly for container shipment"
+  ],
+  "applications": ["Arcades", "Family Entertainment Centers", "Game Bars", "Cinema Lobbies", "Shopping Malls"],
+  "moq": 1,
+  "leadTime": "15-30 days",
+  "certifications": ["CE", "RoHS", "UL"],
+  "warranty": "12 months",
+  "sample": true
+}

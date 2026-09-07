@@ -1,0 +1,31 @@
+{
+  "slug": "police-car-kiddie-ride",
+  "name": "Kids Police Car Ride",
+  "model": "VT-KID-110",
+  "category": "kiddie-rides",
+  "headline": "Cute police car ride-on for kids aged 2-6",
+  "description": "A colorful, safe and gentle coin-operated police car ride with realistic driving sound, flashing lights and a smooth rocking motion. Certified safe for young children with soft edges and seat belts. This is a sample placeholder product - full spec subject to change.",
+  "images": ["/images/products/police-car-kiddie-ride.svg"],
+  "specs": [
+    { "label": "Machine Size", "value": "W900 x D1500 x H950 mm" },
+    { "label": "Power", "value": "300W drive motor" },
+    { "label": "Voltage", "value": "AC 110-240V 50/60Hz" },
+    { "label": "Net Weight", "value": "85 kg" },
+    { "label": "Max Load", "value": "60 kg" },
+    { "label": "Age Range", "value": "2-6 years" }
+  ],
+  "features": [
+    "Gentle up-down rocking motion, no sudden movement",
+    "Realistic sound effects, music & flashing beacon light",
+    "Soft-touch body panels with smooth rounded edges",
+    "Safety seat belt and anti-slip foot area",
+    "Coin / token / QR code payment options",
+    "Durable fiberglass body rated for outdoor mall use"
+  ],
+  "applications": ["Supermarkets", "Shopping Malls", "Restaurants", "Daycare Plazas", "Park Entrances"],
+  "moq": 1,
+  "leadTime": "15-30 days",
+  "certifications": ["CE", "RoHS"],
+  "warranty": "12 months",
+  "sample": true
+}

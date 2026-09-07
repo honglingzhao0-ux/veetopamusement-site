@@ -1,0 +1,23 @@
+{
+  "name": "veetop-site",
+  "version": "0.1.0",
+  "private": true,
+  "description": "VEETOP Amusement - static B2B website for game & amusement equipment manufacturer (Next.js static export)",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "typecheck": "tsc --noEmit",
+    "preview": "next build && npx --yes serve@latest out -l 4173"
+  },
+  "dependencies": {
+    "next": "^15.0.0",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "typescript": "^5.6.0"
+  }
+}
