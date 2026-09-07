@@ -1,0 +1,29 @@
+{
+  "slug": "flappy-bird-redemption",
+  "name": "Flappy Bird",
+  "model": "VTTR066",
+  "category": "redemption-ticket-games",
+  "headline": "Flappy-style video redemption game",
+  "description": "Flappy Bird (VTTR066) is a flappy-style video redemption game in a slim cabinet. Net size W76 x D98 x H250 cm, power 200W. Price, MOQ and delivery confirmed by quotation.",
+  "images": [
+    "/images/products/flappy-bird-redemption.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTTR066" },
+    { "label": "Net Size", "value": "W76 x D98 x H250 cm" },
+    { "label": "Power", "value": "200W" }
+  ],
+  "features": [
+    "Popular flappy-style gameplay",
+    "Slim cabinet saves floor space",
+    "CE certified; factory direct",
+    "Custom artwork available"
+  ],
+  "applications": [
+    "Family Entertainment Centers",
+    "Arcades",
+    "Game Rooms",
+    "Shopping Malls"
+  ],
+  "certifications": ["CE"]
+}

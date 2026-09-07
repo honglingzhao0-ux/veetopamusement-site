@@ -8,9 +8,9 @@ import { siteBaseUrl } from "@/lib/cdn";
 const baseUrl = siteBaseUrl(site.brand.domain);
 
 export const metadata: Metadata = {
-  title: "FAQ - MOQ, Payment, Delivery, Warranty & OEM/ODM",
+  title: "FAQ - Quotations, Payment, Delivery & OEM/ODM",
   description:
-    "Answers to the questions buyers ask before ordering from VEETOP: MOQ (1 unit), payment terms (T/T, L/C), production & delivery time, 12-month warranty, certifications, OEM/ODM customization and export packing.",
+    "Answers to the questions buyers ask before ordering from VEETOP Amusement: manufacturer background, export markets, quotations, payment terms, lead time, certification (CE), OEM/ODM customization and factory visits.",
   alternates: { canonical: "/faq/" },
 };
 
@@ -79,8 +79,8 @@ export default function FaqPage() {
           >
             <h2 className="h-md">Still have a question?</h2>
             <p style={{ color: "var(--muted)", maxWidth: "52ch", margin: "0 auto 18px" }}>
-              Send us your requirements - our export team replies within 24
-              business hours with pricing, MOQ and delivery time.
+              Send us your requirements - our export team will confirm pricing,
+              MOQ and delivery time in the quotation.
             </p>
             <p style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/contact/" className="btn btn--accent">

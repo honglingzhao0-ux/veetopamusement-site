@@ -43,9 +43,9 @@ export default function HomePage() {
             </div>
             <ul className="hero__points">
               <li>OEM &amp; ODM support</li>
-              <li>CE / UL / RoHS</li>
-              <li>Factory-direct pricing</li>
-              <li>Worldwide shipping</li>
+              <li>CE certified</li>
+              <li>21+ years in the industry</li>
+              <li>Export to 150+ countries</li>
             </ul>
           </div>
 
@@ -53,7 +53,6 @@ export default function HomePage() {
             <div className="stage">
               <div className="stage__tag">
                 <span>Product Blueprint</span>
-                <span>Sample</span>
               </div>
               <div className="stage__fig">
                 <svg viewBox="0 0 300 400" fill="none">
@@ -102,17 +101,17 @@ export default function HomePage() {
           <div className="hero__stats">
             <div className="hero-stat">
               <div className="hero-stat__num">
-                {site.companyFacts.yearFounded} <small>EST</small>
+                {site.companyFacts.yearsInBusiness}
               </div>
-              <div className="hero-stat__label">Founded</div>
-            </div>
-            <div className="hero-stat">
-              <div className="hero-stat__num">{site.companyFacts.factoryArea}</div>
-              <div className="hero-stat__label">Factory Area</div>
+              <div className="hero-stat__label">Years in Industry</div>
             </div>
             <div className="hero-stat">
               <div className="hero-stat__num">{site.companyFacts.exportCountries}</div>
               <div className="hero-stat__label">Countries Exported</div>
+            </div>
+            <div className="hero-stat">
+              <div className="hero-stat__num">{site.companyFacts.marketShare}</div>
+              <div className="hero-stat__label">Market Share</div>
             </div>
           </div>
         </div>
@@ -203,7 +202,7 @@ export default function HomePage() {
             <ul className="list-check">
               <li>In-house R&amp;D, cabinet production and software team under one roof.</li>
               <li>Full OEM/ODM: custom cabinet size, artwork, game sets, languages, voltage &amp; plugs.</li>
-              <li>Rigorous 24-72h aging test before every shipment.</li>
+              <li>Function and quality checks before shipment.</li>
               <li>Spare-parts inventory &amp; video-guide support for operators worldwide.</li>
             </ul>
           </div>
@@ -223,7 +222,7 @@ export default function HomePage() {
                 {
                   n: "03",
                   t: "After-Sales",
-                  d: "12-month warranty plus long-term parts availability.",
+                  d: "Warranty and after-sales support confirmed with every order.",
                 },
                 {
                   n: "04",
@@ -297,8 +296,8 @@ export default function HomePage() {
               Ready to Source for Your Venue?
             </h2>
             <p>
-              Send your target models and quantity - our export team replies
-              within 24 business hours with pricing, MOQ and delivery time.
+              Send your target models and quantity - our export team will
+              confirm price, MOQ and delivery time in the quotation.
             </p>
           </div>
           <div className="cta-band__actions">

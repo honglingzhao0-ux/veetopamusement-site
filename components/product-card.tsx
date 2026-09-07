@@ -11,9 +11,6 @@ export default function ProductCard({ product }: { product: Product }) {
   return (
     <li className="pcard">
       <Link href={`/products/${product.slug}/`} className="pcard__media">
-        <div className="pcard__tags">
-          {product.sample && <span className="badge-sample">Sample</span>}
-        </div>
         <img
           src={cdnUrl(cover)}
           alt={`${product.name} (${product.model})`}

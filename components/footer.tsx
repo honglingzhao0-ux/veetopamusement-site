@@ -95,11 +95,7 @@ export default function Footer() {
             &copy; {new Date().getFullYear()} {site.brand.legalName}. All
             rights reserved.
           </span>
-          <span>
-            {site.isDemoSite
-              ? "Demo framework - sample content, replace before launch."
-              : "B2B game & amusement equipment manufacturer."}
-          </span>
+          <span>B2B game &amp; amusement equipment manufacturer.</span>
         </div>
       </div>
     </footer>

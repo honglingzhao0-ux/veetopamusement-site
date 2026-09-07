@@ -17,7 +17,7 @@ interface QuickInquiryProps {
  */
 export default function QuickInquiry({
   product,
-  note = "Send us your target quantity and destination - our export team replies within 24 business hours (usually much faster). Your information is only used to respond to this inquiry.",
+  note = "Send us your target quantity and destination port - our export team will confirm price and delivery in the quotation. Your information is only used to respond to this inquiry.",
 }: QuickInquiryProps) {
   const endpoint = site.contact.formEndpoint;
   const [busy, setBusy] = useState(false);

@@ -1,0 +1,28 @@
+{
+  "slug": "coin-pusher-1p",
+  "name": "Coin Pusher 1P",
+  "model": "VTTR085",
+  "category": "prize-merchandisers",
+  "headline": "Single-player coin pusher for prize payout play",
+  "description": "Coin Pusher 1P (VTTR085) is a single-player coin pusher with high player attraction on redemption and prize floors. Net size W60 x D82 x H148 cm. Price and delivery terms confirmed by quotation.",
+  "images": [
+    "/images/products/coin-pusher-1p.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTTR085" },
+    { "label": "Net Size", "value": "W60 x D82 x H148 cm" }
+  ],
+  "features": [
+    "Coin pusher gameplay with prize payouts",
+    "Compact cabinet for flexible placement",
+    "CE certified; factory direct",
+    "Custom artwork available"
+  ],
+  "applications": [
+    "Arcades",
+    "Family Entertainment Centers",
+    "Amusement Venues",
+    "Shopping Malls"
+  ],
+  "certifications": ["CE"]
+}

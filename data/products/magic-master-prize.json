@@ -1,0 +1,28 @@
+{
+  "slug": "magic-master-prize",
+  "name": "Magic Master",
+  "model": "VTTR084",
+  "category": "prize-merchandisers",
+  "headline": "Prize wheel machine with magic theme",
+  "description": "Magic Master (VTTR084) is a themed prize wheel machine that draws players with visible prizes. Net size W200 x D90 x H250 cm. Price, MOQ and delivery confirmed by quotation.",
+  "images": [
+    "/images/products/magic-master-prize.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTTR084" },
+    { "label": "Net Size", "value": "W200 x D90 x H250 cm" }
+  ],
+  "features": [
+    "Prize wheel gameplay with strong visual appeal",
+    "Full-size commercial cabinet",
+    "CE certified; factory direct",
+    "OEM/ODM artwork and branding available"
+  ],
+  "applications": [
+    "Arcades",
+    "Family Entertainment Centers",
+    "Amusement Venues",
+    "Shopping Malls"
+  ],
+  "certifications": ["CE"]
+}

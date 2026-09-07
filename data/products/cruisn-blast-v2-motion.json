@@ -1,0 +1,29 @@
+{
+  "slug": "cruisn-blast-v2-motion",
+  "name": "Cruis'N Blast Ver.2 Motion",
+  "model": "VTSA015",
+  "category": "arcade-video-games",
+  "headline": "Motion racing driver cabinet for commercial floors",
+  "description": "Cruis'N Blast Ver.2 Motion (VTSA015) is a motion racing driver cabinet from the VEETOP simulator series. Net size W220 x D130 x H230 cm, power 500W. Pricing, MOQ and lead time are confirmed by quotation.",
+  "images": [
+    "/images/products/cruisn-blast-v2-motion.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTSA015" },
+    { "label": "Net Size", "value": "W220 x D130 x H230 cm" },
+    { "label": "Power", "value": "500W" }
+  ],
+  "features": [
+    "Motion racing cabinet version",
+    "Sit-down driving format",
+    "CE certified; factory direct",
+    "OEM/ODM artwork and branding available"
+  ],
+  "applications": [
+    "Arcades",
+    "Family Entertainment Centers",
+    "Theme Parks",
+    "Cinemas"
+  ],
+  "certifications": ["CE"]
+}

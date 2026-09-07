@@ -1,0 +1,29 @@
+{
+  "slug": "jurassic-park-motion-ii",
+  "name": "Jurassic Park Motion II",
+  "model": "VTSA024",
+  "category": "arcade-video-games",
+  "headline": "Tall motion shooting cabinet with family-friendly theme",
+  "description": "Jurassic Park Motion II (VTSA024) is a motion shooting game cabinet with a tall, eye-catching profile. Net size W136 x D202 x H310 cm, power 500W. Price and delivery terms are confirmed by quotation.",
+  "images": [
+    "/images/products/jurassic-park-motion-ii.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTSA024" },
+    { "label": "Net Size", "value": "W136 x D202 x H310 cm" },
+    { "label": "Power", "value": "500W" }
+  ],
+  "features": [
+    "Motion shooting cabinet format",
+    "Tall profile that attracts family players",
+    "CE certified; factory direct",
+    "Custom artwork and branding available"
+  ],
+  "applications": [
+    "Family Entertainment Centers",
+    "Arcades",
+    "Theme Parks",
+    "Amusement Venues"
+  ],
+  "certifications": ["CE"]
+}

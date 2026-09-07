@@ -1,0 +1,29 @@
+{
+  "slug": "storm-hockey-a",
+  "name": "Storm Hockey A",
+  "model": "VTSA023",
+  "category": "sports-skill-games",
+  "headline": "Full-size air hockey table with bold cabinet styling",
+  "description": "Storm Hockey A (VTSA023) is a full-size air hockey table with bold cabinet styling for commercial floors. Net size W220 x D120 x H250 cm, power 150W. Price, MOQ and delivery confirmed by quotation.",
+  "images": [
+    "/images/products/storm-hockey-a.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTSA023" },
+    { "label": "Net Size", "value": "W220 x D120 x H250 cm" },
+    { "label": "Power", "value": "150W" }
+  ],
+  "features": [
+    "Full-size commercial air hockey format",
+    "Attractive cabinet lighting and styling",
+    "CE certified; factory direct",
+    "OEM/ODM branding available"
+  ],
+  "applications": [
+    "Arcades",
+    "Family Entertainment Centers",
+    "Sports Venues",
+    "Game Rooms"
+  ],
+  "certifications": ["CE"]
+}

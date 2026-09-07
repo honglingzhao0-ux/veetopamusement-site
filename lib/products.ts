@@ -40,13 +40,14 @@ export interface Product {
   specs: ProductSpec[];
   features: string[];
   applications: string[];
-  moq: number;
-  leadTime: string;
   certifications: string[];
-  warranty: string;
-  /** true = 示例占位产品（内容需替换为真实产品） */
-  sample: boolean;
-  /* ---- 以下均为可选扩展字段（旧数据缺省不影响构建） ---- */
+  /* ---- 以下为可选字段（旧数据缺省不影响构建） ---- */
+  /** 起订量（B2B 询价制下通常不公开，留空则页面不展示） */
+  moq?: number;
+  /** 交期说明（留空则不展示；具体交期以报价为准） */
+  leadTime?: string;
+  /** 保修说明（留空则不展示） */
+  warranty?: string;
   /** 人工撰写的 SEO description（优先于 description 截断回退） */
   seoDescription?: string;
   /** 产品级 FAQ（未配置时详情页使用站点级默认模板） */

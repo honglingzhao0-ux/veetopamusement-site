@@ -1,0 +1,30 @@
+{
+  "slug": "luxury-carousel-3p",
+  "name": "Luxury Carousel 3P",
+  "model": "VTKR110",
+  "category": "kiddie-rides",
+  "headline": "Three-seat luxury carousel for family venues",
+  "description": "Luxury Carousel 3P (VTKR110) is a three-seat rotating carousel with an elegant canopy design. Net size W140 x D140 x H235 cm, net weight 150kg. Price and delivery terms confirmed by quotation.",
+  "images": [
+    "/images/products/luxury-carousel-3p.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTKR110" },
+    { "label": "Net Size", "value": "W140 x D140 x H235 cm" },
+    { "label": "Net Weight", "value": "150kg" },
+    { "label": "Seats", "value": "3" }
+  ],
+  "features": [
+    "Three seats for shared play",
+    "Rotating carousel motion",
+    "CE certified; factory direct",
+    "Custom color schemes available"
+  ],
+  "applications": [
+    "Shopping Malls",
+    "Supermarkets",
+    "Family Entertainment Centers",
+    "Kid Zones"
+  ],
+  "certifications": ["CE"]
+}

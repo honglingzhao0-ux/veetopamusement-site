@@ -1,0 +1,28 @@
+{
+  "slug": "doll-cut-machine",
+  "name": "Doll Cut Machine",
+  "model": "VTPG031",
+  "category": "prize-merchandisers",
+  "headline": "Gift cutting machine for doll prizes",
+  "description": "Doll Cut Machine (VTPG031) is a gift cutting machine where players cut a selected doll prize through skill play. Net size W80 x D85 x H200 cm. Price and delivery terms confirmed by quotation.",
+  "images": [
+    "/images/products/doll-cut-machine.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTPG031" },
+    { "label": "Net Size", "value": "W80 x D85 x H200 cm" }
+  ],
+  "features": [
+    "Gift cutting gameplay for doll prizes",
+    "Clear prize display window",
+    "CE certified; factory direct",
+    "Custom artwork and branding available"
+  ],
+  "applications": [
+    "Shopping Malls",
+    "Supermarkets",
+    "Arcades",
+    "Family Entertainment Centers"
+  ],
+  "certifications": ["CE"]
+}

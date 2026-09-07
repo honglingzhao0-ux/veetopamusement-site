@@ -1,0 +1,29 @@
+{
+  "slug": "super-bike-iii",
+  "name": "Super Bike III",
+  "model": "VTSA010",
+  "category": "arcade-video-games",
+  "headline": "Full-size motorcycle racing simulator for arcades",
+  "description": "Super Bike III (VTSA010) is a full-size sit-on motorcycle racing simulator from the VEETOP racing series, built for commercial arcade and FEC operation. Net size W114 x D215 x H249 cm, power 400W. Price, MOQ and lead time are confirmed by quotation.",
+  "images": [
+    "/images/products/super-bike-iii.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTSA010" },
+    { "label": "Net Size", "value": "W114 x D215 x H249 cm" },
+    { "label": "Power", "value": "400W" }
+  ],
+  "features": [
+    "Full-size motorcycle cabinet for public venues",
+    "Commercial-duty construction for daily operation",
+    "CE certified; factory direct from Guangzhou",
+    "OEM/ODM artwork and branding available"
+  ],
+  "applications": [
+    "Arcades",
+    "Family Entertainment Centers",
+    "Theme Parks",
+    "Amusement Venues"
+  ],
+  "certifications": ["CE"]
+}

@@ -49,9 +49,8 @@ export default function ThankYouPage() {
           </p>
           <h1 className="h-xl">Thank You for Contacting VEETOP</h1>
           <p className="lede" style={{ margin: "0 auto 8px" }}>
-            Your inquiry has been sent successfully. Our export team usually
-            replies within 24 business hours (often much faster) with pricing,
-            MOQ and delivery time.
+            Your inquiry has been sent successfully. Our export team will
+            confirm pricing, MOQ and delivery time in the quotation.
           </p>
           <p style={{ color: "var(--muted)", marginBottom: 26 }}>
             Need a faster answer? Reach us directly on WhatsApp or email.

@@ -5,16 +5,12 @@ import site from "@/site.config";
 export const metadata: Metadata = {
   title: "About Us - Factory, OEM/ODM & Certifications",
   description:
-    "About VEETOP Amusement: our factory, quality system, OEM/ODM capabilities and certifications (ISO 9001, CE, UL, RoHS). A B2B manufacturing partner for arcade and amusement equipment.",
+    "About Guangzhou Veetop Amusement Technology Co., Ltd.: a CE-certified manufacturer of arcade game machines and amusement equipment, 21+ years in the industry, exports to 150+ countries, OEM/ODM cooperation available.",
   alternates: { canonical: "/about/" },
 };
 
 const certDescriptions: Record<string, string> = {
-  "ISO 9001": "Factory quality management system covering production and QC.",
-  CE: "Machine safety & EMC compliance for the European market.",
-  UL: "Product safety certification for North American operation.",
-  RoHS: "Restriction of hazardous substances in electrical parts.",
-  SAA: "Australian/New Zealand electrical safety approval.",
+  CE: "VEETOP is certified by CE. Certificate and compliance documents for specific models and markets are available on request.",
 };
 
 export default function AboutPage() {
@@ -52,36 +48,31 @@ export default function AboutPage() {
               chains, distributors and mall operators.
             </p>
             <p style={{ marginBottom: 0 }}>
-              <span className="badge-sample">Note</span>{" "}
-              <span style={{ color: "var(--muted)", fontSize: "0.9rem" }}>
-                Company intro, year and area on this page are placeholder
-                samples - replace with verified facts before launch.
-              </span>
+              VEETOP integrates R&amp;D, manufacturing and sales in one
+              company, holds the registered brands &quot;VEETOP&quot; and
+              &quot;VEETOP Amusement&quot;, and cooperates with world-class
+              brands on OEM/ODM projects.
             </p>
           </div>
           <div>
             <div className="stats-grid" style={{ marginTop: 0 }}>
               <div className="stat-cell">
                 <div className="stat-cell__num">
-                  {site.companyFacts.yearFounded}
-                  <small> EST</small>
+                  {site.companyFacts.yearsInBusiness}
                 </div>
-                <div className="stat-cell__label">Founded</div>
-              </div>
-              <div className="stat-cell">
-                <div className="stat-cell__num">{site.companyFacts.factoryArea}</div>
-                <div className="stat-cell__label">Factory Area</div>
+                <div className="stat-cell__label">Years in Industry</div>
               </div>
               <div className="stat-cell">
                 <div className="stat-cell__num">{site.companyFacts.exportCountries}</div>
                 <div className="stat-cell__label">Export Markets</div>
               </div>
               <div className="stat-cell">
-                <div className="stat-cell__num">
-                  {site.companyFacts.warrantyMonths}
-                  <small> mo</small>
-                </div>
-                <div className="stat-cell__label">Warranty</div>
+                <div className="stat-cell__num">{site.companyFacts.marketShare}</div>
+                <div className="stat-cell__label">Market Share</div>
+              </div>
+              <div className="stat-cell">
+                <div className="stat-cell__num">{site.companyFacts.certifications.join("")}</div>
+                <div className="stat-cell__label">Certification</div>
               </div>
             </div>
           </div>
@@ -95,8 +86,8 @@ export default function AboutPage() {
             <p className="kicker">Factory Strength</p>
             <h2 className="h-xl">One Facility, Full Control</h2>
             <p className="lede">
-              Sample placeholder copy - replace with your real production
-              capabilities, photos and equipment lists.
+              We focus on the amusement game product industry and keep
+              developing new products and improving production capacity.
             </p>
             <ul className="cap-list">
               <li>
@@ -104,20 +95,16 @@ export default function AboutPage() {
                 <span>In-house engineers for hardware, game software and cabinet structure.</span>
               </li>
               <li>
-                <b>Cabinet Production</b>
-                <span>CNC cutting, spraying, screen printing and assembly lines.</span>
+                <b>Manufacturing</b>
+                <span>Cabinet production, electronics assembly and machine finishing.</span>
               </li>
               <li>
-                <b>Electronics &amp; Wiring</b>
-                <span>Standardized harnesses and power systems with EMC-friendly layout.</span>
-              </li>
-              <li>
-                <b>QC &amp; Aging Test</b>
-                <span>Every unit runs function and 24-72h aging tests before packing.</span>
+                <b>Quality Control</b>
+                <span>Function and quality checks on every unit before packing.</span>
               </li>
               <li>
                 <b>Export &amp; Logistics</b>
-                <span>Experienced packing for sea freight; documents for customs clearance.</span>
+                <span>Export packing and shipping documentation for worldwide delivery.</span>
               </li>
             </ul>
           </div>
@@ -125,12 +112,11 @@ export default function AboutPage() {
             <p className="kicker">Capabilities</p>
             <h2 className="h-xl">What We Can Do for You</h2>
             <ul className="list-check">
-              <li>Standard catalog products with short lead time</li>
+              <li>Catalog models across six product lines</li>
               <li>OEM: rebrand existing models with your artwork &amp; logo</li>
-              <li>ODM: new cabinet sizes, features or game concepts</li>
-              <li>Localization: language, voltage, plug and coin systems</li>
-              <li>Mixed-container loading across product lines</li>
-              <li>Spare parts supply and technical video support</li>
+              <li>ODM: custom cabinet design, features or new game concepts</li>
+              <li>Localization: language, artwork and market requirements</li>
+              <li>After-sales: technical support coordination after delivery</li>
             </ul>
             <p style={{ marginTop: 24 }}>
               <Link href="/contact/" className="btn btn--dark">
@@ -167,19 +153,19 @@ export default function AboutPage() {
             </li>
             <li>
               <h3>03. Sample</h3>
-              <p>Approve artwork/prototype; sample units available before mass order.</p>
+              <p>Review and approve artwork or a prototype before mass production.</p>
             </li>
             <li>
               <h3>04. Production</h3>
-              <p>Deposit, mass production, in-line QC, aging tests and inspection.</p>
+              <p>Mass production with quality checks and inspection.</p>
             </li>
             <li>
               <h3>05. Shipment</h3>
-              <p>Balance payment, packing and delivery by sea/air/express.</p>
+              <p>Packing and delivery by sea, air or express as agreed.</p>
             </li>
             <li>
               <h3>06. After-Sales</h3>
-              <p>Warranty support, parts dispatch and remote troubleshooting.</p>
+              <p>Warranty and after-sales support per the order contract.</p>
             </li>
           </ul>
           <p style={{ marginTop: 30 }}>
@@ -206,8 +192,9 @@ export default function AboutPage() {
               <p className="kicker">Compliance</p>
               <h2 className="h-xl">Certifications &amp; Quality</h2>
               <p>
-                Sample certificate list - confirm the actual certificates for
-                each model with our sales team, as requirements vary by market.
+                VEETOP is certified by CE. Certificate and compliance
+                documents for specific models and markets are available on
+                request.
               </p>
             </div>
           </div>
@@ -235,7 +222,7 @@ export default function AboutPage() {
             </h2>
             <p>
               Email {c.email}, call {c.phone.label} or use the contact form -
-              we usually reply within 24 business hours.
+              we will get back to you with the details you need.
             </p>
           </div>
           <div className="cta-band__actions">

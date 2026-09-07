@@ -1,0 +1,29 @@
+{
+  "slug": "school-bus-kiddie-ride",
+  "name": "School Bus",
+  "model": "VTKR102",
+  "category": "kiddie-rides",
+  "headline": "School bus themed kiddie ride",
+  "description": "School Bus (VTKR102) is a school bus themed kiddie ride for young children in family venues. Net size W135 x D85 x H95 cm, net weight 75kg. Price and delivery terms confirmed by quotation.",
+  "images": [
+    "/images/products/school-bus-kiddie-ride.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTKR102" },
+    { "label": "Net Size", "value": "W135 x D85 x H95 cm" },
+    { "label": "Net Weight", "value": "75kg" }
+  ],
+  "features": [
+    "Recognizable school bus theme",
+    "Compact footprint for indoor placement",
+    "CE certified; factory direct",
+    "Custom artwork available"
+  ],
+  "applications": [
+    "Shopping Malls",
+    "Supermarkets",
+    "Family Entertainment Centers",
+    "Kid Zones"
+  ],
+  "certifications": ["CE"]
+}

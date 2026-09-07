@@ -1,0 +1,29 @@
+{
+  "slug": "ball-monster",
+  "name": "Ball Monster",
+  "model": "VTTR020",
+  "category": "redemption-ticket-games",
+  "headline": "High-format balls shooting game for redemption floors",
+  "description": "Ball Monster (VTTR020) is a tall balls shooting redemption game that draws attention on busy family floors. Net size W106 x D243 x H268 cm, power 350W. Price, MOQ and delivery confirmed by quotation.",
+  "images": [
+    "/images/products/ball-monster.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTTR020" },
+    { "label": "Net Size", "value": "W106 x D243 x H268 cm" },
+    { "label": "Power", "value": "350W" }
+  ],
+  "features": [
+    "Tall cabinet with strong floor presence",
+    "Balls shooting redemption format",
+    "CE certified; factory direct",
+    "OEM/ODM artwork and branding available"
+  ],
+  "applications": [
+    "Family Entertainment Centers",
+    "Arcades",
+    "Amusement Parks",
+    "Shopping Malls"
+  ],
+  "certifications": ["CE"]
+}

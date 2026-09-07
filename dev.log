@@ -1,0 +1,43 @@
+
+> veetop-site@0.1.0 dev
+> next dev -p 3111
+
+   ▲ Next.js 15.5.25
+   - Local:        http://localhost:3111
+   - Network:      http://192.168.0.70:3111
+
+ ✓ Starting...
+ ✓ Ready in 3s
+ ○ Compiling / ...
+ ✓ Compiled / in 1655ms (645 modules)
+ GET / 200 in 2426ms
+ GET / 200 in 130ms
+ ✓ Compiled /about in 429ms (633 modules)
+ GET /about/ 200 in 707ms
+ ✓ Compiled /products in 295ms (645 modules)
+ GET /products/ 200 in 511ms
+ ✓ Compiled /products/[slug] in 477ms (665 modules)
+ GET /products/super-bike-iii/ 200 in 1506ms
+ GET /products/arcade-video-games/ 200 in 218ms
+ GET /products/claw-crane-machines/ 200 in 237ms
+ ✓ Compiled /faq in 292ms (667 modules)
+ GET /faq/ 200 in 612ms
+ ✓ Compiled /llms.txt in 268ms (675 modules)
+ GET /llms.txt 200 in 393ms
+ ✓ Compiled /contact in 375ms (683 modules)
+ GET /contact/ 200 in 638ms
+ GET / 200 in 134ms
+ GET /products/super-bike-iii/ 200 in 156ms
+ GET /about/ 200 in 120ms
+ GET /llms.txt 200 in 20ms
+ GET / 200 in 161ms
+ GET /products/super-bike-iii/ 200 in 171ms
+ GET /about/ 200 in 116ms
+ GET /llms.txt 200 in 11ms
+ GET /faq/ 200 in 132ms
+ GET /products/arcade-video-games/ 200 in 173ms
+ GET / 200 in 148ms
+ GET /products/super-bike-iii/ 200 in 153ms
+ GET /products/super-bike-iii/ 200 in 227ms
+ GET /products/super-bike-iii/ 200 in 148ms
+[?25h

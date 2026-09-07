@@ -1,0 +1,30 @@
+{
+  "slug": "rainbow-carousel-6p",
+  "name": "Rainbow Carousel 6P",
+  "model": "VTKR112",
+  "category": "kiddie-rides",
+  "headline": "Six-seat rainbow carousel with high play capacity",
+  "description": "Rainbow Carousel 6P (VTKR112) is a six-seat rotating carousel with bright rainbow styling for high-traffic family locations. Net size W230 x D230 x H250 cm, net weight 225kg. Price and delivery confirmed by quotation.",
+  "images": [
+    "/images/products/rainbow-carousel-6p.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTKR112" },
+    { "label": "Net Size", "value": "W230 x D230 x H250 cm" },
+    { "label": "Net Weight", "value": "225kg" },
+    { "label": "Seats", "value": "6" }
+  ],
+  "features": [
+    "Six seats for higher revenue per footprint",
+    "Bright rainbow canopy styling",
+    "CE certified; factory direct",
+    "Custom color schemes available"
+  ],
+  "applications": [
+    "Shopping Malls",
+    "Family Entertainment Centers",
+    "Supermarkets",
+    "Amusement Parks"
+  ],
+  "certifications": ["CE"]
+}

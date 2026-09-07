@@ -74,8 +74,6 @@ const orgJsonLd: Record<string, unknown> = {
     areaServed: "Worldwide",
     availableLanguage: ["English", "Chinese"],
   },
-  foundingDate: site.companyFacts.foundingDate,
-  numberOfEmployees: site.companyFacts.employees,
   description: site.seo.description,
 };
 

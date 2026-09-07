@@ -170,8 +170,8 @@ export default function InquiryForm() {
         {busy ? "Sending..." : "Send Inquiry"}
       </button>
       <p className="form-note">
-        We reply within 24 business hours. Your data is only used to respond to
-        this inquiry.
+        We will confirm pricing, MOQ and delivery time in the quotation. Your
+        data is only used to respond to this inquiry.
       </p>
       {status && (
         <p className={"form-status" + (status.ok ? "" : " form-status--err")}>

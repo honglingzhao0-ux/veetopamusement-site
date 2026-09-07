@@ -7,7 +7,7 @@ import ProductExplorer from "@/components/product-explorer";
 export const metadata: Metadata = {
   title: "All Products - Arcade, Crane, Kiddie Rides & Redemption Machines",
   description:
-    "Full product catalog of VEETOP amusement equipment: arcade video games, redemption & ticket games, claw cranes, kiddie rides, sports & skill games and prize merchandisers. Factory-direct, CE & RoHS, OEM/ODM, MOQ 1 unit.",
+    "Full product catalog of Guangzhou Veetop Amusement Technology Co., Ltd.: arcade simulators and game cabinets, redemption machines, claw cranes, kiddie rides, sports & skill games and prize machines. CE certified, OEM/ODM available.",
   alternates: { canonical: "/products/" },
 };
 
@@ -44,13 +44,9 @@ export default function ProductsPage() {
           <ProductExplorer categories={categories} products={products} />
 
           <p style={{ marginTop: 26, fontSize: "0.88rem", color: "var(--muted)" }}>
-            All products shown are{" "}
-            <strong>
-              sample placeholder entries (marked &quot;Sample&quot;)
-            </strong>{" "}
-            with specifications subject to change. {site.contact.email} - we
-            will confirm real specs, certifications and lead time in your
-            quotation.
+            Net sizes and power ratings follow our official catalogue; unit
+            pricing, MOQ and lead time are confirmed by quotation. Contact{" "}
+            {site.contact.email} for details.
           </p>
         </div>
       </section>

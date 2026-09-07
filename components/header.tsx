@@ -18,13 +18,6 @@ export default function Header() {
 
   return (
     <>
-      {site.isDemoSite && (
-        <div className="topbar">
-          Demo site - all product data, contacts and company facts are{" "}
-          <code>placeholder samples</code>. Replace before launch (see
-          site.config.ts + data/products).
-        </div>
-      )}
       <header className="site-header">
         <div className="container site-header__inner">
           <Link href="/" aria-label="VEETOP Amusement - Home">

@@ -1,0 +1,29 @@
+{
+  "slug": "interactive-basketball-moving-basket",
+  "name": "Interactive Display Basketball (Moving Basket)",
+  "model": "VTSB19",
+  "category": "sports-skill-games",
+  "headline": "Interactive basketball arcade with moving basket play",
+  "description": "Interactive Display Basketball (VTSB19) adds a moving basket to interactive display play, increasing challenge and replay value. Net size W100 x D250 x H255 cm, power 100W. Price and delivery confirmed by quotation.",
+  "images": [
+    "/images/products/interactive-basketball-moving-basket.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTSB19" },
+    { "label": "Net Size", "value": "W100 x D250 x H255 cm" },
+    { "label": "Power", "value": "100W" }
+  ],
+  "features": [
+    "Interactive display screen",
+    "Moving basket play mode",
+    "CE certified; factory direct",
+    "OEM/ODM artwork and branding available"
+  ],
+  "applications": [
+    "Arcades",
+    "Family Entertainment Centers",
+    "Sports Bars",
+    "Amusement Venues"
+  ],
+  "certifications": ["CE"]
+}

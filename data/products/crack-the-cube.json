@@ -1,0 +1,29 @@
+{
+  "slug": "crack-the-cube",
+  "name": "Crack The Cube",
+  "model": "VTTR060",
+  "category": "redemption-ticket-games",
+  "headline": "Cube-breaking skill redemption game",
+  "description": "Crack The Cube (VTTR060) is a cube-breaking skill game from the VEETOP redemption series. Net size W115 x D200 x H240 cm, power 350W. Price and delivery terms confirmed by quotation.",
+  "images": [
+    "/images/products/crack-the-cube.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTTR060" },
+    { "label": "Net Size", "value": "W115 x D200 x H240 cm" },
+    { "label": "Power", "value": "350W" }
+  ],
+  "features": [
+    "Skill-based cube gameplay",
+    "Modern cabinet presentation",
+    "CE certified; factory direct",
+    "OEM/ODM branding available"
+  ],
+  "applications": [
+    "Family Entertainment Centers",
+    "Arcades",
+    "Amusement Parks",
+    "Shopping Malls"
+  ],
+  "certifications": ["CE"]
+}

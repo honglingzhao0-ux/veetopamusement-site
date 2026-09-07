@@ -1,0 +1,29 @@
+{
+  "slug": "luxurious-train-kiddie-ride",
+  "name": "Luxurious Train",
+  "model": "VTKR105",
+  "category": "kiddie-rides",
+  "headline": "Train-styled kiddie ride with luxurious look",
+  "description": "Luxurious Train (VTKR105) is a train-styled kiddie ride with an upscale finish, popular in malls and supermarkets. Net size W135 x D95 x H120 cm, net weight 55kg. Price, MOQ and delivery confirmed by quotation.",
+  "images": [
+    "/images/products/luxurious-train-kiddie-ride.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTKR105" },
+    { "label": "Net Size", "value": "W135 x D95 x H120 cm" },
+    { "label": "Net Weight", "value": "55kg" }
+  ],
+  "features": [
+    "Train theme with premium finishing",
+    "Compact ride for single child",
+    "CE certified; factory direct",
+    "Custom color schemes available"
+  ],
+  "applications": [
+    "Shopping Malls",
+    "Supermarkets",
+    "Family Entertainment Centers",
+    "Parks"
+  ],
+  "certifications": ["CE"]
+}

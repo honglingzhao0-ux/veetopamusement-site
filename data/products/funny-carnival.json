@@ -1,0 +1,29 @@
+{
+  "slug": "funny-carnival",
+  "name": "Funny Carnival",
+  "model": "VTTR031",
+  "category": "redemption-ticket-games",
+  "headline": "Narrow carnival-themed redemption game",
+  "description": "Funny Carnival (VTTR031) is a carnival-themed redemption game with a narrow cabinet that fits tight spaces. Net size W182 x D77 x H205 cm, power 300W. Price and delivery confirmed by quotation.",
+  "images": [
+    "/images/products/funny-carnival.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTTR031" },
+    { "label": "Net Size", "value": "W182 x D77 x H205 cm" },
+    { "label": "Power", "value": "300W" }
+  ],
+  "features": [
+    "Carnival theme with bright visuals",
+    "Narrow depth for flexible placement",
+    "CE certified; factory direct",
+    "Custom artwork and branding available"
+  ],
+  "applications": [
+    "Family Entertainment Centers",
+    "Arcades",
+    "Fairs and Events",
+    "Shopping Malls"
+  ],
+  "certifications": ["CE"]
+}

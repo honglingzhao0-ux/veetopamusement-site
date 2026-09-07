@@ -6,7 +6,7 @@
  * 说明：
  *  - 读取 data/categories.json 与 data/products/*.json；
  *  - 为每个产品在 public/images/products/<slug>.svg 生成一张占位图
- *    （按品类配色 + 简单线稿图标 + 产品名/型号水印，标注 SAMPLE）；
+ *    （按品类配色 + 简单线稿图标 + 产品名/型号水印，标注"产品图，照片备索"）；
  *  - 后续替换真实照片时，把同名文件换成 JPG/PNG 即可（JSON 里的 images
  *    路径改为 /images/products/<slug>.jpg 即可，或直接覆盖本文件并保持
  *    扩展名 .svg 不变）。
@@ -128,9 +128,9 @@ function buildSvg({ hue, catName, name, model, accentHex }) {
     <path d="M90 0v900M180 0v900M270 0v900M360 0v900M450 0v900M540 0v900M630 0v900M720 0v900M810 0v900M900 0v900M990 0v900M1080 0v900M1170 0v900"/>
   </g>
   <rect x="34" y="34" width="1132" height="832" rx="18" fill="none" stroke="rgba(255,255,255,.22)" stroke-width="2"/>
-  <text x="74" y="92" fill="#fff" opacity=".85" font-family="Consolas, monospace" font-size="26" letter-spacing="6">SAMPLE ARTWORK</text>
+  <text x="74" y="92" fill="#fff" opacity=".85" font-family="Consolas, monospace" font-size="26" letter-spacing="6">PRODUCT IMAGE</text>
   <text x="1126" y="92" text-anchor="end" fill="hsl(${hue} 90% 62%)" font-family="Consolas, monospace" font-size="26" letter-spacing="4">${model}</text>
-  <text x="1126" y="840" text-anchor="end" fill="rgba(255,255,255,.55)" font-family="Consolas, monospace" font-size="22" letter-spacing="4">REPLACE WITH PRODUCT PHOTO</text>
+  <text x="1126" y="840" text-anchor="end" fill="rgba(255,255,255,.55)" font-family="Consolas, monospace" font-size="22" letter-spacing="4">PHOTO AVAILABLE ON REQUEST</text>
   ${glyph}
   <text x="80" y="820" fill="#fff" font-family="Bahnschrift, 'Arial Narrow', Arial, sans-serif" font-weight="700" font-size="54" letter-spacing="1">${name.toUpperCase()}</text>
   <text x="80" y="760" fill="hsl(${hue} 85% 62%)" font-family="Bahnschrift, Arial, sans-serif" font-weight="700" font-size="24" letter-spacing="6">${catName.toUpperCase()}</text>

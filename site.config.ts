@@ -1,17 +1,12 @@
 /**
  * ============================================================================
- * VEETOP 独立站 —— 站点唯一配置
+ * VEETOP 独立站 —— 站点唯一配置（真实内容版）
  * ============================================================================
- * 品牌、域名、联系方式、公司事实、FAQ 等"占位/可编辑内容"全部集中在本文件。
+ * 品牌、域名、联系方式、公司事实、FAQ 等内容集中在本文件。
+ * 以下内容均已按公司提供资料核实（画册第 1-2 页 + 用户提供联系方式）；
+ * 如需变更，请只在本文件修改（首页 / About / JSON-LD / llms.txt 均引用此处）。
  *
- * 上线前请按以下步骤替换：
- *   1) 全局搜索 "REPLACE:" 标记，逐项替换为真实内容；
- *   2) 域名：site.domain 换成真实解析到 Vercel 的域名；
- *   3) 表单：site.contact.formEndpoint 填入 Formspree / Web3Forms 等端点地址；
- *   4) 同步修改 .env.example（NEXT_PUBLIC_SITE_URL / NEXT_PUBLIC_CDN_URL）。
- *
- * 数字唯一来源：本文件的 companyFacts 被首页/About/layout JSON-LD/llms.txt
- * 共同引用 —— 修改只在"这一处"改，禁止在页面里硬编码数字（防口径矛盾）。
+ * 仍待补充项（上线前可选）：socials 主页 URL、地图 geo 坐标、表单 endpoint。
  * ============================================================================
  */
 
@@ -36,10 +31,11 @@ const site = {
   /* 品牌与站点                                                        */
   /* ------------------------------------------------------------------ */
   brand: {
-    name: "VEETOP", // REPLACE: 品牌名
-    suffix: "AMUSEMENT", // 商标下方的小字，可改
-    legalName: "Guangzhou VEETOP Amusement Equipment Co., Ltd.", // REPLACE: 公司法定全称
-    // REPLACE: 正式域名（含协议，无结尾斜杠）
+    name: "VEETOP",
+    suffix: "AMUSEMENT",
+    // 公司法定全称（画册封面）
+    legalName: "Guangzhou Veetop Amusement Technology Co., Ltd.",
+    // 正式域名（含协议，无结尾斜杠）
     domain: "https://www.veetopamusement.com",
   },
 
@@ -47,172 +43,170 @@ const site = {
   seo: {
     title: "VEETOP Amusement | Game & Amusement Equipment Manufacturer",
     description:
-      "VEETOP is a B2B manufacturer of arcade video games, redemption machines, claw cranes, kiddie rides, sports & skill games and prize merchandisers. Factory-direct pricing, OEM/ODM supported, CE & UL certified. Request a quote today.",
+      "Guangzhou Veetop Amusement Technology Co., Ltd. is a CE-certified manufacturer of arcade game machines, redemption machines, claw cranes, kiddie rides and amusement equipment. 21+ years in the industry, exports to 150+ countries, OEM/ODM cooperation available.",
     keywords: [
-      "arcade game manufacturer",
-      "amusement equipment supplier",
+      "arcade game machine manufacturer",
+      "amusement game machine supplier",
       "redemption machine",
       "claw crane machine",
       "kiddie ride",
-      "prize merchandiser",
-      "OEM ODM arcade",
+      "coin pusher",
+      "OEM ODM amusement equipment",
       "VEETOP amusement",
     ],
   },
 
   /* ------------------------------------------------------------------ */
-  /* 联系方式 —— REPLACE: 全部为占位数据                               */
+  /* 联系方式（公司提供）                                               */
   /* ------------------------------------------------------------------ */
   contact: {
-    email: "sales@veetopamusement.com", // REPLACE: 真实询盘邮箱（mailto 与表单都引用这里）
+    email: "Sales@veetopamusement.com",
     whatsapp: {
-      // REPLACE: 仅数字、含国家码，不含 "+" 或空格（用于 wa.me 跳转）
-      number: "8613800000000",
-      // REPLACE: 展示用文案
-      label: "+86 138 0000 0000",
-      // REPLACE: 全站悬浮 WhatsApp 按钮的默认预填话术（可覆盖为多语言/带品牌名）
+      // 仅数字、含国家码（用于 wa.me 跳转）
+      number: "8618824175545",
+      // 展示用文案
+      label: "+86 188 2417 5545",
+      // 全站悬浮 WhatsApp 按钮的默认预填话术
       message:
-        "Hello VEETOP, I'd like a quote for arcade & amusement machines. Please contact me.",
+        "Hello VEETOP, I would like a quotation for amusement machines. Please contact me.",
     },
     phone: {
-      // REPLACE: tel: 链接用，仅数字含国家码
-      tel: "+862000000000",
-      // REPLACE: 展示用文案
-      label: "+86 20 0000 0000",
+      // tel: 链接用
+      tel: "+8618824175545",
+      // 展示用文案
+      label: "+86 188 2417 5545",
     },
     address: {
-      // REPLACE: 工厂/公司地址
-      line1: "No. 88 Innovation Road, Panyu District",
-      line2: "Guangzhou, Guangdong 511400, China",
-      // REPLACE: 可选经纬度（本地 SEO / Organization JSON-LD geo）。
-      // 填上数字后会自动输出到结构化数据；留空 "" 则忽略该字段。
+      // 工厂/公司地址（用户提供：广州番禺区新水坑）
+      line1: "Xinshuikeng, Panyu District",
+      line2: "Guangzhou, Guangdong, China",
+      // 可选经纬度（本地 SEO / Organization JSON-LD geo）。
+      // 填上数字后会自动输出到结构化数据；留空 "" 则忽略。
       geo: {
         latitude: "",
         longitude: "",
       },
     },
-    hours: "Mon-Sat 9:00-18:00 (GMT+8)",
-    // REPLACE: 询盘表单真实提交端点。
-    // 示例：Formspree -> "https://formspree.io/f/xxxxxxx"
-    //       Web3Forms -> "https://api.web3forms.com/submit"（需配 access_key 隐藏域）
-    // 留空（""）时表单在浏览器端生成一封 mailto 邮件作为占位方案，可正常演示。
+    // 询盘表单提交端点：Formspree -> "https://formspree.io/f/xxxxxxx"
+    // Web3Forms -> "https://api.web3forms.com/submit"（需配 access_key 隐藏域）
+    // 留空（""）时表单在浏览器端生成一封 mailto 邮件，可先正常使用。
     formEndpoint: "",
     formNote:
-      "Samples & factory visits are welcome. Usually replies within 24 hours on business days.",
+      "For a quotation please tell us the model, quantity, destination port and country. Our export team will confirm price and delivery details.",
   },
 
   /* ------------------------------------------------------------------ */
-  /* 企业数据声明（示例占位，替换为真实数字 —— 数字唯一来源）         */
+  /* 企业数据声明（画册第 2 页，可核实）—— 数字唯一来源                */
   /* ------------------------------------------------------------------ */
   companyFacts: {
-    // REPLACE: 全部示例数据；以下每项被多处引用，只在本处修改
-    yearFounded: "2008", // 展示用（hero/About/llms 年份）
-    foundingDate: "2008-06-18", // REPLACE: ISO 日期（Organization JSON-LD），年份须与 yearFounded 一致
-    factoryArea: "18,000 m²", // REPLACE
-    exportCountries: "60+ countries", // REPLACE
-    employees: "150+", // REPLACE: Organization numberOfEmployees / llms.txt
-    monthlyCapacity: "3,000+ units", // REPLACE: llms.txt
-    warrantyMonths: 12, // REPLACE: 保修月数（About 数字卡 / FAQ 口径）
+    // 深耕行业年限
+    yearsInBusiness: "21+",
+    // 出口国家/地区数
+    exportCountries: "150+",
+    // 市场份额（画册口径）
+    marketShare: "15%+",
     oemOdmNote:
-      "OEM / ODM services with private-label cabinet design, artwork & software support.", // REPLACE
-    certifications: ["ISO 9001", "CE", "UL", "RoHS", "SAA"], // REPLACE
+      "VEETOP owns the brands VEETOP and VEETOP Amusement and also cooperates with world-class brands on OEM/ODM projects.",
+    // 认证（画册第 2 页：Certified by CE）
+    certifications: ["CE"],
   },
 
   /* ------------------------------------------------------------------ */
-  /* 社媒（占位 —— Organization sameAs 只输出非空项）                 */
+  /* 社媒（Organization sameAs 只输出非空项；上线后如有主页在此填入 URL） */
   /* ------------------------------------------------------------------ */
   socials: {
-    // REPLACE: 逐项填真实主页 URL；留空 "" 则该平台不会出现在结构化数据里
-    facebook: "", // REPLACE: https://www.facebook.com/yourpage
-    instagram: "", // REPLACE: https://www.instagram.com/yourpage
-    youtube: "", // REPLACE: https://www.youtube.com/@yourchannel
-    linkedin: "", // REPLACE: https://www.linkedin.com/company/yourcompany
+    facebook: "",
+    instagram: "",
+    youtube: "",
+    linkedin: "",
   },
 
   /* ------------------------------------------------------------------ */
-  /* FAQ 三层分工                                                      */
-  /*   站级贸易条款  ->  site.faqs（/faq/ 页 + llms.txt）             */
-  /*   品类级 FAQ    ->  data/categories.json[].faqs（品类着陆页）     */
-  /*   产品级 FAQ    ->  data/products/*.json[].faqs（产品详情页）     */
-  /*   产品未填时    ->  site.defaultProductFaqs（5 问通用模板回退）   */
+  /* FAQ 三层分工                                                       */
+  /*   站级贸易条款  ->  site.faqs（/faq/ 页 + llms.txt）               */
+  /*   品类级 FAQ    ->  data/categories.json[].faqs（品类着陆页）       */
+  /*   产品级 FAQ    ->  data/products/*.json[].faqs（产品详情页）       */
+  /*   产品未填时    ->  site.defaultProductFaqs（5 问通用模板回退）     */
+  /* 注：具体 MOQ/交期/价格等因型号与订单而异，一律引导向报价确认，      */
+  /*     不在站内给出未经核实的数字。                                    */
   /* ------------------------------------------------------------------ */
   faqs: [
     {
-      q: "What is your MOQ?",
-      a: "MOQ is 1 unit for most standard models (2 units for mini/tabletop units). Full-container orders get better pricing.",
+      q: "Are you a manufacturer or a trading company?",
+      a: "We are a manufacturer based in Guangzhou, China, integrating R&D, production and sales of amusement game machines. We hold the VEETOP and VEETOP Amusement brands and provide OEM/ODM cooperation.",
+    },
+    {
+      q: "Which markets do you export to?",
+      a: "We export to 150+ countries and regions around the world, including Thailand, Brazil, the United States, Japan and many more. All our products are exported worldwide.",
+    },
+    {
+      q: "What is the minimum order quantity?",
+      a: "Minimum quantity depends on the model and is confirmed together with the quotation. Sample orders and container orders can both be discussed with our sales team.",
+    },
+    {
+      q: "How do I get a quotation?",
+      a: "Send us the model name or number, your quantity, destination port/country and any customization needs. Our export team will confirm price, lead time and shipping terms.",
     },
     {
       q: "What payment terms do you accept?",
-      a: "T/T (30% deposit, 70% before shipment), L/C and Western Union. PayPal is accepted for sample orders.",
+      a: "Payment terms are agreed per order and confirmed in the quotation and contract. Bank transfer is commonly used for export orders.",
     },
     {
-      q: "How long is production and delivery?",
-      a: "Typically 15-30 days after deposit for standard models; larger rides and full-container orders take 25-40 days. Sea, air and express shipping are available.",
+      q: "What is the production and delivery lead time?",
+      a: "Lead time depends on the model, stock status and order size. We confirm the exact schedule in the quotation before you place the order.",
     },
     {
-      q: "Do you provide warranty and after-sales support?",
-      a: "Yes - a 12-month warranty against non-artificial defects, plus spare-parts dispatch and online/video technical guidance. Remote diagnostics are available for software issues.",
+      q: "Do you provide after-sales support?",
+      a: "After-sales service and warranty terms are provided with every order. Details are confirmed in the quotation and contract, and our team supports customers with technical guidance.",
     },
     {
-      q: "Can you customize machines (OEM/ODM)?",
-      a: "Yes - cabinet artwork, brand logo, color scheme, software languages, voltage, plugs and payment systems can all be customized to your market.",
+      q: "Are your products certified?",
+      a: "VEETOP is certified by CE. Certificate and compliance documents for the relevant market can be requested from our sales team.",
     },
     {
-      q: "Do you offer samples before a bulk order?",
-      a: "Yes, sample orders are welcome and are shipped by express (DHL/FedEx/UPS). The sample cost is confirmed in your quotation.",
+      q: "Can you customize machines for my brand (OEM/ODM)?",
+      a: "Yes. We have OEM/ODM cooperation with world-class brands, covering branding, cabinet design, artwork, software content and other customization agreed per project.",
     },
     {
-      q: "What voltage and plug do your machines use?",
-      a: "Machines run on AC 110-240V 50/60Hz and we configure the plug for your destination country at no extra charge.",
+      q: "Do you support sample orders?",
+      a: "Sample orders can be discussed with our sales team - please ask for sample availability and terms in your inquiry.",
     },
     {
-      q: "Which certifications do your products have?",
-      a: "CE & RoHS are standard across the range. UL, FCC or SAA are available depending on model and target market - confirmed in the quotation.",
-    },
-    {
-      q: "How do you pack machines for export?",
-      a: "Each machine is protected with foam corner guards, stretch film and a strong carton or plywood case, then loaded for sea freight or handed to express couriers for small orders.",
-    },
-    {
-      q: "Can you ship to my country and handle customs?",
-      a: "We export worldwide and prepare full shipping documents. For DDP or door-to-door delivery, our logistics team will quote the total landed cost.",
-    },
-    {
-      q: "What information do you need for a quotation?",
-      a: "Model or product interest, quantity, destination port/country and your voltage/payment preferences. With that we reply within 24 business hours.",
+      q: "What should I prepare before sending an inquiry?",
+      a: "The model(s) you are interested in, quantity, destination country/port and any specific requirements (voltage, plug, artwork) help us reply faster and more accurately.",
     },
     {
       q: "Can I visit your factory?",
-      a: "Yes, factory visits are welcome by appointment. We are based in Guangzhou, China - contact us to arrange a visit and see the production line.",
+      a: "Factory visits are welcome by appointment. We are located in Xinshuikeng, Panyu District, Guangzhou, China - contact us to arrange a visit.",
     },
   ] as FaqItem[],
 
-  /* 产品详情页 FAQ 未配置时的默认 5 问模板（与贸易卡/站级口径一致） */
+  /* 产品详情页 FAQ 未配置时的默认 5 问模板（与站级口径一致，不含未核实数字） */
   defaultProductFaqs: [
     {
-      q: "What is the MOQ for this model?",
-      a: "MOQ is 1 unit for standard models. Sample orders and mixed-container orders are both supported.",
+      q: "How do I get a quotation for this model?",
+      a: "Send us the model number, your quantity and destination port/country. Our export team will confirm price, lead time and shipping terms in the quotation.",
     },
     {
-      q: "How long is production and delivery?",
-      a: "Lead time is typically 15-30 days after deposit depending on the model and order size. Sea, air and express shipping are available.",
+      q: "What is the minimum order quantity?",
+      a: "Minimum quantity depends on the model and order type - please ask our sales team and it will be confirmed with the quotation.",
     },
     {
-      q: "What is the warranty and after-sales support?",
-      a: "12-month warranty against non-artificial defects, with spare-parts dispatch and online/video technical guidance.",
+      q: "What is the delivery lead time?",
+      a: "Lead time depends on stock status and order size and is confirmed in the quotation before you place the order.",
     },
     {
-      q: "Can the machine be customized for my brand?",
-      a: "Yes - OEM/ODM customization covers cabinet artwork, logo, software languages, voltage, plugs and payment systems.",
+      q: "Can this machine be customized for my market?",
+      a: "We support OEM/ODM projects covering branding, cabinet design, artwork and software content. Tell us your requirements and we will advise what is possible.",
     },
     {
-      q: "What voltage and certifications apply?",
-      a: "AC 110-240V 50/60Hz with plug adapted to your market. CE & RoHS are standard; UL, FCC or SAA per model and destination - confirmed in your quotation.",
+      q: "Is this machine certified?",
+      a: "VEETOP is certified by CE. Request the certificate or compliance documents for your market from our sales team.",
     },
   ] as FaqItem[],
 
   /* ------------------------------------------------------------------ */
-  /* 导航                                                              */
+  /* 导航                                                               */
   /* ------------------------------------------------------------------ */
   nav: {
     links: [
@@ -224,9 +218,6 @@ const site = {
       { label: "Contact", href: "/contact/" },
     ] as NavLink[],
   },
-
-  /** 首页"示例网站"提示条（整体上线前可删除本字段及对应组件） */
-  isDemoSite: true,
 };
 
 export type SiteConfig = typeof site;

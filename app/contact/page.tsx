@@ -5,7 +5,7 @@ import InquiryForm from "@/components/inquiry-form";
 export const metadata: Metadata = {
   title: "Contact Us - Request a Quote",
   description:
-    "Contact VEETOP Amusement for quotations, OEM/ODM projects, samples and factory visits. Email, WhatsApp and phone are answered within 24 business hours.",
+    "Contact Guangzhou Veetop Amusement Technology Co., Ltd. for quotations, OEM/ODM projects and factory visits. Email Sales@veetopamusement.com or WhatsApp +86 188 2417 5545.",
   alternates: { canonical: "/contact/" },
 };
 
@@ -61,10 +61,6 @@ export default function ContactPage() {
                   {c.address.line2}
                 </span>
               </div>
-              <div className="info-row">
-                <span className="k">Working Hours</span>
-                <span className="v">{c.hours}</span>
-              </div>
               <div className="info-actions">
                 <a href={`mailto:${c.email}`} className="btn btn--dark">
                   Email Sales
@@ -78,15 +74,6 @@ export default function ContactPage() {
                   Chat on WhatsApp
                 </a>
               </div>
-            </div>
-
-            <div className="callout" style={{ marginTop: 18 }}>
-              <strong>Note</strong>
-              <span>
-                All contact details on this page are placeholders. Replace them
-                in <code>site.config.ts</code> (search &quot;REPLACE&quot;)
-                before publishing.
-              </span>
             </div>
           </div>
 

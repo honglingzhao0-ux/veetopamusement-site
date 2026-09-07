@@ -247,11 +247,10 @@ git push
    - `"name"` / `"model"`：产品名 / 型号（如 `VT-XXX-100`）；
    - `"category"`：填 `data/categories.json` 里已有分类的 id（如 `arcade-video-games`、`claw-crane-machines` 等）；
    - `"images"`：改成图片地址数组，见下；
-   - `"specs"` / `"features"` / `"applications"` / `"moq"` / `"certifications"`：参数、卖点、适用场景、起订量、认证（格式照抄原文件即可）；
-   - `"sample": true`：见第 7 步说明。
+    - `"specs"` / `"features"` / `"applications"` / `"certifications"`：参数、卖点、适用场景、认证（格式照抄原文件；公司认证为 CE，写 `["CE"]`）。不要填写未经核实的数字（MOQ/交期/保修等由报价确认）。
 3. 图片（二选一）：
    - 有真实照片：把照片放进 `public/images/products/`，命名为 `my-new-game.jpg`，并把 JSON 里 `"images"` 改为 `["/images/products/my-new-game.jpg"]`；
-   - 还没有照片：在终端执行 `node scripts/generate-placeholders.mjs` 自动生成同名占位图。
+   - 还没有照片：在终端执行 `node scripts/generate-placeholders.mjs` 自动生成同名示意图。
 4. 执行 6.2 的发布命令。列表页、分类筛选、详情页、网站地图都会自动带上新产品。
 
 ### 6.4 删除 / 下架产品
@@ -259,41 +258,29 @@ git push
 
 ---
 
-## 第 7 步：替换占位内容（正式上线前必做）
+## 第 7 步：上线前内容核对（本仓库交付时已填入真实内容）
 
-网站里所有"示例内容"都集中在两处，替换后**整个网站各处自动生效**（页面里没有散落的联系方式）。
+网站的公司信息、联系方式与产品目录**已在交付时填入真实内容**（来源：公司提供 + 官方《2026 Product Catalogue》），集中配置在 `site.config.ts` 与 `data/`，页面没有散落文案。上线前只需核对以下项：
 
-### 7.1 打开 `site.config.ts`，按里面的 `REPLACE:` 注释逐项替换
+**已就绪（无需改动）**
+- 公司法定名 Guangzhou Veetop Amusement Technology Co., Ltd.、域名 veetopamusement.com；
+- 邮箱 `Sales@veetopamusement.com`、电话/WhatsApp `+86 188 2417 5545`、地址（广州番禺区新水坑）；
+- 公司事实：21+ 年 / 150+ 出口国 / CE 认证 / OEM·ODM（`companyFacts`，首页、About、JSON-LD、llms.txt 同源引用）；
+- 产品目录 33 个真实产品（型号/净尺寸/功率抄录自画册），FAQ 全部为"以报价确认为准"的咨询式口径，站内无演示提示条、无 SAMPLE 徽标。
 
-| 位置（在该文件里搜索） | 占位内容 | 替换成 |
-|---|---|---|
-| `brand.legalName` | Guangzhou VEETOP… | 公司法定全称 |
-| `brand.domain` | https://www.veetopamusement.com | 正式域名（一般不用改） |
-| `contact.email` | sales@veetopamusement.com | 真实询盘邮箱（页脚/联系页/邮件按钮都引用它） |
-| `contact.whatsapp.number` / `.label` | 8613800000000 / +86 138 0000 0000 | 真实号码：`number` 只填数字含国家码；`label` 填展示文案 |
-| `contact.phone.tel` / `.label` | +862000000000 | 真实电话，同样分"链接用/展示用"两项 |
-| `contact.address.line1 / line2` | No. 88 Innovation Road… | 工厂/公司地址 |
-| `contact.hours` | Mon–Sat 9:00… | 真实工作时间 |
-| `companyFacts` 四项 | 2008 / 18,000 m² / 60+ / 认证列表 | 真实成立年份、厂房面积、出口国家数、认证 |
-| `seo` 标题描述关键词 | 示例文案 | 可按你的关键词微调 |
-| `isDemoSite` | `true` | 改成 `false`（关掉页面顶部橙色"Demo site"提示条与页脚示例声明） |
-
-> 改完保存后执行 6.2 发布命令即生效。
-
-### 7.2 产品目录与"Sample"徽标
-- 每个产品 JSON 里 `"sample": true` 表示"这是示例产品"，产品卡片和详情页会显示 **SAMPLE** 徽标。改成 `false`（或删除这一行）后徽标自动消失。
-- 建议流程：先用真实产品**逐条替换**示例 JSON 的内容（名称/型号/参数/认证改成真实值），替换完成的把 `sample` 置 `false`；没来得及替换的仍留 `true`，页面会诚实标注"示例数据"。
-- 首页顶部橙色提示条由 7.1 的 `isDemoSite` 统一控制，不必逐页改。
-
-### 7.3 替换示例产品图
-把 `public/images/products/*.svg` 换成真实照片（jpg/png 均可）：放入同名文件并同步修改 JSON 里的 `"images"` 地址（如 `/images/products/classic-dual-arcade-cabinet.jpg`）→ 发布。换图后记得执行一次 4.3 的 `rclone copy` 同步到 R2（或暂时不设 CDN 变量、让图片走网站自身 `/images` 也行，见第 10 步 FAQ）。
+**待补充（不影响上线，按需完成）**
+| 位置 | 待补充 |
+|---|---|
+| `public/images/products/*.svg` | 换成真实产品照片（jpg/png 同 slug 命名，并同步 JSON `images`）；换图后执行 4.3 的 `rclone copy` 同步到 R2（或暂不设 CDN 变量走网站自身 `/images`，见第 10 步 FAQ） |
+| `site.config.ts` `contact.formEndpoint` | 询盘表单端点（见第 8 步）；留空时表单用 mailto 兜底 |
+| `site.config.ts` `socials`、`address.geo` | 社媒主页、地图坐标（填了才输出结构化数据） |
 
 ---
 
 ## 第 8 步：询盘表单接入免费方案
 
 代码现状（`components/inquiry-form.tsx`）：表单字段已就绪（Name / Company / Email / Country / Product interest / Message），行为由 `site.config.ts` 的 **`contact.formEndpoint`** 控制：
-- 为空字符串（当前默认）：点"Send Inquiry"会用电脑邮件客户端发一封邮件（**仅演示用，正式上线前必须改**）；
+- 为空字符串（当前默认）：点"Send Inquiry"会用电脑邮件客户端发一封邮件（**尚未接入第三方表单服务时的兜底方案，建议上线后配置端点以便统一收件**）；
 - 填入端点地址：表单直接 POST 到该地址，字段名与 Formspree / Web3Forms 兼容。
 
 ### 方案 A：Formspree（推荐先试这个）
@@ -336,13 +323,13 @@ git push
 
 | 现象 | 可能原因 | 处理办法 |
 |---|---|---|
-| 域名打不开 / 浏览器提示不安全 | DNS 还没生效；或记录值抄错 | Vercel → Settings → Domains 看状态是否 Valid；`cmd` 里 `nslookup www.veetopamusement.com` 看指向；核对阿里云记录值是否与 Vercel/Cloudflare 页面**显示**的一致；等待几分钟–24h |
+| 域名打不开 / 浏览器提示不安全 | DNS 还没生效；或记录值抄错 | Vercel → Settings → Domains 看状态是否 Valid；`cmd` 里 `nslookup www.veetopamusement.com` 看指向；核对阿里云记录值是否与 Vercel/Cloudflare 页面**显示**的一致；等待几分钟到一天（DNS 生效时间） |
 | 带 www 能开、不带 www 打不开（或反过来） | 只加了一条域名，或缺 `@` 的 A 记录 | 两条域名都在 Vercel Domains 添加；阿里云确认 `@` A 记录与 `www` CNAME 都在；可选做 3.4 的跳转 |
 | 页面 404 / 某产品打不开 | 构建失败或 JSON 写错 | Vercel → Deployments → 点失败的那次看日志（红色报错里通常写着哪个文件）；多半是 `data/products/` 里 JSON 少逗号/引号；改好重新 push |
 | 线上图片不显示 | ① CDN 变量没生效 ② R2 没传/路径不对 ③ 图名与 JSON 不一致 | 先看该图片直链（右键图→新标签打开）：若 404 → 到 R2 检查路径是否为 `images/products/同名文件`；若地址还是 `/images/...`（没有 cdn 域名）→ 第 5 步环境变量没配或改后没 Redeploy；JSON 里 `"images"` 地址是否和文件名一致 |
 | 改完内容线上没变化 | 没 push；或部署失败；或浏览器缓存 | 确认执行了 `git push` 且 Vercel Deployments 出现新的一次并成功；`Ctrl + F5` 强刷；正常等待 1–3 分钟 |
 | 询盘收不到 | 见第 8 步末尾检查顺序 | — |
-| 改了 site.config 但页面没变化 | 忘记发布 | 执行 6.2；`isDemoSite` 等开关改动同样要发布 |
+| 改了 site.config / data 但页面没变化 | 忘记发布 | 执行 6.2 的 git add / commit / push 触发重新部署 |
 
 **回滚（网页一键回旧版本）**：Vercel → Deployments → 找到上一个**成功**的部署 → 右侧 **⋯ → Promote to Production**（或 Redeploy），几秒内全站回到那个版本。之后再到本地改代码、重新 push 覆盖。
 说明：产品图片存在 Cloudflare R2、是独立资产，**不随网页回滚**——网页回滚后图片仍是当前版本，这是预期行为（想还原图片就重新 `rclone copy` 旧图）。
@@ -397,7 +384,7 @@ git add .
 git commit -m "说明这次改了什么"
 git push
 
-# 生成占位产品图（新增产品暂无照片时）
+# 生成产品示意图（新增产品暂无照片时）
 node scripts/generate-placeholders.mjs
 
 # 同步图片到 Cloudflare R2
@@ -405,8 +392,7 @@ rclone copy "本机路径\veetop-site\public\images" r2:veetop-assets --progress
 ```
 
 **上线自检清单（最后核对一遍）**
-- [ ] `site.config.ts` 联系方式、公司信息已替换；`isDemoSite` 已改 `false`
-- [ ] 产品 JSON 的 `sample` 已按真实情况处理
+- [ ] `site.config.ts` 联系方式与公司事实为真实值（已交付，复查一遍邮箱/号码即可）
 - [ ] https://www.veetopamusement.com 打开正常、HTTPS 小锁正常、产品图显示正常
 - [ ] 联系页表单提交后能在 Formspree/Web3Forms 后台收到
 - [ ] 邮箱（MX/TXT 记录）没有被动过

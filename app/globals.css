@@ -295,20 +295,7 @@ ul {
   color: var(--accent-dark);
 }
 
-.badge-sample {
-  font-family: var(--font-mono);
-  font-size: 10px;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: #8a4b00;
-  background: #ffe7b8;
-  border: 1px solid #f5c563;
-  padding: 4px 9px;
-  border-radius: 6px;
-}
-
-/* ---------- demo ribbon ---------- */
+/* ---------- demo ribbon (removed with demo content) ---------- */
 .topbar {
   background: var(--navy-950);
   color: #ffd9c4;

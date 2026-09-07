@@ -1,0 +1,29 @@
+{
+  "slug": "candy-hockey",
+  "name": "Candy Hockey",
+  "model": "VTSA022",
+  "category": "sports-skill-games",
+  "headline": "Compact candy-colored air hockey table",
+  "description": "Candy Hockey (VTSA022) is a compact, colorful air hockey table suited to family venues and tight floor plans. Net size W140 x D90 x H90 cm, power 120W. Price and delivery terms confirmed by quotation.",
+  "images": [
+    "/images/products/candy-hockey.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTSA022" },
+    { "label": "Net Size", "value": "W140 x D90 x H90 cm" },
+    { "label": "Power", "value": "120W" }
+  ],
+  "features": [
+    "Compact table format",
+    "Bright, family-friendly styling",
+    "CE certified; factory direct",
+    "Custom artwork available"
+  ],
+  "applications": [
+    "Family Entertainment Centers",
+    "Shopping Malls",
+    "Restaurants",
+    "Game Rooms"
+  ],
+  "certifications": ["CE"]
+}

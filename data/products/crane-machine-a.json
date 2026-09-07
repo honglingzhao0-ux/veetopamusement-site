@@ -1,0 +1,28 @@
+{
+  "slug": "crane-machine-a",
+  "name": "Crane Machine A",
+  "model": "VTPG022",
+  "category": "claw-crane-machines",
+  "headline": "Standard single claw crane for malls and shops",
+  "description": "Crane Machine A (VTPG022) is a standard single claw crane with a full-size prize chamber, widely placed in malls and retail corridors. Net size W78 x D85 x H190 cm. Price, MOQ and delivery confirmed by quotation.",
+  "images": [
+    "/images/products/crane-machine-a.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTPG022" },
+    { "label": "Net Size", "value": "W78 x D85 x H190 cm" }
+  ],
+  "features": [
+    "Full-size single claw cabinet",
+    "Clear prize display chamber",
+    "CE certified; factory direct",
+    "OEM/ODM artwork and branding available"
+  ],
+  "applications": [
+    "Shopping Malls",
+    "Supermarkets",
+    "Cinemas",
+    "Family Entertainment Centers"
+  ],
+  "certifications": ["CE"]
+}

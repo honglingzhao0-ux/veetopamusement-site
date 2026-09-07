@@ -1,0 +1,29 @@
+{
+  "slug": "astronaut-music-cup",
+  "name": "Astronaut Music Cup",
+  "model": "VTKR101",
+  "category": "kiddie-rides",
+  "headline": "Astronaut-themed music kiddie ride",
+  "description": "Astronaut Music Cup (VTKR101) is a music-themed kiddie ride with an astronaut look, suited to mall and family venue kid zones. Net size W120 x D120 x H125 cm, net weight 75kg. Price and delivery confirmed by quotation.",
+  "images": [
+    "/images/products/astronaut-music-cup.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTKR101" },
+    { "label": "Net Size", "value": "W120 x D120 x H125 cm" },
+    { "label": "Net Weight", "value": "75kg" }
+  ],
+  "features": [
+    "Attractive astronaut theme for kids",
+    "Music play experience",
+    "CE certified; factory direct",
+    "Custom color and artwork available"
+  ],
+  "applications": [
+    "Shopping Malls",
+    "Supermarkets",
+    "Family Entertainment Centers",
+    "Kid Zones"
+  ],
+  "certifications": ["CE"]
+}

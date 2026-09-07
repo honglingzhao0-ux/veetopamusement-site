@@ -1,0 +1,29 @@
+{
+  "slug": "happy-patting",
+  "name": "Happy Patting",
+  "model": "VTTR028",
+  "category": "redemption-ticket-games",
+  "headline": "Whack-style patting redemption game",
+  "description": "Happy Patting (VTTR028) is a patting-style redemption game with an engaging target play mechanic. Net size W115 x D92 x H228 cm, power 350W. Price and delivery terms confirmed by quotation.",
+  "images": [
+    "/images/products/happy-patting.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTTR028" },
+    { "label": "Net Size", "value": "W115 x D92 x H228 cm" },
+    { "label": "Power", "value": "350W" }
+  ],
+  "features": [
+    "Quick, repeatable target gameplay",
+    "Compact footprint for redemption floors",
+    "CE certified; factory direct",
+    "Custom artwork available"
+  ],
+  "applications": [
+    "Family Entertainment Centers",
+    "Arcades",
+    "Shopping Malls",
+    "Restaurants"
+  ],
+  "certifications": ["CE"]
+}

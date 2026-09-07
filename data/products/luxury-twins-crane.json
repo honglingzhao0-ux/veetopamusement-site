@@ -1,0 +1,28 @@
+{
+  "slug": "luxury-twins-crane",
+  "name": "Luxury Twins Crane Machine",
+  "model": "VTPG035",
+  "category": "claw-crane-machines",
+  "headline": "Twin-bay luxury crane cabinet for busy locations",
+  "description": "Luxury Twins Crane Machine (VTPG035) combines two independent crane bays in one upscale cabinet, doubling play capacity in busy locations. Net size W169 x D91 x H190 cm. Price and delivery terms confirmed by quotation.",
+  "images": [
+    "/images/products/luxury-twins-crane.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTPG035" },
+    { "label": "Net Size", "value": "W169 x D91 x H190 cm" }
+  ],
+  "features": [
+    "Two crane bays in one cabinet",
+    "Luxury cabinet finishing",
+    "CE certified; factory direct",
+    "OEM/ODM artwork and branding available"
+  ],
+  "applications": [
+    "Shopping Malls",
+    "Family Entertainment Centers",
+    "Supermarkets",
+    "Cinemas"
+  ],
+  "certifications": ["CE"]
+}

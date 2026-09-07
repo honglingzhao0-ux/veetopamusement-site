@@ -1,0 +1,28 @@
+{
+  "slug": "key-master",
+  "name": "Key Master",
+  "model": "VTPG029",
+  "category": "claw-crane-machines",
+  "headline": "Key-cutting prize machine with key drop gameplay",
+  "description": "Key Master (VTPG029) is a key-based prize machine where players guide keys toward prize locks - a popular format for malls and FECs. Net size W99 x D92 x H210 cm. Price and delivery terms confirmed by quotation.",
+  "images": [
+    "/images/products/key-master.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTPG029" },
+    { "label": "Net Size", "value": "W99 x D92 x H210 cm" }
+  ],
+  "features": [
+    "Key-drop prize gameplay format",
+    "Full-size commercial cabinet",
+    "CE certified; factory direct",
+    "Custom artwork and branding available"
+  ],
+  "applications": [
+    "Shopping Malls",
+    "Family Entertainment Centers",
+    "Cinemas",
+    "Arcades"
+  ],
+  "certifications": ["CE"]
+}

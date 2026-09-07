@@ -1,0 +1,28 @@
+{
+  "slug": "mini-crane-machine",
+  "name": "Mini Crane Machine",
+  "model": "VTPG010",
+  "category": "claw-crane-machines",
+  "headline": "Countertop mini claw crane for small prizes",
+  "description": "Mini Crane Machine (VTPG010) is a small-format claw crane for countertop placement, dispensing small prizes and capsule toys. Net size W30 x D45 x H84 cm. Price and delivery terms confirmed by quotation.",
+  "images": [
+    "/images/products/mini-crane-machine.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTPG010" },
+    { "label": "Net Size", "value": "W30 x D45 x H84 cm" }
+  ],
+  "features": [
+    "Compact countertop size",
+    "Suitable for small prizes and capsules",
+    "CE certified; factory direct",
+    "Custom artwork available"
+  ],
+  "applications": [
+    "Supermarkets",
+    "Restaurants",
+    "Retail Counters",
+    "Game Rooms"
+  ],
+  "certifications": ["CE"]
+}

@@ -1,0 +1,29 @@
+{
+  "slug": "boxing-game",
+  "name": "Boxing",
+  "model": "VTSB110",
+  "category": "sports-skill-games",
+  "headline": "Arcade boxing machine for skill-based play",
+  "description": "Boxing (VTSB110) is an arcade boxing machine for skill-based play in sports and family venues. Net size W70 x D117 x H220 cm, power 250W. Price and delivery terms confirmed by quotation.",
+  "images": [
+    "/images/products/boxing-game.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTSB110" },
+    { "label": "Net Size", "value": "W70 x D117 x H220 cm" },
+    { "label": "Power", "value": "250W" }
+  ],
+  "features": [
+    "Skill-based boxing challenge format",
+    "Space-efficient cabinet",
+    "CE certified; factory direct",
+    "Custom artwork and branding available"
+  ],
+  "applications": [
+    "Arcades",
+    "Sports Bars",
+    "Family Entertainment Centers",
+    "Game Rooms"
+  ],
+  "certifications": ["CE"]
+}

@@ -1,0 +1,29 @@
+{
+  "slug": "kids-basketball",
+  "name": "Kids Basketball",
+  "model": "VTSB10",
+  "category": "sports-skill-games",
+  "headline": "Compact basketball arcade for younger players",
+  "description": "Kids Basketball (VTSB10) is a compact basketball arcade unit sized for younger players in family venues. Net size W80 x D155 x H190 cm, power 100W. Price and delivery terms confirmed by quotation.",
+  "images": [
+    "/images/products/kids-basketball.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTSB10" },
+    { "label": "Net Size", "value": "W80 x D155 x H190 cm" },
+    { "label": "Power", "value": "100W" }
+  ],
+  "features": [
+    "Height and format suited to young players",
+    "Compact footprint for family floors",
+    "CE certified; factory direct",
+    "Custom artwork and branding available"
+  ],
+  "applications": [
+    "Family Entertainment Centers",
+    "Shopping Malls",
+    "Kids Areas",
+    "Supermarkets"
+  ],
+  "certifications": ["CE"]
+}

@@ -1,0 +1,29 @@
+{
+  "slug": "football-table",
+  "name": "Football Table",
+  "model": "VTSS010",
+  "category": "sports-skill-games",
+  "headline": "Arcade football (foosball) table for commercial use",
+  "description": "Football Table (VTSS010) is an arcade foosball table format for sports bars and family venues. Net size W140 x D120 x H90 cm, power 100W. Price and delivery terms confirmed by quotation.",
+  "images": [
+    "/images/products/football-table.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTSS010" },
+    { "label": "Net Size", "value": "W140 x D120 x H90 cm" },
+    { "label": "Power", "value": "100W" }
+  ],
+  "features": [
+    "Classic table football gameplay",
+    "Durable table construction for public use",
+    "CE certified; factory direct",
+    "Custom artwork and branding available"
+  ],
+  "applications": [
+    "Sports Bars",
+    "Game Rooms",
+    "Family Entertainment Centers",
+    "Restaurants"
+  ],
+  "certifications": ["CE"]
+}

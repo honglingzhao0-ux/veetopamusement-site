@@ -8,7 +8,7 @@ const baseUrl = siteBaseUrl(site.brand.domain);
 
 /**
  * llms.txt —— 给 AI 引擎 / LLM 直接引用的事实清单（P0-3）。
- * 全部数字与文案来自 site.config.ts（单点同源），产品清单由
+ * 全部事实来自 site.config.ts（单点同源），产品清单由
  * data/products/*.json 构建期生成；robots.ts 不屏蔽 AI 爬虫。
  */
 export function GET() {
@@ -22,19 +22,15 @@ export function GET() {
   lines.push("> " + site.seo.description);
   lines.push(">");
   lines.push(
-    `> Founded ${facts.yearFounded} in Guangzhou, China. Factory area ${facts.factoryArea}; exported to ${facts.exportCountries}; team of ${facts.employees}; monthly capacity ${facts.monthlyCapacity}. OEM/ODM supported.`,
+    `> Guangzhou Veetop Amusement Technology Co., Ltd. is a manufacturer in Guangzhou, China with ${facts.yearsInBusiness} years in the amusement game product industry. Exports to ${facts.exportCountries} countries and regions; market share of ${facts.marketShare}. Certifications: ${facts.certifications.join(", ")}.`,
   );
-  lines.push(`> Certifications: ${facts.certifications.join(", ")}.`);
-  if (site.isDemoSite) {
-    lines.push(
-      "> NOTE: This site is currently a demo build with sample placeholder product data.",
-    );
-  }
+  lines.push(`> ${facts.oemOdmNote}`);
   lines.push("");
   lines.push(`Official website: ${baseUrl}`);
   lines.push(
     `Contact: ${site.contact.email} | WhatsApp ${site.contact.whatsapp.label}`,
   );
+  lines.push(`Address: ${site.contact.address.line1}, ${site.contact.address.line2}`);
   lines.push("");
   lines.push("## Products");
   for (const p of products) {
@@ -55,10 +51,7 @@ export function GET() {
     `- [All Products](${baseUrl}/products/): ${categories.length} categories of commercial amusement equipment`,
   );
   lines.push(`- [About Us](${baseUrl}/about/): Factory strength, OEM/ODM, certifications`);
-  lines.push(`- [FAQ](${baseUrl}/faq/): MOQ, payment, delivery, warranty and customization terms`);
-  lines.push(
-    `- [Contact](${baseUrl}/contact/): Quote within 24 business hours`,
-  );
+  lines.push(`- [FAQ](${baseUrl}/faq/): Quotations, payment, delivery, certification and OEM/ODM questions`);
 
   const text = lines.join("\n") + "\n";
   return new Response(text, {

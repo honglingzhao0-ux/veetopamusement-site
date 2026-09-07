@@ -1,6 +1,6 @@
-# VEETOP Amusement 独立站（示例框架）
+# VEETOP Amusement 独立站
 
-面向海外 B2B 买家的**游戏游艺设备制造商**英文独立站代码框架。当前所有产品、联系方式、公司数据均为**示例占位内容**，用于展示结构与流程，正式上线前请按本文「占位内容替换清单」逐项替换。
+面向海外 B2B 买家的**游戏游艺设备制造商**英文独立站（Guangzhou Veetop Amusement Technology Co., Ltd.）。站点已填入真实公司信息与官方产品画册（2026 Product Catalogue）的真实产品型号/规格；产品照片等素材仍待替换（见第 6 节待补充清单）。
 
 - 技术栈：Next.js（App Router）+ TypeScript，`output: "export"` 纯静态导出
 - 托管方案：GitHub（源码）→ Vercel（部署）→ Cloudflare R2（图片 CDN），域名解析至现有阿里云域名 `veetopamusement.com`
@@ -37,7 +37,7 @@ veetop-site/
 │  ├─ cdn.ts                   # 图片 URL 统一出口（CDN 前缀 / 本地回退）
 │  ├─ inquiry.ts               # 询盘提交逻辑（endpoint POST / mailto 兜底）共用
 │  └─ products.ts              # 产品目录加载器（构建期读取 data/）
-├─ site.config.ts              # ★ 品牌/联系方式/公司数据/FAQ 占位——集中替换点
+├─ site.config.ts              # ★ 品牌/联系方式/公司数据/FAQ 集中配置点
 ├─ next.config.ts              # output: export + trailingSlash
 ├─ .env.example                # NEXT_PUBLIC_CDN_URL 等环境变量示例
 ├─ DEPLOYMENT.md               # 部署与运维手册（面向非程序员）
@@ -128,22 +128,24 @@ npx serve out -l 4173   # 然后访问 http://localhost:4173
    - `NEXT_PUBLIC_CDN_URL=https://cdn.veetopamusement.com`（图片接入 R2 后）
 4. 域名：在 Vercel 项目 Domains 中绑定 `www.veetopamusement.com` 与 `veetopamusement.com`（按 Vercel 提示去阿里云 DNS 添加 CNAME / A 记录，并把主域名 301 到 www 或反向，二选一作为 canonical）。
 
-> 本地推送 GitHub 前，先把 `site.config.ts` 的占位内容替换好（第 6 节），避免公开仓库出现无意义占位联系方式。
+> 公司信息、联系方式与产品目录已在交付时填入真实内容（数据来源：用户提供 + 官方画册），仓库可放心公开；上线前只需补充第 6 节的待补充项。
 
-## 6. 占位内容与替换清单（REPLACE 标记）
+## 6. 上线前核对：已就绪项与待补充项
 
-| 位置 | 内容 | 说明 |
-|---|---|---|
-| `site.config.ts` | 邮箱 / WhatsApp / 电话 / 地址 / 工作时间 | 全局搜索 `REPLACE:` 逐项替换；全站（页脚、联系页、按钮）自动生效 |
-| `site.config.ts` | `formEndpoint` | 询盘表单真实端点（Formspree / Web3Forms）；留空时表单会用 mailto 兜底（仅演示） |
-| `site.config.ts` | `companyFacts` 年份/面积/出口国数/认证列表 | 替换为真实企业数据；首页与 About 多处展示 |
-| `site.config.ts` | `isDemoSite` | 替换完成后改为 `false`，移除顶部"Demo site"提示条 |
-| `data/categories.json` + `data/products/*.json` | 产品目录 | 全部为示例占位（卡片带 SAMPLE 标记）；替换/新增为真实产品线 |
-| `public/images/products/*.svg` | 产品占位图 | 换成真实照片（jpg/png，同 slug 命名并同步 JSON `images`） |
-| `.env.example` / Vercel | 域名与 CDN 地址 | 见第 4、5 节 |
-| About 页公司简介段落、认证卡片描述 | 文字占位 | 用真实资料改写 |
-| `app/layout.tsx` Organization JSON-LD | 机构结构化数据 | 依赖 `site.config.ts`，自动联动 |
-| SEO 默认 title/description/keywords | `site.seo` | 可自行优化关键词 |
+**已就绪（交付时已填入真实内容）**
+- `site.config.ts`：公司法定名、域名、邮箱 `Sales@veetopamusement.com`、电话/WhatsApp `+86 188 2417 5545`、地址（广州番禺区新水坑）、公司事实（21+ 年 / 150+ 出口国 / CE 认证 / OEM·ODM）。
+- 产品目录 `data/products/*.json`：33 个真实产品，型号与净尺寸/功率抄录自官方画册（VTSA/VTSB/VTTR/VTPG/VTKR/VTRA/VTSS 系列），分类到 6 个 SEO 品类页；每个产品仅标注 CE，不含编造的 MOQ/交期/保修数字。
+- FAQ 三层（站级 `/faq/`、品类页、产品详情）：全部改为"以报价确认为准"的咨询式口径。
+- 演示痕迹已全部移除：无演示开关、无 SAMPLE 徽标、无 "Demo site" 提示条。
+
+**待补充（按需，不影响上线）**
+| 位置 | 待补充内容 |
+|---|---|
+| `public/images/products/*.svg` | 真实产品照片（jpg/png，同 slug 命名并同步 JSON `images`；SVG 内已标注 Photo available on request） |
+| `site.config.ts` `contact.formEndpoint` | 询盘表单端点（Formspree / Web3Forms）；留空时表单用 mailto 兜底 |
+| `site.config.ts` `socials` / `address.geo` | 社媒主页 URL、地图坐标（填了才输出结构化数据） |
+| 可选字段 | 个别产品可补 `faqs`/`seoDescription`/`youtubeId`/`catalogPdf`（见第 3 节） |
+| `.env.example` / Vercel | `NEXT_PUBLIC_CDN_URL` 与域名环境变量（图片接入 R2 后） |
 
 ## 7. 常见问题（FAQ）
 
@@ -160,10 +162,10 @@ npx serve out -l 4173   # 然后访问 http://localhost:4173
 集中在 `app/globals.css` 顶部 `:root` 的 CSS 变量（主色 `--accent`、深蓝 `--navy-*` 等）。
 
 **Q5：询盘表单收不到邮件？**
-表单默认走 mailto 兜底（仅演示）。正式上线请在 `site.config.ts` 的 `contact.formEndpoint` 填入 Formspree（`https://formspree.io/f/xxxx`）或 Web3Forms（`https://api.web3forms.com/submit` + 隐藏 `access_key`）端点；Web3Forms 需在表单里增加 `<input type="hidden" name="access_key" value="...">`。
+表单在未配置端点时走 mailto 兜底。正式上线请在 `site.config.ts` 的 `contact.formEndpoint` 填入 Formspree（`https://formspree.io/f/xxxx`）或 Web3Forms（`https://api.web3forms.com/submit` + 隐藏 `access_key`）端点；Web3Forms 需在表单里增加 `<input type="hidden" name="access_key" value="...">`。
 
-**Q6：页面里的"Sample"标记怎么去掉？**
-两类：顶部 Demo 提示条 → `isDemoSite: false`；产品卡/详情 SAMPLE 徽标 → 由产品 JSON 的 `sample: true` 控制，真实产品置为 `false`（或删除字段，默认按真实处理，见 `lib/products.ts`）。
+**Q6：产品图片为什么是示意图？**
+当前产品图是脚本生成的示意图（SVG 内标注 "Photo available on request"），因为官方画册的图片尚未单独导出。拿到真实照片后：把 jpg/png 放进 `public/images/products/`，与产品 JSON 的 `slug` 同名，并同步 JSON `images` 字段即可。
 
 **Q7：移动端效果如何？**
 全局响应式（断点 980px / 620px），含汉堡菜单；用手机访问 dev 或构建预览即可检查。
@@ -180,4 +182,4 @@ npx serve out -l 4173   # 然后访问 http://localhost:4173
 
 ---
 
-> 示例内容声明：本仓库所有产品型号、图片、公司介绍、认证、联系信息均为占位示例，仅用于演示网站结构与流程，不构成真实产品承诺。
+> 内容说明：公司信息与联系方式由 VEETOP 提供；产品型号与规格抄录自官方《2026 Product Catalogue》（USD 版）；图片为示意图，实际产品照片与最终参数以工厂确认为准。

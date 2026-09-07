@@ -149,9 +149,8 @@ export default function CategoryLanding({
               Need {category.name.toLowerCase()} for Your Venue?
             </h2>
             <p>
-              Tell us your quantity and destination port - our export team
-              replies within 24 business hours with pricing, MOQ and delivery
-              time.
+              Tell us your quantity and destination port - our export team will
+              confirm pricing, MOQ and delivery time in the quotation.
             </p>
           </div>
           <div className="cta-band__actions">

@@ -1,0 +1,28 @@
+{
+  "slug": "pink-date",
+  "name": "PINK DATE",
+  "model": "VTPG030",
+  "category": "claw-crane-machines",
+  "headline": "Themed crane machine with eye-catching styling",
+  "description": "PINK DATE (VTPG030) is a themed crane machine with a distinctive cabinet look that stands out in retail locations. Net size W80 x D80 x H220 cm. Price, MOQ and delivery confirmed by quotation.",
+  "images": [
+    "/images/products/pink-date.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTPG030" },
+    { "label": "Net Size", "value": "W80 x D80 x H220 cm" }
+  ],
+  "features": [
+    "Distinctive themed cabinet design",
+    "Full-size prize display",
+    "CE certified; factory direct",
+    "Custom artwork available"
+  ],
+  "applications": [
+    "Shopping Malls",
+    "Supermarkets",
+    "Family Entertainment Centers",
+    "Retail Stores"
+  ],
+  "certifications": ["CE"]
+}

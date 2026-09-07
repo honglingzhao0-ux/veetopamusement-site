@@ -1,0 +1,29 @@
+{
+  "slug": "dynamic-moto-3-dx",
+  "name": "Dynamic Moto 3 DX",
+  "model": "VTSA013",
+  "category": "arcade-video-games",
+  "headline": "Dynamic motion motorcycle racing unit with high-impact play",
+  "description": "Dynamic Moto 3 DX (VTSA013) is a high-power dynamic motorcycle racing machine in the VEETOP simulator line. Net size W230 x D280 x H250 cm, power 1000W. This is a flagship floor attraction; price and delivery are confirmed by quotation.",
+  "images": [
+    "/images/products/dynamic-moto-3-dx.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTSA013" },
+    { "label": "Net Size", "value": "W230 x D280 x H250 cm" },
+    { "label": "Power", "value": "1000W" }
+  ],
+  "features": [
+    "High-power dynamic racing cabinet",
+    "Large presence ideal for FEC entrances",
+    "CE certified; factory direct",
+    "Custom artwork and branding available"
+  ],
+  "applications": [
+    "Family Entertainment Centers",
+    "Theme Parks",
+    "Large Arcades",
+    "Amusement Venues"
+  ],
+  "certifications": ["CE"]
+}

@@ -206,22 +206,17 @@ function ProductView({ product }: { product: Product }) {
                   />
                 </div>
               ) : null}
-              {product.sample && (
-                <div className="callout" style={{ marginTop: 14 }}>
-                  <strong>Sample</strong>
-                  <span>
-                    This is placeholder demo content. Real photos, specs and
-                    certifications will be confirmed by our sales team.
-                  </span>
-                </div>
-              )}
             </div>
 
             {/* info */}
             <div className="pinfo">
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap" }}>
                 <span className="chip chip--accent">{product.model}</span>
-                {product.sample && <span className="badge-sample">Sample Data</span>}
+                {product.certifications.map((cert) => (
+                  <span className="chip" key={cert}>
+                    {cert} Certified
+                  </span>
+                ))}
               </div>
               <h1 className="pinfo__title">{product.name}</h1>
               <p className="pinfo__head">{product.headline}</p>
@@ -262,24 +257,20 @@ function ProductView({ product }: { product: Product }) {
 
               <dl className="trade-card">
                 <div className="trade-row">
-                  <dt>MOQ</dt>
-                  <dd>{product.moq} {product.moq > 1 ? "units" : "unit"}</dd>
-                </div>
-                <div className="trade-row">
-                  <dt>Lead Time</dt>
-                  <dd>{product.leadTime}</dd>
-                </div>
-                <div className="trade-row">
-                  <dt>Warranty</dt>
-                  <dd>{product.warranty}</dd>
+                  <dt>Model</dt>
+                  <dd>{product.model}</dd>
                 </div>
                 <div className="trade-row">
                   <dt>Certifications</dt>
                   <dd className="ok-dot">{product.certifications.join(" / ")}</dd>
                 </div>
                 <div className="trade-row">
-                  <dt>Payment</dt>
-                  <dd>T/T, L/C, Western Union (sample orders supported)</dd>
+                  <dt>Unit Price</dt>
+                  <dd>On request - quotation basis</dd>
+                </div>
+                <div className="trade-row">
+                  <dt>MOQ / Lead Time</dt>
+                  <dd>Confirmed in the quotation</dd>
                 </div>
               </dl>
             </div>

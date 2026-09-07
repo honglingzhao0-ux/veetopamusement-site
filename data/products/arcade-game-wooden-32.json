@@ -1,0 +1,29 @@
+{
+  "slug": "arcade-game-wooden-32",
+  "name": "32'' Arcade Game (Wooden Cabinet)",
+  "model": "VTRA017",
+  "category": "arcade-video-games",
+  "headline": "Classic wooden arcade cabinet with 32-inch screen",
+  "description": "32'' Arcade Game (VTRA017) is a classic wooden cabinet arcade machine from the VEETOP arcade games series. Net size W83 x D60 x H142 cm. A proven format for malls, game rooms and family venues - price and delivery confirmed by quotation.",
+  "images": [
+    "/images/products/arcade-game-wooden-32.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTRA017" },
+    { "label": "Net Size", "value": "W83 x D60 x H142 cm" },
+    { "label": "Screen", "value": "32 inch" }
+  ],
+  "features": [
+    "Classic upright wooden cabinet design",
+    "32-inch screen format",
+    "CE certified; factory direct",
+    "OEM/ODM artwork and game content available"
+  ],
+  "applications": [
+    "Game Rooms",
+    "Shopping Malls",
+    "Cinemas",
+    "Family Entertainment Centers"
+  ],
+  "certifications": ["CE"]
+}

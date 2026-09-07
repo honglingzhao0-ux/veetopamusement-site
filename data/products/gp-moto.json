@@ -1,0 +1,29 @@
+{
+  "slug": "gp-moto",
+  "name": "GP Moto",
+  "model": "VTSA011",
+  "category": "arcade-video-games",
+  "headline": "Single-player GP motorcycle racing cabinet",
+  "description": "GP Moto (VTSA011) is a sit-on motorcycle racing cabinet from the VEETOP simulator range, suited to arcades and family venues with limited floor space. Net size W109 x D211 x H211 cm, power 400W. Price and delivery confirmed by quotation.",
+  "images": [
+    "/images/products/gp-moto.svg"
+  ],
+  "specs": [
+    { "label": "Model", "value": "VTSA011" },
+    { "label": "Net Size", "value": "W109 x D211 x H211 cm" },
+    { "label": "Power", "value": "400W" }
+  ],
+  "features": [
+    "Sit-on motorcycle racing format",
+    "Compact footprint for venue planning",
+    "CE certified; factory direct",
+    "OEM/ODM artwork and branding available"
+  ],
+  "applications": [
+    "Arcades",
+    "Family Entertainment Centers",
+    "Cinemas",
+    "Game Rooms"
+  ],
+  "certifications": ["CE"]
+}
