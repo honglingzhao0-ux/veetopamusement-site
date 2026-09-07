@@ -7,9 +7,12 @@ import site from "@/site.config";
 import Logo from "@/components/logo";
 
 const NAV = [
+  { label: "Home", href: "/" },
   { label: "Products", href: "/products/" },
   { label: "About", href: "/about/" },
   { label: "OEM & ODM", href: "/about/#oem-odm" },
+  { label: "News", href: "/news/" },
+  { label: "Blog", href: "/blog/" },
   { label: "FAQ", href: "/faq/" },
   { label: "Contact", href: "/contact/" },
 ];

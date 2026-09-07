@@ -334,13 +334,13 @@ ul {
 .site-nav {
   display: flex;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
 }
 
 .site-nav__link {
   position: relative;
-  padding: 9px 15px;
-  font-size: 15px;
+  padding: 9px 10px;
+  font-size: 14px;
   font-weight: 600;
   color: var(--ink-2);
   border-radius: 8px;
