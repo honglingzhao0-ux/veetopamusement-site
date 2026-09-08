@@ -53,9 +53,7 @@ export default function AboutPage() {
               &quot;VEETOP Amusement&quot;, and cooperates with world-class
               brands on OEM/ODM projects.
             </p>
-          </div>
-          <div>
-            <div className="stats-grid" style={{ marginTop: 0 }}>
+            <div className="stats-grid stats-grid--wide" style={{ marginTop: 30 }}>
               <div className="stat-cell">
                 <div className="stat-cell__num">
                   {site.companyFacts.yearsInBusiness}
@@ -75,6 +73,44 @@ export default function AboutPage() {
                 <div className="stat-cell__label">Certification</div>
               </div>
             </div>
+          </div>
+          <div className="media-grid media-grid--company">
+            <figure>
+              <img
+                src="/company/company-campus.jpg"
+                alt="VEETOP factory campus exterior in Guangzhou"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Factory Campus, Guangzhou</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="/company/company-production.jpg"
+                alt="Arcade machine assembly and warehouse areas inside the factory"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Production, Assembly &amp; Warehouse</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="/company/company-office-1.jpg"
+                alt="Office interior where the VEETOP team works"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Office &amp; Operations Team</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="/company/company-office-2.jpg"
+                alt="Open-plan office area with staff at desks"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Operations Office</figcaption>
+            </figure>
           </div>
         </div>
       </section>
@@ -212,62 +248,8 @@ export default function AboutPage() {
         </div>
       </section>
 
-      {/* facility photos */}
-      <section className="section section--tint">
-        <div className="container">
-          <div className="section-head">
-            <div>
-              <p className="kicker">Our Facility</p>
-              <h2 className="h-xl">Inside the Factory</h2>
-              <p>
-                Production, assembly and export operations run from our own
-                facility in Guangzhou, China.
-              </p>
-            </div>
-          </div>
-          <div className="media-grid">
-            <figure>
-              <img
-                src="/company/company-campus.jpg"
-                alt="VEETOP factory campus exterior in Guangzhou"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Factory Campus, Guangzhou</figcaption>
-            </figure>
-            <figure>
-              <img
-                src="/company/company-production.jpg"
-                alt="Arcade machine assembly and warehouse areas inside the factory"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Production, Assembly &amp; Warehouse</figcaption>
-            </figure>
-            <figure>
-              <img
-                src="/company/company-office-1.jpg"
-                alt="Office interior where the VEETOP team works"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Office &amp; Operations Team</figcaption>
-            </figure>
-            <figure>
-              <img
-                src="/company/company-office-2.jpg"
-                alt="Open-plan office area with staff at desks"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Operations Office</figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
       {/* showcase gallery */}
-      <section className="section">
+      <section className="section section--tint">
         <div className="container">
           <div className="section-head">
             <div>

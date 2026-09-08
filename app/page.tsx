@@ -226,6 +226,43 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ---------- CUSTOMER CASES ---------- */}
+      <section className="section">
+        <div className="container split split--cases">
+          <div>
+            <p className="kicker">Customer Cases</p>
+            <h2 className="h-xl">VEETOP Machines in Operator Venues</h2>
+            <p className="lede">
+              Amusement parks, FECs, sports bars, malls and game rooms across
+              150+ countries run VEETOP equipment - supplied factory direct
+              with OEM/ODM support, spare parts and after-sales service.
+            </p>
+            <p>
+              From flagship claw cranes to redemption ticket lines and motion
+              simulators, operators rely on VEETOP for dependable machines
+              that keep playing all day.
+            </p>
+            <p style={{ marginTop: 24, marginBottom: 0 }}>
+              <Link href="/contact/" className="btn btn--accent">
+                Talk About Your Venue
+              </Link>
+            </p>
+          </div>
+          <div className="media-grid media-grid--cases">
+            {[1, 2, 3, 4].map((n) => (
+              <figure key={n}>
+                <img
+                  src={`/gallery/gallery-${n}.jpg`}
+                  alt={`VEETOP amusement machines in an operator venue (case ${n})`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ---------- CTA BAND ---------- */}
       <section className="cta-band">
         <div className="container">

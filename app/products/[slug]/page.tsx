@@ -3,6 +3,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import site from "@/site.config";
 import { siteBaseUrl, cdnUrl } from "@/lib/cdn";
+import ProductGallery from "@/components/product-gallery";
 import {
   getAllProductSlugs,
   getCategorySlugs,
@@ -14,8 +15,6 @@ import {
 } from "@/lib/products";
 import JsonLd from "@/components/json-ld";
 import ProductCard from "@/components/product-card";
-import ProductFaq from "@/components/product-faq";
-import QuickInquiry from "@/components/quick-inquiry";
 import CategoryLanding from "@/components/category-landing";
 
 const baseUrl = siteBaseUrl(site.brand.domain);
@@ -26,7 +25,7 @@ interface Props {
 
 /**
  * 统一动态路由：
- *  - slug 命中产品 -> 产品详情页（含 FAQ 块/FAQPage schema/就地询盘/可选视频与 PDF）
+ *  - slug 命中产品 -> 产品详情页（图廊/规格/特性/相关产品/可选视频与 PDF）
  *  - slug 命中品类 -> 品类独立关键词着陆页（P0-1，见 components/category-landing.tsx）
  * 注：Next.js 不允许同一目录下并存两个动态段，故品类页与产品页共用 [slug]，
  *    URL 形态与要求一致（/products/<category-slug>/ 与 /products/<product-slug>/）。
@@ -112,12 +111,6 @@ function ProductView({ product }: { product: Product }) {
     `${product.model} - ${product.name}`,
   )}`;
 
-  /* 产品 FAQ：优先取产品自身 faqs，未配置时回退站点级默认 5 问模板 */
-  const faqs =
-    product.faqs && product.faqs.length > 0
-      ? product.faqs
-      : site.defaultProductFaqs;
-
   const productJsonLd = {
     "@context": "https://schema.org",
     "@type": "Product",
@@ -134,16 +127,6 @@ function ProductView({ product }: { product: Product }) {
       name: site.brand.legalName,
       url: baseUrl,
     },
-  };
-
-  const faqJsonLd = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((f) => ({
-      "@type": "Question",
-      name: f.q,
-      acceptedAnswer: { "@type": "Answer", text: f.a },
-    })),
   };
 
   const breadcrumbJsonLd = {
@@ -170,7 +153,6 @@ function ProductView({ product }: { product: Product }) {
     <>
       <JsonLd data={productJsonLd} />
       <JsonLd data={breadcrumbJsonLd} />
-      <JsonLd data={faqJsonLd} />
 
       <section className="section">
         <div className="container">
@@ -189,12 +171,10 @@ function ProductView({ product }: { product: Product }) {
           <div className="pd-layout">
             {/* gallery */}
             <div>
-              <div className="gallery__main">
-                <img
-                  src={cdnUrl(product.images[0] ?? "/images/placeholder.svg")}
-                  alt={`${product.name} commercial ${product.category} machine for sale`}
-                />
-              </div>
+              <ProductGallery
+                images={product.images.map((i) => cdnUrl(i))}
+                alt={`${product.name} commercial ${product.category} machine for sale`}
+              />
               {product.youtubeId ? (
                 <div className="video-frame">
                   <iframe
@@ -346,21 +326,6 @@ function ProductView({ product }: { product: Product }) {
                 </Link>
               </div>
             </div>
-          </div>
-
-          {/* FAQ trust block */}
-          <div style={{ marginTop: 70 }}>
-            <ProductFaq
-              faqs={faqs}
-              kicker="Product FAQ"
-              title={`Questions about the ${product.model}`}
-              intro="We've got answers to the questions buyers ask before placing an order. Anything else - just send us a message."
-            />
-          </div>
-
-          {/* bottom on-page inquiry */}
-          <div style={{ marginTop: 64 }}>
-            <QuickInquiry product={`${product.model} - ${product.name}`} />
           </div>
 
           {/* related */}

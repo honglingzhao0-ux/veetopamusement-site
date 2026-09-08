@@ -211,6 +211,48 @@ ul {
   min-height: 2.9em; /* 两行位：保证四格 caption 底部对齐（如 "Production, Assembly & Warehouse" 折行时） */
 }
 
+/* 左文右图拼组：公司实景 2x2（About Who We Are 右栏） */
+.media-grid--company {
+  grid-template-columns: repeat(2, 1fr);
+  margin-top: 0;
+}
+
+.media-grid--company img {
+  aspect-ratio: 4 / 3;
+}
+
+/* 画廊 3 列 x 2 行（图幅加宽放大） */
+.media-grid--gallery {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+/* 首页客户案例 2x2 */
+.media-grid--cases {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 14px;
+  margin-top: 0;
+}
+
+.media-grid--cases img {
+  aspect-ratio: 4 / 3;
+}
+
+@media (max-width: 900px) {
+  .media-grid--gallery,
+  .media-grid--company,
+  .media-grid--cases {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 620px) {
+  .media-grid--gallery,
+  .media-grid--company,
+  .media-grid--cases {
+    grid-template-columns: 1fr;
+  }
+}
+
 .anchor-target {
   scroll-margin-top: 92px;
 }
@@ -617,19 +659,32 @@ ul {
   height: 17px;
 }
 
-.footer-contact .k {
-  display: inline-block;
-  width: 46px;
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.1em;
-  color: var(--footer-muted);
-  vertical-align: top;
+.footer-contact .f-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
 }
 
-.footer-contact li > span:last-child {
+.footer-contact .f-row svg {
+  flex: 0 0 auto;
+  width: 15px;
+  height: 15px;
+  margin-top: 3px;
+  color: var(--footer-muted);
+}
+
+.footer-contact .f-row a,
+.footer-contact .f-row > span:last-child {
   color: var(--footer-text);
-  font-size: 15px;
+  font-family: var(--font-mono);
+  font-size: 12.5px;
+  line-height: 1.7;
+  letter-spacing: 0.02em;
+  overflow-wrap: anywhere;
+}
+
+.footer-contact .f-row a:hover {
+  color: var(--accent);
 }
 
 .footer-bottom {
@@ -949,8 +1004,8 @@ ul {
 
 .pcard__media {
   display: block;
-  aspect-ratio: 4 / 3;
-  background: var(--bg-soft);
+  aspect-ratio: 1 / 1;
+  background: #fff;
   border-bottom: 1px solid var(--line-soft);
   overflow: hidden;
 }
@@ -958,7 +1013,7 @@ ul {
 .pcard__media img {
   width: 100%;
   height: 100%;
-  object-fit: cover;
+  object-fit: contain;
   transition: transform 0.3s ease;
 }
 
@@ -1213,14 +1268,51 @@ ul {
 .gallery__main {
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  background: var(--bg-soft);
+  background: #fff;
   overflow: hidden;
+  aspect-ratio: 1 / 1;
 }
 
 .gallery__main img {
+  display: block;
   width: 100%;
-  aspect-ratio: 4 / 3;
-  object-fit: cover;
+  height: 100%;
+  object-fit: contain;
+}
+
+.gallery__thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 14px;
+  flex-wrap: wrap;
+}
+
+.gallery__thumb {
+  padding: 0;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  overflow: hidden;
+  cursor: pointer;
+  width: 72px;
+  height: 72px;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.gallery__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.gallery__thumb:hover {
+  border-color: var(--accent-dark);
+}
+
+.gallery__thumb.is-active {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 2px var(--accent-soft);
 }
 
 .pinfo__head {
@@ -1446,22 +1538,32 @@ ul {
 
 .contact-layout {
   display: grid;
-  grid-template-columns: 1fr 1.3fr;
+  grid-template-columns: 1fr 1fr;
   gap: 48px;
-  align-items: start;
+  align-items: stretch;
 }
 
 .info-card {
+  display: flex;
+  flex-direction: column;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
   background: var(--bg-soft);
   padding: 30px 28px;
+  height: 100%;
+}
+
+.info-list {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
 }
 
 .info-row {
   display: flex;
-  gap: 16px;
-  padding: 13px 0;
+  gap: 14px;
+  align-items: flex-start;
+  padding: 14px 0;
   border-bottom: 1px solid var(--line-soft);
   font-size: 15px;
 }
@@ -1470,21 +1572,92 @@ ul {
   border-bottom: 0;
 }
 
+.info-row__ico {
+  flex: 0 0 auto;
+  width: 20px;
+  height: 20px;
+  margin-top: 2px;
+  color: var(--accent);
+}
+
+.info-row__txt {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  min-width: 0;
+}
+
 .info-row .k {
-  flex: 0 0 72px;
   font-family: var(--font-mono);
   font-size: 11px;
   letter-spacing: 0.12em;
   color: var(--muted);
-  padding-top: 3px;
 }
 
 .info-row .v {
   color: var(--ink-2);
+  overflow-wrap: anywhere;
 }
 
 .info-row a:hover {
   color: var(--accent);
+}
+
+.info-card .info-actions {
+  margin-top: auto;
+  padding-top: 8px;
+}
+
+.info-socials {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px dashed var(--line);
+}
+
+.info-socials__label {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.info-socials__row {
+  display: flex;
+  gap: 10px;
+}
+
+.info-socials__row a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  color: var(--ink-2);
+  transition: border-color 0.18s ease, background 0.18s ease, color 0.18s ease;
+}
+
+.info-socials__row a:hover {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: #fff;
+}
+
+.info-socials__row svg {
+  width: 16px;
+  height: 16px;
+}
+
+.info-note {
+  margin: 18px 0 0;
+  font-size: 13.5px;
+  color: var(--muted);
 }
 
 .info-actions {
@@ -1754,6 +1927,220 @@ ul {
 }
 
 /* ============================================================
+   Products 层级下拉（桌面悬浮层，不占导航位）
+   ============================================================ */
+
+.nav-dd {
+  position: relative;
+}
+
+.nav-dd__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: inherit;
+  background: none;
+  border: 0;
+  cursor: pointer;
+}
+
+.nav-dd__caret {
+  color: currentColor;
+  opacity: 0.65;
+  transition: transform 0.16s ease;
+}
+
+.nav-dd.is-open .nav-dd__caret {
+  transform: rotate(180deg);
+}
+
+.nav-dd__panel {
+  position: absolute;
+  top: calc(100% + 14px);
+  left: -24px;
+  z-index: 60;
+  width: 860px;
+  max-width: calc(100vw - 48px);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.14);
+  padding: 20px 22px 14px;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(6px);
+  transition: opacity 0.16s ease, transform 0.16s ease, visibility 0.16s ease;
+}
+
+.nav-dd.is-open .nav-dd__panel {
+  opacity: 1;
+  visibility: visible;
+  transform: none;
+}
+
+.nav-dd__grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  column-gap: 28px;
+}
+
+.nav-dd__group {
+  padding: 8px 0 4px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.nav-dd__group:nth-child(-n + 3) {
+  border-top: 0;
+}
+
+.nav-dd__cat {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 14.5px;
+  color: var(--ink);
+  margin-bottom: 4px;
+}
+
+.nav-dd__cat:hover {
+  color: var(--accent);
+}
+
+.nav-dd__models {
+  list-style: none;
+  margin: 0 0 8px;
+  padding: 0;
+}
+
+.nav-dd__models a {
+  display: block;
+  padding: 3px 0;
+  font-size: 13.5px;
+  color: var(--ink-2);
+}
+
+.nav-dd__models a:hover {
+  color: var(--accent);
+}
+
+.nav-dd__all {
+  display: block;
+  margin-top: 10px;
+  padding-top: 13px;
+  border-top: 1px solid var(--line-soft);
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--accent);
+}
+
+.nav-dd__all:hover {
+  color: var(--accent-dark);
+}
+
+@media (max-width: 980px) {
+  .nav-dd__panel {
+    display: none;
+  }
+}
+
+/* 移动端 Products 两级子列表 */
+.mobile-nav__item {
+  border-bottom: 1px solid var(--line-soft);
+}
+
+.mobile-nav__item > .mobile-nav__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  font-family: inherit;
+  text-align: left;
+}
+
+.mobile-nav__caret {
+  color: currentColor;
+  opacity: 0.6;
+  transition: transform 0.16s ease;
+}
+
+.mobile-nav__caret.is-open {
+  transform: rotate(180deg);
+}
+
+.mobile-nav__sub {
+  padding: 2px 4px 14px;
+}
+
+.mobile-nav__subcat {
+  display: block;
+  padding: 9px 4px 3px;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--ink);
+}
+
+.mobile-nav__subcat:hover {
+  color: var(--accent);
+}
+
+.mobile-nav__models {
+  list-style: none;
+  margin: 0;
+  padding: 0 0 4px 18px;
+}
+
+.mobile-nav__models a {
+  display: block;
+  padding: 6px 4px;
+  font-size: 14.5px;
+  color: var(--ink-2);
+}
+
+.mobile-nav__models a:hover {
+  color: var(--accent);
+}
+
+/* Footer Products 两级（2 子列，控制列高平衡） */
+.footer-products {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: 20px;
+}
+
+.footer-products__cat {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 13.5px;
+  color: var(--footer-text);
+  line-height: 1.4;
+  margin-bottom: 4px;
+}
+
+.footer-products__cat:hover {
+  color: var(--accent);
+}
+
+.footer-products__group ul {
+  list-style: none;
+  margin: 0 0 10px;
+  padding: 0;
+}
+
+.footer-products__model {
+  padding-left: 14px;
+  font-size: 12.5px;
+  line-height: 1.45;
+  color: var(--footer-muted);
+}
+
+.footer-products__model:hover {
+  color: var(--accent);
+}
+
+.footer-products__group ul {
+  margin-bottom: 6px;
+}
+
+/* ============================================================
    Responsive
    ============================================================ */
 
@@ -1812,7 +2199,7 @@ ul {
   }
 
   .pcard__media {
-    aspect-ratio: 16 / 10;
+    aspect-ratio: 1 / 1;
   }
 
   .cta-band {

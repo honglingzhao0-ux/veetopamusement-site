@@ -1,6 +1,6 @@
 import Link from "next/link";
 import site from "@/site.config";
-import { getCategories } from "@/lib/products";
+import { getCategoryNav } from "@/lib/nav-data";
 import Logo from "@/components/logo";
 
 /**
@@ -22,7 +22,7 @@ const SOCIALS = [
 ];
 
 export default function Footer() {
-  const categories = getCategories();
+  const productNav = getCategoryNav(2);
   const c = site.contact;
   const socials = SOCIALS.filter((s) => s.href);
 
@@ -64,13 +64,32 @@ export default function Footer() {
 
           <nav aria-label="Products">
             <h4>Products</h4>
-            <ul>
-              {categories.map((cat) => (
-                <li key={cat.id}>
-                  <Link href={`/products/${cat.slug}/`}>{cat.name}</Link>
-                </li>
+            <div className="footer-products">
+              {productNav.map((cat) => (
+                <div className="footer-products__group" key={cat.slug}>
+                  <Link
+                    className="footer-products__cat"
+                    href={`/products/${cat.slug}/`}
+                  >
+                    {cat.name}
+                  </Link>
+                  {cat.products.length > 0 && (
+                    <ul>
+                      {cat.products.map((p) => (
+                        <li key={p.slug}>
+                          <Link
+                            className="footer-products__model"
+                            href={`/products/${p.slug}/`}
+                          >
+                            {p.name}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  )}
+                </div>
               ))}
-            </ul>
+            </div>
           </nav>
 
           <nav aria-label="Company">
@@ -100,16 +119,47 @@ export default function Footer() {
           <div>
             <h4>Contact</h4>
             <ul className="footer-contact">
-              <li>
-                <span className="k">Email</span>
+              <li className="f-row">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <rect x="2" y="4" width="20" height="16" rx="2" />
+                  <path d="m22 7-10 6L2 7" />
+                </svg>
                 <a href={`mailto:${c.email}`}>{c.email}</a>
               </li>
-              <li>
-                <span className="k">Tel</span>
+              <li className="f-row">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z" />
+                </svg>
                 <a href={`tel:${c.phone.tel}`}>{c.phone.label}</a>
               </li>
-              <li>
-                <span className="k">WA</span>
+              <li className="f-row">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M21 11.5a8.5 8.5 0 0 1-8.5 8.5 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 8.5-8.5 8.38 8.38 0 0 1 8.5 8.5z" />
+                </svg>
                 <a
                   href={`https://wa.me/${c.whatsapp.number}`}
                   target="_blank"
@@ -118,8 +168,19 @@ export default function Footer() {
                   {c.whatsapp.label}
                 </a>
               </li>
-              <li>
-                <span className="k">Addr</span>
+              <li className="f-row">
+                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg>
                 <span>
                   {c.address.line1}
                   <br />
