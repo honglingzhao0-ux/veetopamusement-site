@@ -192,7 +192,7 @@ export default function HomePage() {
       </section>
 
       {/* ---------- GLOBAL REACH ---------- */}
-      <section className="section section--cream">
+      <section className="section section--global">
         <div className="container">
           <div className="section-head">
             <div>

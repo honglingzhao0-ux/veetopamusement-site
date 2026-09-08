@@ -45,14 +45,20 @@ const POSTS: Post[] = [
 
 export default function BlogPage() {
   return (
-    <section className="section">
-      <div className="container container--narrow">
-        <p className="kicker">Blog &amp; Buying Guides</p>
-        <h1 className="h-xl">Guides for Your Venue</h1>
-        <p className="lede">
-          Practical, machine-focused buying guidance drawn from the VEETOP
-          product range - no market hype, just what to look for.
-        </p>
+    <>
+      <section className="page-hero">
+        <div className="container">
+          <p className="kicker kicker--light">Blog &amp; Buying Guides</p>
+          <h1>Guides for Your Venue</h1>
+          <p className="lede lede--light">
+            Practical, machine-focused buying guidance drawn from the VEETOP
+            product range - no market hype, just what to look for.
+          </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container container--narrow">
 
         <div style={{ display: "flex", flexDirection: "column", gap: 18, marginTop: 44 }}>
           {POSTS.map((p) => (
@@ -87,6 +93,7 @@ export default function BlogPage() {
           ))}
         </div>
       </div>
-    </section>
+      </section>
+    </>
   );
 }

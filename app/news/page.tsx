@@ -45,14 +45,20 @@ const POSTS: Post[] = [
 
 export default function NewsPage() {
   return (
-    <section className="section">
-      <div className="container container--narrow">
-        <p className="kicker">News &amp; Insights</p>
-        <h1 className="h-xl">Updates from VEETOP</h1>
-        <p className="lede">
-          Product catalogue news, line introductions and practical guidance
-          for sourcing amusement equipment.
-        </p>
+    <>
+      <section className="page-hero">
+        <div className="container">
+          <p className="kicker kicker--light">News &amp; Insights</p>
+          <h1>Updates from VEETOP</h1>
+          <p className="lede lede--light">
+            Product catalogue news, line introductions and practical guidance
+            for sourcing amusement equipment.
+          </p>
+        </div>
+      </section>
+
+      <section className="section">
+        <div className="container container--narrow">
 
         <div style={{ display: "flex", flexDirection: "column", gap: 18, marginTop: 44 }}>
           {POSTS.map((p) => (
@@ -89,6 +95,7 @@ export default function NewsPage() {
           ))}
         </div>
       </div>
-    </section>
+      </section>
+    </>
   );
 }

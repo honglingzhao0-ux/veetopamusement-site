@@ -212,6 +212,89 @@ export default function AboutPage() {
         </div>
       </section>
 
+      {/* facility photos */}
+      <section className="section section--tint">
+        <div className="container">
+          <div className="section-head">
+            <div>
+              <p className="kicker">Our Facility</p>
+              <h2 className="h-xl">Inside the Factory</h2>
+              <p>
+                Production, assembly and export operations run from our own
+                facility in Guangzhou, China.
+              </p>
+            </div>
+          </div>
+          <div className="media-grid">
+            <figure>
+              <img
+                src="/company/company-campus.jpg"
+                alt="VEETOP factory campus exterior in Guangzhou"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Factory Campus, Guangzhou</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="/company/company-production.jpg"
+                alt="Arcade machine assembly and warehouse areas inside the factory"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Production, Assembly &amp; Warehouse</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="/company/company-office-1.jpg"
+                alt="Office interior where the VEETOP team works"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Office &amp; Operations Team</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="/company/company-office-2.jpg"
+                alt="Open-plan office area with staff at desks"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Operations Office</figcaption>
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      {/* showcase gallery */}
+      <section className="section">
+        <div className="container">
+          <div className="section-head">
+            <div>
+              <p className="kicker">Showcase</p>
+              <h2 className="h-xl">Showroom, Exhibitions &amp; Installations</h2>
+              <p>
+                Selected displays from our showroom, trade exhibitions and
+                amusement venues. Some photos combine several pictures of the
+                same display.
+              </p>
+            </div>
+          </div>
+          <div className="media-grid media-grid--gallery">
+            {[1, 2, 3, 4, 5, 6].map((n) => (
+              <figure key={n}>
+                <img
+                  src={`/gallery/gallery-${n}.jpg`}
+                  alt={`Gallery photo ${n} of VEETOP amusement machines on display`}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* CTA */}
       <section className="cta-band">
         <div className="container">

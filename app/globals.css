@@ -27,9 +27,8 @@
   --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.07);
   --maxw: 1180px;
 
-  /* ---- 模块分层底色（同一白/灰/橙/墨蓝体系内） ---- */
+  /* ---- 模块分层底色（同一白/灰/墨蓝体系内） ---- */
   --surface-soft: #f8fafc;
-  --surface-cream: #fff4ec;
   --footer-bg: #0f172a;
   --footer-bg-2: #0b1120;
   --footer-text: #e2e8f0;
@@ -124,8 +123,7 @@ ul {
   padding-block: 84px;
 }
 
-.section--tint,
-.section--dark {
+.section--tint {
   background: var(--bg-soft);
   color: var(--ink);
 }
@@ -135,9 +133,82 @@ ul {
   color: var(--ink);
 }
 
-.section--cream {
-  background: var(--surface-cream);
+/* 首页 Global Reach 数据带（浅灰底 + 上下细分隔，避免与相邻区块糊在一起） */
+.section--global {
+  background: var(--surface-soft);
   color: var(--ink);
+  border-top: 1px solid var(--line-soft);
+  border-bottom: 1px solid var(--line-soft);
+}
+
+/* 深墨区块（About OEM / ODM 等）：白字 + 橙强调 */
+.section--dark {
+  background: var(--footer-bg);
+  color: var(--footer-text);
+}
+
+.section--dark .steps h3 {
+  color: #fff;
+}
+
+.section--dark .steps p {
+  color: rgba(226, 232, 240, 0.78);
+}
+
+.section--dark h2:not([style]),
+.section--dark h3:not([style]) {
+  color: #fff;
+}
+
+.section--dark .btn--ghost,
+.cta-band .btn--ghost {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.45);
+}
+
+.section--dark .btn--ghost:hover,
+.cta-band .btn--ghost:hover {
+  background: rgba(255, 255, 255, 0.16);
+  border-color: #fff;
+}
+
+/* About 实景 / 画廊网格 */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 22px;
+  margin-top: 36px;
+}
+
+.media-grid figure {
+  margin: 0;
+}
+
+.media-grid img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: var(--radius);
+  border: 1px solid var(--line);
+  background: var(--line-soft);
+}
+
+.media-grid--gallery img {
+  aspect-ratio: 4 / 3;
+}
+
+.media-grid figcaption {
+  margin-top: 10px;
+  font-size: 12px;
+  font-weight: 700;
+  font-family: var(--font-mono);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--muted);
+  line-height: 1.45;
+  min-height: 2.9em; /* 两行位：保证四格 caption 底部对齐（如 "Production, Assembly & Warehouse" 折行时） */
 }
 
 .anchor-target {
@@ -1030,11 +1101,11 @@ ul {
   margin: 0;
 }
 
-/* OEM / CTA 轻色带（强调色浅染，非深色块） */
+/* Final CTA（深墨底白字，与深色 footer 自然衔接） */
 .cta-band {
-  background: var(--accent-soft);
-  border-block: 1px solid var(--accent-soft-2);
-  padding: 60px 0;
+  background: var(--footer-bg);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 64px 0;
 }
 
 .cta-band .container {
@@ -1046,11 +1117,12 @@ ul {
 }
 
 .cta-band h2 {
+  color: #fff;
   margin-bottom: 6px;
 }
 
 .cta-band p {
-  color: var(--ink-2);
+  color: rgba(226, 232, 240, 0.8);
   max-width: 60ch;
   margin: 0;
 }
@@ -1080,16 +1152,17 @@ ul {
 }
 
 /* ============================================================
-   Page hero（内页 - 浅色）
+   Page hero（内页 - 深墨底白字）
    ============================================================ */
 
 .page-hero {
-  background: var(--bg-soft);
-  border-bottom: 1px solid var(--line-soft);
-  padding: 64px 0 56px;
+  background: var(--footer-bg);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 76px 0 64px;
 }
 
 .page-hero h1 {
+  color: #fff;
   font-size: clamp(1.9rem, 3.6vw, 2.9rem);
   max-width: 24ch;
   margin-bottom: 14px;
@@ -1098,6 +1171,14 @@ ul {
 .page-hero .lede {
   max-width: 64ch;
   margin: 0;
+}
+
+.page-hero .lede--light {
+  color: rgba(226, 232, 240, 0.85);
+}
+
+.page-hero .crumbs {
+  color: rgba(226, 232, 240, 0.6);
 }
 
 .crumbs {
