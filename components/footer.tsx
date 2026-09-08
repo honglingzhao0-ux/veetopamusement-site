@@ -64,32 +64,32 @@ export default function Footer() {
 
           <nav aria-label="Products">
             <h4>Products</h4>
-            <div className="footer-products">
+            <ul className="footer-products">
               {productNav.map((cat) => (
-                <div className="footer-products__group" key={cat.slug}>
+                <li key={cat.slug}>
                   <Link
-                    className="footer-products__cat"
+                    className="footer-products__link"
                     href={`/products/${cat.slug}/`}
                   >
                     {cat.name}
+                    <svg
+                      className="footer-products__arrow"
+                      viewBox="0 0 12 12"
+                      fill="none"
+                      aria-hidden="true"
+                    >
+                      <path
+                        d="M4.5 2 8.5 6l-4 4"
+                        stroke="currentColor"
+                        strokeWidth="1.6"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      />
+                    </svg>
                   </Link>
-                  {cat.products.length > 0 && (
-                    <ul>
-                      {cat.products.map((p) => (
-                        <li key={p.slug}>
-                          <Link
-                            className="footer-products__model"
-                            href={`/products/${p.slug}/`}
-                          >
-                            {p.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
-                </div>
+                </li>
               ))}
-            </div>
+            </ul>
           </nav>
 
           <nav aria-label="Company">

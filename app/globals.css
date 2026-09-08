@@ -1957,15 +1957,17 @@ ul {
 .nav-dd__panel {
   position: absolute;
   top: calc(100% + 14px);
-  left: -24px;
+  left: -10px;
   z-index: 60;
-  width: 860px;
+  width: 320px;
   max-width: calc(100vw - 48px);
+  max-height: min(72vh, 640px);
+  overflow-y: auto;
   background: #fff;
   border: 1px solid var(--line);
   border-radius: var(--radius-lg);
-  box-shadow: 0 24px 60px rgba(15, 23, 42, 0.14);
-  padding: 20px 22px 14px;
+  box-shadow: 0 16px 44px rgba(15, 23, 42, 0.12);
+  padding: 14px 18px 10px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(6px);
@@ -1979,61 +1981,56 @@ ul {
 }
 
 .nav-dd__grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  column-gap: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .nav-dd__group {
-  padding: 8px 0 4px;
-  border-top: 1px solid var(--line-soft);
-}
-
-.nav-dd__group:nth-child(-n + 3) {
-  border-top: 0;
+  padding: 5px 0;
 }
 
 .nav-dd__cat {
   display: inline-block;
   font-weight: 700;
-  font-size: 14.5px;
-  color: var(--ink);
-  margin-bottom: 4px;
+  font-size: 14px;
+  color: var(--accent);
+  margin-bottom: 2px;
 }
 
 .nav-dd__cat:hover {
-  color: var(--accent);
+  color: var(--accent-dark);
 }
 
 .nav-dd__models {
   list-style: none;
-  margin: 0 0 8px;
-  padding: 0;
+  margin: 0;
+  padding: 0 0 2px 14px;
 }
 
 .nav-dd__models a {
   display: block;
   padding: 3px 0;
   font-size: 13.5px;
-  color: var(--ink-2);
+  color: var(--muted);
 }
 
 .nav-dd__models a:hover {
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .nav-dd__all {
   display: block;
   margin-top: 10px;
-  padding-top: 13px;
+  padding-top: 12px;
   border-top: 1px solid var(--line-soft);
   font-weight: 700;
   font-size: 14px;
-  color: var(--accent);
+  color: var(--ink);
 }
 
 .nav-dd__all:hover {
-  color: var(--accent-dark);
+  color: var(--accent);
 }
 
 @media (max-width: 980px) {
@@ -2099,45 +2096,40 @@ ul {
   color: var(--accent);
 }
 
-/* Footer Products 两级（2 子列，控制列高平衡） */
+/* Footer Products 单列层级（品类名 + > 箭头，与 COMPANY/CONTACT 高度协调） */
 .footer-products {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  column-gap: 20px;
-}
-
-.footer-products__cat {
-  display: inline-block;
-  font-weight: 700;
-  font-size: 13.5px;
-  color: var(--footer-text);
-  line-height: 1.4;
-  margin-bottom: 4px;
-}
-
-.footer-products__cat:hover {
-  color: var(--accent);
-}
-
-.footer-products__group ul {
   list-style: none;
-  margin: 0 0 10px;
+  margin: 0;
   padding: 0;
 }
 
-.footer-products__model {
-  padding-left: 14px;
-  font-size: 12.5px;
-  line-height: 1.45;
-  color: var(--footer-muted);
+.footer-products li {
+  margin-bottom: 0;
 }
 
-.footer-products__model:hover {
+.footer-products__link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 5px 0;
+  color: var(--footer-text);
+}
+
+.footer-products__link:hover {
   color: var(--accent);
 }
 
-.footer-products__group ul {
-  margin-bottom: 6px;
+.footer-products__arrow {
+  flex: 0 0 auto;
+  width: 11px;
+  height: 11px;
+  color: var(--footer-muted);
+  opacity: 0.85;
+}
+
+.footer-products__link:hover .footer-products__arrow {
+  color: var(--accent);
 }
 
 /* ============================================================

@@ -69,6 +69,16 @@ export default function SiteHeader({ categories }: SiteHeaderProps) {
         </Link>
 
         <nav className="site-nav" aria-label="Main navigation">
+          {NAV.filter((l) => l.label === "Home").map((l) => (
+            <Link
+              key={l.href}
+              href={l.href}
+              className={"site-nav__link" + (isActive(l.href) ? " is-active" : "")}
+            >
+              {l.label}
+            </Link>
+          ))}
+
           <div
             className={"nav-dd" + (ddOpen ? " is-open" : "")}
             ref={ddRef}
@@ -142,7 +152,7 @@ export default function SiteHeader({ categories }: SiteHeaderProps) {
             </div>
           </div>
 
-          {NAV.map((l) => (
+          {NAV.filter((l) => l.label !== "Home").map((l) => (
             <Link
               key={l.href}
               href={l.href}
