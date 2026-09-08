@@ -2,6 +2,7 @@ import Link from "next/link";
 import site from "@/site.config";
 import { getCategories, getAllProducts } from "@/lib/products";
 import ProductCard from "@/components/product-card";
+import HeroCarousel from "@/components/hero-carousel";
 
 export default function HomePage() {
   const categories = getCategories();
@@ -16,39 +17,8 @@ export default function HomePage() {
 
   return (
     <>
-      {/* ---------- HERO ---------- */}
-      <section className="hero">
-        <div className="container hero__inner">
-          <div className="hero__copy">
-            <p className="kicker">Game &amp; Amusement Equipment Manufacturer</p>
-            <h1 className="hero__title">
-              Factory-Direct{" "}
-              <span className="accent-line">Arcade &amp; Amusement</span>{" "}
-              Machines for Global Operators
-            </h1>
-            <p className="hero__sub">
-              {site.brand.legalName} designs and builds arcade video games,
-              redemption machines, claw cranes, kiddie rides, skill games and
-              prize merchandisers - with OEM/ODM support, certified quality and
-              worldwide shipping.
-            </p>
-            <div className="hero__actions">
-              <Link href="/products/" className="btn btn--accent">
-                Browse Products
-              </Link>
-              <Link href="/contact/" className="btn btn--ghost">
-                Request a Quote
-              </Link>
-            </div>
-            <ul className="hero__points">
-              <li>OEM &amp; ODM support</li>
-              <li>CE certified</li>
-              <li>21+ years in the industry</li>
-              <li>Export to 150+ countries</li>
-            </ul>
-          </div>
-        </div>
-      </section>
+      {/* ---------- HERO（3 张轮播 banner） ---------- */}
+      <HeroCarousel />
 
       {/* ---------- CATEGORIES ---------- */}
       <section className="section" id="categories">
@@ -90,7 +60,7 @@ export default function HomePage() {
       </section>
 
       {/* ---------- FEATURED ---------- */}
-      <section className="section section--tint">
+      <section className="section section--soft">
         <div className="container">
           <div className="section-head">
             <div>
@@ -174,7 +144,7 @@ export default function HomePage() {
       </section>
 
       {/* ---------- OEM / ODM ---------- */}
-      <section className="section section--tint" id="oem-odm">
+      <section className="section section--soft" id="oem-odm">
         <div className="container">
           <div className="section-head">
             <div>
@@ -222,7 +192,7 @@ export default function HomePage() {
       </section>
 
       {/* ---------- GLOBAL REACH ---------- */}
-      <section className="section">
+      <section className="section section--cream">
         <div className="container">
           <div className="section-head">
             <div>

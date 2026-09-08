@@ -89,8 +89,8 @@ const site = {
     },
     // 询盘表单提交端点：Formspree -> "https://formspree.io/f/xxxxxxx"
     // Web3Forms -> "https://api.web3forms.com/submit"（需配 access_key 隐藏域）
-    // 留空（""）时表单在浏览器端生成一封 mailto 邮件，可先正常使用。
-    formEndpoint: "",
+    // 当前已配置 Formspree 端点：表单直接 POST，收件邮箱为 Formspree 后台绑定邮箱
+    formEndpoint: "https://formspree.io/f/xnpqgnoz",
     formNote:
       "For a quotation please tell us the model, quantity, destination port and country. Our export team will confirm price and delivery details.",
   },
@@ -115,7 +115,7 @@ const site = {
   /* 社媒（Organization sameAs 只输出非空项；上线后如有主页在此填入 URL） */
   /* ------------------------------------------------------------------ */
   socials: {
-    facebook: "",
+    facebook: "https://www.facebook.com/VeetopAmusementLucia",
     instagram: "",
     youtube: "",
     linkedin: "",
