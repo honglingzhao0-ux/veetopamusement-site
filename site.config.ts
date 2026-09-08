@@ -118,7 +118,7 @@ const site = {
     facebook: "https://www.facebook.com/VeetopAmusementLucia",
     instagram: "",
     youtube: "",
-    linkedin: "",
+    linkedin: "https://www.linkedin.com/in/arcadegameslucia",
   },
 
   /* ------------------------------------------------------------------ */
