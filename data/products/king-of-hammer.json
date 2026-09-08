@@ -6,7 +6,11 @@
   "headline": "High-score hammer challenge game",
   "description": "King of Hammer (VTSB118) is a hammer strength challenge game where players score by striking a target. Net size W60 x D90 x H230 cm, power 150W. Price and delivery confirmed by quotation.",
   "images": [
-    "/images/products/king-of-hammer.svg"
+    "/images/products/king-of-hammer-1.jpg",
+    "/images/products/king-of-hammer-2.jpg",
+    "/images/products/king-of-hammer-3.jpg",
+    "/images/products/king-of-hammer-4.jpg",
+    "/images/products/king-of-hammer-5.jpg"
   ],
   "specs": [
     { "label": "Model", "value": "VTSB118" },

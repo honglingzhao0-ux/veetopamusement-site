@@ -1,0 +1,36 @@
+{
+  "slug": "dynamic-boxer",
+  "name": "Dynamic Boxer",
+  "model": "VTSB112",
+  "category": "sports-skill-games",
+  "headline": "Arcade punch-score boxing machine with a hanging target",
+  "description": "Dynamic Boxer (VTSB112) is an arcade boxing machine with a black cabinet accented in yellow and red and a ceiling-mounted hanging target, built for punch-score play in sports and family venues. Price, delivery terms and full specifications confirmed by quotation.",
+  "images": [
+    "/images/products/dynamic-boxer-1.jpg",
+    "/images/products/dynamic-boxer-2.jpg",
+    "/images/products/dynamic-boxer-3.jpg",
+    "/images/products/dynamic-boxer-4.jpg",
+    "/images/products/dynamic-boxer-5.jpg"
+  ],
+  "specs": [
+    {
+      "label": "Model",
+      "value": "VTSB112"
+    }
+  ],
+  "features": [
+    "Punch-score challenge gameplay",
+    "Hanging bag target with ceiling-mounted canopy",
+    "CE certified; factory direct",
+    "Custom artwork and branding available"
+  ],
+  "applications": [
+    "Arcades",
+    "Sports Bars",
+    "Family Entertainment Centers",
+    "Game Rooms"
+  ],
+  "certifications": [
+    "CE"
+  ]
+}

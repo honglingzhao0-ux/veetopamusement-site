@@ -1,0 +1,35 @@
+{
+  "slug": "world-boxing-championship",
+  "name": "World Boxing Championship",
+  "model": "VTSB120",
+  "category": "sports-skill-games",
+  "headline": "Boxing-theme arcade punch challenge with round lightbox",
+  "description": "World Boxing Championship (VTSB120) is an arcade boxing machine with a red-and-yellow cabinet and a round lightbox, decorated with a world boxing championship theme, for punch-score play in sports and family venues. Price, delivery terms and full specifications confirmed by quotation.",
+  "images": [
+    "/images/products/world-boxing-championship-1.jpg",
+    "/images/products/world-boxing-championship-2.jpg",
+    "/images/products/world-boxing-championship-3.jpg",
+    "/images/products/world-boxing-championship-4.jpg"
+  ],
+  "specs": [
+    {
+      "label": "Model",
+      "value": "VTSB120"
+    }
+  ],
+  "features": [
+    "Punch-score challenge gameplay",
+    "Round illuminated scoreboard lightbox",
+    "CE certified; factory direct",
+    "Custom artwork and branding available"
+  ],
+  "applications": [
+    "Arcades",
+    "Sports Bars",
+    "Family Entertainment Centers",
+    "Game Rooms"
+  ],
+  "certifications": [
+    "CE"
+  ]
+}
