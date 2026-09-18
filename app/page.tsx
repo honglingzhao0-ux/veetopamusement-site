@@ -7,13 +7,27 @@ import HeroCarousel from "@/components/hero-carousel";
 export default function HomePage() {
   const categories = getCategories();
   const all = getAllProducts();
-  // 每类取第一个产品作为"代表作"，凑成精选区
-  const seen = new Set<string>();
-  const featured = all.filter((p) => {
-    if (seen.has(p.category)) return false;
-    seen.add(p.category);
-    return true;
+  // Flagship Models：按品类轮转取件 —— 每轮每个品类取 1 款（品类内有主图者优先、
+  // 无图者置后，各自保持既有相对顺序），循环至取满 16 款，保证 6 个品类均衡曝光。
+  const buckets = categories.map((cat) => {
+    const items = all.filter((p) => p.category === cat.id);
+    return [
+      ...items.filter((p) => Boolean(p.images?.[0])),
+      ...items.filter((p) => !p.images?.[0]),
+    ];
   });
+  const featured: typeof all = [];
+  for (let round = 0; featured.length < 16; round++) {
+    let progressed = false;
+    for (const bucket of buckets) {
+      if (featured.length >= 16) break;
+      if (bucket[round]) {
+        featured.push(bucket[round]);
+        progressed = true;
+      }
+    }
+    if (!progressed) break;
+  }
 
   return (
     <>
@@ -67,15 +81,15 @@ export default function HomePage() {
               <p className="kicker">Featured Range</p>
               <h2 className="h-xl">Flagship Models</h2>
               <p>
-                One representative model from every product line. Full catalog
-                available under Products.
+                Sixteen flagship models from our catalog. Full range available
+                under Products.
               </p>
             </div>
             <Link href="/products/" className="btn btn--line">
               View Catalog
             </Link>
           </div>
-          <ul className="prod-grid">
+          <ul className="prod-grid prod-grid--home">
             {featured.map((p) => (
               <ProductCard key={p.slug} product={p} />
             ))}

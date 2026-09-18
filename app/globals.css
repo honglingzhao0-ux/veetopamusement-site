@@ -987,6 +987,14 @@ ul {
   margin: 0;
 }
 
+/* 首页 Flagship Models：桌面固定 4 列 × 4 行（仅作用于首页该区块，
+   不影响 products 列表 / 品类页 / 详情页共用的 .prod-grid 基础规则） */
+@media (min-width: 1024px) {
+  .prod-grid--home {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 .pcard {
   background: var(--surface);
   border: 1px solid var(--line);
