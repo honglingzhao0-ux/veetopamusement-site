@@ -173,6 +173,16 @@ ul {
   border-color: #fff;
 }
 
+/* About / OEM-ODM 深色区块：修复 6 步 steps 卡片“白底白字”导致的步骤文案不可读。
+   原冲突：.steps li 的 background:var(--surface)=#ffffff 承载 .section--dark .steps h3 的 #fff，对比度 1:1。
+   这里只给 .section--dark 内的 .steps li 覆盖 background-color 与 border-color 两个属性；
+   首页那处 .steps 位于 .section--soft 内，匹配不到本选择器，故计算样式逐值不变。
+   padding、圆角、边框宽度、字号、文案与 DOM 结构均未改动。 */
+.section--dark .steps li {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
 /* About 实景 / 画廊网格 */
 .media-grid {
   display: grid;
