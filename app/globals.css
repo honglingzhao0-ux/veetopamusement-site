@@ -1988,6 +1988,20 @@ ul {
   transform: none;
 }
 
+/* 按钮与面板之间有 14px 视觉间隙，该间隙不属于 .nav-dd，指针穿过时
+   会触发 mouseleave 关闭面板。用一块透明桥接层填满间隙（透明元素
+   仍参与命中测试），让指针能从按钮平移到面板内而不丢失 hover。 */
+.nav-dd.is-open::after {
+  content: "";
+  position: absolute;
+  top: 100%;
+  left: -10px;
+  z-index: 59;
+  width: 320px;
+  max-width: calc(100vw - 48px);
+  height: 14px;
+}
+
 .nav-dd__grid {
   display: flex;
   flex-direction: column;

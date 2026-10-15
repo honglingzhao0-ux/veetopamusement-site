@@ -23,9 +23,19 @@ interface SiteHeaderProps {
 export default function SiteHeader({ categories }: SiteHeaderProps) {
   const pathname = usePathname();
   const [open, setOpen] = useState(false);
-  const [ddOpen, setDdOpen] = useState(false);
   const [mobileProdOpen, setMobileProdOpen] = useState(false);
+  /*
+   * 桌面 Products 下拉状态机：closed -> hover（鼠标进入自动展开）-> pinned（点击后锁定展开）。
+   * 另用 ref 镜像当前值，避免快速点击与触屏合成事件读到上一帧 state。
+   */
+  const [ddMode, setDdMode] = useState<"closed" | "hover" | "pinned">("closed");
+  const ddModeRef = useRef<"closed" | "hover" | "pinned">("closed");
   const ddRef = useRef<HTMLDivElement>(null);
+  const ddOpen = ddMode !== "closed";
+  const setDdModeSafe = (m: "closed" | "hover" | "pinned") => {
+    ddModeRef.current = m;
+    setDdMode(m);
+  };
 
   const isActive = (href: string) => {
     const path = href.split("#")[0];
@@ -34,7 +44,7 @@ export default function SiteHeader({ categories }: SiteHeaderProps) {
 
   const isProductsActive = pathname === "/products/" || pathname.startsWith("/products/");
 
-  const closeDd = () => setDdOpen(false);
+  const closeDd = () => setDdModeSafe("closed");
   const closeAllMobile = () => {
     setOpen(false);
     setMobileProdOpen(false);
@@ -82,8 +92,12 @@ export default function SiteHeader({ categories }: SiteHeaderProps) {
           <div
             className={"nav-dd" + (ddOpen ? " is-open" : "")}
             ref={ddRef}
-            onMouseEnter={() => setDdOpen(true)}
-            onMouseLeave={() => setDdOpen(false)}
+            onMouseEnter={() => {
+              if (ddModeRef.current === "closed") setDdModeSafe("hover");
+            }}
+            onMouseLeave={() => {
+              if (ddModeRef.current === "hover") setDdModeSafe("closed");
+            }}
           >
             <button
               type="button"
@@ -93,7 +107,9 @@ export default function SiteHeader({ categories }: SiteHeaderProps) {
               }
               aria-haspopup="true"
               aria-expanded={ddOpen}
-              onClick={() => setDdOpen((v) => !v)}
+              onClick={() =>
+                setDdModeSafe(ddModeRef.current === "pinned" ? "closed" : "pinned")
+              }
             >
               Products
               <svg
