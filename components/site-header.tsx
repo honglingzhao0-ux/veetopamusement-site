@@ -156,20 +156,6 @@ export default function SiteHeader({ categories }: SiteHeaderProps) {
                     >
                       {cat.name}
                     </Link>
-                    {cat.products.length > 0 && (
-                      <ul className="nav-dd__models">
-                        {cat.products.map((p) => (
-                          <li key={p.slug}>
-                            <Link
-                              href={`/products/${cat.slug}/${p.slug}/`}
-                              onClick={closeDd}
-                            >
-                              {p.name}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                    )}
                   </div>
                 ))}
               </div>
@@ -288,20 +274,6 @@ export default function SiteHeader({ categories }: SiteHeaderProps) {
                   >
                     {cat.name}
                   </Link>
-                  {cat.products.length > 0 && (
-                    <ul className="mobile-nav__models">
-                      {cat.products.map((p) => (
-                        <li key={p.slug}>
-                          <Link
-                            href={`/products/${cat.slug}/${p.slug}/`}
-                            onClick={closeAllMobile}
-                          >
-                            {p.name}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  )}
                 </div>
               ))}
             </div>

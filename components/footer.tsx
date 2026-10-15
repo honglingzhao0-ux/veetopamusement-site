@@ -22,7 +22,7 @@ const SOCIALS = [
 ];
 
 export default function Footer() {
-  const productNav = getCategoryNav(2);
+  const productNav = getCategoryNav();
   const c = site.contact;
   const socials = SOCIALS.filter((s) => s.href);
 

@@ -2049,23 +2049,6 @@ ul {
   color: var(--accent-dark);
 }
 
-.nav-dd__models {
-  list-style: none;
-  margin: 0;
-  padding: 0 0 2px 14px;
-}
-
-.nav-dd__models a {
-  display: block;
-  padding: 3px 0;
-  font-size: 13.5px;
-  color: var(--muted);
-}
-
-.nav-dd__models a:hover {
-  color: var(--ink);
-}
-
 .nav-dd__all {
   display: block;
   margin-top: 10px;
@@ -2123,23 +2106,6 @@ ul {
 }
 
 .mobile-nav__subcat:hover {
-  color: var(--accent);
-}
-
-.mobile-nav__models {
-  list-style: none;
-  margin: 0;
-  padding: 0 0 4px 18px;
-}
-
-.mobile-nav__models a {
-  display: block;
-  padding: 6px 4px;
-  font-size: 14.5px;
-  color: var(--ink-2);
-}
-
-.mobile-nav__models a:hover {
   color: var(--accent);
 }
 
