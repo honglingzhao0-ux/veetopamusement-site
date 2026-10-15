@@ -1,0 +1,37 @@
+{
+  "slug": "vtkr108-3d-car",
+  "name": "3D Car",
+  "model": "VTKR108",
+  "category": "kiddie-rides",
+  "headline": "3D Car (VTKR108) - Kiddie ride | Size W153 x D75 x H118 cm",
+  "description": "3D Car (VTKR108) is a kiddie ride supplied factory-direct by VEETOP for commercial amusement venues. Net size W153 x D75 x H118 cm. Unit weight 35kg. Listed in the VEETOP 2026 product catalogue under \"KIDS GAME MACHINE & ARCADE GAMES V\" (catalogue page 24). Pricing and delivery terms are confirmed by quotation.",
+  "images": [
+    "/images/products/vtkr108-3d-car.jpeg"
+  ],
+  "specs": [
+    {
+      "label": "Model",
+      "value": "VTKR108"
+    },
+    {
+      "label": "Size",
+      "value": "W153 x D75 x H118 cm"
+    },
+    {
+      "label": "Weight",
+      "value": "35kg"
+    }
+  ],
+  "features": [
+    "Kiddie ride for family venues",
+    "Coin-operated operation",
+    "Factory-direct supply from the manufacturer",
+    "OEM/ODM customization available"
+  ],
+  "applications": [
+    "Family Entertainment Centers",
+    "Shopping Malls",
+    "Kiddie Zones"
+  ],
+  "certifications": []
+}
