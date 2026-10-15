@@ -180,12 +180,12 @@ export default function AboutPage() {
             </figure>
             <figure>
               <img
-                src="/banners/hero-1.jpg"
-                alt="Line-up of classic arcade cabinets under neon lighting"
+                src="/company/company-showroom-1.jpg"
+                alt="Racing and riding arcade cabinets with a prize wheel on display in the showroom"
                 loading="lazy"
                 decoding="async"
               />
-              <figcaption>Classic Arcade Cabinet Line-Up</figcaption>
+              <figcaption>Racing &amp; Riding Arcade Cabinets in the Showroom</figcaption>
             </figure>
           </div>
           <div>
