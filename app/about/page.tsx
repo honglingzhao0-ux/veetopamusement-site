@@ -32,7 +32,27 @@ export default function AboutPage() {
 
       {/* intro */}
       <section className="section">
-        <div className="container split">
+        <div className="container img-text">
+          <div className="img-text__media img-text__stack">
+            <figure>
+              <img
+                src="/company/company-office-1.jpg"
+                alt="Office interior where the VEETOP team works"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Office &amp; Operations Team</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="/company/company-office-2.jpg"
+                alt="Open-plan office area with staff at desks"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Operations Office</figcaption>
+            </figure>
+          </div>
           <div>
             <p className="kicker">Who We Are</p>
             <h2 className="h-xl">From Cabinet to Circuit Board - Built In-House</h2>
@@ -74,50 +94,21 @@ export default function AboutPage() {
               </div>
             </div>
           </div>
-          <div className="media-grid media-grid--company">
-            <figure>
-              <img
-                src="/company/company-campus.jpg"
-                alt="VEETOP factory campus exterior in Guangzhou"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Factory Campus, Guangzhou</figcaption>
-            </figure>
-            <figure>
-              <img
-                src="/company/company-production.jpg"
-                alt="Arcade machine assembly and warehouse areas inside the factory"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Production, Assembly &amp; Warehouse</figcaption>
-            </figure>
-            <figure>
-              <img
-                src="/company/company-office-1.jpg"
-                alt="Office interior where the VEETOP team works"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Office &amp; Operations Team</figcaption>
-            </figure>
-            <figure>
-              <img
-                src="/company/company-office-2.jpg"
-                alt="Open-plan office area with staff at desks"
-                loading="lazy"
-                decoding="async"
-              />
-              <figcaption>Operations Office</figcaption>
-            </figure>
-          </div>
         </div>
       </section>
 
       {/* factory strength */}
       <section className="section section--tint anchor-target" id="factory">
-        <div className="container split">
+        <div className="container img-text">
+          <figure className="img-text__media">
+            <img
+              src="/company/company-production.jpg"
+              alt="Arcade machine assembly and warehouse areas inside the factory"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Production, Assembly &amp; Warehouse</figcaption>
+          </figure>
           <div>
             <p className="kicker">Factory Strength</p>
             <h2 className="h-xl">One Facility, Full Control</h2>
@@ -143,80 +134,87 @@ export default function AboutPage() {
                 <span>Export packing and shipping documentation for worldwide delivery.</span>
               </li>
             </ul>
-          </div>
-          <div>
-            <p className="kicker">Capabilities</p>
-            <h2 className="h-xl">What We Can Do for You</h2>
-            <ul className="list-check">
-              <li>Catalog models across six product lines</li>
-              <li>OEM: rebrand existing models with your artwork &amp; logo</li>
-              <li>ODM: custom cabinet design, features or new game concepts</li>
-              <li>Localization: language, artwork and market requirements</li>
-              <li>After-sales: technical support coordination after delivery</li>
-            </ul>
-            <p style={{ marginTop: 24 }}>
-              <Link href="/contact/" className="btn btn--dark">
-                Discuss Your Project
-              </Link>
-            </p>
+            <div className="img-text__stack-sub">
+              <p className="kicker">Capabilities</p>
+              <h2 className="h-xl">What We Can Do for You</h2>
+              <ul className="list-check">
+                <li>Catalog models across six product lines</li>
+                <li>OEM: rebrand existing models with your artwork &amp; logo</li>
+                <li>ODM: custom cabinet design, features or new game concepts</li>
+                <li>Localization: language, artwork and market requirements</li>
+                <li>After-sales: technical support coordination after delivery</li>
+              </ul>
+              <p style={{ marginTop: 24 }}>
+                <Link href="/contact/" className="btn btn--dark">
+                  Discuss Your Project
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </section>
 
       {/* OEM / ODM */}
       <section className="section section--dark anchor-target" id="oem-odm">
-        <div className="container">
-          <div className="section-head">
-            <div>
-              <p className="kicker kicker--light">OEM / ODM</p>
-              <h2 className="h-xl" style={{ color: "#fff" }}>
-                Private-Label &amp; Custom Machines
-              </h2>
-              <p className="lede--light" style={{ color: "rgba(255,255,255,0.7)" }}>
-                {site.companyFacts.oemOdmNote} Below is the typical process from
-                first contact to container loading.
-              </p>
-            </div>
+        <div className="container img-text">
+          <figure className="img-text__media">
+            <img
+              src="/company/company-campus.jpg"
+              alt="VEETOP factory campus exterior in Guangzhou"
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption>Factory Campus, Guangzhou</figcaption>
+          </figure>
+          <div>
+            <p className="kicker kicker--light">OEM / ODM</p>
+            <h2 className="h-xl" style={{ color: "#fff" }}>
+              Private-Label &amp; Custom Machines
+            </h2>
+            <p className="lede--light" style={{ color: "rgba(255,255,255,0.7)" }}>
+              {site.companyFacts.oemOdmNote} Below is the typical process from
+              first contact to container loading.
+            </p>
+            <ul className="steps">
+              <li>
+                <h3>01. Inquiry</h3>
+                <p>Send reference photos, links or drawings; tell us quantity and target market.</p>
+              </li>
+              <li>
+                <h3>02. Quotation</h3>
+                <p>Receive pricing, MOQ, lead time and suggested spec adjustments.</p>
+              </li>
+              <li>
+                <h3>03. Sample</h3>
+                <p>Review and approve artwork or a prototype before mass production.</p>
+              </li>
+              <li>
+                <h3>04. Production</h3>
+                <p>Mass production with quality checks and inspection.</p>
+              </li>
+              <li>
+                <h3>05. Shipment</h3>
+                <p>Packing and delivery by sea, air or express as agreed.</p>
+              </li>
+              <li>
+                <h3>06. After-Sales</h3>
+                <p>Warranty and after-sales support per the order contract.</p>
+              </li>
+            </ul>
+            <p style={{ marginTop: 30 }}>
+              <Link href="/contact/" className="btn btn--accent">
+                Start an OEM / ODM Project
+              </Link>{" "}
+              <a
+                className="btn btn--ghost"
+                href={`https://wa.me/${c.whatsapp.number}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                WhatsApp {c.whatsapp.label}
+              </a>
+            </p>
           </div>
-          <ul className="steps">
-            <li>
-              <h3>01. Inquiry</h3>
-              <p>Send reference photos, links or drawings; tell us quantity and target market.</p>
-            </li>
-            <li>
-              <h3>02. Quotation</h3>
-              <p>Receive pricing, MOQ, lead time and suggested spec adjustments.</p>
-            </li>
-            <li>
-              <h3>03. Sample</h3>
-              <p>Review and approve artwork or a prototype before mass production.</p>
-            </li>
-            <li>
-              <h3>04. Production</h3>
-              <p>Mass production with quality checks and inspection.</p>
-            </li>
-            <li>
-              <h3>05. Shipment</h3>
-              <p>Packing and delivery by sea, air or express as agreed.</p>
-            </li>
-            <li>
-              <h3>06. After-Sales</h3>
-              <p>Warranty and after-sales support per the order contract.</p>
-            </li>
-          </ul>
-          <p style={{ marginTop: 30 }}>
-            <Link href="/contact/" className="btn btn--accent">
-              Start an OEM / ODM Project
-            </Link>{" "}
-            <a
-              className="btn btn--ghost"
-              href={`https://wa.me/${c.whatsapp.number}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              WhatsApp {c.whatsapp.label}
-            </a>
-          </p>
         </div>
       </section>
 

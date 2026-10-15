@@ -14,12 +14,16 @@ interface Post {
   date: string;
   summary: string;
   href: string;
+  image: string;
+  imageAlt: string;
 }
 
 const POSTS: Post[] = [
   {
     tag: "Guide",
     title: "Claw Crane Buying Guide: Cabinets, Prizes and Placement",
+    image: "/images/products/vtpg035-luxury-twins-crane-machine.jpeg",
+    imageAlt: "Luxury Twins claw crane cabinet with plush prizes",
     date: "2026-09-07",
     summary:
       "Claw machines come in very different formats: compact countertop units such as the Mini Crane Machine, standard single cabinets like the Crane Machine A, key-style games such as Key Master and wider twin cabinets like the Luxury Twins Crane Machine. Match the cabinet to your space, and choose a prize size and type the model can actually hold - our team can advise on suitable models for malls, supermarkets and retail corridors.",
@@ -28,6 +32,8 @@ const POSTS: Post[] = [
   {
     tag: "Guide",
     title: "Motion Simulators vs Upright Arcade Games: What Fits Your Floor",
+    image: "/images/products/vtsa010-super-bike-iii.jpeg",
+    imageAlt: "Super Bike III motion simulator arcade machines on the factory floor",
     date: "2026-09-07",
     summary:
       "Full-size motion simulators such as the Super Bike III, Dynamic Moto 3 DX and Cruis'N Blast Ver.2 Motion draw attention with moving cabinets, but they need more floor space. Upright cabinets such as the 32'' Arcade Game (Wooden Cabinet) take less room and suit tighter layouts. Consider the space, power and audience of each location before choosing between full-size and single-player formats.",
@@ -36,6 +42,8 @@ const POSTS: Post[] = [
   {
     tag: "Guide",
     title: "Building a Ticket Economy: Redemption Machines That Keep Players Coming Back",
+    image: "/images/products/vttr020-ball-monster.jpeg",
+    imageAlt: "Ball Monster redemption ball-shooting machine",
     date: "2026-09-07",
     summary:
       "Redemption machines award tickets or prizes based on skill and score, which gives players a reason to return. Ball shooting games like Ball Monster and Monster Realms Balls Shooting, plus compact favourites such as Flappy Bird, fit different floor plans and player ages. Ticket settings can be configured to your operation - specify your difficulty or payout preference when ordering.",
@@ -58,12 +66,13 @@ export default function BlogPage() {
       </section>
 
       <section className="section">
-        <div className="container container--narrow">
+        <div className="container">
 
         <div style={{ display: "flex", flexDirection: "column", gap: 18, marginTop: 44 }}>
           {POSTS.map((p) => (
             <article
               key={p.title}
+              className="img-text img-text--post"
               style={{
                 border: "1px solid var(--line)",
                 borderRadius: "var(--radius)",
@@ -71,24 +80,29 @@ export default function BlogPage() {
                 background: "var(--surface)",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  flexWrap: "wrap",
-                  marginBottom: 10,
-                }}
-              >
-                <span className="chip chip--accent">{p.tag}</span>
-                <span style={{ fontSize: 13, color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
-                  {p.date}
-                </span>
+              <figure className="img-text__media">
+                <img src={p.image} alt={p.imageAlt} loading="lazy" decoding="async" />
+              </figure>
+              <div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
+                    flexWrap: "wrap",
+                    marginBottom: 10,
+                  }}
+                >
+                  <span className="chip chip--accent">{p.tag}</span>
+                  <span style={{ fontSize: 13, color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
+                    {p.date}
+                  </span>
+                </div>
+                <h2 style={{ fontSize: "1.25rem", marginBottom: 8 }}>
+                  <Link href={p.href}>{p.title}</Link>
+                </h2>
+                <p style={{ color: "var(--ink-2)", margin: 0 }}>{p.summary}</p>
               </div>
-              <h2 style={{ fontSize: "1.25rem", marginBottom: 8 }}>
-                <Link href={p.href}>{p.title}</Link>
-              </h2>
-              <p style={{ color: "var(--ink-2)", margin: 0 }}>{p.summary}</p>
             </article>
           ))}
         </div>

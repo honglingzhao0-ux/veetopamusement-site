@@ -14,12 +14,16 @@ interface Post {
   date: string;
   summary: string;
   href: string;
+  image: string;
+  imageAlt: string;
 }
 
 const POSTS: Post[] = [
   {
     tag: "Product",
     title: "Catalogue Now Online: 6 Product Lines, 33 Models",
+    image: "/gallery/gallery-2.jpg",
+    imageAlt: "VEETOP amusement machines on display",
     date: "2026-09-07",
     summary:
       "VEETOP's official catalogue is now presented online, covering six product lines - arcade video games and simulators, sports & skill games, redemption machines, claw cranes, kiddie rides and prize merchandisers - with OEM/ODM customization available on every line.",
@@ -28,6 +32,8 @@ const POSTS: Post[] = [
   {
     tag: "Product",
     title: "From Claw Cranes to Kiddie Rides: A Tour of Our Product Lines",
+    image: "/gallery/gallery-4.jpg",
+    imageAlt: "Several VEETOP arcade and moto game machines on display",
     date: "2026-09-07",
     summary:
       "An introduction to the range we build: full-size simulators such as Super Bike III, redemption favourites like Ball Monster, Crane Machine A for mall locations and School Bus kiddie rides - each available factory-direct with CE certification.",
@@ -36,6 +42,8 @@ const POSTS: Post[] = [
   {
     tag: "Guide",
     title: "How to Choose Amusement Machines for Your Venue",
+    image: "/banners/hero-2.jpg",
+    imageAlt: "Players on motion rides and arcade machines inside an amusement venue",
     date: "2026-09-07",
     summary:
       "Before you buy: consider your floor space and target players, power supply and plugs in your market, spare parts and after-sales support, and how the machines will be shipped. Tell us these details and our export team will match models to your venue.",
@@ -58,12 +66,13 @@ export default function NewsPage() {
       </section>
 
       <section className="section">
-        <div className="container container--narrow">
+        <div className="container">
 
         <div style={{ display: "flex", flexDirection: "column", gap: 18, marginTop: 44 }}>
           {POSTS.map((p) => (
             <article
               key={p.title}
+              className="img-text img-text--post"
               style={{
                 border: "1px solid var(--line)",
                 borderRadius: "var(--radius)",
@@ -71,26 +80,31 @@ export default function NewsPage() {
                 background: "var(--surface)",
               }}
             >
-              <div
-                style={{
-                  display: "flex",
-                  alignItems: "center",
-                  gap: 10,
-                  flexWrap: "wrap",
-                  marginBottom: 10,
-                }}
-              >
-                <span className={"chip" + (p.tag === "Product" ? " chip--accent" : "")}>
-                  {p.tag}
-                </span>
-                <span style={{ fontSize: 13, color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
-                  {p.date}
-                </span>
+              <figure className="img-text__media">
+                <img src={p.image} alt={p.imageAlt} loading="lazy" decoding="async" />
+              </figure>
+              <div>
+                <div
+                  style={{
+                    display: "flex",
+                    alignItems: "center",
+                    gap: 10,
+                    flexWrap: "wrap",
+                    marginBottom: 10,
+                  }}
+                >
+                  <span className={"chip" + (p.tag === "Product" ? " chip--accent" : "")}>
+                    {p.tag}
+                  </span>
+                  <span style={{ fontSize: 13, color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
+                    {p.date}
+                  </span>
+                </div>
+                <h2 style={{ fontSize: "1.25rem", marginBottom: 8 }}>
+                  <Link href={p.href}>{p.title}</Link>
+                </h2>
+                <p style={{ color: "var(--ink-2)", margin: 0 }}>{p.summary}</p>
               </div>
-              <h2 style={{ fontSize: "1.25rem", marginBottom: 8 }}>
-                <Link href={p.href}>{p.title}</Link>
-              </h2>
-              <p style={{ color: "var(--ink-2)", margin: 0 }}>{p.summary}</p>
             </article>
           ))}
         </div>
