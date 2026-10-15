@@ -1,6 +1,7 @@
 import Link from "next/link";
 import site from "@/site.config";
 import { siteBaseUrl } from "@/lib/cdn";
+import { productPath } from "@/lib/product-url";
 import type { Category, Product } from "@/lib/products";
 import JsonLd from "@/components/json-ld";
 import ProductCard from "@/components/product-card";
@@ -16,7 +17,7 @@ interface CategoryLandingProps {
 /**
  * 品类独立关键词着陆页（P0-1）。
  * 输出 BreadcrumbList + ItemList + FAQPage 三类 JSON-LD 与独立语义结构；
- * 由 app/products/[slug]/page.tsx 在 slug 命中品类时渲染。
+ * 由 app/products/[category]/page.tsx 渲染。
  */
 export default function CategoryLanding({
   category,
@@ -56,7 +57,7 @@ export default function CategoryLanding({
     itemListElement: products.map((p, i) => ({
       "@type": "ListItem",
       position: i + 1,
-      url: `${baseUrl}/products/${p.slug}/`,
+      url: `${baseUrl}${productPath(category.slug, p.slug)}`,
       name: `${p.name} (${p.model})`,
     })),
   };
@@ -118,7 +119,11 @@ export default function CategoryLanding({
           {products.length > 0 ? (
             <ul className="prod-grid">
               {products.map((p) => (
-                <ProductCard key={p.slug} product={p} />
+                <ProductCard
+                  key={p.slug}
+                  product={p}
+                  categorySlug={category.slug}
+                />
               ))}
             </ul>
           ) : (

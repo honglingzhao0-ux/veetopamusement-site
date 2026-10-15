@@ -1,0 +1,1056 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/products/vtkr0102-kiddie-ride-a/",
+      "destination": "/products/kiddie-rides/vtkr0102-kiddie-ride-a/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtkr0103-bear-cup-white/",
+      "destination": "/products/kiddie-rides/vtkr0103-bear-cup-white/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtkr018-kiddie-ride-i/",
+      "destination": "/products/kiddie-rides/vtkr018-kiddie-ride-i/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtkr019-kiddie-ride-j/",
+      "destination": "/products/kiddie-rides/vtkr019-kiddie-ride-j/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtkr020-kiddie-ride-k/",
+      "destination": "/products/kiddie-rides/vtkr020-kiddie-ride-k/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtkr021-kiddie-ride-l/",
+      "destination": "/products/kiddie-rides/vtkr021-kiddie-ride-l/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtkr101-astronaut-music-cup/",
+      "destination": "/products/kiddie-rides/vtkr101-astronaut-music-cup/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtkr104-kiddie-ride-b/",
+      "destination": "/products/kiddie-rides/vtkr104-kiddie-ride-b/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtkr105-kiddie-ride-c/",
+      "destination": "/products/kiddie-rides/vtkr105-kiddie-ride-c/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtkr106-kiddie-ride-e/",
+      "destination": "/products/kiddie-rides/vtkr106-kiddie-ride-e/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtkr107-3d-horse/",
+      "destination": "/products/kiddie-rides/vtkr107-3d-horse/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtkr108-3d-car/",
+      "destination": "/products/kiddie-rides/vtkr108-3d-car/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtkr108-happy-childhood-3p/",
+      "destination": "/products/kiddie-rides/vtkr108-happy-childhood-3p/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtkr110-luxury-carousel-3p/",
+      "destination": "/products/kiddie-rides/vtkr110-luxury-carousel-3p/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtkr112-palace-carousel-6p/",
+      "destination": "/products/kiddie-rides/vtkr112-palace-carousel-6p/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vto010-tokens-tickets/",
+      "destination": "/products/prize-merchandisers/vto010-tokens-tickets/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg010-mini-crane-machine/",
+      "destination": "/products/claw-crane-machines/vtpg010-mini-crane-machine/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg011-mini-crane-machine/",
+      "destination": "/products/claw-crane-machines/vtpg011-mini-crane-machine/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg012-mini-crane-machine/",
+      "destination": "/products/claw-crane-machines/vtpg012-mini-crane-machine/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg013-mini-crane-machine/",
+      "destination": "/products/claw-crane-machines/vtpg013-mini-crane-machine/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg014-mini-crane-machine/",
+      "destination": "/products/claw-crane-machines/vtpg014-mini-crane-machine/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg015-mini-crane-machine/",
+      "destination": "/products/claw-crane-machines/vtpg015-mini-crane-machine/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg016-4p-mini-crane-machine-a/",
+      "destination": "/products/claw-crane-machines/vtpg016-4p-mini-crane-machine-a/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg017-4p-mini-crane-machine-b/",
+      "destination": "/products/claw-crane-machines/vtpg017-4p-mini-crane-machine-b/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg018-4p-mini-crane-machine-c/",
+      "destination": "/products/claw-crane-machines/vtpg018-4p-mini-crane-machine-c/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg019-love-clip/",
+      "destination": "/products/claw-crane-machines/vtpg019-love-clip/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg020-one-clip-to-the-end/",
+      "destination": "/products/claw-crane-machines/vtpg020-one-clip-to-the-end/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg021-pop-clip/",
+      "destination": "/products/claw-crane-machines/vtpg021-pop-clip/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg022-crane-machine-a/",
+      "destination": "/products/claw-crane-machines/vtpg022-crane-machine-a/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg023-crane-machine-b/",
+      "destination": "/products/claw-crane-machines/vtpg023-crane-machine-b/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg024-crane-machine-c/",
+      "destination": "/products/claw-crane-machines/vtpg024-crane-machine-c/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg025-crane-machine-d/",
+      "destination": "/products/claw-crane-machines/vtpg025-crane-machine-d/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg026-crane-machine-e/",
+      "destination": "/products/claw-crane-machines/vtpg026-crane-machine-e/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg027-crane-machine-f/",
+      "destination": "/products/claw-crane-machines/vtpg027-crane-machine-f/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg028-mini-key-master/",
+      "destination": "/products/prize-merchandisers/vtpg028-mini-key-master/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg029-key-master/",
+      "destination": "/products/prize-merchandisers/vtpg029-key-master/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg030-pink-date/",
+      "destination": "/products/prize-merchandisers/vtpg030-pink-date/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg032-lucky-7/",
+      "destination": "/products/prize-merchandisers/vtpg032-lucky-7/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg033-pink-love-cutting-machine/",
+      "destination": "/products/prize-merchandisers/vtpg033-pink-love-cutting-machine/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg034-crane-machine-g/",
+      "destination": "/products/claw-crane-machines/vtpg034-crane-machine-g/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg034-jiaqushiquan-crane-4p/",
+      "destination": "/products/claw-crane-machines/vtpg034-jiaqushiquan-crane-4p/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtpg035-luxury-twins-crane-machine/",
+      "destination": "/products/claw-crane-machines/vtpg035-luxury-twins-crane-machine/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra009-26800-in-1/",
+      "destination": "/products/arcade-video-games/vtra009-26800-in-1/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra010-10-supreme-arcade-twins/",
+      "destination": "/products/arcade-video-games/vtra010-10-supreme-arcade-twins/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra011-classic-arcade/",
+      "destination": "/products/arcade-video-games/vtra011-classic-arcade/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra012-classic-arcade/",
+      "destination": "/products/arcade-video-games/vtra012-classic-arcade/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra013-17-arcade-game-wooden-cabinet/",
+      "destination": "/products/arcade-video-games/vtra013-17-arcade-game-wooden-cabinet/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra014-19-arcade-game-wooden-cabinet/",
+      "destination": "/products/arcade-video-games/vtra014-19-arcade-game-wooden-cabinet/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra015-22-arcade-game-wooden-cabinet/",
+      "destination": "/products/arcade-video-games/vtra015-22-arcade-game-wooden-cabinet/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra016-26-arcade-game-wooden-cabinet/",
+      "destination": "/products/arcade-video-games/vtra016-26-arcade-game-wooden-cabinet/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra017-32-arcade-game-wooden-cabinet/",
+      "destination": "/products/arcade-video-games/vtra017-32-arcade-game-wooden-cabinet/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra018-32-street-fighter-iv/",
+      "destination": "/products/arcade-video-games/vtra018-32-street-fighter-iv/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra019-32-street-fighter-iii/",
+      "destination": "/products/arcade-video-games/vtra019-32-street-fighter-iii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra020-32-street-fighter-ii/",
+      "destination": "/products/arcade-video-games/vtra020-32-street-fighter-ii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra021-32-street-fighter-vi/",
+      "destination": "/products/arcade-video-games/vtra021-32-street-fighter-vi/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra021-street-fighter-4-55/",
+      "destination": "/products/arcade-video-games/vtra021-street-fighter-4-55/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtra021-tekken-7/",
+      "destination": "/products/arcade-video-games/vtra021-tekken-7/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa010-2-player-magic-hockey/",
+      "destination": "/products/sports-skill-games/vtsa010-2-player-magic-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa010-super-bike-iii/",
+      "destination": "/products/arcade-video-games/vtsa010-super-bike-iii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa011-2-player-power-hockey/",
+      "destination": "/products/sports-skill-games/vtsa011-2-player-power-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa011-gp-moto/",
+      "destination": "/products/arcade-video-games/vtsa011-gp-moto/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa012-2-player-power-air-hockey/",
+      "destination": "/products/sports-skill-games/vtsa012-2-player-power-air-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa012-moto-dx/",
+      "destination": "/products/arcade-video-games/vtsa012-moto-dx/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa013-2-player-air-hockey/",
+      "destination": "/products/sports-skill-games/vtsa013-2-player-air-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa013-dynamic-moto-3-dx/",
+      "destination": "/products/arcade-video-games/vtsa013-dynamic-moto-3-dx/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa014-4-player-air-hockey/",
+      "destination": "/products/sports-skill-games/vtsa014-4-player-air-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa014-dynamic-moto-5-dx/",
+      "destination": "/products/arcade-video-games/vtsa014-dynamic-moto-5-dx/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa015-2-player-power-air-hockey/",
+      "destination": "/products/sports-skill-games/vtsa015-2-player-power-air-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa015-cruis-n-blast-ver-2-motion/",
+      "destination": "/products/arcade-video-games/vtsa015-cruis-n-blast-ver-2-motion/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa016-2-player-curved-hockey/",
+      "destination": "/products/sports-skill-games/vtsa016-2-player-curved-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa016-43-cruis-n-blast-ver-2-pro-motion/",
+      "destination": "/products/arcade-video-games/vtsa016-43-cruis-n-blast-ver-2-pro-motion/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa017-4-player-magic-hockey/",
+      "destination": "/products/sports-skill-games/vtsa017-4-player-magic-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa017-55-cruis-n-blast-ver-3-motion/",
+      "destination": "/products/arcade-video-games/vtsa017-55-cruis-n-blast-ver-3-motion/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa018-cruis-n-blast-usa-ver/",
+      "destination": "/products/arcade-video-games/vtsa018-cruis-n-blast-usa-ver/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa018-super-star-hockey/",
+      "destination": "/products/sports-skill-games/vtsa018-super-star-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa019-curved-star-hockey/",
+      "destination": "/products/sports-skill-games/vtsa019-curved-star-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa019-wild-chariot/",
+      "destination": "/products/arcade-video-games/vtsa019-wild-chariot/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa020-forza-motorsport-ii/",
+      "destination": "/products/arcade-video-games/vtsa020-forza-motorsport-ii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa020-power-battle-blue-2p/",
+      "destination": "/products/sports-skill-games/vtsa020-power-battle-blue-2p/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa021-kids-jurassic-park-open-version/",
+      "destination": "/products/arcade-video-games/vtsa021-kids-jurassic-park-open-version/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa021-power-battle-blue-4p/",
+      "destination": "/products/redemption-ticket-games/vtsa021-power-battle-blue-4p/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa022-kids-jurassic-park-motion/",
+      "destination": "/products/arcade-video-games/vtsa022-kids-jurassic-park-motion/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa023-jurassic-park-ii/",
+      "destination": "/products/arcade-video-games/vtsa023-jurassic-park-ii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa024-jurassic-park-motion-ii/",
+      "destination": "/products/arcade-video-games/vtsa024-jurassic-park-motion-ii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa025-walking-dead/",
+      "destination": "/products/arcade-video-games/vtsa025-walking-dead/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa026-house-of-the-dead/",
+      "destination": "/products/arcade-video-games/vtsa026-house-of-the-dead/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa027-pirate-treasure-motion/",
+      "destination": "/products/arcade-video-games/vtsa027-pirate-treasure-motion/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa028-terminator-4/",
+      "destination": "/products/arcade-video-games/vtsa028-terminator-4/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa029-aliens-armageddon/",
+      "destination": "/products/arcade-video-games/vtsa029-aliens-armageddon/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa030-razing-store/",
+      "destination": "/products/arcade-video-games/vtsa030-razing-store/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa031-fast-furious/",
+      "destination": "/products/arcade-video-games/vtsa031-fast-furious/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa032-32-mario-kart-arcade-gp/",
+      "destination": "/products/arcade-video-games/vtsa032-32-mario-kart-arcade-gp/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa033-mario-ver-2/",
+      "destination": "/products/arcade-video-games/vtsa033-mario-ver-2/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa035-dirty-driving-42-car-racing/",
+      "destination": "/products/arcade-video-games/vtsa035-dirty-driving-42-car-racing/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa036-batman-racing-car/",
+      "destination": "/products/arcade-video-games/vtsa036-batman-racing-car/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa037-initial-d8/",
+      "destination": "/products/arcade-video-games/vtsa037-initial-d8/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa038-32-lcd-outrun-racing-car/",
+      "destination": "/products/arcade-video-games/vtsa038-32-lcd-outrun-racing-car/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa039-outrun-twin-32/",
+      "destination": "/products/arcade-video-games/vtsa039-outrun-twin-32/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa040-need-for-speed/",
+      "destination": "/products/arcade-video-games/vtsa040-need-for-speed/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa041-32-tt-moto-42-tt-moto/",
+      "destination": "/products/arcade-video-games/vtsa041-32-tt-moto-42-tt-moto/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa042-super-motor-iii/",
+      "destination": "/products/arcade-video-games/vtsa042-super-motor-iii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa043-3in1-house-of-dead-3-aliens-paradise-lost/",
+      "destination": "/products/arcade-video-games/vtsa043-3in1-house-of-dead-3-aliens-paradise-lost/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa047-transformer-55-shooting/",
+      "destination": "/products/arcade-video-games/vtsa047-transformer-55-shooting/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa048-operation-ghost-55-shooting/",
+      "destination": "/products/arcade-video-games/vtsa048-operation-ghost-55-shooting/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa050-dead-storm-pirate-luxury/",
+      "destination": "/products/arcade-video-games/vtsa050-dead-storm-pirate-luxury/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa051-let-s-go-jungle-55/",
+      "destination": "/products/arcade-video-games/vtsa051-let-s-go-jungle-55/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa052-transformer-luxury/",
+      "destination": "/products/arcade-video-games/vtsa052-transformer-luxury/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa101-candy-hockey/",
+      "destination": "/products/sports-skill-games/vtsa101-candy-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa102-storm-hockey-a/",
+      "destination": "/products/sports-skill-games/vtsa102-storm-hockey-a/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa103-storm-hockey-b/",
+      "destination": "/products/sports-skill-games/vtsa103-storm-hockey-b/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa104-fun-kids-hockey/",
+      "destination": "/products/sports-skill-games/vtsa104-fun-kids-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa105-battle-hockey/",
+      "destination": "/products/sports-skill-games/vtsa105-battle-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa106-fire-hockey/",
+      "destination": "/products/sports-skill-games/vtsa106-fire-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa107-space-hockey/",
+      "destination": "/products/sports-skill-games/vtsa107-space-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa108-curved-hockey/",
+      "destination": "/products/sports-skill-games/vtsa108-curved-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa109-football-table/",
+      "destination": "/products/sports-skill-games/vtsa109-football-table/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa110-kung-fu-soccer/",
+      "destination": "/products/sports-skill-games/vtsa110-kung-fu-soccer/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa34-ff-motor/",
+      "destination": "/products/arcade-video-games/vtsa34-ff-motor/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsa49-dead-storm-pirate/",
+      "destination": "/products/arcade-video-games/vtsa49-dead-storm-pirate/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsb10-kids-basketball/",
+      "destination": "/products/sports-skill-games/vtsb10-kids-basketball/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsb11-kids-basketball/",
+      "destination": "/products/sports-skill-games/vtsb11-kids-basketball/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsb117-luxury-basketball-unfolding-folding/",
+      "destination": "/products/sports-skill-games/vtsb117-luxury-basketball-unfolding-folding/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsb12-children-basketball/",
+      "destination": "/products/sports-skill-games/vtsb12-children-basketball/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsb16-street-basketball-machine-unfolding-folding/",
+      "destination": "/products/sports-skill-games/vtsb16-street-basketball-machine-unfolding-folding/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsb19-interactive-display-basketball-unfolding-folding/",
+      "destination": "/products/sports-skill-games/vtsb19-interactive-display-basketball-unfolding-folding/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsb21-interactive-display-basketball-i/",
+      "destination": "/products/sports-skill-games/vtsb21-interactive-display-basketball-i/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsb22-interactive-display-basketball-ii/",
+      "destination": "/products/sports-skill-games/vtsb22-interactive-display-basketball-ii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsb23-interactive-display-basketball-iii/",
+      "destination": "/products/sports-skill-games/vtsb23-interactive-display-basketball-iii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsb24-interactive-display-basketball-iv/",
+      "destination": "/products/sports-skill-games/vtsb24-interactive-display-basketball-iv/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsh001-king-of-hammer/",
+      "destination": "/products/sports-skill-games/vtsh001-king-of-hammer/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsh003-world-of-champion/",
+      "destination": "/products/sports-skill-games/vtsh003-world-of-champion/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsh004-boxing-champion-ii/",
+      "destination": "/products/sports-skill-games/vtsh004-boxing-champion-ii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsp001-boxer-1/",
+      "destination": "/products/sports-skill-games/vtsp001-boxer-1/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsp002-boxer-ii/",
+      "destination": "/products/sports-skill-games/vtsp002-boxer-ii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsp003-boxing-punching-kicking/",
+      "destination": "/products/sports-skill-games/vtsp003-boxing-punching-kicking/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsp004-kids-boxing/",
+      "destination": "/products/sports-skill-games/vtsp004-kids-boxing/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsp005-boxing-ii/",
+      "destination": "/products/sports-skill-games/vtsp005-boxing-ii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsp006-boxing-ia/",
+      "destination": "/products/sports-skill-games/vtsp006-boxing-ia/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsp007-boxing-ib/",
+      "destination": "/products/sports-skill-games/vtsp007-boxing-ib/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsp008-boxing-ii/",
+      "destination": "/products/sports-skill-games/vtsp008-boxing-ii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsp009-hammer-game/",
+      "destination": "/products/sports-skill-games/vtsp009-hammer-game/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsp009a-punching-kicking-iia/",
+      "destination": "/products/sports-skill-games/vtsp009a-punching-kicking-iia/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vtsp009b-punching-kicking-iib/",
+      "destination": "/products/sports-skill-games/vtsp009b-punching-kicking-iib/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr010-monster-realms-balls-shotting/",
+      "destination": "/products/redemption-ticket-games/vttr010-monster-realms-balls-shotting/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr011-crazy-shooting-water-ii/",
+      "destination": "/products/redemption-ticket-games/vttr011-crazy-shooting-water-ii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr012-crazy-shooting-balls-ii/",
+      "destination": "/products/redemption-ticket-games/vttr012-crazy-shooting-balls-ii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr013-crazy-shooting-water-iii/",
+      "destination": "/products/redemption-ticket-games/vttr013-crazy-shooting-water-iii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr014-crazy-shooting-balls-iii/",
+      "destination": "/products/redemption-ticket-games/vttr014-crazy-shooting-balls-iii/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr015-crisis-rescue/",
+      "destination": "/products/redemption-ticket-games/vttr015-crisis-rescue/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr016-shooting-party-balls/",
+      "destination": "/products/redemption-ticket-games/vttr016-shooting-party-balls/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr017-mechanic/",
+      "destination": "/products/redemption-ticket-games/vttr017-mechanic/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr018-bowling/",
+      "destination": "/products/redemption-ticket-games/vttr018-bowling/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr019-crazy-toy/",
+      "destination": "/products/redemption-ticket-games/vttr019-crazy-toy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr020-ball-monster/",
+      "destination": "/products/redemption-ticket-games/vttr020-ball-monster/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr021-crazy-balls/",
+      "destination": "/products/redemption-ticket-games/vttr021-crazy-balls/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr022-crazy-balls-iii-2p/",
+      "destination": "/products/redemption-ticket-games/vttr022-crazy-balls-iii-2p/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr023-crazy-squirting-2p/",
+      "destination": "/products/redemption-ticket-games/vttr023-crazy-squirting-2p/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr024-travel-around-the-world/",
+      "destination": "/products/redemption-ticket-games/vttr024-travel-around-the-world/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr025-rainbow-castle/",
+      "destination": "/products/redemption-ticket-games/vttr025-rainbow-castle/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr026-forest-bowling/",
+      "destination": "/products/redemption-ticket-games/vttr026-forest-bowling/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr027-boom-ball/",
+      "destination": "/products/redemption-ticket-games/vttr027-boom-ball/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr028-happy-patting/",
+      "destination": "/products/redemption-ticket-games/vttr028-happy-patting/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr029-frenzy-clown-2/",
+      "destination": "/products/redemption-ticket-games/vttr029-frenzy-clown-2/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr030-frenzy-clown-1/",
+      "destination": "/products/redemption-ticket-games/vttr030-frenzy-clown-1/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr031-funny-carnival/",
+      "destination": "/products/redemption-ticket-games/vttr031-funny-carnival/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr032-dazzle-ice-hockey/",
+      "destination": "/products/redemption-ticket-games/vttr032-dazzle-ice-hockey/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr034-golden-fish/",
+      "destination": "/products/redemption-ticket-games/vttr034-golden-fish/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr035-hunting-the-ball/",
+      "destination": "/products/redemption-ticket-games/vttr035-hunting-the-ball/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr036-farm-frenzy/",
+      "destination": "/products/redemption-ticket-games/vttr036-farm-frenzy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr036-star-party/",
+      "destination": "/products/redemption-ticket-games/vttr036-star-party/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr036-toilet-hero/",
+      "destination": "/products/redemption-ticket-games/vttr036-toilet-hero/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr039-ultimate-disc/",
+      "destination": "/products/redemption-ticket-games/vttr039-ultimate-disc/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr040-fun-sandbags-ii-1p/",
+      "destination": "/products/redemption-ticket-games/vttr040-fun-sandbags-ii-1p/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr041-let-s-disc/",
+      "destination": "/products/redemption-ticket-games/vttr041-let-s-disc/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr042-bowling-big-dunk/",
+      "destination": "/products/redemption-ticket-games/vttr042-bowling-big-dunk/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr043-mini-bowling/",
+      "destination": "/products/redemption-ticket-games/vttr043-mini-bowling/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr044-rescue-et/",
+      "destination": "/products/redemption-ticket-games/vttr044-rescue-et/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr045-all-round-clown/",
+      "destination": "/products/redemption-ticket-games/vttr045-all-round-clown/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr060-crack-the-cube/",
+      "destination": "/products/redemption-ticket-games/vttr060-crack-the-cube/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr061-minions-wheel/",
+      "destination": "/products/redemption-ticket-games/vttr061-minions-wheel/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr062-minions-carnival-chaos/",
+      "destination": "/products/redemption-ticket-games/vttr062-minions-carnival-chaos/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr063-pop-the-lock/",
+      "destination": "/products/redemption-ticket-games/vttr063-pop-the-lock/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr064-piano-keys/",
+      "destination": "/products/redemption-ticket-games/vttr064-piano-keys/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr065-crossy/",
+      "destination": "/products/redemption-ticket-games/vttr065-crossy/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr066-flappy-bird/",
+      "destination": "/products/redemption-ticket-games/vttr066-flappy-bird/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr067-luck-quick-drop/",
+      "destination": "/products/redemption-ticket-games/vttr067-luck-quick-drop/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr068-lucky-fish-bowl/",
+      "destination": "/products/redemption-ticket-games/vttr068-lucky-fish-bowl/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr069-lucky-fish-bowl-1-group/",
+      "destination": "/products/redemption-ticket-games/vttr069-lucky-fish-bowl-1-group/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr070-sonic-dash/",
+      "destination": "/products/redemption-ticket-games/vttr070-sonic-dash/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr071-stack-ticket/",
+      "destination": "/products/redemption-ticket-games/vttr071-stack-ticket/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr072-subway-surfers/",
+      "destination": "/products/redemption-ticket-games/vttr072-subway-surfers/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr073-rail-rush/",
+      "destination": "/products/redemption-ticket-games/vttr073-rail-rush/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr074-55-flappy-bird-hd/",
+      "destination": "/products/redemption-ticket-games/vttr074-55-flappy-bird-hd/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr075-55-stack-ticket-hd/",
+      "destination": "/products/redemption-ticket-games/vttr075-55-stack-ticket-hd/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr076-55-crossy-hd/",
+      "destination": "/products/redemption-ticket-games/vttr076-55-crossy-hd/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr077-parkour/",
+      "destination": "/products/redemption-ticket-games/vttr077-parkour/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr078-down-the-clown/",
+      "destination": "/products/redemption-ticket-games/vttr078-down-the-clown/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr078-firewall/",
+      "destination": "/products/redemption-ticket-games/vttr078-firewall/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr080-shark-park/",
+      "destination": "/products/redemption-ticket-games/vttr080-shark-park/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr081-55-dance-central/",
+      "destination": "/products/arcade-video-games/vttr081-55-dance-central/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr081-big-bass-wheel/",
+      "destination": "/products/redemption-ticket-games/vttr081-big-bass-wheel/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr082-47-dance-super-station/",
+      "destination": "/products/arcade-video-games/vttr082-47-dance-super-station/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr082-hockey-league/",
+      "destination": "/products/redemption-ticket-games/vttr082-hockey-league/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr083-55-dance-super-station/",
+      "destination": "/products/arcade-video-games/vttr083-55-dance-super-station/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr083-fishing-wheel/",
+      "destination": "/products/claw-crane-machines/vttr083-fishing-wheel/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr084-magic-master/",
+      "destination": "/products/prize-merchandisers/vttr084-magic-master/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr085-coin-pusher-1p/",
+      "destination": "/products/prize-merchandisers/vttr085-coin-pusher-1p/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr085-super-train/",
+      "destination": "/products/prize-merchandisers/vttr085-super-train/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr086-happy-castle/",
+      "destination": "/products/prize-merchandisers/vttr086-happy-castle/",
+      "statusCode": 301
+    },
+    {
+      "source": "/products/vttr33-crazy-fish-bow/",
+      "destination": "/products/redemption-ticket-games/vttr33-crazy-fish-bow/",
+      "statusCode": 301
+    }
+  ]
+}

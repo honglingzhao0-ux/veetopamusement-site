@@ -141,3 +141,17 @@ export function getProductBySlug(slug: string): Product | undefined {
 export function getAllProductSlugs(): string[] {
   return getAllProducts().map((p) => p.slug);
 }
+
+/**
+ * 解析产品所属品类的 slug（用于 /products/<品类slug>/<产品slug>/ 的品类段）。
+ * 品类 slug 以 data/categories.json 为准，不做硬编码映射。
+ */
+export function getCategorySlugForProduct(product: Product): string {
+  const cat = getCategoryById(product.category);
+  if (cat) return cat.slug;
+  console.warn(
+    `[products] unknown category "${product.category}" on product "${product.slug}"`,
+  );
+  return "products";
+}
+

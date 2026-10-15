@@ -5,100 +5,82 @@ import site from "@/site.config";
 import { siteBaseUrl, cdnUrl } from "@/lib/cdn";
 import ProductGallery from "@/components/product-gallery";
 import {
-  getAllProductSlugs,
-  getCategorySlugs,
+  getAllProducts,
   getProductBySlug,
-  getCategoryBySlug,
   getCategoryById,
+  getCategorySlugForProduct,
   getProductsByCategory,
   type Product,
 } from "@/lib/products";
+import { productPath } from "@/lib/product-url";
 import JsonLd from "@/components/json-ld";
 import ProductCard from "@/components/product-card";
-import CategoryLanding from "@/components/category-landing";
 
 const baseUrl = siteBaseUrl(site.brand.domain);
 
 interface Props {
-  params: Promise<{ slug: string }>;
+  params: Promise<{ category: string; product: string }>;
 }
 
 /**
- * 统一动态路由：
- *  - slug 命中产品 -> 产品详情页（图廊/规格/特性/相关产品/可选视频与 PDF）
- *  - slug 命中品类 -> 品类独立关键词着陆页（P0-1，见 components/category-landing.tsx）
- * 注：Next.js 不允许同一目录下并存两个动态段，故品类页与产品页共用 [slug]，
- *    URL 形态与要求一致（/products/<category-slug>/ 与 /products/<product-slug>/）。
+ * 配对的品类段与产品段必须一致：品类段取产品自身 category 解析出的 slug，
+ * 避免同一产品通过其他品类段被访问而生成重复 URL。
  */
+function resolve(params: { category: string; product: string }): Product | undefined {
+  const product = getProductBySlug(params.product);
+  if (!product) return undefined;
+  return getCategorySlugForProduct(product) === params.category ? product : undefined;
+}
+
 export function generateStaticParams() {
-  return [...getAllProductSlugs(), ...getCategorySlugs()].map((slug) => ({
-    slug,
+  return getAllProducts().map((p) => ({
+    category: getCategorySlugForProduct(p),
+    product: p.slug,
   }));
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { slug } = await params;
+  const { category, product: productSlug } = await params;
+  const product = resolve({ category, product: productSlug });
+  if (!product) return { title: "Page not found" };
 
-  const product = getProductBySlug(slug);
-  if (product) {
-    const cover = product.images[0] ? cdnUrl(product.images[0]) : undefined;
-    const desc =
-      product.seoDescription?.trim().slice(0, 160) ??
-      product.description.slice(0, 158);
-    return {
+  const cover = product.images[0] ? cdnUrl(product.images[0]) : undefined;
+  const desc =
+    product.seoDescription?.trim().slice(0, 160) ??
+    product.description.slice(0, 158);
+
+  return {
+    title: `${product.name} (${product.model})`,
+    description: desc,
+    alternates: { canonical: productPath(category, product.slug) },
+    openGraph: {
+      type: "website",
       title: `${product.name} (${product.model})`,
       description: desc,
-      alternates: { canonical: `/products/${product.slug}/` },
-      openGraph: {
-        type: "website",
-        title: `${product.name} (${product.model})`,
-        description: desc,
-        images: cover ? [{ url: cover, alt: product.name }] : undefined,
-      },
-    };
-  }
-
-  const category = getCategoryBySlug(slug);
-  if (category) {
-    return {
-      title: category.seoTitle,
-      description: category.metaDescription,
-      alternates: { canonical: `/products/${category.slug}/` },
-      openGraph: {
-        type: "website",
-        title: category.seoTitle,
-        description: category.metaDescription,
-      },
-    };
-  }
-
-  return { title: "Page not found" };
+      images: cover ? [{ url: cover, alt: product.name }] : undefined,
+    },
+  };
 }
 
-export default async function SlugPage({ params }: Props) {
-  const { slug } = await params;
+export default async function ProductPage({ params }: Props) {
+  const { category, product: productSlug } = await params;
+  const product = resolve({ category, product: productSlug });
+  if (!product) notFound();
 
-  const product = getProductBySlug(slug);
-  if (product) return <ProductView product={product} />;
-
-  const category = getCategoryBySlug(slug);
-  if (category) {
-    return (
-      <CategoryLanding
-        category={category}
-        products={getProductsByCategory(category.id)}
-      />
-    );
-  }
-
-  notFound();
+  return <ProductView product={product} categorySlug={category} />;
 }
 
 /* ==================================================================== */
 /* 产品详情视图                                                         */
 /* ==================================================================== */
 
-function ProductView({ product }: { product: Product }) {
+function ProductView({
+  product,
+  categorySlug,
+}: {
+  product: Product;
+  categorySlug: string;
+}) {
   const category = getCategoryById(product.category);
   const related = getProductsByCategory(product.category)
     .filter((p) => p.slug !== product.slug)
@@ -127,6 +109,7 @@ function ProductView({ product }: { product: Product }) {
       name: site.brand.legalName,
       url: baseUrl,
     },
+    url: `${baseUrl}${productPath(categorySlug, product.slug)}`,
   };
 
   const breadcrumbJsonLd = {
@@ -143,8 +126,14 @@ function ProductView({ product }: { product: Product }) {
       {
         "@type": "ListItem",
         position: 3,
+        name: category?.name ?? "Catalog",
+        item: `${baseUrl}/products/${categorySlug}/`,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
         name: product.name,
-        item: `${baseUrl}/products/${product.slug}/`,
+        item: `${baseUrl}${productPath(categorySlug, product.slug)}`,
       },
     ],
   };
@@ -161,7 +150,7 @@ function ProductView({ product }: { product: Product }) {
             <span className="sep">/</span>
             <Link href="/products/">Products</Link>
             <span className="sep">/</span>
-            <Link href={`/products/${category?.slug ?? ""}/`}>
+            <Link href={`/products/${categorySlug}/`}>
               {category?.name ?? "Catalog"}
             </Link>
             <span className="sep">/</span>
@@ -337,7 +326,7 @@ function ProductView({ product }: { product: Product }) {
                   <h2 className="h-lg">Related Products</h2>
                 </div>
                 <Link
-                  href={`/products/${category?.slug ?? ""}/`}
+                  href={`/products/${categorySlug}/`}
                   className="btn btn--line"
                 >
                   View Full Category
@@ -345,7 +334,11 @@ function ProductView({ product }: { product: Product }) {
               </div>
               <ul className="prod-grid">
                 {related.map((p) => (
-                  <ProductCard key={p.slug} product={p} />
+                  <ProductCard
+                    key={p.slug}
+                    product={p}
+                    categorySlug={categorySlug}
+                  />
                 ))}
               </ul>
             </div>

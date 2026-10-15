@@ -1,6 +1,11 @@
 import site from "@/site.config";
 import { siteBaseUrl } from "@/lib/cdn";
-import { getAllProducts, getCategories } from "@/lib/products";
+import {
+  getAllProducts,
+  getCategories,
+  getCategorySlugForProduct,
+} from "@/lib/products";
+import { productPath } from "@/lib/product-url";
 
 export const dynamic = "force-static";
 
@@ -35,7 +40,10 @@ export function GET() {
   lines.push("## Products");
   for (const p of products) {
     lines.push(
-      `- [${p.name} (${p.model})](${baseUrl}/products/${p.slug}/): ${p.headline}`,
+      `- [${p.name} (${p.model})](${baseUrl}${productPath(
+        getCategorySlugForProduct(p),
+        p.slug,
+      )}): ${p.headline}`,
     );
   }
   lines.push("");

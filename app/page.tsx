@@ -1,6 +1,10 @@
 import Link from "next/link";
 import site from "@/site.config";
-import { getCategories, getAllProducts } from "@/lib/products";
+import {
+  getCategories,
+  getAllProducts,
+  getCategorySlugForProduct,
+} from "@/lib/products";
 import ProductCard from "@/components/product-card";
 import HeroCarousel from "@/components/hero-carousel";
 
@@ -91,7 +95,11 @@ export default function HomePage() {
           </div>
           <ul className="prod-grid prod-grid--home">
             {featured.map((p) => (
-              <ProductCard key={p.slug} product={p} />
+              <ProductCard
+                key={p.slug}
+                product={p}
+                categorySlug={getCategorySlugForProduct(p)}
+              />
             ))}
           </ul>
         </div>

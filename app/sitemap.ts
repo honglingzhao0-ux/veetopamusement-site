@@ -1,7 +1,12 @@
 import type { MetadataRoute } from "next";
 import site from "@/site.config";
 import { siteBaseUrl } from "@/lib/cdn";
-import { getAllProducts, getCategories } from "@/lib/products";
+import {
+  getAllProducts,
+  getCategories,
+  getCategorySlugForProduct,
+} from "@/lib/products";
+import { productPath } from "@/lib/product-url";
 
 const baseUrl = siteBaseUrl(site.brand.domain);
 const lastModified = new Date();
@@ -57,7 +62,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   }));
 
   const productPages: MetadataRoute.Sitemap = getAllProducts().map((p) => ({
-    url: `${baseUrl}/products/${p.slug}/`,
+    url: `${baseUrl}${productPath(getCategorySlugForProduct(p), p.slug)}`,
     lastModified,
     changeFrequency: "weekly" as const,
     priority: 0.8,

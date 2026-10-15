@@ -5,7 +5,7 @@ import type { Category, Product } from "@/lib/products";
 import ProductCard from "@/components/product-card";
 
 export interface ExplorerProps {
-  categories: Pick<Category, "id" | "name">[];
+  categories: Pick<Category, "id" | "name" | "slug">[];
   products: Product[];
 }
 
@@ -16,6 +16,11 @@ export interface ExplorerProps {
  */
 export default function ProductExplorer({ categories, products }: ExplorerProps) {
   const [active, setActive] = useState<string>("all");
+  // 客户端组件不能引用 lib/products.ts（依赖 node:fs），品类 slug 由父级服务端组件传入。
+  const slugById = useMemo(
+    () => new Map(categories.map((c) => [c.id, c.slug])),
+    [categories],
+  );
 
   const list = useMemo(() => {
     if (active === "all") return products;
@@ -60,7 +65,11 @@ export default function ProductExplorer({ categories, products }: ExplorerProps)
       {list.length > 0 ? (
         <ul className="prod-grid">
           {list.map((p) => (
-            <ProductCard key={p.slug} product={p} />
+            <ProductCard
+              key={p.slug}
+              product={p}
+              categorySlug={slugById.get(p.category) ?? ""}
+            />
           ))}
         </ul>
       ) : (

@@ -146,7 +146,7 @@ export default function SiteHeader({ categories }: SiteHeaderProps) {
                         {cat.products.map((p) => (
                           <li key={p.slug}>
                             <Link
-                              href={`/products/${p.slug}/`}
+                              href={`/products/${cat.slug}/${p.slug}/`}
                               onClick={closeDd}
                             >
                               {p.name}
@@ -278,7 +278,7 @@ export default function SiteHeader({ categories }: SiteHeaderProps) {
                       {cat.products.map((p) => (
                         <li key={p.slug}>
                           <Link
-                            href={`/products/${p.slug}/`}
+                            href={`/products/${cat.slug}/${p.slug}/`}
                             onClick={closeAllMobile}
                           >
                             {p.name}
