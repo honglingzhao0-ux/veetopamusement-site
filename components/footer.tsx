@@ -169,6 +169,21 @@ export default function Footer() {
                 </a>
               </li>
               <li className="f-row">
+                                <svg
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M8 3.5h8a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3h-3.6L9 17.6V14.5H8a3 3 0 0 1-3-3v-5a3 3 0 0 1 3-3z" />
+                  <path d="M9.6 8.6h.01M12 8.6h.01M14.4 8.6h.01" />
+                </svg>
+                <span>WeChat: {c.wechat.label}</span>
+              </li>
+              <li className="f-row">
                 <svg
                   viewBox="0 0 24 24"
                   fill="none"

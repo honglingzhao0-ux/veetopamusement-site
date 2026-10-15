@@ -70,6 +70,11 @@ const site = {
       message:
         "Hello VEETOP, I would like a quotation for amusement machines. Please contact me.",
     },
+    wechat: {
+      // 微信同号：与上方 WhatsApp / 下方电话为同一号码。
+      // 微信没有官方 URL scheme，站内只做号码展示，不做跳转。
+      label: "+86 188 2417 5545",
+    },
     phone: {
       // tel: 链接用
       tel: "+8618824175545",

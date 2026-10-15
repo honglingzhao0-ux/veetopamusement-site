@@ -299,6 +299,7 @@ export default function SiteHeader({ categories }: SiteHeaderProps) {
         >
           WhatsApp: {c.whatsapp.label}
         </a>
+        <span className="mobile-nav__link">WeChat: {c.wechat.label}</span>
         <Link
           href="/contact/"
           className="btn btn--accent btn--block"

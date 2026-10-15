@@ -33,7 +33,7 @@ export function GET() {
   lines.push("");
   lines.push(`Official website: ${baseUrl}`);
   lines.push(
-    `Contact: ${site.contact.email} | WhatsApp ${site.contact.whatsapp.label}`,
+    `Contact: ${site.contact.email} | WhatsApp ${site.contact.whatsapp.label} | WeChat ${site.contact.wechat.label}`,
   );
   lines.push(`Address: ${site.contact.address.line1}, ${site.contact.address.line2}`);
   lines.push("");
