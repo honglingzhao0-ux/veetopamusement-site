@@ -99,19 +99,29 @@ export default function SiteHeader({ categories }: SiteHeaderProps) {
               if (ddModeRef.current === "hover") setDdModeSafe("closed");
             }}
           >
-            <button
-              type="button"
+            {/* "Products" 文字是真链接（进入 /products/）；箭头是独立按钮，
+                只负责展开/收起，触屏与键盘用户因此仍可打开菜单。 */}
+            <Link
+              href="/products/"
               className={
-                "site-nav__link nav-dd__btn" +
+                "site-nav__link nav-dd__link" +
                 (isProductsActive ? " is-active" : "")
               }
+              onClick={closeDd}
+            >
+              Products
+            </Link>
+            <button
+              type="button"
+              className="nav-dd__btn"
               aria-haspopup="true"
               aria-expanded={ddOpen}
+              aria-controls="nav-dd-panel"
+              aria-label="Toggle product categories"
               onClick={() =>
                 setDdModeSafe(ddModeRef.current === "pinned" ? "closed" : "pinned")
               }
             >
-              Products
               <svg
                 className="nav-dd__caret"
                 width="10"
@@ -130,7 +140,12 @@ export default function SiteHeader({ categories }: SiteHeaderProps) {
               </svg>
             </button>
 
-            <div className="nav-dd__panel" role="menu" aria-label="Product categories">
+            <div
+              className="nav-dd__panel"
+              id="nav-dd-panel"
+              role="menu"
+              aria-label="Product categories"
+            >
               <div className="nav-dd__grid">
                 {categories.map((cat) => (
                   <div className="nav-dd__group" key={cat.slug}>

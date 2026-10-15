@@ -1940,16 +1940,41 @@ ul {
 
 .nav-dd {
   position: relative;
+  display: inline-flex;
+  align-items: center;
+}
+
+/* "Products" 文字与箭头是两个独立可点区域：文字是 <a href="/products/">，
+   箭头按钮只切换展开/收起。左右内边距合计沿用旧的 10px + 6px + 10px，
+   因此视觉位置与改动前一致。 */
+.nav-dd__link {
+  padding-right: 3px;
 }
 
 .nav-dd__btn {
   display: inline-flex;
   align-items: center;
   gap: 6px;
+  padding: 9px 10px 9px 3px;
   font-family: inherit;
+  font-size: 14px;
+  color: var(--ink-2);
+  border-radius: 8px;
   background: none;
   border: 0;
   cursor: pointer;
+  transition: color 0.15s ease, background 0.15s ease;
+}
+
+.nav-dd__btn:hover {
+  color: var(--ink);
+  background: var(--bg-soft);
+}
+
+.nav-dd__link:focus-visible,
+.nav-dd__btn:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
 }
 
 .nav-dd__caret {
