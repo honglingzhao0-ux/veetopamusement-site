@@ -100,15 +100,26 @@ export default function AboutPage() {
       {/* factory strength */}
       <section className="section section--tint anchor-target" id="factory">
         <div className="container img-text">
-          <figure className="img-text__media">
-            <img
-              src="/company/company-production.jpg"
-              alt="Arcade machine assembly and warehouse areas inside the factory"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>Production, Assembly &amp; Warehouse</figcaption>
-          </figure>
+          <div className="img-text__media img-text__stack img-text__stack--factory">
+            <figure>
+              <img
+                src="/company/company-production.jpg"
+                alt="Arcade machine assembly and warehouse areas inside the factory"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Production, Assembly &amp; Warehouse</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="/gallery/gallery-4.jpg"
+                alt="Kiddie ride machines and arcade cabinets on display"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Kiddie Rides &amp; Arcade Cabinets On Display</figcaption>
+            </figure>
+          </div>
           <div>
             <p className="kicker">Factory Strength</p>
             <h2 className="h-xl">One Facility, Full Control</h2>
@@ -157,15 +168,26 @@ export default function AboutPage() {
       {/* OEM / ODM */}
       <section className="section section--dark anchor-target" id="oem-odm">
         <div className="container img-text">
-          <figure className="img-text__media">
-            <img
-              src="/company/company-campus.jpg"
-              alt="VEETOP factory campus exterior in Guangzhou"
-              loading="lazy"
-              decoding="async"
-            />
-            <figcaption>Factory Campus, Guangzhou</figcaption>
-          </figure>
+          <div className="img-text__media img-text__stack img-text__stack--oem">
+            <figure>
+              <img
+                src="/company/company-campus.jpg"
+                alt="VEETOP factory campus exterior in Guangzhou"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Factory Campus, Guangzhou</figcaption>
+            </figure>
+            <figure>
+              <img
+                src="/banners/hero-1.jpg"
+                alt="Line-up of classic arcade cabinets under neon lighting"
+                loading="lazy"
+                decoding="async"
+              />
+              <figcaption>Classic Arcade Cabinet Line-Up</figcaption>
+            </figure>
+          </div>
           <div>
             <p className="kicker kicker--light">OEM / ODM</p>
             <h2 className="h-xl" style={{ color: "#fff" }}>
@@ -260,8 +282,8 @@ export default function AboutPage() {
               </p>
             </div>
           </div>
-          <div className="media-grid media-grid--gallery">
-            {[1, 2, 3, 4, 5, 6].map((n) => (
+          <div className="media-grid media-grid--gallery media-grid--gallery-2x2">
+            {[1, 2, 3, 6].map((n) => (
               <figure key={n}>
                 <img
                   src={`/gallery/gallery-${n}.jpg`}

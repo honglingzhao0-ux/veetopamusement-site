@@ -311,6 +311,29 @@ ul {
   margin: 0;
 }
 
+/* About: 左列上下叠放两张图，逐段比例对齐右列高度。
+   间距、圆角、阴影与图注样式沿用既有规则（.img-text__stack 只设 24px gap）。 */
+.img-text__stack img {
+  aspect-ratio: 1.68; /* Who We Are      - right column 773px */
+}
+
+.img-text__stack--factory img {
+  aspect-ratio: 1.4; /* Factory Strength - right column 913px */
+}
+
+.img-text__stack--oem img {
+  aspect-ratio: 1.56; /* OEM / ODM       - right column 829px */
+}
+
+/* About 画廊条 4 张 -> 页面级 2x2 大图。选择器要求一个只存在于 /about/ 的类，
+   全局 .media-grid--gallery 三列规则保持逐字节不变；响应式仍按 2 列(<=900px)
+   / 1 列(<=620px) 塌陷。 */
+@media (min-width: 901px) {
+  .media-grid--gallery.media-grid--gallery-2x2 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 /* About / Factory Strength：右栏内第二个文字块 */
 .img-text__stack-sub {
   margin-top: 40px;
