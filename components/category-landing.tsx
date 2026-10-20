@@ -4,7 +4,7 @@ import { siteBaseUrl } from "@/lib/cdn";
 import { productPath } from "@/lib/product-url";
 import type { Category, Product } from "@/lib/products";
 import JsonLd from "@/components/json-ld";
-import ProductCard from "@/components/product-card";
+import PaginatedProductGrid from "@/components/paginated-product-grid";
 import ProductFaq from "@/components/product-faq";
 
 const baseUrl = siteBaseUrl(site.brand.domain);
@@ -117,15 +117,11 @@ export default function CategoryLanding({
           </div>
 
           {products.length > 0 ? (
-            <ul className="prod-grid">
-              {products.map((p) => (
-                <ProductCard
-                  key={p.slug}
-                  product={p}
-                  categorySlug={category.slug}
-                />
-              ))}
-            </ul>
+            <PaginatedProductGrid
+              products={products}
+              categorySlug={category.slug}
+              label={`${category.name} pagination`}
+            />
           ) : (
             <p>
               No products published in this category yet - contact us for the
