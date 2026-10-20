@@ -51,6 +51,7 @@ bash publish.sh "本次改动的说明"
 
 | 想改什么 | 改哪个文件 | 要不要动代码 |
 |---|---|---|
+| **首页主推哪16 款 / 排序** | `data/products/<slug>.json` 的 `featuredRank` | 不用 |
 | 公司名/邮箱/电话/地址/WhatsApp/公司数据 | `site.config.ts` | 不用 |
 | 站级 FAQ（MOQ/付款/交期/保修等口径） | `site.config.ts` 的 `faqs` | 不用 |
 | 某个产品的名称/参数/卖点/认证 | `data/products/<slug>.json` | 不用 |
@@ -83,6 +84,65 @@ bash publish.sh "本次改动的说明"
 **六个品类 id**（`category` 字段只能填这些）：
 `arcade-video-games`、`sports-skill-games`、`redemption-ticket-games`、
 `claw-crane-machines`、`kiddie-rides`、`prize-merchandisers`
+
+---
+
+## 3.5 首页主推（Flagship Models）与热度埋点
+
+### 3.5.1 排名的机制
+
+首页Flagship Models 采用**两级策略**（见 `app/page.tsx`）：
+
+1. **标记了 `featuredRank` 的产品优先** —— 按数字升序（1 = 排最前）
+2. **剩余名额按品类轮转补足** —— 每轮每品类取 1 款，保证 6 个品类都有曝光
+
+**改排名方式**（不用改代码）：
+```bash
+# 改 scripts/set-featured-rank.py 里的 RANK 字典（1 = 第一位）
+python scripts/set-featured-rank.py
+bash publish.sh "调整首页主推顺序"
+```
+或直接编辑 `data/products/<slug>.json` 里的 `"featuredRank": 3`。
+
+当前主推 16 款（2026-10-20 配，6 品类均衡 + 出口热销优先）：
+| # | 型号 | 品类 |
+|---|---|---|
+| 1-4 | VTRA010 / VTSA013 / VTSA014 / VTRA017 | 街机竞速 |
+| 5-6 | VTSA010 / VTSA013 | 体育竞技 |
+| 7-8 | VTTR074 / VTTR085 | 彩票兑换 |
+| 9-11 | VTPG016 / VTPG017 / VTPG018 | 抓娃娃机 |
+| 12-13 | VTTR086 / VTPG029 | 礼品机 |
+| 14-16 | VTKR107 / VTKR108 / VTKR110 | 儿童骑乘 |
+
+### 3.5.2 埋点已接入（2026-10-20）
+
+全站采集三类事件，都投递到已有的 Formspree 端点（`subject` 以 `STAT:` 开头）：
+
+| 事件 | 含义 | 触发点 |
+|---|---|---|
+| `click` | 产品卡片点击 | 事件委托捕获 `[data-track-product]` |
+| `view` | 产品详情页浏览 | URL `/products/<品类>/<slug>/`，30分钟去重 |
+| `inquiry` | 询盘表单提交 | 表单 `productInterest` 字段 |
+
+**隐私设计**：不存 IP、不存Cookie、不做指纹、不记录姓名邮箱，只记事件类型 + 产品型号 + 来源路径。
+
+⚠️ 为什么不用自建 API：本站是 `output: "export"`纯静态导出，
+**不能有 `api/*.ts`**（有会直接导致 next build 失败）。复用 Formspree 是零成本方案。
+
+### 3.5.3 一个月后怎么用数据
+
+```bash
+# 1. Formspree 后台 → Inbox → 只选 subject 以 STAT: 开头的邮件 → 导出 CSV
+# 2. 分析排名（click 权重 1，inquiry 权重 10）
+python scripts/analyze-stats.py stats.csv
+
+# 3. 按排名改 set-featured-rank.py 的 RANK，重跑 + 发布
+```
+
+**口径说明**：询盘权重最高（10），因为那是真实商业转化；点击（1）只代表吸引力。
+
+⚠️ 静态站无法「后台自动排序」——数据只能**人工回填**到 `featuredRank`。
+这是纯静态架构的固有限制，不是实现问题。
 
 ---
 
