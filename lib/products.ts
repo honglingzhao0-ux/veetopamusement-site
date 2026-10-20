@@ -56,6 +56,13 @@ export interface Product {
   youtubeId?: string;
   /** 产品目录 PDF 路径（有值才渲染 Download Catalog 按钮） */
   catalogPdf?: string;
+  /**
+   * 首页 Flagship Models 权重排名（可选，数字越小越靠前）。
+   * - 填了的优先展示，按数字升序；
+   * - 没填的排在已填之后，仍按品类轮转保证6 个品类均衡曝光。
+   * 调整首页主推顺序：改这个数字即可，无需改代码。
+   */
+  featuredRank?: number;
 }
 
 const PRODUCTS_DIR = path.join(process.cwd(), "data", "products");

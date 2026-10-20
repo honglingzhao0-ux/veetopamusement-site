@@ -4,6 +4,7 @@ import { siteBaseUrl } from "@/lib/cdn";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
 import JsonLd from "@/components/json-ld";
+import Analytics from "@/components/analytics";
 import "./globals.css";
 
 const baseUrl = siteBaseUrl(site.brand.domain);
@@ -95,6 +96,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <Analytics />
       </body>
     </html>
   );

@@ -18,7 +18,7 @@ export default function ProductCard({
   const href = productPath(categorySlug, product.slug);
   const cover = product.images[0] ?? "/images/placeholder.svg";
   return (
-    <li className="pcard">
+    <li className="pcard" data-track-product={product.model}>
       <Link href={href} className="pcard__media">
         <img
           src={cdnUrl(cover)}

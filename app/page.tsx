@@ -11,20 +11,40 @@ import HeroCarousel from "@/components/hero-carousel";
 export default function HomePage() {
   const categories = getCategories();
   const all = getAllProducts();
-  // Flagship Models：按品类轮转取件 —— 每轮每个品类取 1 款（品类内有主图者优先、
-  // 无图者置后，各自保持既有相对顺序），循环至取满 16 款，保证 6 个品类均衡曝光。
+
+  /**
+   * Flagship Models 选品策略（两级）:
+   *
+   * 1) 标记了 featuredRank 的产品优先 —— 按数字升序（1 = 排最前）。
+   *    依据来自 Formspree 询盘数、点击埋点、业务判断。
+   *    调整顺序：改 data/products/<slug>.json 里的 featuredRank 数字即可。
+   *
+   * 2) 剩余名额用「品类轮转」补足 —— 每轮每品类取1 款，
+   *    保证 6 个品类都有曝光，不被某单一品类淹没。
+   *
+   * 这样既能让主推款置顶，又不会因过度集中而丢掉品类覆盖。
+   */
+  const FEATURED_COUNT = 16;
+  const ranked = all
+    .filter((p) => typeof p.featuredRank === "number")
+    .sort((a, b) => (a.featuredRank ?? 999) - (b.featuredRank ?? 999));
+
+  const chosen = new Set(ranked.map((p) => p.slug));
+  const rest = all.filter((p) => !chosen.has(p.slug));
+
   const buckets = categories.map((cat) => {
-    const items = all.filter((p) => p.category === cat.id);
+    const items = rest.filter((p) => p.category === cat.id);
     return [
       ...items.filter((p) => Boolean(p.images?.[0])),
       ...items.filter((p) => !p.images?.[0]),
     ];
   });
-  const featured: typeof all = [];
-  for (let round = 0; featured.length < 16; round++) {
+
+  const featured: typeof all = [...ranked];
+  for (let round = 0; featured.length < FEATURED_COUNT; round++) {
     let progressed = false;
     for (const bucket of buckets) {
-      if (featured.length >= 16) break;
+      if (featured.length >= FEATURED_COUNT) break;
       if (bucket[round]) {
         featured.push(bucket[round]);
         progressed = true;
