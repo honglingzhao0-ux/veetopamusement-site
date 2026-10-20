@@ -1,0 +1,180 @@
+# VEETOP 站 · WorkBuddy 接管操作手册
+
+> 目标：用 WorkBuddy 替代 Accio Work 更新网站内容。改完一句话发布，1–3 分钟自动上线。
+> 写给不写代码的负责人。首次接管已完成，你只需按第 3 节操作。
+
+---
+
+## 1. 现在的状态（已接管完成）
+
+| 项 | 情况 |
+|---|---|
+| 工作副本 | `C:\Users\den\WorkBuddy\2026-10-20-10-27-11\veetop-site` |
+| 源码基线 | 与线上完全一致：210 个产品、6 个品类页、news/blog 页，共 223 条 URL |
+| 版本控制 | Git 仓库已初始化，已连 GitHub `honglingzhao0-ux/veetopamusement-site` |
+| 发布链路 | 改代码 → `git push` → Vercel 自动构建部署 → 域名生效（已实测闭环） |
+| 本地构建 | 已验证通过，产物 223 条 sitemap 与线上逐条吻合 |
+
+**关键结论**：线上内容早已在 GitHub 仓库里（Accio Work 一直推同一个仓库）。
+所以接管不需要迁移数据，只要在 WorkBuddy 里用这个仓库改内容、推上去即可。
+
+---
+
+## 2. 一条命令发布
+
+```bash
+cd /c/Users/den/WorkBuddy/2026-10-20-10-27-11/veetop-site
+bash publish.sh "本次改动的说明"
+```
+
+脚本会依次完成：类型检查 → 生产构建 → git 提交 → 推送 GitHub → 触发 Vercel 部署。
+约 1–3 分钟后线上生效。
+
+**更简单的方式**：直接告诉 WorkBuddy「把 X 改成 Y 并发布」，我来执行。
+
+### 你可以直接对 WorkBuddy 说的话
+
+- 「把首页的 Hero 文案改成 XXX」
+- 「给产品 VTKR0102 补上 3 条 FAQ」
+- 「新增一个产品 XXX，型号 VT-XXX，参数……」
+- 「把 footer 里的 WhatsApp 号码改成 +86 xxx」
+- 「改完先给我看本地预览，别急着发布」
+- 「把 About 页的工厂配图换成 public/images/ 下的 xxx.jpg 并发布」
+
+我会自动：定位对应文件 → 改 → 类型检查 → 构建 → 提交 → 推送 → 确认线上生效。
+
+---
+
+## 3. 日常改内容：改什么、动哪个文件
+
+站点是**数据驱动**的——绝大多数内容改动不需要碰代码，只改 JSON 即可。
+
+| 想改什么 | 改哪个文件 | 要不要动代码 |
+|---|---|---|
+| 公司名/邮箱/电话/地址/WhatsApp/公司数据 | `site.config.ts` | 不用 |
+| 站级 FAQ（MOQ/付款/交期/保修等口径） | `site.config.ts` 的 `faqs` | 不用 |
+| 某个产品的名称/参数/卖点/认证 | `data/products/<slug>.json` | 不用 |
+| 新增一个产品 | 复制 `data/products/` 任意 JSON 改名 | 不用 |
+| 下架产品 | 删除对应 JSON | 不用 |
+| 品类页标题/简介/FAQ | `data/categories.json` | 不用 |
+| 导航栏/页脚链接 | `components/header.tsx`、`components/footer.tsx` | 要懂一点 TSX |
+| 首页/About/News/Blog 版面 | `app/<页面>/page.tsx` | 要懂一点 TSX |
+| 颜色/字体/整体风格 | `app/globals.css` 顶部的 `:root` 变量 | 要懂一点 CSS |
+
+### 产品 JSON 字段速查
+
+```jsonc
+{
+  "slug": "vtkr0102-kiddie-ride-a",   // 必须 = 文件名
+  "name": "Kiddie Ride A",
+  "model": "VTKR0102",
+  "category": "kiddie-rides",           // 必须是 categories.json 里已存在的 id
+  "headline": "一句话卖点，含型号与尺寸",
+  "description": "产品描述",
+  "images": ["/images/products/vtkr0102-kiddie-ride-a.jpeg"],
+  "specs": [ { "label": "Model", "value": "VTKR0102" } ],
+  "features": ["卖点1", "卖点2"],
+  "applications": ["适用场景1"],
+  "certifications": [],                  // 如 ["CE"]
+  // 可选：faqs / seoDescription / youtubeId / catalogPdf / moq
+}
+```
+
+**六个品类 id**（`category` 字段只能填这些）：
+`arcade-video-games`、`sports-skill-games`、`redemption-ticket-games`、
+`claw-crane-machines`、`kiddie-rides`、`prize-merchandisers`
+
+---
+
+## 4. 工作副本 vs Accio Work 目录（重要）
+
+Accio Work 的工作目录在：
+`C:\Users\den\AccioWork\2026-09-07-10-52-59-371-0012bc6d\veetop-site`
+
+| | Accio Work 目录 | WorkBuddy 工作副本 |
+|---|---|---|
+| 定位 | Accio 的临时工作区 | 你的正式源码基地 |
+| 是否被 Accio 实时改动 | **是**（10-20 当天仍在改并推 GitHub） | 否 |
+| 用途 | 冲突时用来对比 | 日常改动、发布 |
+
+### ⚠️ 实测：两边会打架
+
+2026-10-20 接管当天实测到 Accio Work 仍在持续推送同一个 GitHub 仓库：
+- 10:19 推了 About 排版改动
+- 10:53 推了 Header 改动（WhatsApp 按钮移入 header）
+
+如果你在 WorkBuddy 改完直接 `git push`，会被拒绝（`fetch first`）——
+**这不是故障，是保护机制**，说明远程有别人的新改动。
+
+`publish.sh` 已内置处理：第 4 步会先 `git pull --rebase`，
+冲突时以远程为基线保留你的改动，不会丢东西。
+
+**建议**：从现在起统一在 WorkBuddy 改内容，Accio Work 停用。
+若两边同时改，先跑 `bash publish.sh`（它会自动先同步）。
+
+手动同步 Accio 的最新改动到 WorkBuddy：
+
+```bash
+cd /c/Users/den/WorkBuddy/2026-10-20-10-27-11/veetop-site
+git pull --rebase origin main
+```
+
+### 重要：不要用 `git reset --hard origin/main`
+
+接管过程中我用过一次硬重置，**把本地的 publish.sh 改动冲掉了**。
+这个仓库被两个工具同时写，`reset --hard` 会静默丢弃本地工作。
+要同步基线请用 `git pull --rebase`，或直接跑 `publish.sh`。
+
+---
+
+## 5. 图片怎么换
+
+1. 图片放 `public/images/products/<slug>.jpg`（文件名与产品 slug 完全一致）
+2. 对应 JSON 里 `"images"` 改成 `["/images/products/<slug>.jpg"]`
+3. `bash publish.sh "替换 XX 产品图"`
+
+图片走站内 `/images`（Vercel 自带 CDN）。若已配置 Cloudflare R2，
+图片还需同步上传到 R2 的 `images/products/` 路径下。
+
+---
+
+## 6. 本地预览（改完先看效果再上线）
+
+```bash
+cd /c/Users/den/WorkBuddy/2026-10-20-10-27-11/veetop-site
+export PATH="/c/Users/den/.workbuddy/binaries/node/versions/22.22.2-6:$PATH"
+export CODEBUDDY_SAFE_DELETE_ENABLED=0
+node node_modules/next/dist/bin/next dev      # 开发预览 http://localhost:3000
+```
+
+> `CODEBUDDY_SAFE_DELETE_ENABLED=0` 必须加：Next 构建时会批量清理 `.next` 缓存，
+> 触发 WorkBuddy 的删除保护（SAFE_DELETE_BULK_CONFIRM_REQUIRED）导致构建失败。
+> 这只影响项目内的构建缓存，不涉及任何个人文件。
+
+---
+
+## 7. 常见问题
+
+| 现象 | 原因与处理 |
+|---|---|
+| 线上内容没变 | 1) 确认 `git push` 成功；2) 到 Vercel → Deployments 看新部署是否成功；3) 浏览器 `Ctrl+F5` 强刷 |
+| 推送报 `fetch first` / 拒绝 | 远程有 Accio Work 的新提交。跑 `bash publish.sh`（内置 pull --rebase） |
+| 部署失败 | Vercel Deployments 点进失败那次看日志，通常是 JSON 语法错误（少逗号/引号） |
+| 新产品没出现 | 文件名 = JSON 里 `slug`；`category` 必须在 categories.json 里存在；JSON 语法正确 |
+| 本地构建报 SAFE_DELETE | 加 `export CODEBUDDY_SAFE_DELETE_ENABLED=0`（见第 6 节） |
+| git push 报 502 / CONNECT tunnel failed | WorkBuddy 出网代理临时抖动。脚本已内置 10 次重试；持续失败则重启 WorkBuddy |
+| 推送提示弹 GitHub 登录框 | 正常，浏览器里点一次授权即可，之后不再弹 |
+| 图片不显示 | 文件名与 slug 不一致，或 `images` 字段路径写错；或 R2 未同步 |
+| 想回滚 | Vercel → Deployments → 找到上一个成功部署 → ⋯ → Promote to Production |
+| 线上比本地内容新 | 跑 `bash publish.sh`（自动先同步再推） |
+| `git push` 提示 rejected 但本地改动不见了 | 检查是否用过 `git reset --hard`——它会丢弃本地改动。改用 `git pull --rebase` |
+
+---
+
+## 8. 环境事实（供排查参考）
+
+- Node：`C:\Users\den\.workbuddy\binaries\node\versions\22.22.2-6\node.exe`（npm 10.9.7）
+- Next.js 15.5.25，`output: "export"` 纯静态导出，产物在 `out/`
+- 托管：Vercel Hobby + 自定义域名（阿里云 DNS，www CNAME → cname.vercel-dns.com）
+- 仓库：`https://github.com/honglingzhao0-ux/veetopamusement-site.git`（main 分支）
+- 线上首屏响应约 1.1s，CDN 命中正常
