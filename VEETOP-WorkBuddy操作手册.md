@@ -366,6 +366,44 @@ git pull --rebase origin main
 图片走站内 `/images`（Vercel 自带 CDN）。若已配置 Cloudflare R2，
 图片还需同步上传到 R2 的 `images/products/` 路径下。
 
+### 5.0.1 品牌 Logo（2026-10-20 换官方版）
+
+**素材位置**：`public/brand/`
+
+| 文件 | 用途 | 尺寸 |
+|---|---|---|
+| `logo-full-dark.png` | header（白底，深灰字） | 650×150 |
+| `logo-full-light.png` | 页脚（深色底，反白字） | 650×150 |
+| `logo-mark.png` | 仅 V 形标（备用） | 215×150 |
+
+**重新生成**（原始 Logo 换了才需要跑）：
+```bash
+python scripts/make-logo-assets.py
+```
+源文件是会话 blob 副本，脚本里 `SRC` 常量指向它。
+换新 Logo 时把新图放到 `public/brand/` 手动覆盖即可，或改脚本的 `SRC`。
+
+**品牌色**（从官方 Logo 采样）：
+
+| 用途 | 色值 |
+|---|---|
+| 深蓝 | `#002665` |
+| 亮蓝 | `#0071BD` |
+| 浅蓝 | `#34A2DD` / `#4ABAEC` |
+| 文字深灰 | `#444444` |
+
+**当前配色决策（2026-10-20）**：
+官方 Logo 是蓝色系，但站点 accent **仍保留橙色 `#ff6a00`**（用户决定）。
+两者不同色系但 Logo 独立于 accent 体系，视觉上不冲突。
+若将来要统一成蓝色，改 `app/globals.css` 的这5 个变量即可：
+`--accent` / `--accent-dark` / `--accent-ink` / `--accent-soft` / `--accent-soft-2`。
+
+**显示尺寸**：header 高 34px（移动端 28px），页脚 40px。
+`.logo__img` 按高度缩放、宽度自动（比例 4.33:1）。
+
+⚠️ **favicon 与 OG 分享图未改**（仍用旧橙色 `app/icon.svg` 与
+`public/og/og-default.jpg`）—— 用户当时明确只要改 header 和页脚。
+
 ### 5.0 批量上传多图（推荐用这个工具）
 
 图库组件**已完整支持多图**（主图 + 缩略图切换），只要 `images` 数组里有几张就显示几张。
