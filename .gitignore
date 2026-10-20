@@ -19,3 +19,9 @@ next-env.d.ts
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
+
+# 图片修复脚本的预览产物（不提交，仅本地核对用）
+public/images/products/_fixed_preview/
+
+# 黑底图修复前的原始备份（保留在本机，不进仓库）
+_backup_images_black/
