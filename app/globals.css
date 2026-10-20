@@ -570,36 +570,31 @@ ul {
   min-height: 76px;
 }
 
+/* 官方 Logo（2026-10-20 换版）
+   素材：public/brand/logo-full-dark.png / logo-full-light.png
+   原始比例 650×150（4.33:1），按高度缩放，宽度自动 */
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 11px;
 }
 
-.logo__mark {
-  display: inline-flex;
+.logo__img {
+  display: block;
+  height: 34px;
+  width: auto;
+  /* 官方 Logo 有大量透明留白，缩一点让视觉尺寸更接近字面高度 */
+  object-fit: contain;
 }
 
-.logo__text {
-  display: flex;
-  flex-direction: column;
-  line-height: 1.05;
+@media (max-width: 640px) {
+  .logo__img {
+    height: 28px;
+  }
 }
 
-.logo__name {
-  font-family: var(--font-display);
-  font-weight: 800;
-  font-size: 20px;
-  letter-spacing: 0.12em;
-  color: var(--ink);
-}
-
-.logo__sub {
-  font-family: var(--font-mono);
-  font-size: 9px;
-  letter-spacing: 0.32em;
-  color: var(--muted);
-  text-transform: uppercase;
+/* 页脚 Logo 稍大一号，与页脚的段落文字视觉重量匹配 */
+.footer-brand .logo__img {
+  height: 40px;
 }
 
 .site-nav {
