@@ -120,6 +120,38 @@ bash publish.sh "本次改动的说明"
 ⚠️ **分页是纯客户端的**：静态导出只渲染第 1 页的 16 个产品，
 翻页在浏览器内完成，不产生 URL 变体（SEO 收录仍靠各品类独立页 `/products/<slug>/`）。
 
+### 3.4.1 品类着陆页也分页（components/paginated-product-grid.tsx）
+
+6 个品类页同样每页 16 个、桌面 4 列：
+
+| 品类 | 产品数 | 页数 | 分页器 |
+|---|---|---|---|
+| Arcade Video Games & Simulators | 58 | 4 | ✅ |
+| Sports & Skill Games | 45 | 3 | ✅ |
+| Redemption & Ticket Games | 60 | 4 | ✅ |
+| Claw & Crane Machines | 22 | 2 | ✅ |
+| Kiddie Rides & Kids Games | 15 | 1 | 不显示 |
+| Prize Machines & Merchandisers | 10 | 1 | 不显示 |
+
+不足 16 个的品类**不显示分页器**（单页无需翻页）。
+
+**SEO 安全性**：抽出的 `PaginatedProductGrid` 只负责「显示哪16 个」，
+`category-landing.tsx` 里的 JSON-LD（ItemList / FAQPage / BreadcrumbList）
+**仍包含全部产品**，分页不影响搜索引擎看到的完整列表。
+实测线上 `redemption-ticket-games` 的 `ItemList.numberOfItems` 仍为 60。
+
+**复用到其他页面**：任何要「分页显示产品网格」的地方都用这个组件：
+
+```tsx
+import PaginatedProductGrid from "@/components/paginated-product-grid";
+
+<PaginatedProductGrid
+  products={products}
+  categorySlug={category.slug}
+  label={`${category.name} pagination`}
+/>
+```
+
 ---
 
 ## 3.5 首页主推（Flagship Models）与热度埋点
