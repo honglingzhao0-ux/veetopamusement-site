@@ -182,6 +182,81 @@ import PaginatedProductGrid from "@/components/paginated-product-grid";
 
 ---
 
+## 3.6 博客 / 采购指南（News & Buying Guides）
+
+### 3.6.1 结构
+
+| 位置 | 内容 |
+|---|---|
+| `data/articles/<slug>.md` | 文章源文件（front-matter + Markdown 正文） |
+| `lib/articles.ts` | 读取 + Markdown→HTML 渲染 + 缓存 |
+| `app/news/page.tsx` | News 列表页（读 section=news） |
+| `app/blog/page.tsx` | Buying Guides 列表页（读 section=guide） |
+| `app/news/[slug]/page.tsx` | News 文章详情页 |
+| `app/blog/[slug]/page.tsx` | Guide 文章详情页 |
+| `components/article-view.tsx` | 文章详情页渲染 + BlogPosting/Breadcrumb JSON-LD |
+
+**栏目与 URL 对应**（注意不一致，容易写错）：
+
+| front-matter `section` | 路由目录 | URL 前缀 | 列表页 |
+|---|---|---|---|
+| `news` | `app/news/[slug]/` | `/news/` | `/news/` |
+| `guide` | `app/blog/[slug]/` | `/blog/` | `/blog/` |
+
+`Article.pathPrefix` 负责这个映射（section=guide → pathPrefix=blog），
+**URL 拼接一律用 `article.pathPrefix`，不要用 `article.section`**。
+
+### 3.6.2 写新文章
+
+```bash
+# 1) 复制一篇现有文章改内容
+cp data/articles/fec-opening-equipment-checklist.md data/articles/my-new-guide.md
+
+# 2) 编辑 front-matter（注意 slug 与文件名一致）
+#    slug: my-new-guide
+#    section: guide        # 或 news
+#    title / summary / date / image / imageAlt / tag
+
+# 3) 写正文（支持 ## / ### / 列表 / **加粗** / [链接](url) / Markdown 表格）
+
+# 4) 发布
+bash publish.sh "新增文章 XXX"
+```
+
+**无需改任何代码** —— 构建时自动读取 `data/articles/*.md`。
+
+### 3.6.3 文章页的 SEO 配置（已内置）
+
+- canonical / title / description 逐篇独立
+- og:image + twitter:image 用文章配图
+- **BlogPosting** JSON-LD（含 datePublished / author / publisher）
+- **BreadcrumbList** JSON-LD
+- 文末固定 CTA（引导到询盘页和产品页）
+- 侧栏固定「Why VEETOP」（21+ 年 / 150+ 国家 / CE / 备件支持）+ 同栏目文章内链
+- 文章正文内链到相关产品品类页（把长尾流量导向产品页）
+
+### 3.6.4 现有 4 篇（2026-10-20 上线）
+
+| URL | 主题 | 字数 |
+|---|---|---|
+| `/blog/fec-opening-equipment-checklist/` | FEC 开业设备采购清单（含机型配比表） | 7,600 |
+| `/blog/claw-crane-cost-and-payback-guide/` | 抓娃娃机成本与回本周期（含成本表） | 7,100 |
+| `/blog/mall-atrium-vs-standalone-arcade-machine-mix/` | 商场中庭 vs 独立乐园机型搭配（对比表） | 6,400 |
+| `/news/veetop-catalogue-2026-update/` | 2026 目录上线（210 型号） | 4,100 |
+
+### 3.6.5 内容选题建议（长尾词）
+
+这些是 B2B 客户决策前会搜的词，做出来能带长尾流量：
+- 爪机/礼品机：运营成本、回本周期、奖品成本核算、爪子力度调校
+- 街机：模拟器选购、场地面积规划、电功率与插座标准
+- 儿童骑乘：场地安全标准、年龄限制、围栏要求
+- 交易类：MOQ、FOB 条款、CE 认证、集装箱装载计算、备件采购
+- 运营类：FEC 开业清单、FEC 与商场店对比、美国/欧洲/中东市场差异
+
+**写作要点**：给具体数字和表格，不要泛泛而谈。Google 更愿意收录有独特数据的页面。
+
+---
+
 ## 3.5 首页主推（Flagship Models）与热度埋点
 
 ### 3.5.1 排名的机制
