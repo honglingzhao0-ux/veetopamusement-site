@@ -263,6 +263,30 @@ git pull --rebase origin main
 图片走站内 `/images`（Vercel 自带 CDN）。若已配置 Cloudflare R2，
 图片还需同步上传到 R2 的 `images/products/` 路径下。
 
+### 5.0 批量上传多图（推荐用这个工具）
+
+图库组件**已完整支持多图**（主图 + 缩略图切换），只要 `images` 数组里有几张就显示几张。
+
+```bash
+# 1. 把照片放进inbox/，文件名带型号
+#    inbox/VTRA010-1.jpg  inbox/VTRA010-2.jpg  inbox/VTRA010-3.jpg
+python scripts/import-product-images.py# 2. 预览（不写文件）
+python scripts/import-product-images.py --apply   # 3. 执行
+bash publish.sh "上传 VTRA010 多图"                # 4. 发布
+```
+
+工具自动完成：
+- **按型号匹配**产品（从文件名提取 `VTRA010` 这类型号）
+- **压缩**到长边 1200px / 质量 82（实测 2000×1600 → 12KB）
+- **黑底自动修白**（复用 `fix-dark-bg.py` 阈值）
+- **序号递增**命名 `<slug>-2.jpeg`、`-3.jpeg`
+- **防重复**：已导入过的源文件记在 `.imported-images.json`，重复放入自动跳过
+
+⚠️ **`images[0]` 是封面图**（列表页卡片、首页 Flagship、OG 分享图都用它），
+第一张应放最有代表性的正面图。建议顺序：正面 → 侧面 → 背面 → 细节 → 场景。
+
+同型号对应多个产品时会提示"需确认"并跳过——这种情况告诉我手工指定。
+
 ### 5.1 黑底图批量修复（已处理完17 张，备用工具）
 
 2026-10-20 全站扫描发现 **17 张黑底产品图**（`vttr060`~`vttr076` 连续一段，
