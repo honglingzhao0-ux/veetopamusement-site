@@ -86,7 +86,6 @@ export default function ProductExplorer({
 
   const totalPages = Math.max(1, Math.ceil(list.length / PAGE_SIZE));
   const current = Math.min(page, totalPages);
-  const pageItems = list.slice((current - 1) * PAGE_SIZE, current * PAGE_SIZE);
 
   // 切换品类或搜索词时回到第 1 页
   useEffect(() => {
@@ -264,15 +263,25 @@ export default function ProductExplorer({
         )}
       </p>
 
-      {pageItems.length > 0 ? (
+      {list.length > 0 ? (
+        /*
+         * 全部（筛选后的）产品都渲染进 DOM，非当前页用 CSS 隐藏。
+         * 理由同 components/paginated-product-grid.tsx：
+         * 静态 HTML 是爬虫唯一入口，只渲染 16 个会让其余产品页变成孤岛页。
+         */
         <ul className="prod-grid prod-grid--catalog">
-          {pageItems.map((p) => (
-            <ProductCard
-              key={p.slug}
-              product={p}
-              categorySlug={slugById.get(p.category) ?? ""}
-            />
-          ))}
+          {list.map((p, i) => {
+            const onPage =
+              i >= (current - 1) * PAGE_SIZE && i < current * PAGE_SIZE;
+            return (
+              <ProductCard
+                key={p.slug}
+                product={p}
+                categorySlug={slugById.get(p.category) ?? ""}
+                offPage={!onPage}
+              />
+            );
+          })}
         </ul>
       ) : (
         <p>No products in this category yet.</p>

@@ -1183,6 +1183,21 @@ ul {
     transform 0.18s ease;
 }
 
+/* 分页场景：非当前页的卡片。
+   ⚠️ 故意不用 display:none —— 部分爬虫会跳过 display:none 的内容，
+   导致这些产品页变成"孤岛页"（无内链指向）而不被收录。
+   用 position:absolute + 移出视口的方式隐藏：
+   链接仍存在于 HTML 与 DOM 中，爬虫可正常发现并抓取。 */
+.pcard.is-off-page {
+  position: absolute;
+  left: -99999px;
+  top: 0;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  pointer-events: none;
+}
+
 .pcard:hover {
   border-color: var(--line);
   box-shadow: var(--shadow-md);

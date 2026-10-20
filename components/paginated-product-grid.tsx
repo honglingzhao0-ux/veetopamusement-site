@@ -40,10 +40,6 @@ export default function PaginatedProductGrid({
 
   const totalPages = Math.max(1, Math.ceil(sorted.length / PAGE_SIZE));
   const current = Math.min(page, totalPages);
-  const pageItems = sorted.slice(
-    (current - 1) * PAGE_SIZE,
-    current * PAGE_SIZE
-  );
 
   // 越界时回到最后一页
   useEffect(() => {
@@ -78,14 +74,30 @@ export default function PaginatedProductGrid({
         {totalPages > 1 && ` (Page ${current} of ${totalPages})`}
       </p>
 
+      {/*
+       * 全部产品都渲染进 DOM，非当前页用 CSS 隐藏（.is-off-page）。
+       *
+       * 为什么不只渲染当前页：静态导出时 HTML 是唯一的爬虫入口，
+       * Googlebot 不执行 JS —— 只渲染 16 个的话，其余产品页就成了
+       * "孤岛页"（无任何内链指向），Google 不会收录它们。
+       * 2026-10-20 的Search Console 截图证实了这一问题：
+       * 已收录 10 个 / 未收录 41 个，未收录的正是被分页藏起来的产品页。
+       *
+       * 做法：全量渲染 + CSS 隐藏，用户看到 16 个，爬虫拿到全部链接。
+       */}
       <ul className="prod-grid prod-grid--catalog">
-        {pageItems.map((p) => (
-          <ProductCard
-            key={p.slug}
-            product={p}
-            categorySlug={categorySlug}
-          />
-        ))}
+        {sorted.map((p, i) => {
+          const onPage =
+            i >= (current - 1) * PAGE_SIZE && i < current * PAGE_SIZE;
+          return (
+            <ProductCard
+              key={p.slug}
+              product={p}
+              categorySlug={categorySlug}
+              offPage={!onPage}
+            />
+          );
+        })}
       </ul>
 
       {totalPages > 1 && (

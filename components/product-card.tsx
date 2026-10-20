@@ -11,14 +11,24 @@ import { productPath } from "@/lib/product-url";
 export default function ProductCard({
   product,
   categorySlug,
+  offPage = false,
 }: {
   product: Product;
   categorySlug: string;
+  /**
+   * 是否为「非当前分页」的产品。
+   * 用于分页场景：卡片仍在 HTML 里（爬虫能发现链接），
+   * 只是被 CSS 隐藏（用户看不到）。详见 components/paginated-product-grid.tsx。
+   */
+  offPage?: boolean;
 }) {
   const href = productPath(categorySlug, product.slug);
   const cover = product.images[0] ?? "/images/placeholder.svg";
   return (
-    <li className="pcard" data-track-product={product.model}>
+    <li
+      className={"pcard" + (offPage ? " is-off-page" : "")}
+      data-track-product={product.model}
+    >
       <Link href={href} className="pcard__media">
         <img
           src={cdnUrl(cover)}
