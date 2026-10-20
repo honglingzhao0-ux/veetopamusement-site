@@ -217,8 +217,10 @@ const site = {
     links: [
       { label: "Home", href: "/" },
       { label: "Products", href: "/products/" },
+      { label: "Buying Guides", href: "/blog/" },
       { label: "OEM / ODM", href: "/about/#oem-odm" },
       { label: "About Us", href: "/about/" },
+      { label: "News", href: "/news/" },
       { label: "FAQ", href: "/faq/" },
       { label: "Contact", href: "/contact/" },
     ] as NavLink[],

@@ -9,6 +9,7 @@ import {
   getCategories,
   getCategorySlugForProduct,
 } from "@/lib/products";
+import { getAllArticles } from "@/lib/articles";
 import { productPath } from "@/lib/product-url";
 
 const baseUrl = siteBaseUrl(site.brand.domain);
@@ -136,6 +137,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
     priority: 0.8,
   }));
 
+  // 文章页：lastModified 用文章自身的发表/更新日期（内容哈希对 .md 同样适用）
+  const articlePages: MetadataRoute.Sitemap = getAllArticles().map((a) => ({
+    url: `${baseUrl}/${a.pathPrefix}/${a.slug}/`,
+    lastModified: lastModifiedOf(`data/articles/${a.slug}.md`, ""),
+    changeFrequency: "monthly" as const,
+    priority: 0.7,
+  }));
+
   // 写回变更记录（供下次构建比对）；失败不影响构建
   try {
     fs.writeFileSync(DATES_FILE, JSON.stringify(next, null, 2) + "\n", "utf8");
@@ -143,5 +152,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
     /* 只读文件系统环境（如某些 CI）会失败，忽略即可 */
   }
 
-  return [...staticPages, ...categoryPages, ...productPages];
+  return [
+    ...staticPages,
+    ...categoryPages,
+    ...productPages,
+    ...articlePages,
+  ];
 }

@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getArticlesBySection } from "@/lib/articles";
 
 export const metadata: Metadata = {
   title: "Blog & Buying Guides",
@@ -8,105 +9,61 @@ export const metadata: Metadata = {
   alternates: { canonical: "/blog/" },
 };
 
-interface Post {
-  tag: "Guide";
-  title: string;
-  date: string;
-  summary: string;
-  href: string;
-  image: string;
-  imageAlt: string;
-}
-
-const POSTS: Post[] = [
-  {
-    tag: "Guide",
-    title: "Claw Crane Buying Guide: Cabinets, Prizes and Placement",
-    image: "/images/products/vtpg035-luxury-twins-crane-machine.jpeg",
-    imageAlt: "Luxury Twins claw crane cabinet with plush prizes",
-    date: "2026-09-07",
-    summary:
-      "Claw machines come in very different formats: compact countertop units such as the Mini Crane Machine, standard single cabinets like the Crane Machine A, key-style games such as Key Master and wider twin cabinets like the Luxury Twins Crane Machine. Match the cabinet to your space, and choose a prize size and type the model can actually hold - our team can advise on suitable models for malls, supermarkets and retail corridors.",
-    href: "/products/claw-crane-machines/",
-  },
-  {
-    tag: "Guide",
-    title: "Motion Simulators vs Upright Arcade Games: What Fits Your Floor",
-    image: "/images/products/vtsa010-super-bike-iii.jpeg",
-    imageAlt: "Super Bike III motion simulator arcade machines on the factory floor",
-    date: "2026-09-07",
-    summary:
-      "Full-size motion simulators such as the Super Bike III, Dynamic Moto 3 DX and Cruis'N Blast Ver.2 Motion draw attention with moving cabinets, but they need more floor space. Upright cabinets such as the 32'' Arcade Game (Wooden Cabinet) take less room and suit tighter layouts. Consider the space, power and audience of each location before choosing between full-size and single-player formats.",
-    href: "/products/arcade-video-games/",
-  },
-  {
-    tag: "Guide",
-    title: "Building a Ticket Economy: Redemption Machines That Keep Players Coming Back",
-    image: "/images/products/vttr020-ball-monster.jpeg",
-    imageAlt: "Ball Monster redemption ball-shooting machine",
-    date: "2026-09-07",
-    summary:
-      "Redemption machines award tickets or prizes based on skill and score, which gives players a reason to return. Ball shooting games like Ball Monster and Monster Realms Balls Shooting, plus compact favourites such as Flappy Bird, fit different floor plans and player ages. Ticket settings can be configured to your operation - specify your difficulty or payout preference when ordering.",
-    href: "/products/redemption-ticket-games/",
-  },
-];
-
 export default function BlogPage() {
+  const posts = getArticlesBySection("guide");
+
   return (
     <>
       <section className="page-hero">
         <div className="container">
           <p className="kicker kicker--light">Blog &amp; Buying Guides</p>
-          <h1>Guides for Your Venue</h1>
+          <h1>Practical advice for amusement operators</h1>
           <p className="lede lede--light">
-            Practical, machine-focused buying guidance drawn from the VEETOP
-            product range - no market hype, just what to look for.
+            Guides on equipment selection, floor planning and running economics
+            for family entertainment centres, arcades and mall operators.
           </p>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
-
-        <div style={{ display: "flex", flexDirection: "column", gap: 18, marginTop: 44 }}>
-          {POSTS.map((p) => (
-            <article
-              key={p.title}
-              className="img-text img-text--post"
-              style={{
-                border: "1px solid var(--line)",
-                borderRadius: "var(--radius)",
-                padding: "26px 28px",
-                background: "var(--surface)",
-              }}
-            >
-              <figure className="img-text__media">
-                <img src={p.image} alt={p.imageAlt} loading="lazy" decoding="async" />
-              </figure>
-              <div>
-                <div
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 10,
-                    flexWrap: "wrap",
-                    marginBottom: 10,
-                  }}
-                >
-                  <span className="chip chip--accent">{p.tag}</span>
-                  <span style={{ fontSize: 13, color: "var(--muted)", fontFamily: "var(--font-mono)" }}>
-                    {p.date}
-                  </span>
+          <div className="post-list">
+            {posts.map((p) => (
+              <article key={p.slug} className="post-card">
+                <Link href={`/${p.pathPrefix}/${p.slug}/`} className="post-card__media">
+                  <img
+                    src={p.image}
+                    alt={p.imageAlt}
+                    loading="lazy"
+                    decoding="async"
+                  />
+                </Link>
+                <div className="post-card__body">
+                  <div className="post-card__meta">
+                    <span
+                      className={
+                        "chip" + (p.tag === "Product" ? " chip--accent" : "")
+                      }
+                    >
+                      {p.tag}
+                    </span>
+                    <time dateTime={p.date}>{p.date}</time>
+                  </div>
+                  <h2 className="post-card__title">
+                    <Link href={`/${p.pathPrefix}/${p.slug}/`}>{p.title}</Link>
+                  </h2>
+                  <p className="post-card__summary">{p.summary}</p>
+                  <Link
+                    href={`/${p.pathPrefix}/${p.slug}/`}
+                    className="post-card__more"
+                  >
+                    Read more →
+                  </Link>
                 </div>
-                <h2 style={{ fontSize: "1.25rem", marginBottom: 8 }}>
-                  <Link href={p.href}>{p.title}</Link>
-                </h2>
-                <p style={{ color: "var(--ink-2)", margin: 0 }}>{p.summary}</p>
-              </div>
-            </article>
-          ))}
+              </article>
+            ))}
+          </div>
         </div>
-      </div>
       </section>
     </>
   );

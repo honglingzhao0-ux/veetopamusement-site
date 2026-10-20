@@ -2637,3 +2637,364 @@ ul {
     scroll-behavior: auto !important;
   }
 }
+
+/* ==================================================================== */
+/* 文章（News / Buying Guides）排版                                    */
+/* ==================================================================== */
+
+/* ---------- 列表页卡片 ---------- */
+.post-list {
+  display: grid;
+  gap: 22px;
+  margin-top: 44px;
+}
+
+.post-card {
+  display: grid;
+  grid-template-columns: 300px 1fr;
+  gap: 26px;
+  align-items: start;
+  padding: 24px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
+}
+
+.post-card:hover {
+  border-color: var(--accent);
+  box-shadow: 0 6px 24px rgba(15, 30, 50, 0.07);
+}
+
+.post-card__media {
+  display: block;
+  overflow: hidden;
+  border-radius: var(--radius);
+  background: var(--surface-soft);
+}
+
+.post-card__media img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 200px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.post-card:hover .post-card__media img {
+  transform: scale(1.03);
+}
+
+.post-card__body {
+  padding-top: 2px;
+}
+
+.post-card__meta {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.post-card__title {
+  font-size: 1.32rem;
+  line-height: 1.32;
+  margin-bottom: 10px;
+}
+
+.post-card__title a:hover {
+  color: var(--accent);
+}
+
+.post-card__summary {
+  color: var(--ink-2);
+  font-size: 0.95rem;
+  line-height: 1.65;
+  margin-bottom: 14px;
+}
+
+.post-card__more {
+  display: inline-block;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.post-card__more:hover {
+  color: var(--accent-dark);
+}
+
+/* ---------- 详情页 hero ---------- */
+.post-hero__meta {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+  margin: 18px 0 14px;
+}
+
+.post-hero__date {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  color: rgba(226, 232, 240, 0.7);
+}
+
+.post-hero__title {
+  font-size: clamp(1.7rem, 3.4vw, 2.5rem);
+  line-height: 1.22;
+  max-width: 22ch;
+  margin-bottom: 16px;
+}
+
+/* ---------- 详情页布局 ---------- */
+.post-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 300px;
+  gap: 48px;
+  align-items: start;
+}
+
+.post-body__cover {
+  margin: 0 0 32px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  background: var(--surface-soft);
+}
+
+.post-body__cover img {
+  display: block;
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+}
+
+/* ---------- 正文排版（.prose） ---------- */
+.prose {
+  font-size: 1.03rem;
+  line-height: 1.78;
+  color: var(--ink-2);
+}
+
+.prose h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  line-height: 1.3;
+  color: var(--navy-900);
+  margin: 40px 0 14px;
+  padding-top: 6px;
+}
+
+.prose h3 {
+  font-family: var(--font-display);
+  font-size: 1.16rem;
+  line-height: 1.35;
+  color: var(--navy-900);
+  margin: 28px 0 10px;
+}
+
+.prose p {
+  margin-bottom: 18px;
+}
+
+.prose ul,
+.prose ol {
+  margin: 0 0 20px;
+  padding-left: 22px;
+}
+
+.prose li {
+  margin-bottom: 9px;
+}
+
+.prose strong {
+  color: var(--navy-900);
+  font-weight: 600;
+}
+
+.prose a {
+  color: var(--accent);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.prose a:hover {
+  color: var(--accent-dark);
+}
+
+.prose code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  background: var(--surface-soft);
+  border: 1px solid var(--line-soft);
+  border-radius: 4px;
+  padding: 1px 6px;
+}
+
+/* 表格（对比表是这类文章的核心价值，样式要清晰） */
+.prose table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 0 0 26px;
+  font-size: 0.92rem;
+}
+
+.prose thead th {
+  background: var(--navy-900);
+  color: #fff;
+  text-align: left;
+  font-weight: 600;
+  padding: 11px 13px;
+  border: 1px solid var(--navy-900);
+}
+
+.prose tbody td {
+  padding: 11px 13px;
+  border: 1px solid var(--line);
+  background: var(--surface);
+  vertical-align: top;
+}
+
+.prose tbody tr:nth-child(even) td {
+  background: var(--surface-soft);
+}
+
+/* ---------- 文末 CTA ---------- */
+.post-cta {
+  margin-top: 44px;
+  padding: 26px 28px;
+  background: var(--surface-soft);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+}
+
+.post-cta p {
+  color: var(--ink-2);
+  margin-bottom: 16px;
+}
+
+.post-cta__actions {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ---------- 侧栏 ---------- */
+.post-side {
+  position: sticky;
+  top: 96px;
+  display: grid;
+  gap: 18px;
+}
+
+.post-side__box {
+  padding: 22px;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+
+.post-side__title {
+  font-size: 1.02rem;
+  margin-bottom: 14px;
+}
+
+.post-side__list {
+  list-style: none;
+  margin: 0 0 16px;
+  padding: 0;
+}
+
+.post-side__list li {
+  position: relative;
+  padding-left: 18px;
+  margin-bottom: 9px;
+  font-size: 0.9rem;
+  color: var(--ink-2);
+  line-height: 1.55;
+}
+
+.post-side__list li::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 8px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.post-side__link {
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: var(--accent);
+}
+
+.post-side__more {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.post-side__more li {
+  padding: 11px 0;
+  border-top: 1px solid var(--line-soft);
+  font-size: 0.9rem;
+  line-height: 1.5;
+}
+
+.post-side__more li:first-child {
+  border-top: none;
+  padding-top: 0;
+}
+
+.post-side__more a:hover {
+  color: var(--accent);
+}
+
+/* ---------- 响应式 ---------- */
+@media (max-width: 1020px) {
+  .post-layout {
+    grid-template-columns: 1fr;
+    gap: 36px;
+  }
+
+  .post-side {
+    position: static;
+  }
+}
+
+@media (max-width: 780px) {
+  .post-card {
+    grid-template-columns: 1fr;
+    gap: 18px;
+    padding: 18px;
+  }
+
+  .post-card__media img {
+    min-height: 160px;
+    max-height: 220px;
+  }
+
+  .prose {
+    font-size: 1rem;
+  }
+
+  .prose h2 {
+    font-size: 1.32rem;
+    margin-top: 32px;
+  }
+
+  /* 表格在窄屏横向滚动，不撑破布局 */
+  .prose table {
+    display: block;
+    overflow-x: auto;
+    white-space: nowrap;
+  }
+}

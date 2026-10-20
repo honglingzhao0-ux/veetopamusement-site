@@ -111,6 +111,12 @@ export default function Footer() {
                 <Link href="/faq/">FAQ - Trade Terms</Link>
               </li>
               <li>
+                <Link href="/blog/">Buying Guides</Link>
+              </li>
+              <li>
+                <Link href="/news/">News &amp; Insights</Link>
+              </li>
+              <li>
                 <Link href="/contact/">Contact &amp; Inquiry</Link>
               </li>
             </ul>

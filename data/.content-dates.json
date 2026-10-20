@@ -219,5 +219,13 @@
   "data/products/vto010-tokens-tickets.json:28fbf4fdddce12cc": "2026-09-20T00:00:00.000Z",
   "data/products/vtkr0102-kiddie-ride-a.json:c8d89e764c405af9": "2026-09-20T00:00:00.000Z",
   "data/products/vtkr0102-kiddie-ride-a.json:652970768f6f51ba": "2026-10-20T06:24:16.390Z",
-  "components/product-explorer.tsx:f69962e4a07eeb76": "2026-10-20T06:32:05.172Z"
+  "components/product-explorer.tsx:f69962e4a07eeb76": "2026-10-20T06:32:05.172Z",
+  "app/news/page.tsx:0967d54dd620883e": "2026-10-20T06:46:55.946Z",
+  "app/blog/page.tsx:bbb5c53a74b73aa2": "2026-10-20T06:46:55.946Z",
+  "data/articles/claw-crane-cost-and-payback-guide.md:480e7b06661300b9": "2026-10-20T06:46:55.946Z",
+  "data/articles/fec-opening-equipment-checklist.md:204f9c1b28778c43": "2026-10-20T06:46:55.946Z",
+  "data/articles/mall-atrium-vs-standalone-arcade-machine-mix.md:0801355de84ea9f3": "2026-10-20T06:46:55.946Z",
+  "data/articles/veetop-catalogue-2026-update.md:69ba8c13fcb4ba82": "2026-10-20T06:46:55.946Z",
+  "app/news/page.tsx:a4cf7e3e03874a7c": "2026-10-20T06:48:43.859Z",
+  "app/blog/page.tsx:f789cc3d340b3088": "2026-10-20T06:48:43.859Z"
 }
