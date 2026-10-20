@@ -373,3 +373,68 @@ node node_modules/next/dist/bin/next dev      # 开发预览 http://localhost:30
 - 托管：Vercel Hobby + 自定义域名（阿里云 DNS，www CNAME → cname.vercel-dns.com）
 - 仓库：`https://github.com/honglingzhao0-ux/veetopamusement-site.git`（main 分支）
 - 线上首屏响应约 1.1s，CDN 命中正常
+
+---
+
+## 9. SEO 现状与维护
+
+### 9.1 已做的技术优化（2026-10-20）
+
+| 项 | 状态 |
+|---|---|
+| robots.txt | ✅ 开放 + 指向 sitemap |
+| sitemap.xml | ✅ 223 条 URL，lastmod 反映真实内容变更 |
+| canonical | ✅ 全站唯一 |
+| title / description | ✅ 逐页独立 |
+| JSON-LD | ✅ Organization / Breadcrumb / ItemList / Product / FAQPage |
+| og:image / twitter:image | ✅ 全站补齐（首页品牌图、品类页/产品页用产品图） |
+| Googlebot 可抓取 | ✅ HTTP 200，无阻挡 |
+| Search Console | ✅ 已通过 DNS 验证 |
+
+### 9.2 sitemap lastmod 的维护机制（重要）
+
+`app/sitemap.ts` 用**内容哈希**判断页面是否真的变了：
+- 内容哈希不变 → lastmod 保持原值（告诉 Google「这页没动」）
+- 内容哈希变了 → lastmod 更新为当前时间
+
+变更记录存在 `data/.content-dates.json`（**必须提交进 git**，否则每次构建都重置）。
+
+⚠️ 踩过的坑：
+- 最初用 `new Date()` → 全站 lastmod 每次构建都变今天，Google 会认为全站天天在变
+- 改用 git 提交时间 → **本地有效，线上失效**（Vercel 构建环境没有 `.git` 目录）
+- 最终方案：内容哈希 + 变更时间戳双写，与 git 无关，线上可靠
+
+**效果实测**：改 1 个产品 → 只有那 1 个页面的 lastmod 变今天，其余 222 个不动。
+
+### 9.3 收录节奏预期
+
+新站（veetop）vs 老站（wandyy，2026-01 上线，399 URL）：
+
+| | wandyy | veetop |
+|---|---|---|
+| 上线时长 | 9 个多月 | 近期 |
+| sitemap URL | 399 | 223 |
+| 外链积累 | 有 | 少（Alibaba 已在导流） |
+| 询盘 | 已收到 | 尚未 |
+
+**Google 新站沙盒期通常 1–3 个月**，期间收录慢是正常现象，不是技术故障。
+
+### 9.4 需要你配合做的事（我做不了）
+
+1. **Search Console 提交 sitemap**
+   登录 search.google.com → 网址检查 → 输入 `https://www.veetopamusement.com/sitemap.xml` → 提交
+2. **请求收录核心页**
+   网址检查 → 输入以下 URL → 点「请求收录」：
+   - `https://www.veetopamusement.com/`
+   - `https://www.veetopamusement.com/products/`
+   - `https://www.veetopamusement.com/products/arcade-video-games/`
+   - 其余 5 个品类页同理
+3. **保持外链**：Alibaba 店铺、B2B 平台（Made-in-China、GlobalSources 等）统一指向 `https://www.veetopamusement.com`
+4. **看数据**：Search Console → 效果 → 关注「已编入索引的网页」数量变化
+
+### 9.5 提升收录的持续动作
+
+- **news / blog 页目前是空的** —— 这是浪费收录机会。
+  建议每月写 2–3 篇行业内容（如"FEC 采购清单"、"娃娃机运营成本计算"），
+  有内容才能被收录，且能带来长尾流量
+- 产品页保持 1 个以上真实图片，多图页在 Google 图片搜索里更有优势
