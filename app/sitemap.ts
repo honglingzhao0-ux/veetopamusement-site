@@ -1,5 +1,7 @@
 import type { MetadataRoute } from "next";
-import { execFileSync } from "node:child_process";
+import { createHash } from "node:crypto";
+import fs from "node:fs";
+import path from "node:path";
 import site from "@/site.config";
 import { siteBaseUrl } from "@/lib/cdn";
 import {
@@ -12,63 +14,40 @@ import { productPath } from "@/lib/product-url";
 const baseUrl = siteBaseUrl(site.brand.domain);
 
 /**
- * lastModified 取「内容最后一次真实变更的时间」。
+ * lastModified：反映「内容最后一次真实变更的时间」。
  *
  * 为什么不用 new Date()：
- *   若全部用构建时间，每次构建所有 URL 的 lastmod 都变成当天，
+ *   全部用构建时间的话，每次构建所有 URL 的 lastmod 都变成当天，
  *   Google 会认为全站每天都在变 —— 既降低抓取优先级，
  *   也丢掉了「哪些页面真的更新过」这个信号（对新品页收录尤其不利）。
  *
- * 为什么用 git 提交时间而不是文件 mtime：
- *   git checkout 会把所有文件的 mtime 重置为检出时间（实测全站都变成当天），
- *   而提交时间才是内容真实的最后修改时刻。
+ * 为什么不用 git 提交时间：
+ *   Vercel 构建环境没有 .git 目录，git log 会失败并回退。
+ *   （本地验证有效、线上失效 —— 必须避免这种"本地好用线上不生效"的坑）
  *
- * 一次性批量查询（git log --name-only），避免对 210 个产品各跑一次 git。
+ * 实际方案：内容哈希 + 变更时间戳双写
+ *   - 在构建时把「内容哈希 → 首次出现时间」记录到 data/.content-dates.json
+ *   - 内容哈希不变 → 沿用上次记录的时间（真正没变，lastmod 不动）
+ *   - 内容哈希变了 → 用当前时间（真的改了，更新 lastmod）
+ *   这样 lastmod 只在内容真实变化时才动，与 git 无关，线上也可靠。
  */
-const CONTENT_GIT_DATE = new Map<string, Date>();
+const DATES_FILE = path.join(process.cwd(), "data", ".content-dates.json");
 
-function loadContentDates(paths: string[]): void {
-  if (paths.length === 0) return;
-  const uniq = Array.from(new Set(paths));
+type DateMap = Record<string, string>;
+
+function readDates(): DateMap {
   try {
-    const out = execFileSync(
-      "git",
-      [
-        "log",
-        "--name-only",
-        "--pretty=format:%cI",
-        "--",
-        ...uniq,
-      ],
-      {
-        encoding: "utf8",
-        maxBuffer: 32 * 1024 * 1024,
-        stdio: ["ignore", "pipe", "ignore"],
-      }
-    );
-    // 格式：<时间戳>\n<file1>\n<file2>\n\n<时间戳>\n...
-    const blocks = out.split(/\n(?=\d{4}-\d{2}-\d{2}T)/);
-    for (const block of blocks) {
-      const nl = block.indexOf("\n");
-      if (nl < 0) continue;
-      const d = new Date(block.slice(0, nl).trim());
-      if (Number.isNaN(d.getTime())) continue;
-      for (const line of block.slice(nl).split("\n")) {
-        const f = line.trim();
-        if (!f) continue;
-        // git log 按新→旧遍历，首次出现即最后提交时间
-        if (!CONTENT_GIT_DATE.has(f)) {
-          CONTENT_GIT_DATE.set(f, d);
-        }
-      }
+    if (fs.existsSync(DATES_FILE)) {
+      return JSON.parse(fs.readFileSync(DATES_FILE, "utf8")) as DateMap;
     }
   } catch {
-    /* git 不可用时回退到构建时间 */
+    /* 忽略 */
   }
+  return {};
 }
 
-function lastModifiedOf(relPath: string): Date {
-  return CONTENT_GIT_DATE.get(relPath) ?? new Date();
+function hashContent(content: string): string {
+  return createHash("sha1").update(content).digest("hex").slice(0, 16);
 }
 
 export const dynamic = "force-static";
@@ -77,60 +56,67 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const products = getAllProducts();
   const categories = getCategories();
 
-  // 收集所有需要查询的源文件路径
-  const tracked = [
-    "app/page.tsx",
-    "components/product-explorer.tsx",
-    "app/about/page.tsx",
-    "app/news/page.tsx",
-    "app/blog/page.tsx",
-    "app/faq/page.tsx",
-    "app/contact/page.tsx",
-    "data/categories.json",
-    ...products.map((p) => `data/products/${p.slug}.json`),
-  ];
-  loadContentDates(tracked);
+  const prev = readDates();
+  const next: DateMap = { ...prev };
+  const nowIso = new Date().toISOString();
+
+  /** 取内容真实最后修改时间：哈希变则用现在，否则沿用历史 */
+  function lastModifiedOf(relPath: string, content: string): Date {
+    let contentHash: string;
+    try {
+      contentHash = hashContent(
+        fs.readFileSync(path.join(process.cwd(), relPath), "utf8")
+      );
+    } catch {
+      contentHash = "missing";
+    }
+    const key = `${relPath}:${contentHash}`;
+    if (!next[key]) {
+      next[key] = nowIso;
+    }
+    return new Date(next[key]);
+  }
 
   const staticPages: MetadataRoute.Sitemap = [
     {
       url: `${baseUrl}/`,
-      lastModified: lastModifiedOf("app/page.tsx"),
+      lastModified: lastModifiedOf("app/page.tsx", ""),
       changeFrequency: "weekly",
       priority: 1,
     },
     {
       url: `${baseUrl}/products/`,
-      lastModified: lastModifiedOf("components/product-explorer.tsx"),
+      lastModified: lastModifiedOf("components/product-explorer.tsx", ""),
       changeFrequency: "weekly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/about/`,
-      lastModified: lastModifiedOf("app/about/page.tsx"),
+      lastModified: lastModifiedOf("app/about/page.tsx", ""),
       changeFrequency: "monthly",
       priority: 0.7,
     },
     {
       url: `${baseUrl}/news/`,
-      lastModified: lastModifiedOf("app/news/page.tsx"),
+      lastModified: lastModifiedOf("app/news/page.tsx", ""),
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${baseUrl}/blog/`,
-      lastModified: lastModifiedOf("app/blog/page.tsx"),
+      lastModified: lastModifiedOf("app/blog/page.tsx", ""),
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${baseUrl}/faq/`,
-      lastModified: lastModifiedOf("app/faq/page.tsx"),
+      lastModified: lastModifiedOf("app/faq/page.tsx", ""),
       changeFrequency: "monthly",
       priority: 0.6,
     },
     {
       url: `${baseUrl}/contact/`,
-      lastModified: lastModifiedOf("app/contact/page.tsx"),
+      lastModified: lastModifiedOf("app/contact/page.tsx", ""),
       changeFrequency: "monthly",
       priority: 0.6,
     },
@@ -138,17 +124,24 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   const categoryPages: MetadataRoute.Sitemap = categories.map((c) => ({
     url: `${baseUrl}/products/${c.slug}/`,
-    lastModified: lastModifiedOf("data/categories.json"),
+    lastModified: lastModifiedOf("data/categories.json", ""),
     changeFrequency: "weekly" as const,
     priority: 0.85,
   }));
 
   const productPages: MetadataRoute.Sitemap = products.map((p) => ({
     url: `${baseUrl}${productPath(getCategorySlugForProduct(p), p.slug)}`,
-    lastModified: lastModifiedOf(`data/products/${p.slug}.json`),
+    lastModified: lastModifiedOf(`data/products/${p.slug}.json`, ""),
     changeFrequency: "weekly" as const,
     priority: 0.8,
   }));
+
+  // 写回变更记录（供下次构建比对）；失败不影响构建
+  try {
+    fs.writeFileSync(DATES_FILE, JSON.stringify(next, null, 2) + "\n", "utf8");
+  } catch {
+    /* 只读文件系统环境（如某些 CI）会失败，忽略即可 */
+  }
 
   return [...staticPages, ...categoryPages, ...productPages];
 }
