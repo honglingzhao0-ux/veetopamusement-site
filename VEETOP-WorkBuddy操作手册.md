@@ -136,6 +136,42 @@ git pull --rebase origin main
 图片走站内 `/images`（Vercel 自带 CDN）。若已配置 Cloudflare R2，
 图片还需同步上传到 R2 的 `images/products/` 路径下。
 
+### 5.1 黑底图批量修复（已处理完17 张，备用工具）
+
+2026-10-20 全站扫描发现 **17 张黑底产品图**（`vttr060`~`vttr076` 连续一段，
+纯黑背景板抠图，边缘黑像素 100%），已全部修复为纯白底并上线。
+
+工具保留在仓库，以后换新图时可用：
+
+```bash
+# 1) 扫描全站，找出黑底图
+python scripts/scan-dark-bg.py
+
+# 2) 先预览（不动原图）
+python scripts/fix-dark-bg.py --preview
+#    预览图在 public/images/products/_fixed_preview/
+
+# 3) 确认后应用（会自动备份原图到 _backup_images_black/）
+python scripts/fix-dark-bg.py --apply
+```
+
+**修复原理**：暗且接近中性灰的像素 → 纯白；亮或偏彩色的 → 原样保留。
+
+⚠️ 两个必须保留的调参（踩过坑）：
+- **必须加饱和度判定**（`sat < 42`）：JPEG 在黑边界有彩色振铃噪声，
+  只按亮度提亮会出现红蓝描边
+- **不做连通性限制**：机身背后常有抠图残留黑板，不与画面边缘连通，
+  洪水填充法会漏掉
+
+`_fixed_preview/` 与 `_backup_images_black/` 已加进 `.gitignore`，不会进仓库。
+
+### 5.2 长期方向：补真实白底照片
+
+你已决定后续逐步补真实白底实拍图。替换时注意：
+- 修复后的图是**纯白底、无渐变过渡**，与真实白底照风格一致，可直接逐张替换
+- 建议向画册/工厂提要求：**白底或透明底 PNG，去背干净不带黑边**
+- 深色机身（如 `vttr062` minions 蓝紫渐变）实拍时注意别让产品沉进背景
+
 ---
 
 ## 6. 本地预览（改完先看效果再上线）
@@ -144,12 +180,18 @@ git pull --rebase origin main
 cd /c/Users/den/WorkBuddy/2026-10-20-10-27-11/veetop-site
 export PATH="/c/Users/den/.workbuddy/binaries/node/versions/22.22.2-6:$PATH"
 export CODEBUDDY_SAFE_DELETE_ENABLED=0
+export NEXT_TRACE_UPLOAD_DISABLED=1
 node node_modules/next/dist/bin/next dev      # 开发预览 http://localhost:3000
 ```
 
 > `CODEBUDDY_SAFE_DELETE_ENABLED=0` 必须加：Next 构建时会批量清理 `.next` 缓存，
 > 触发 WorkBuddy 的删除保护（SAFE_DELETE_BULK_CONFIRM_REQUIRED）导致构建失败。
 > 这只影响项目内的构建缓存，不涉及任何个人文件。
+
+> `NEXT_TRACE_UPLOAD_DISABLED=1` 建议加：Next 构建收尾要写 `.next/trace`，
+> 该文件被占用时会返回退出码 1，**但 `out/` 产物其实已经生成完整**，
+> 造成"其实成功却报构建失败"的假故障。`publish.sh` 已内置此变量，
+> 并且改用「产物完整性（out/index.html + out/sitemap.xml 存在）」来判定构建成功。
 
 ---
 
@@ -162,6 +204,8 @@ node node_modules/next/dist/bin/next dev      # 开发预览 http://localhost:30
 | 部署失败 | Vercel Deployments 点进失败那次看日志，通常是 JSON 语法错误（少逗号/引号） |
 | 新产品没出现 | 文件名 = JSON 里 `slug`；`category` 必须在 categories.json 里存在；JSON 语法正确 |
 | 本地构建报 SAFE_DELETE | 加 `export CODEBUDDY_SAFE_DELETE_ENABLED=0`（见第 6 节） |
+| 构建末尾报失败但其实成功 | 已自动规避：脚本用产物完整性判定，见第 6 节 trace 说明 |
+| 产品图黑底 | 跑 `python scripts/scan-dark-bg.py` 定位，再用 `fix-dark-bg.py` 批量修（见 5.1） |
 | git push 报 502 / CONNECT tunnel failed | WorkBuddy 出网代理临时抖动。脚本已内置 10 次重试；持续失败则重启 WorkBuddy |
 | 推送提示弹 GitHub 登录框 | 正常，浏览器里点一次授权即可，之后不再弹 |
 | 图片不显示 | 文件名与 slug 不一致，或 `images` 字段路径写错；或 R2 未同步 |
