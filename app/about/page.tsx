@@ -99,7 +99,7 @@ export default function AboutPage() {
 
       {/* factory strength */}
       <section className="section section--tint anchor-target" id="factory">
-        <div className="container img-text">
+        <div className="container img-text img-text--text-first">
           <div className="img-text__media img-text__stack img-text__stack--factory">
             <figure>
               <img

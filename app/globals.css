@@ -366,6 +366,20 @@ ul {
   }
 }
 
+/* About / Factory Strength：桌面端翻转为「左文右图」。
+   列宽与翻转前逐项等值：文字列 1fr（504px）、媒体列 1.15fr（580px）、gap 48px
+   均不变，只把两列的占位顺序对调 —— 媒体列 order:2 即排到文字列之后。
+   作用域限定 >=1021px，<=1020px 的单列顺序（媒体在上、文字在下）保持原样。 */
+@media (min-width: 1021px) {
+  .img-text--text-first {
+    grid-template-columns: 1fr 1.15fr;
+  }
+
+  .img-text--text-first > .img-text__media {
+    order: 2;
+  }
+}
+
 .anchor-target {
   scroll-margin-top: 92px;
 }
