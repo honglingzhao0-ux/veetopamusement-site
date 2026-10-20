@@ -25,11 +25,22 @@ export const metadata: Metadata = {
     title: site.seo.title,
     description: site.seo.description,
     url: baseUrl,
+    // 默认社交分享图（1200×630，由 scripts/make-og-image.py 生成）
+    // 页面级 og:image 会在各页 metadata 里覆盖为产品图
+    images: [
+      {
+        url: `${baseUrl}/og/og-default.jpg`,
+        width: 1200,
+        height: 630,
+        alt: `${site.brand.name} ${site.brand.suffix} — arcade and amusement equipment manufacturer`,
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: site.seo.title,
     description: site.seo.description,
+    images: [`${baseUrl}/og/og-default.jpg`],
   },
   robots: {
     index: true,

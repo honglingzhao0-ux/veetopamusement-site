@@ -59,6 +59,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: desc,
       images: cover ? [{ url: cover, alt: product.name }] : undefined,
     },
+    twitter: {
+      card: "summary_large_image",
+      title: `${product.name} (${product.model})`,
+      description: desc,
+      images: cover ? [cover] : undefined,
+    },
   };
 }
 

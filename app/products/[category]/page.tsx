@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
+import site from "@/site.config";
+import { siteBaseUrl, cdnUrl } from "@/lib/cdn";
 import {
   getCategorySlugs,
   getCategoryBySlug,
@@ -25,6 +27,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const category = getCategoryBySlug(categorySlug);
   if (!category) return { title: "Page not found" };
 
+  // 品类分享图：用该品类首款产品的封面图，没有则回退站点默认图
+  const first = getProductsByCategory(category.id)[0];
+  const cover = first?.images?.[0] ? cdnUrl(first.images[0]) : undefined;
+
   return {
     title: category.seoTitle,
     description: category.metaDescription,
@@ -33,6 +39,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       type: "website",
       title: category.seoTitle,
       description: category.metaDescription,
+      images: cover
+        ? [{ url: cover, alt: category.name }]
+        : [{ url: `${siteBaseUrl(site.brand.domain)}/og/og-default.jpg` }],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: category.seoTitle,
+      description: category.metaDescription,
+      images: [cover ?? `${siteBaseUrl(site.brand.domain)}/og/og-default.jpg`],
     },
   };
 }
