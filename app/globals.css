@@ -1942,6 +1942,208 @@ ul {
   font-family: var(--font-body);
 }
 
+/* 筛选按钮视觉（产品目录筛选 / 分组筛选共用） */
+.filter-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 13px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--navy-900);
+  font-size: 0.82rem;
+  font-weight: 500;
+  line-height: 1.3;
+  transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
+}
+
+.filter-btn:hover {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.filter-btn.is-on {
+  background: var(--navy-900);
+  border-color: var(--navy-900);
+  color: #fff;
+}
+
+.filter-btn.is-empty {
+  opacity: 0.5;
+}
+
+.filter-btn__n {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  opacity: 0.7;
+}
+
+/* 搜索 + 分组筛选容器 */
+.explorer-filter {
+  display: grid;
+  gap: 18px;
+  margin-bottom: 20px;
+  padding: 22px 24px;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 14px;
+  box-shadow: 0 2px 12px rgba(15, 30, 50, 0.05);
+}
+
+/* 容器内顶部一级筛选不再需要外边距 */
+.explorer-filter .filter-bar {
+  margin: 0;
+}
+
+.explorer-search {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 14px;
+  height: 50px;
+  background: #f6f8fa;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  transition: border-color 0.18s ease, background 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.explorer-search:focus-within {
+  background: #fff;
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--accent-soft);
+}
+
+.explorer-search svg {
+  flex-shrink: 0;
+  color: var(--muted);
+}
+
+.explorer-search input {
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  border: none;
+  outline: none;
+  background: transparent;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  color: var(--navy-900);
+}
+
+.explorer-search input::placeholder {
+  color: #97a3b0;
+}
+
+.explorer-search__clear {
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border: none;
+  border-radius: 50%;
+  background: rgba(15, 30, 50, 0.1);
+  color: var(--navy-900);
+  cursor: pointer;
+  transition: background 0.18s ease;
+}
+
+.explorer-search__clear:hover {
+  background: rgba(15, 30, 50, 0.2);
+}
+
+/* 业务线分组 */
+.explorer-groups {
+  display: grid;
+  gap: 14px;
+  padding-top: 4px;
+  border-top: 1px solid var(--line-soft);
+}
+
+.explorer-group {
+  display: grid;
+  grid-template-columns: 150px 1fr;
+  gap: 14px;
+  align-items: start;
+}
+
+.explorer-group__label {
+  padding-top: 7px;
+  font-family: var(--font-display);
+  font-size: 0.76rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--navy-900);
+}
+
+/* 分页 */
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  margin-top: 36px;
+  padding-top: 24px;
+  border-top: 1px solid var(--line);
+}
+
+.pager__list {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.pager__btn {
+  min-width: 38px;
+  height: 38px;
+  padding: 0 12px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  font-family: var(--font-display);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--navy-900);
+  cursor: pointer;
+  transition: background 0.15s ease, border-color 0.15s ease, color 0.15s ease;
+}
+
+.pager__btn:hover:not(:disabled) {
+  border-color: var(--accent);
+  color: var(--accent);
+}
+
+.pager__btn:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pager__btn.is-on {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: #fff;
+}
+
+.pager__gap {
+  min-width: 22px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  user-select: none;
+}
+
 /* 提交状态（endpoint / mailto 场景共用） */
 .form-status {
   margin-top: 16px;
@@ -1954,9 +2156,14 @@ ul {
 }
 
 .result-note {
-  margin: 18px 0 0;
+  margin: 0 0 18px;
+  padding: 9px 14px;
+  background: #f6f8fa;
+  border-radius: 8px;
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
   color: var(--muted);
-  font-size: 14px;
 }
 
 /* 快速询盘（产品详情页底部） */
@@ -2306,6 +2513,50 @@ ul {
 
   .footer-grid {
     grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* 产品目录页：桌面固定 4 列（配合每页 16 个 = 4 行 × 4 列） */
+@media (min-width: 1024px) {
+  .prod-grid--catalog {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+/* 搜索 / 分组筛选 / 分页 的响应式 */
+@media (max-width: 860px) {
+  .explorer-group {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .explorer-group__label {
+    padding-top: 0;
+  }
+
+  .explorer-filter {
+    padding: 18px 16px;
+  }
+}
+
+@media (max-width: 640px) {
+  .explorer-search {
+    height: 46px;
+  }
+
+  .explorer-search input {
+    font-size: 0.92rem;
+  }
+
+  .pager {
+    gap: 6px;
+  }
+
+  .pager__btn {
+    min-width: 34px;
+    height: 34px;
+    padding: 0 10px;
+    font-size: 0.8rem;
   }
 }
 

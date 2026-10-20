@@ -26,17 +26,28 @@ if ! node node_modules/typescript/bin/tsc --noEmit; then
 fi
 
 echo "==> [2/5] 构建静态产物"
-node node_modules/next/dist/bin/next build > /tmp/veetop_build.log 2>&1
-BUILD_RC=$?
-tail -5 /tmp/veetop_build.log
-# 退出码非0时再核对产物：产物齐全即视为成功（规避 Next 收尾步骤的假失败）
-if [ "$BUILD_RC" -ne 0 ]; then
-  if [ -f out/index.html ] && [ -f out/sitemap.xml ]; then
-    echo "⚠️  构建收尾有告警（退出码 $BUILD_RC），但产物已完整生成，继续发布"
-  else
-    echo "❌ 构建失败（产物不完整），已中止发布"
-    exit 1
+# Next 的 trace 收尾偶发失败（.next/trace 被占用时退出码非 0，
+# 有时甚至已清空 out/）。这类失败重跑一次通常就好，故加重试。
+BUILD_OK=0
+for attempt in 1 2; do
+  node node_modules/next/dist/bin/next build > /tmp/veetop_build.log 2>&1
+  BUILD_RC=$?
+  tail -4 /tmp/veetop_build.log
+  if [ "$BUILD_RC" -eq 0 ] && [ -f out/index.html ] && [ -f out/sitemap.xml ]; then
+    BUILD_OK=1
+    break
   fi
+  if [ "$attempt" -eq 1 ]; then
+    echo "⚠️  构建未通过（退出码 $BUILD_RC），清理后重试一次..."
+    rm -rf .next out 2>/dev/null || true
+    sleep 3
+  fi
+done
+
+if [ "$BUILD_OK" -ne 1 ]; then
+  echo "❌ 构建失败（重试后仍无完整产物），已中止发布"
+  echo "   完整日志：/tmp/veetop_build.log"
+  exit 1
 fi
 
 echo "==> [3/5] 提交本地改动"
