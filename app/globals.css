@@ -662,6 +662,58 @@ ul {
   color: var(--accent);
 }
 
+/* Header WhatsApp icon button: sits right of "Get a Quote".
+   Spacing comes from .header-cta gap (14px), so no extra margin.
+   Same surface / border / accent language as the .btn--line family. */
+.hdr-wa {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 38px;
+  height: 38px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: var(--surface);
+  color: var(--accent);
+  transition: border-color 0.18s ease, color 0.18s ease;
+}
+
+.hdr-wa:hover {
+  border-color: var(--accent);
+  color: var(--accent-dark);
+}
+
+.hdr-wa:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* <=380px the logo + quote + burger already fill the bar, and the mobile menu
+   carries its own WhatsApp entry, so the icon stands down instead of pushing
+   the burger past the container edge. */
+@media (max-width: 380px) {
+  .hdr-wa {
+    display: none;
+  }
+}
+
+/* 981-1099px: the extra icon would otherwise squeeze the nav into two lines.
+   Reclaim the room from nav padding instead of dropping any content.
+   .nav-dd__link keeps its own later padding-right: 3px rule untouched. */
+@media (min-width: 981px) and (max-width: 1099px) {
+  .site-nav__link {
+    padding-left: 6px;
+    padding-right: 6px;
+    white-space: nowrap;
+  }
+
+  .nav-dd__btn {
+    padding-right: 6px;
+    white-space: nowrap;
+  }
+}
+
 .burger {
   display: none;
   background: none;
@@ -2026,39 +2078,6 @@ ul {
 .nf__code em {
   color: var(--accent);
   font-style: normal;
-}
-
-.wa-float {
-  position: fixed;
-  right: 22px;
-  bottom: 22px;
-  z-index: 60;
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  background: var(--surface);
-  color: var(--accent);
-  border: 1px solid var(--line);
-  border-radius: 999px;
-  padding: 12px 16px;
-  box-shadow: var(--shadow-md);
-  font-weight: 700;
-  font-size: 14px;
-  transition: border-color 0.18s ease, box-shadow 0.18s ease;
-}
-
-.wa-float:hover {
-  border-color: var(--accent);
-}
-
-.wa-float__label {
-  display: none;
-}
-
-@media (min-width: 560px) {
-  .wa-float__label {
-    display: inline;
-  }
 }
 
 /* ============================================================

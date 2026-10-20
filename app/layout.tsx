@@ -3,7 +3,6 @@ import site from "@/site.config";
 import { siteBaseUrl } from "@/lib/cdn";
 import Header from "@/components/header";
 import Footer from "@/components/footer";
-import WhatsAppFloat from "@/components/whatsapp-float";
 import JsonLd from "@/components/json-ld";
 import "./globals.css";
 
@@ -96,7 +95,6 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
-        <WhatsAppFloat />
       </body>
     </html>
   );
