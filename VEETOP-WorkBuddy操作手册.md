@@ -53,7 +53,6 @@ bash publish.sh "本次改动的说明"
 |---|---|---|
 | **首页主推哪16 款 / 排序** | `data/products/<slug>.json` 的 `featuredRank` | 不用 |
 | 公司名/邮箱/电话/地址/WhatsApp/公司数据 | `site.config.ts` | 不用 |
-| 站级 FAQ（MOQ/付款/交期/保修等口径） | `site.config.ts` 的 `faqs` | 不用 |
 | 某个产品的名称/参数/卖点/认证 | `data/products/<slug>.json` | 不用 |
 | 新增一个产品 | 复制 `data/products/` 任意 JSON 改名 | 不用 |
 | 下架产品 | 删除对应 JSON | 不用 |
@@ -84,6 +83,42 @@ bash publish.sh "本次改动的说明"
 **六个品类 id**（`category` 字段只能填这些）：
 `arcade-video-games`、`sports-skill-games`、`redemption-ticket-games`、
 `claw-crane-machines`、`kiddie-rides`、`prize-merchandisers`
+
+---
+
+## 3.4 产品目录页（/products/）
+
+2026-10-20 按 wandyy 站的设计改版，实现**搜索 + 业务线分组 + 分页**。
+
+### 每页 16 个（4 行 × 4 列）
+- `PAGE_SIZE = 16`（`components/product-explorer.tsx`）
+- 桌面端固定 4 列：CSS 类 `prod-grid--catalog`（`@media min-width:1024px`）
+- 210 个产品 = 14 页
+- 排序用型号自然序（`localeCompare` + `numeric:true`），所以 VTRA9排在 VTRA10 前
+
+### 搜索
+匹配 **型号 / 名称 / headline / 品类 id**，不区分大小写。
+例：搜 `VTRA010`、`claw`、`racing`、`kiddie` 都能命中。
+清空按钮在搜索框右侧。
+
+### 业务线分组（3 组）
+| 分组 | 含品类 | 产品数 |
+|---|---|---|
+| Coin-operated arcade | 街机 + 体育竞技 | 103 |
+| Redemption & prize | 彩票兑换 + 礼品机 | 70 |
+| Crane & kiddie | 抓娃娃机 + 儿童骑乘 | 37 |
+
+分组映射定义在 `components/product-explorer.tsx` 的 `GROUPS` 常量里。
+**要改分组归属就改这个常量**，例如新增品类时把它加进对应组。
+
+### 分页交互
+- 底部：← Prev / 页码 / Next →
+- 页数多时折叠为 `1 … 5 6 [7] 8 … 14`
+- 切换品类或搜索词自动回到第 1 页
+- 当前页越界自动回到最后一页
+
+⚠️ **分页是纯客户端的**：静态导出只渲染第 1 页的 16 个产品，
+翻页在浏览器内完成，不产生 URL 变体（SEO 收录仍靠各品类独立页 `/products/<slug>/`）。
 
 ---
 
