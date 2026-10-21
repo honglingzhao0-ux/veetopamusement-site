@@ -372,15 +372,17 @@ git pull --rebase origin main
 
 | 文件 | 用途 | 尺寸 |
 |---|---|---|
-| `logo-full-dark.png` | 蓝版深字（header / 白底） | 650×150 |
-| `logo-full-light.png` | 蓝版反白（页脚 / 深底） | 650×150 |
-| `logo-full-dark-orange.png` | **橙版深字**（当前在用） | 650×150 |
-| `logo-full-light-orange.png` | **橙版反白**（当前在用） | 650×150 |
-| `logo-mark.png` / `logo-mark-orange.png` | 仅 V 形标（蓝 / 橙） | 215×150 |
+| `logo-full-dark.png` | 蓝版深字（官方原色） | 650×150 |
+| `logo-full-light.png` | 蓝版反白 | 650×150 |
+| `logo-full-dark-orange.png` | 标准橙深字 | 650×150 |
+| `logo-full-light-orange.png` | 标准橙反白 | 650×150 |
+| `logo-full-dark-flame.png` | **火焰橙深字（当前在用）** | 650×150 |
+| `logo-full-light-flame.png` | **火焰橙反白（当前在用）** | 650×150 |
+| `logo-mark.png` / `-orange.png` / `-flame.png` | 仅 V 形标（三种配色） | 215×150 |
 
 **切换配色**：改 `components/logo.tsx` 里的一个常量即可：
 ```tsx
-const LOGO_VARIANT: "blue" | "orange" = "orange";  // 改成 "blue" 即切回蓝色
+const LOGO_VARIANT: "blue" | "orange" | "flame" = "flame";  // 改成 "blue" 即切回官方原色
 ```
 然后 `bash publish.sh "切换 Logo 配色"`。
 
@@ -388,30 +390,40 @@ const LOGO_VARIANT: "blue" | "orange" = "orange";  // 改成 "blue" 即切回蓝
 ```bash
 # 从官方原图切图（去透明、裁留白、生成反白版）
 python scripts/make-logo-assets.py
-# 从蓝版生成橙版（保留渐变层次）
+# 从蓝版生成橙版 + 火焰橙版（保留渐变层次）
 python scripts/make-logo-orange.py
 ```
 
 **换色原理**（`make-logo-orange.py`）：
 不是简单替换颜色，而是保住渐变结构——
-1. HSL 分离：文字是中性灰（饱和度 <0.12），V 标是蓝色（色相 200-230）
-2. 蓝色像素色相旋转到橙色区间（20-32°），饱和度 ×1.12
-3. **亮度分段重映射到橙色舒适区 0.335~0.71**：
+1. HSL 分离：文字是中性灰（饱和度 <0.16），V 标是蓝色（色相 200-230）
+2. 蓝色像素色相旋转到目标色相区间，饱和度按变体放大
+3. **亮度分段重映射到目标色系舒适区**：
    直接按原亮度换算会得到大量暗棕（#5c2600），发闷且不像品牌橙；
-   抬高后主色落在 **#f15700**，与站点 accent `#ff6a00` 接近
+   抬高后主色落在目标值，渐变层次完整保留
+4. 文字灰色保持不变（官方 Logo 的字是深灰，换色只针对图形部分）
+
+**三个变体的参数**（`VARIANTS` 字典）：
+
+| 变体 | 色相区间 | 饱和度 | 主色 |
+|---|---|---|---|
+| orange | 20-32° | ×1.12 | `#f15700`（≈ accent #ff6a00） |
+| flame | 11-21° | ×1.22 | `#e52f00`（接近 OrangeRed #ff4500） |
 
 **品牌色**：
 
-| | 蓝版 | 橙版 |
-|---|---|---|
-| 深 | `#002665` | `#be5500` |
-| 中 | `#0071BD` | `#f15700`（≈ accent #ff6a00） |
-| 浅 | `#34A2DD` / `#4ABAEC` | `#e3703e` / `#f18557` |
-| 文字 | `#444444` | `#444444`（未变） |
+| | 蓝版 | 标准橙 | 火焰橙 |
+|---|---|---|---|
+| 深 | `#002665` | `#9a4500` | `#872500` |
+| 中 | `#0071BD` | `#f15700` | `#e52f00` |
+| 浅 | `#34A2DD` | `#ef5500` | `#f15e3c` |
+| 文字 | `#444444` | `#444444` | `#444444`（未变） |
 
 **当前配色决策（2026-10-21）**：
-官方 Logo 换成了**橙色版**（试色效果），与站点 accent `#ff6a00` 统一。
-蓝色版素材仍保留在仓库里，一行常量即可切回。
+官方 Logo 用**火焰橙版**（更偏红更饱和，接近 OrangeRed #ff4500）。
+⚠️ 站点 accent 仍是标准橙 `#ff6a00`（H=24.9°），与火焰橙 Logo（H=12.3°）
+相差 12.6° —— 并排时可分辨。若要完全统一，把 `--accent` 一族改成火焰橙即可
+（改动集中在 `app/globals.css` 顶部 5 个变量，全站 83 处 accent 自动跟随）。
 
 **显示尺寸**：header 高 34px（移动端 28px），页脚 40px。
 `.logo__img` 按高度缩放、宽度自动（比例 4.33:1）。
