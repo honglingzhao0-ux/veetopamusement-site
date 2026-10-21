@@ -372,31 +372,46 @@ git pull --rebase origin main
 
 | 文件 | 用途 | 尺寸 |
 |---|---|---|
-| `logo-full-dark.png` | header（白底，深灰字） | 650×150 |
-| `logo-full-light.png` | 页脚（深色底，反白字） | 650×150 |
-| `logo-mark.png` | 仅 V 形标（备用） | 215×150 |
+| `logo-full-dark.png` | 蓝版深字（header / 白底） | 650×150 |
+| `logo-full-light.png` | 蓝版反白（页脚 / 深底） | 650×150 |
+| `logo-full-dark-orange.png` | **橙版深字**（当前在用） | 650×150 |
+| `logo-full-light-orange.png` | **橙版反白**（当前在用） | 650×150 |
+| `logo-mark.png` / `logo-mark-orange.png` | 仅 V 形标（蓝 / 橙） | 215×150 |
 
-**重新生成**（原始 Logo 换了才需要跑）：
-```bash
-python scripts/make-logo-assets.py
+**切换配色**：改 `components/logo.tsx` 里的一个常量即可：
+```tsx
+const LOGO_VARIANT: "blue" | "orange" = "orange";  // 改成 "blue" 即切回蓝色
 ```
-源文件是会话 blob 副本，脚本里 `SRC` 常量指向它。
-换新 Logo 时把新图放到 `public/brand/` 手动覆盖即可，或改脚本的 `SRC`。
+然后 `bash publish.sh "切换 Logo 配色"`。
 
-**品牌色**（从官方 Logo 采样）：
+**重新生成素材**：
+```bash
+# 从官方原图切图（去透明、裁留白、生成反白版）
+python scripts/make-logo-assets.py
+# 从蓝版生成橙版（保留渐变层次）
+python scripts/make-logo-orange.py
+```
 
-| 用途 | 色值 |
-|---|---|
-| 深蓝 | `#002665` |
-| 亮蓝 | `#0071BD` |
-| 浅蓝 | `#34A2DD` / `#4ABAEC` |
-| 文字深灰 | `#444444` |
+**换色原理**（`make-logo-orange.py`）：
+不是简单替换颜色，而是保住渐变结构——
+1. HSL 分离：文字是中性灰（饱和度 <0.12），V 标是蓝色（色相 200-230）
+2. 蓝色像素色相旋转到橙色区间（20-32°），饱和度 ×1.12
+3. **亮度分段重映射到橙色舒适区 0.335~0.71**：
+   直接按原亮度换算会得到大量暗棕（#5c2600），发闷且不像品牌橙；
+   抬高后主色落在 **#f15700**，与站点 accent `#ff6a00` 接近
 
-**当前配色决策（2026-10-20）**：
-官方 Logo 是蓝色系，但站点 accent **仍保留橙色 `#ff6a00`**（用户决定）。
-两者不同色系但 Logo 独立于 accent 体系，视觉上不冲突。
-若将来要统一成蓝色，改 `app/globals.css` 的这5 个变量即可：
-`--accent` / `--accent-dark` / `--accent-ink` / `--accent-soft` / `--accent-soft-2`。
+**品牌色**：
+
+| | 蓝版 | 橙版 |
+|---|---|---|
+| 深 | `#002665` | `#be5500` |
+| 中 | `#0071BD` | `#f15700`（≈ accent #ff6a00） |
+| 浅 | `#34A2DD` / `#4ABAEC` | `#e3703e` / `#f18557` |
+| 文字 | `#444444` | `#444444`（未变） |
+
+**当前配色决策（2026-10-21）**：
+官方 Logo 换成了**橙色版**（试色效果），与站点 accent `#ff6a00` 统一。
+蓝色版素材仍保留在仓库里，一行常量即可切回。
 
 **显示尺寸**：header 高 34px（移动端 28px），页脚 40px。
 `.logo__img` 按高度缩放、宽度自动（比例 4.33:1）。
