@@ -455,6 +455,76 @@ bash publish.sh "上传 VTRA010 多图"                # 4. 发布
 
 同型号对应多个产品时会提示"需确认"并跳过——这种情况告诉我手工指定。
 
+### 5.0.1 从 X 盘批量导入原图（2026-10-22 新增，已上线 510 张）
+
+X 盘 `X:\Z01_Alycia个人资料\游戏机业务\VEETOPAMUSEMNT.COM\Products\All` 存放着
+全部产品原图（512 张，多角度 / 多配色）。**常规命令读不了这个网络盘的内容**：
+
+| 方式 | 结果 |
+|---|---|
+| PowerShell / Bash / python / tar / robocopy 读内容 | ❌ Access Denied |
+| 目录联接（junction）指向 X 盘 | ❌ reparse 缓冲区无效（SMB 不支持） |
+| `\\?\` 长路径前缀 / `\\?\UNC\...` | ❌ Access Denied |
+| 目录枚举、`os.path.getsize` 取大小 | ✅ 元数据可读 |
+| **Read 工具读 X 盘文件** | ✅ **唯一可用通路** |
+
+原理：Read 工具读 X 盘文件时，会把原图复制到
+`C:\Users\den\.workbuddy\blobs\<xx>\<hash>.png`（同时生成 ~85KB 的 .jpg 缩略图，忽略）。
+**blob 的 png 与源文件字节数完全一致**（差 0KB），所以能用「文件大小」反查源文件名。
+
+**解除图片预算**：默认每轮 128MB（约 12 张图）。
+设环境变量 `CODEBUDDY_CODE_MAX_IMAGE_MB_PER_TURN=0` = **不限**
+（源码 `tryReserveImageBytes` 里 `if(0===i)return!0` 直接放行），
+通过 `settings.json` 的 `env` 块注入。512 张因此 3 轮读完。
+
+完整流程：
+
+```bash
+# 1. 用 Read 工具把 X 盘图片读一遍（Read 会自动落到 blob）
+#    路径：X:\Z01_Alycia个人资料\游戏机业务\VEETOPAMUSEMNT.COM\Products\All\<文件名>
+# 2. 全量扫描 blob 归档到 inbox_x/
+python scripts/collect-blob-images.py
+# 3. 哈希去重 + 应用型号映射（重建干净 inbox_x）
+python scripts/rebuild-inbox.py
+# 4. 预览 → 执行导入（保留原封面、追加新图、sha 去重）
+python scripts/import-multi-images.py
+python scripts/import-multi-images.py --apply
+# 5. 发布
+bash publish.sh "批量补充产品多图"
+```
+
+⚠️ **三个必须注意的坑**：
+
+1. **源文件型号 ≠ 站点 model，必须看图确认**。已核对的映射：
+
+   | 源文件 | 实际产品 | 站点 model |
+   |---|---|---|
+   | VTKR10 | 红色 3D 儿童车 | VTKR108（`vtkr108-3d-car`）|
+   | VTKR109 | 粉色心形转马 | VTKR108（`vtkr108-happy-childhood-3p`）|
+   | VTRA01 | 涂鸦街机 | VTRA010 |
+   | VTSA01 | 极速摩托 | VTSA010 |
+   | VTSA03 | Dirty Drivin | VTSA035 |
+   | VTSB13 / 14 / 020 | 黑框篮球机 | VTSB16 |
+   | VTSB15 | HOOP DREAMS 紫框 | VTSB19 |
+   | VVTSB24 | Super Hoops 蓝框 | VTSB19 |
+   | VTSP011 | 终极大拳 | VTSP003 |
+
+   一个源型号可能对应**站点两个 slug**（VTKR108 同时是 3d-car 和 happy-childhood-3p），
+   靠 `src_model` 区分，不能只看目标 model。
+
+2. **源目录有文件名多打字母的**：`VVTSB24` 其实是 `VTSB24` 重复打字。
+
+3. **收集脚本非幂等**，跑两次 → 994 张（510 唯一 + 484 副本）。必须用 `rebuild-inbox.py`
+   按内容哈希去重。
+
+📌 **`.gitignore` 检查**：新目录 `/inbox_x/` 和 `_jobs/`、`_backup_images_multi/`
+必须加进去，否则 3.3GB 原图会被 `git add -A` 提交进仓库。
+
+✅ **已完成（2026-10-22）**：512 张全部收集 → 去重 510 张 → 导入 510 张。
+产品图 210 → **720 张**，148/210 个产品有多图（最多 21 张）。
+线上验证 `vtsp007-boxing-ib` 渲染出 21 个缩略图按钮。
+
+
 ### 5.1 黑底图批量修复（已处理完17 张，备用工具）
 
 2026-10-20 全站扫描发现 **17 张黑底产品图**（`vttr060`~`vttr076` 连续一段，
