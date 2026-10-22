@@ -36,37 +36,30 @@ LUM_MAX = 118
 
 
 def fix_dark_bg(im):
-    """暗且中性的像素（黑背景）提为纯白（numpy 加速版）"""
-    im = im.convert("RGB")
-    try:
-        import numpy as np
-        a = np.asarray(im).copy()
-        lum = a.max(axis=2)
-        sat = lum - a.min(axis=2)
-        mask = (lum < LUM_MAX) & (sat < MAX_SAT)
-        if mask.any():
-            a[mask] = (255, 255, 255)
-            im = Image.fromarray(a, "RGB")
-        return im
-    except ImportError:
-        # 退化为纯 Python 逐像素
-        w, h = im.size
-        px = im.load()
-        out = im.copy()
-        opx = out.load()
-        for y in range(h):
-            for x in range(w):
-                r, g, b = px[x, y]
-                lum = max(r, g, b)
-                sat = lum - min(r, g, b)
-                if lum < LUM_MAX and sat < MAX_SAT:
-                    opx[x, y] = (255, 255, 255)
-        return out
+    """⚠️ 已停用（2026-10-22）
+
+    原为「纯黑底抠图」设计（阈值 lum<118 且 sat<42 → 刷白）。
+    对这批产品实拍图完全不适用：黑色机身也被判成黑背景刷掉，
+    画面几乎全白、机身细节全丢（例：vtsa043 黑机身+绿火焰 → 机身全白）。
+
+    这批原图本身就是干净白底，**不需要修背景**。故此处直接返回原图。
+    如确需处理纯黑底，必须用「连通区域 + 边缘泛洪」只替换与画面边缘相连的
+    背景像素，绝不能按像素阈值全局刷。
+    """
+    return im
 
 
 def compress(src, dst):
     im = Image.open(src)
     im = fix_dark_bg(im)
+    # PNG 可能带 alpha 通道，JPEG 不支持 —— 白底合成
+    if im.mode in ("RGBA", "LA", "P"):
+        im = im.convert("RGBA")
+        bg = Image.new("RGB", im.size, (255, 255, 255))
+        bg.paste(im, mask=im.split()[-1])
+        im = bg
+    elif im.mode != "RGB":
+        im = im.convert("RGB")
     w, h = im.size
     if max(w, h) > MAX_EDGE:
         s = MAX_EDGE / max(w, h)

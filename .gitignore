@@ -26,6 +26,9 @@ public/images/products/_fixed_preview/
 # 黑底图修复前的原始备份（保留在本机，不进仓库）
 _backup_images_black/
 
+# 错误黑底修复产物（白色污染图）的回滚备份，仅本机留存，不进仓库
+_backup_darkfix_polluted/
+
 # 多图导入工具的收件箱与备份（照片不入库，只提交压缩后的产物）
 /inbox/
 /inbox_x/
