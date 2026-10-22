@@ -1,0 +1,5 @@
+{
+  "env": {
+    "CODEBUDDY_CODE_MAX_IMAGE_MB_PER_TURN": "0"
+  }
+}

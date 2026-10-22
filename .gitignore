@@ -28,5 +28,11 @@ _backup_images_black/
 
 # 多图导入工具的收件箱与备份（照片不入库，只提交压缩后的产物）
 /inbox/
+/inbox_x/
+/inbox_x.bak-*/
 _backup_images_import/
+_backup_images_multi/
 .imported-images.json
+
+# 采集/映射过程中的中间产物（原图副本很大，不入库）
+/_jobs/
