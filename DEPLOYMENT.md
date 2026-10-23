@@ -264,7 +264,7 @@ git push
 
 **已就绪（无需改动）**
 - 公司法定名 Guangzhou Veetop Amusement Technology Co., Ltd.、域名 veetopamusement.com；
-- 邮箱 `Sales@veetopamusement.com`、电话/WhatsApp `+86 188 2417 5545`、地址（广州番禺区新水坑）；
+- 邮箱 `sales@veetopamusement.com`、电话/WhatsApp `+86 188 2417 5545`、地址（广州番禺区新水坑）；
 - 公司事实：21+ 年 / 150+ 出口国 / CE 认证 / OEM·ODM（`companyFacts`，首页、About、JSON-LD、llms.txt 同源引用）；
 - 产品目录 33 个真实产品（型号/净尺寸/功率抄录自画册），FAQ 全部为"以报价确认为准"的咨询式口径，站内无演示提示条、无 SAMPLE 徽标。
 

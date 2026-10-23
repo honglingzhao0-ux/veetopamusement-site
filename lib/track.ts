@@ -2,14 +2,20 @@
  * 点击统计上报（可在Server / Client 两侧安全引用）
  *
  * 用途：为首页 Flagship Models 选品提供真实点击/询盘热度依据。
- * 数据投递到已有的 Formspree 端点（本站是纯静态导出，不能有 API Route）。
+ * 数据投递到与询盘表单相同的 Web3Forms 端点（本站是纯静态导出，不能有 API Route）。
  *
  * 隐私：只上报 事件类型 / 产品型号 / 来源路径 / referrer / 时间戳。
  *      不涉及 IP、Cookie、指纹、姓名邮箱等任何访客身份信息。
  */
 
+import site from "@/site.config";
+
 const FORM_ENDPOINT =
-  process.env.NEXT_PUBLIC_TRACK_ENDPOINT || "https://formspree.io/f/xnpqgnoz";
+  process.env.NEXT_PUBLIC_TRACK_ENDPOINT ||
+  site.contact.formEndpoint ||
+  "https://api.web3forms.com/submit";
+
+const ACCESS_KEY = site.contact.formAccessKey;
 
 /** 本地开发时不上报，避免污染真实数据 */
 function isDisabled(): boolean {
@@ -24,6 +30,7 @@ function send(event: string, model: string): void {
   if (isDisabled()) return;
   try {
     const fd = new FormData();
+    if (ACCESS_KEY) fd.append("access_key", ACCESS_KEY);
     fd.append("_subject", `STAT: ${event} | ${model}`);
     fd.append("event", event);
     fd.append("model", model);

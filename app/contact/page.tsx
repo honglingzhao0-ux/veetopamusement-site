@@ -5,7 +5,7 @@ import InquiryForm from "@/components/inquiry-form";
 export const metadata: Metadata = {
   title: "Contact Us - Request a Quote",
   description:
-    "Contact Guangzhou Veetop Amusement Technology Co., Ltd. for quotations, OEM/ODM projects and factory visits. Email Sales@veetopamusement.com or WhatsApp +86 188 2417 5545.",
+    "Contact Guangzhou Veetop Amusement Technology Co., Ltd. for quotations, OEM/ODM projects and factory visits. Email sales@veetopamusement.com or WhatsApp +86 188 2417 5545.",
   alternates: { canonical: "/contact/" },
 };
 

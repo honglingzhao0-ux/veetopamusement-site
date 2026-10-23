@@ -133,7 +133,7 @@ npx serve out -l 4173   # 然后访问 http://localhost:4173
 ## 6. 上线前核对：已就绪项与待补充项
 
 **已就绪（交付时已填入真实内容）**
-- `site.config.ts`：公司法定名、域名、邮箱 `Sales@veetopamusement.com`、电话/WhatsApp `+86 188 2417 5545`、地址（广州番禺区新水坑）、公司事实（21+ 年 / 150+ 出口国 / CE 认证 / OEM·ODM）。
+- `site.config.ts`：公司法定名、域名、邮箱 `sales@veetopamusement.com`、电话/WhatsApp `+86 188 2417 5545`、地址（广州番禺区新水坑）、公司事实（21+ 年 / 150+ 出口国 / CE 认证 / OEM·ODM）。
 - 产品目录 `data/products/*.json`：33 个真实产品，型号与净尺寸/功率抄录自官方画册（VTSA/VTSB/VTTR/VTPG/VTKR/VTRA/VTSS 系列），分类到 6 个 SEO 品类页；每个产品仅标注 CE，不含编造的 MOQ/交期/保修数字。
 - FAQ 三层（站级 `/faq/`、品类页、产品详情）：全部改为"以报价确认为准"的咨询式口径。
 - 演示痕迹已全部移除：无演示开关、无 SAMPLE 徽标、无 "Demo site" 提示条。

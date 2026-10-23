@@ -60,7 +60,7 @@ const site = {
   /* 联系方式（公司提供）                                               */
   /* ------------------------------------------------------------------ */
   contact: {
-    email: "Sales@veetopamusement.com",
+    email: "sales@veetopamusement.com",
     whatsapp: {
       // 仅数字、含国家码（用于 wa.me 跳转）
       number: "8618824175545",
@@ -92,10 +92,19 @@ const site = {
         longitude: "",
       },
     },
-    // 询盘表单提交端点：Formspree -> "https://formspree.io/f/xxxxxxx"
-    // Web3Forms -> "https://api.web3forms.com/submit"（需配 access_key 隐藏域）
-    // 当前已配置 Formspree 端点：表单直接 POST，收件邮箱为 Formspree 后台绑定邮箱
-    formEndpoint: "https://formspree.io/f/xnpqgnoz",
+    // 询盘表单提交端点（Web3Forms）
+    // Web3Forms 的 access_key 就是收件邮箱的别名：后台用哪个邮箱注册，
+    // 询盘就发到哪个邮箱。key 可公开放在前端（官方明确说明设计如此）。
+    formEndpoint: "https://api.web3forms.com/submit",
+    // Web3Forms access key —— 在 https://app.web3forms.com 用
+    // sales@veetopamusement.com 注册后创建表单即可获得（形如 w3f_xxxx）
+    // ⚠️ 必须在阿里企业邮箱确认 sales@ 能正常收信之后再创建 key，
+    //    否则 Web3Forms 会把该地址列入抑制列表，之后全部收不到。
+    formAccessKey: "8b447b35-bd71-428d-a74c-276c7ac8ed87",
+    // 蜜罐字段：Web3Forms 的反垃圾机制（真人看不到，机器人会填）
+    formBotField: "botcheck",
+    // 来源标记：随询盘一起发来，方便你区分站内表单 / 埋点统计
+    formSourceLabel: "veetopamusement.com website",
     formNote:
       "For a quotation please tell us the model, quantity, destination port and country. Our export team will confirm price and delivery details.",
   },

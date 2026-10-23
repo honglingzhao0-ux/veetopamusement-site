@@ -31,6 +31,7 @@ const BUSINESS_TYPE_OPTIONS = [
  */
 export default function InquiryForm() {
   const endpoint = site.contact.formEndpoint;
+  const accessKey = site.contact.formAccessKey;
   const [product, setProduct] = useState("");
   const [status, setStatus] = useState<{ ok: boolean; text: string } | null>(
     null,
@@ -49,7 +50,7 @@ export default function InquiryForm() {
 
     if (endpoint) {
       setBusy(true);
-      const res = await postInquiry(endpoint, fd);
+      const res = await postInquiry(endpoint, fd, accessKey);
       setBusy(false);
       setStatus({ ok: res.ok, text: res.message });
       if (res.ok) {
@@ -93,7 +94,29 @@ export default function InquiryForm() {
 
       {/* 场景化附加字段（endpoint 场景一并随 POST 提交；Formspree/Web3Forms 均兼容） */}
       {endpoint && (
-        <input type="hidden" name="_subject" value="VEETOP website inquiry" />
+        <>
+          <input type="hidden" name="_subject" value="VEETOP website inquiry" />
+          {/* Web3Forms：access_key 必须是请求体的一部分，key 设计上允许公开 */}
+          {accessKey && <input type="hidden" name="access_key" value={accessKey} />}
+          {/* 来源标记：方便收件时区分站内表单与埋点统计 */}
+          <input
+            type="hidden"
+            name="source"
+            value={site.contact.formSourceLabel}
+          />
+        </>
+      )}
+
+      {/* 蜜罐反垃圾：真人看不到（display:none），填了就是机器人 */}
+      {endpoint && (
+        <input
+          type="checkbox"
+          name={site.contact.formBotField}
+          tabIndex={-1}
+          autoComplete="off"
+          aria-hidden="true"
+          style={{ display: "none" }}
+        />
       )}
 
       <div className="form-grid">
