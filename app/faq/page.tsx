@@ -79,8 +79,9 @@ export default function FaqPage() {
           >
             <h2 className="h-md">Still have a question?</h2>
             <p style={{ color: "var(--muted)", maxWidth: "52ch", margin: "0 auto 18px" }}>
-              Send us your requirements - our export team will confirm pricing,
-              MOQ and delivery time in the quotation.
+              Send us your requirements - our export team will confirm pricing
+              and MOQ in the quotation. Standard production lead time is{" "}
+              {site.trade.leadTime}.
             </p>
             <p style={{ display: "flex", gap: 10, justifyContent: "center", flexWrap: "wrap" }}>
               <Link href="/contact/" className="btn btn--accent">

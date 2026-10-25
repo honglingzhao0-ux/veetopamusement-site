@@ -50,7 +50,8 @@ export default function ThankYouPage() {
           <h1 className="h-xl">Thank You for Contacting VEETOP</h1>
           <p className="lede" style={{ margin: "0 auto 8px" }}>
             Your inquiry has been sent successfully. Our export team will
-            confirm pricing, MOQ and delivery time in the quotation.
+            confirm pricing and MOQ in the quotation. Standard production lead
+            time is {site.trade.leadTime}.
           </p>
           <p style={{ color: "var(--muted)", marginBottom: 26 }}>
             Need a faster answer? Reach us directly on WhatsApp or email.

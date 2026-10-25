@@ -244,8 +244,12 @@ function ProductView({
                   <dd>On request - quotation basis</dd>
                 </div>
                 <div className="trade-row">
-                  <dt>MOQ / Lead Time</dt>
+                  <dt>MOQ</dt>
                   <dd>Confirmed in the quotation</dd>
+                </div>
+                <div className="trade-row">
+                  <dt>Lead Time</dt>
+                  <dd>{site.trade.leadTime}</dd>
                 </div>
               </dl>
             </div>

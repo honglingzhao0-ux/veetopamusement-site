@@ -37,7 +37,7 @@ A few things you can do directly on the site:
 - Filter the [full product list](/products/) by category, or search by model number
 - See [category landing pages](/products/arcade-video-games/) with the full range for each line
 - Check [CE certification and trade terms](/faq/) before you order
-- [Ask for a quotation](/contact/) with your venue details and our export team will confirm pricing, MOQ and delivery timing
+- [Ask for a quotation](/contact/) with your venue details and our export team will confirm pricing, MOQ and delivery timing (standard production lead time is 5-25 days)
 
 ## Ordering, customization and shipping
 
@@ -46,7 +46,7 @@ We manufacture rather than trade, which means the customization path is direct. 
 Typical order process:
 
 1. Send the model numbers, quantities, destination port and country
-2. We confirm price, lead time, container loading plan and shipping terms in the quotation
+2. We confirm price, lead time (5-25 days standard production), container loading plan and shipping terms in the quotation
 3. Production against the confirmed specification, with progress photos
 4. Balance against shipping documents, then dispatch
 

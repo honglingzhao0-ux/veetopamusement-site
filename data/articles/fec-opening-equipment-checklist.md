@@ -86,6 +86,6 @@ These are the questions that separate a supplier who will support your venue for
 
 The most productive way to start is a short specification of your venue: floor area, target audience, budget band, destination port and country. From that, a good supplier will propose a machine mix and tell you honestly if the budget is realistic.
 
-We have been manufacturing arcade and amusement equipment for over 21 years and export to more than 150 countries. Whether you are opening a 200 square metre corner unit in a mall or a 2,000 square metre standalone FEC, tell us the venue details and our export team will match models to the space and confirm pricing, MOQ and delivery timing in the quotation.
+We have been manufacturing arcade and amusement equipment for over 21 years and export to more than 150 countries. Whether you are opening a 200 square metre corner unit in a mall or a 2,000 square metre standalone FEC, tell us the venue details and our export team will match models to the space and confirm pricing, MOQ and delivery timing in the quotation. Standard production lead time is 5-25 days for all models.
 
 [Start a conversation about your venue](/contact/) or [browse the full product range](/products/).

@@ -388,5 +388,10 @@
   "data/products/vtsp008-boxing-ii.json:ae4c2578a24751e1": "2026-10-22T08:19:10.687Z",
   "data/products/vtsp009a-punching-kicking-iia.json:b445e9101fa7c3af": "2026-10-22T08:19:10.687Z",
   "data/products/vtsp009b-punching-kicking-iib.json:e63928cb99aff8e9": "2026-10-22T08:19:10.687Z",
-  "app/contact/page.tsx:de040d72e704d504": "2026-10-23T01:35:55.615Z"
+  "app/contact/page.tsx:de040d72e704d504": "2026-10-23T01:35:55.615Z",
+  "app/page.tsx:650d6e72fa99b044": "2026-10-25T11:49:24.133Z",
+  "app/faq/page.tsx:4a402e8699c34906": "2026-10-25T11:49:24.133Z",
+  "data/categories.json:86c9b5b7050825e3": "2026-10-25T11:49:24.133Z",
+  "data/articles/fec-opening-equipment-checklist.md:7bcd941af45caf72": "2026-10-25T11:49:24.133Z",
+  "data/articles/veetop-catalogue-2026-update.md:4ae4cc63d3af70de": "2026-10-25T11:49:24.133Z"
 }

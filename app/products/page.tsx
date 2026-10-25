@@ -44,8 +44,9 @@ export default function ProductsPage() {
           <ProductExplorer categories={categories} products={products} />
 
           <p style={{ marginTop: 26, fontSize: "0.88rem", color: "var(--muted)" }}>
-            Net sizes and power ratings follow our official catalogue; unit
-            pricing, MOQ and lead time are confirmed by quotation. Contact{" "}
+            Net sizes and power ratings follow our official catalogue; standard
+            production lead time is {site.trade.leadTime} for all models. Unit
+            pricing and MOQ are confirmed by quotation. Contact{" "}
             {site.contact.email} for details.
           </p>
         </div>

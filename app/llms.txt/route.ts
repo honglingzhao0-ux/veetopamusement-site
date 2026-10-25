@@ -37,6 +37,10 @@ export function GET() {
   );
   lines.push(`Address: ${site.contact.address.line1}, ${site.contact.address.line2}`);
   lines.push("");
+  lines.push(
+    `Trade terms: standard production lead time ${site.trade.leadTime} (all models). MOQ depends on model and order type, confirmed in the quotation.`,
+  );
+  lines.push("");
   lines.push("## Products");
   for (const p of products) {
     lines.push(

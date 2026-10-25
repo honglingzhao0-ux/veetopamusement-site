@@ -110,6 +110,25 @@ const site = {
   },
 
   /* ------------------------------------------------------------------ */
+  /* 贸易条款（数字唯一来源）                                            */
+  /*   交期口径全站一致：产品详情页 trade-card / 站级 FAQ / 品类 FAQ /  */
+  /*   llms.txt 均引用此处，改一处即全站生效。                          */
+  /* ------------------------------------------------------------------ */
+  trade: {
+    /**
+     * 标准交期（生产周期）。公司口径：所有型号交期 5–25 天。
+     * 注：海运/空运在途时间不含在内，最终以报价单确认。
+     */
+    leadTime: "5-25 days",
+    /** 交期补充说明（产品页 / FAQ 用） */
+    leadTimeNote:
+      "Standard production lead time is 5-25 days for all models. Shipping time is not included and depends on destination port and shipping method.",
+    /** MOQ 口径：因型号而异，仍引导向报价确认 */
+    moqNote:
+      "MOQ depends on the model and order type - sample and container orders can both be discussed with our sales team.",
+  },
+
+  /* ------------------------------------------------------------------ */
   /* 企业数据声明（画册第 2 页，可核实）—— 数字唯一来源                */
   /* ------------------------------------------------------------------ */
   companyFacts: {
@@ -155,7 +174,7 @@ const site = {
     },
     {
       q: "What is the minimum order quantity?",
-      a: "Minimum quantity depends on the model and is confirmed together with the quotation. Sample orders and container orders can both be discussed with our sales team.",
+      a: "MOQ depends on the model and order type - sample and container orders can both be discussed with our sales team. MOQ is confirmed together with the quotation.",
     },
     {
       q: "How do I get a quotation?",
@@ -167,7 +186,7 @@ const site = {
     },
     {
       q: "What is the production and delivery lead time?",
-      a: "Lead time depends on the model, stock status and order size. We confirm the exact schedule in the quotation before you place the order.",
+      a: "Standard production lead time is 5-25 days for all models. Shipping time is not included and depends on destination port and shipping method. The exact schedule is confirmed in the quotation before you place the order.",
     },
     {
       q: "Do you provide after-sales support?",
@@ -203,11 +222,11 @@ const site = {
     },
     {
       q: "What is the minimum order quantity?",
-      a: "Minimum quantity depends on the model and order type - please ask our sales team and it will be confirmed with the quotation.",
+      a: "MOQ depends on the model and order type - please ask our sales team and it will be confirmed with the quotation.",
     },
     {
       q: "What is the delivery lead time?",
-      a: "Lead time depends on stock status and order size and is confirmed in the quotation before you place the order.",
+      a: "Standard production lead time is 5-25 days for all models, confirmed in the quotation before you place the order. Shipping time is not included.",
     },
     {
       q: "Can this machine be customized for my market?",

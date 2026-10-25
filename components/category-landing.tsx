@@ -149,7 +149,8 @@ export default function CategoryLanding({
             <h2 className="h-lg">Need {category.name.toLowerCase()} for Your Venue?</h2>
             <p>
               Tell us your quantity and destination port - our export team will
-              confirm pricing, MOQ and delivery time in the quotation.
+              confirm pricing and MOQ in the quotation. Standard production lead
+              time is {site.trade.leadTime}.
             </p>
           </div>
           <div className="cta-band__actions">

@@ -313,7 +313,8 @@ export default function HomePage() {
             <h2 className="h-lg">Ready to Source for Your Venue?</h2>
             <p>
               Send your target models and quantity - our export team will
-              confirm price, MOQ and delivery time in the quotation.
+              confirm price and MOQ in the quotation. Standard production lead
+              time is {site.trade.leadTime}.
             </p>
           </div>
           <div className="cta-band__actions">
