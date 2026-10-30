@@ -1,0 +1,17 @@
+====================================================================================================
+slug                                                            words  tbl   h2  title
+====================================================================================================
+claw-crane-prize-cost-and-margin-breakdown                       1409    3    8     60
+claw-crane-claw-strength-tuning-guide                            1806    5   10     50
+arcade-simulator-buying-guide                                    1827    6    7     51
+arcade-power-and-plug-standards                                  1785    6    8     52
+how-to-negotiate-moq-amusement-machines                          1864    2    9     58
+fob-vs-cif-for-amusement-equipment-imports                       1849    4    8     53
+ce-certification-for-amusement-machines                          1898    5    8     56
+container-loading-calculation-for-arcade-machines                1870    2    8     58
+fec-vs-mall-store-which-business-model-to-choose                 1895    3   10     49
+us-europe-middle-east-market-differences-for-amusement-machine-importers   1891    3   10     59
+====================================================================================================
+合计 10/11 篇，总词数 18094
+
+✅ 全部校验通过

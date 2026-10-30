@@ -1,0 +1,4 @@
+@next exists=True
+@next entries=['env', 'swc-win32-x64-msvc']
+swc-load rc=0 out=b'mdxCompile,mdxCompileSync,minify,minifySync,parse,isReactCompilerRequired,getModuleNamedExports,warnForEdgeRuntime\n' err=b''
+network rc=0 out=b'HTTP 308 https://api.vercel.com/\nHTTP 200 https://registry.npmjs.org/\n' err=b''

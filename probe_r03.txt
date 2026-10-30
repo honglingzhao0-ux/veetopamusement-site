@@ -1,0 +1,6 @@
+=== gb_build.log exists=True size=70 ===
+   ▲ Next.js 15.5.25
+
+   Creating an optimized production build ...
+
+=== gb_build_rc.txt exists=False ===

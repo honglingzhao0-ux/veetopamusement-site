@@ -107,6 +107,22 @@ const site = {
     formSourceLabel: "veetopamusement.com website",
     formNote:
       "For a quotation please tell us the model, quantity, destination port and country. Our export team will confirm price and delivery details.",
+
+    /* ------------------------------------------------------------------ */
+    /* 浏览埋点（独立通道）                                                */
+    /*   问题：埋点原先与询盘共用上面的 endpoint + access_key，导致         */
+    /*   ① 每次产品页浏览都消耗 Web3Forms 免费版 250 次/月额度，真询盘被挤掉 */
+    /*   ② 询盘邮件与 STAT: 埋点邮件混在同一收件箱，真询盘被淹没            */
+    /*   解决：埋点走独立邮箱注册的 access_key（建议 stats@veetopamusement.com）*/
+    /*   → 埋点额度独立统计，询盘邮箱只收真询盘                           */
+    /*   ⚠️ 若下面留空，埋点会自动降级为「不发送」，不会退回共用询盘通道   */
+    /* ------------------------------------------------------------------ */
+    tracking: {
+      /** 埋点专用 access key（用第二个邮箱在 app.web3forms.com 注册后填入） */
+      accessKey: "",
+      /** 埋点专用收件邮箱（仅作注释说明，实际收件由 key 决定） */
+      mailbox: "stats@veetopamusement.com",
+    },
   },
 
   /* ------------------------------------------------------------------ */

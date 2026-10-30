@@ -1,0 +1,6 @@
+mem_load=57% total_phys=31.8GB avail_phys=13.4GB avail_pagefile=12.3GB
+write .next: OK
+rmtree .next subdir: OK
+write out: OK
+rmtree out subdir: OK
+out file count=1489

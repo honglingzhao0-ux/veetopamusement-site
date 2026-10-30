@@ -1,0 +1,10 @@
+tsc.log exists=True size=0 mtime=2026-10-29T13:19:10.075843
+tsc.rc.txt exists=True size=6 mtime=2026-10-29T13:19:10.076863
+build.log exists=False
+build.rc.txt exists=False
+probe.log exists=True size=15 mtime=2026-10-29T13:20:59.814986
+tmp_probe.txt exists=True size=49 mtime=2026-10-29T13:20:59.721201
+runner_stdout.txt exists=True size=0 mtime=2026-10-29T13:20:45.544319
+runner exists=True
+out_dir exists=True
+out_files=1489
