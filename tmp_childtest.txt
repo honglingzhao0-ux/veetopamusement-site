@@ -1,7 +1,0 @@
-plain rc=0 out=b'plain-ok\n' err=b''
-spawned pid=29564
-spawn-parent rc=0 out=b'' err=b''
-piped-child exit=0 stdout=child-hello
-
-piped-parent rc=0 err=b''
---- FINAL ---

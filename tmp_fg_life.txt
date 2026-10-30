@@ -1,4 +1,0 @@
-python parent start
-beat 0.0s
-beat 2.0s
-beat 4.0s
