@@ -109,32 +109,40 @@ const site = {
       "For a quotation please tell us the model, quantity, destination port and country. Our export team will confirm price and delivery details.",
 
     /* ------------------------------------------------------------------ */
-    /* 浏览埋点（独立通道）                                                */
-    /*   问题：埋点原先与询盘共用上面的 endpoint + access_key，导致         */
-    /*   ① 每次产品页浏览都消耗 Web3Forms 免费版 250 次/月额度，真询盘被挤掉 */
-    /*   ② 询盘邮件与 STAT: 埋点邮件混在同一收件箱，真询盘被淹没            */
-    /*   解决：埋点走独立邮箱注册的 access_key（建议 stats@veetopamusement.com）*/
-    /*   → 埋点额度独立统计，询盘邮箱只收真询盘                           */
-    /*   ⚠️ 若下面留空，埋点会自动降级为「不发送」，不会退回共用询盘通道   */
+    /* 浏览埋点（与询盘共用 sales@ 同一邮箱 / 同一 Web3Forms key）          */
     /*                                                                  */
-    /*   👉 启用步骤（一次性，约 5 分钟）：                              */
-    /*   1. 阿里企业邮箱后台新建 stats@veetopamusement.com 账号           */
-    /*   2. 用该邮箱在 app.web3forms.com 注册，创建表单拿到 access_key    */
-    /*   3. 把 access_key 填到下面 accessKey 字段，或直接用环境变量      */
-    /*      NEXT_PUBLIC_TRACK_ACCESS_KEY（无需改代码、不用发版即可生效）  */
+    /*   前提事实：Web3Forms 免费版 250 次/月是**账号级**配额，          */
+    /*   同一个邮箱注册多个 key 并不会得到独立配额 —— 所以不存在        */
+    /*   「换个邮箱就隔离了」这种解法。                                */
     /*                                                                  */
-    /*   🛡️ 额度保护：即使配了 key，也有会话/每日双层闸门兜底，           */
-    /*   爬虫狂刷不会撞穿 Web3Forms 免费版配额，真询盘额度永远优先。      */
+    /*   正确解法：把埋点消耗压到可以忽略，剩下的额度全留给真询盘。    */
+    /*   ① 询盘不再单独上报 —— 一次真询盘只消耗 1 次额度              */
+    /*      （旧实现表单 + submit 监听器各发一次，白白双倍消耗）        */
+    /*   ② 浏览/点击事件批量打包 —— 攒够 batchSize 条才发一次，        */
+    /*      1 次额度换回 N 条数据                                     */
+    /*   ③ 三层闸门兜底 —— 单会话 / 单日 / 单月事件数上限              */
+    /*                                                                  */
+    /*   埋点邮件与询盘邮件会混在同一个收件箱，靠 _subject 的            */
+    /*   "STAT:" 前缀区分（scripts/analyze-stats.py 已适配批量格式）。  */
+    /*                                                                  */
+    /*   不想收到埋点邮件时：把 accessKey 置空，或设环境变量            */
+    /*   NEXT_PUBLIC_TRACK_ACCESS_KEY="" → 埋点整体停发，询盘不受影响。 */
     /* ------------------------------------------------------------------ */
     tracking: {
-      /** 埋点专用 access key（用第二个邮箱在 app.web3forms.com 注册后填入） */
+      /**
+       * 埋点用 access key。
+       * 留空 → 自动复用上面的 formAccessKey（同一个 sales@ 邮箱）。
+       * 填值 → 用该 key（可用环境变量 NEXT_PUBLIC_TRACK_ACCESS_KEY 覆盖）。
+       */
       accessKey: "",
-      /** 埋点专用收件邮箱（仅作注释说明，实际收件由 key 决定） */
-      mailbox: "stats@veetopamusement.com",
-      /** 单次会话最多上报条数（防爬虫狂刷，超出即丢弃） */
+      /** 单次会话最多上报事件数（防爬虫狂刷，超出即丢弃） */
       maxPerSession: 20,
-      /** 同一浏览器每天最多上报条数（防长期占用配额） */
+      /** 同一浏览器每天最多上报事件数 */
       maxPerDay: 80,
+      /** 同一浏览器每月最多上报事件数 —— 保住 250 次账号配额的兜底 */
+      maxPerMonth: 150,
+      /** 攒够多少条事件打包发一次（1 次额度换 N 条数据） */
+      batchSize: 5,
     },
   },
 
