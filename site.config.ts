@@ -116,12 +116,25 @@ const site = {
     /*   解决：埋点走独立邮箱注册的 access_key（建议 stats@veetopamusement.com）*/
     /*   → 埋点额度独立统计，询盘邮箱只收真询盘                           */
     /*   ⚠️ 若下面留空，埋点会自动降级为「不发送」，不会退回共用询盘通道   */
+    /*                                                                  */
+    /*   👉 启用步骤（一次性，约 5 分钟）：                              */
+    /*   1. 阿里企业邮箱后台新建 stats@veetopamusement.com 账号           */
+    /*   2. 用该邮箱在 app.web3forms.com 注册，创建表单拿到 access_key    */
+    /*   3. 把 access_key 填到下面 accessKey 字段，或直接用环境变量      */
+    /*      NEXT_PUBLIC_TRACK_ACCESS_KEY（无需改代码、不用发版即可生效）  */
+    /*                                                                  */
+    /*   🛡️ 额度保护：即使配了 key，也有会话/每日双层闸门兜底，           */
+    /*   爬虫狂刷不会撞穿 Web3Forms 免费版配额，真询盘额度永远优先。      */
     /* ------------------------------------------------------------------ */
     tracking: {
       /** 埋点专用 access key（用第二个邮箱在 app.web3forms.com 注册后填入） */
       accessKey: "",
       /** 埋点专用收件邮箱（仅作注释说明，实际收件由 key 决定） */
       mailbox: "stats@veetopamusement.com",
+      /** 单次会话最多上报条数（防爬虫狂刷，超出即丢弃） */
+      maxPerSession: 20,
+      /** 同一浏览器每天最多上报条数（防长期占用配额） */
+      maxPerDay: 80,
     },
   },
 

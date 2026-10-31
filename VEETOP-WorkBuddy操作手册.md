@@ -299,6 +299,44 @@ bash publish.sh "调整首页主推顺序"
 ⚠️ 为什么不用自建 API：本站是 `output: "export"`纯静态导出，
 **不能有 `api/*.ts`**（有会直接导致 next build 失败）。复用 Formspree 是零成本方案。
 
+### 3.5.2.1 埋点通道隔离（2026-10-30 重要修复）
+
+**问题**：埋点原先与询盘**共用** Web3Forms 的 endpoint + access_key，导致
+① 每次产品页浏览消耗免费版 250 次/月额度，真询盘会被挤掉；
+② `STAT:` 埋点邮件和真询盘邮件混在同一收件箱，真询盘被淹没。
+
+**修复**：埋点改走独立通道 `site.contact.tracking.accessKey`。
+- 未配置独立 key → **埋点整体停发**，绝不退回共用询盘通道（代码保证）
+- 环境变量 `NEXT_PUBLIC_TRACK_ACCESS_KEY` 优先于配置文件（免发版开关）
+
+**配套的额度保护**（`lib/track.ts` 的 `LIMITS`）：
+| 闸门 | 默认值 | 作用 |
+|---|---|---|
+| 单会话条数 | 20 | 防爬虫狂刷 |
+| 每日条数（按浏览器） | 80 | 防长期占用配额 |
+| 同型号去重 | 30 分钟 | 改用 localStorage，跨标签页生效 |
+
+**启用步骤（一次性，约 5 分钟）**：
+1. 阿里企业邮箱后台新建 `stats@veetopamusement.com`
+2. 用该邮箱在 app.web3forms.com 注册 → 创建表单 → 拿到 access_key
+3. 写入并发版：
+   ```bash
+   python scripts/set-tracking-key.py <access_key>
+   bash publish.sh "启用埋点独立通道"
+   ```
+   或用环境变量 `NEXT_PUBLIC_TRACK_ACCESS_KEY`，免发版生效。
+4. 校验隔离状态：
+   ```bash
+   python scripts/set-tracking-key.py --check
+   ```
+
+⚠️ **Web3Forms 的 access_key 绑定收件邮箱** —— 用哪个邮箱注册，邮件就发到哪个邮箱。
+所以埋点 key 必须用**另一个邮箱**注册，否则等于没隔离。
+`set-tracking-key.py` 会拒绝写入与询盘 key 相同的值。
+
+⚠️ 现状：**stats@ 邮箱尚未创建**（SMTP 探测返回 554 不存在），
+埋点当前处于停用状态。启用前请先完成上面第 1、2 步。
+
 ### 3.5.3 一个月后怎么用数据
 
 ```bash
