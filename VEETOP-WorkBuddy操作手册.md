@@ -299,49 +299,44 @@ bash publish.sh "调整首页主推顺序"
 ⚠️ 为什么不用自建 API：本站是 `output: "export"`纯静态导出，
 **不能有 `api/*.ts`**（有会直接导致 next build 失败）。复用 Formspree 是零成本方案。
 
-### 3.5.2.1 埋点通道隔离（2026-10-30 重要修复）
+### 3.5.2.1 埋点额度保护（2026-10-31 定稿）
 
-**问题**：埋点原先与询盘**共用** Web3Forms 的 endpoint + access_key，导致
-① 每次产品页浏览消耗免费版 250 次/月额度，真询盘会被挤掉；
-② `STAT:` 埋点邮件和真询盘邮件混在同一收件箱，真询盘被淹没。
+**先说清一个前提事实**：Web3Forms 免费版的 **250 次/月是账号级配额**，
+用同一个邮箱注册多个 access_key **不会**得到独立配额。
+所以「换个邮箱就能隔离」这条路在免费版上走不通 —— 本站只用一个 sales@ 邮箱。
 
-**修复**：埋点改走独立通道 `site.contact.tracking.accessKey`。
-- 未配置独立 key → **埋点整体停发**，绝不退回共用询盘通道（代码保证）
-- 环境变量 `NEXT_PUBLIC_TRACK_ACCESS_KEY` 优先于配置文件（免发版开关）
+**真正的 bug（已修）**：
+旧实现里一次真询盘会被消耗 **2 次**额度 ——
+`inquiry-form.tsx` 通过 Web3Forms 发一封，`analytics.tsx` 的 submit 监听器
+又调 `trackInquiry` 发一封 `STAT: inquiry`。最宝贵的真询盘额度被白白翻倍消耗。
 
-**配套的额度保护**（`lib/track.ts` 的 `LIMITS`）：
-| 闸门 | 默认值 | 作用 |
-|---|---|---|
-| 单会话条数 | 20 | 防爬虫狂刷 |
-| 每日条数（按浏览器） | 80 | 防长期占用配额 |
-| 同型号去重 | 30 分钟 | 改用 localStorage，跨标签页生效 |
+**修复手段（不换邮箱，靠代码）**：
 
-**启用步骤（一次性，约 5 分钟）**：
-1. 阿里企业邮箱后台新建 `stats@veetopamusement.com`
-2. 用该邮箱在 app.web3forms.com 注册 → 创建表单 → 拿到 access_key
-3. 写入并发版：
-   ```bash
-   python scripts/set-tracking-key.py <access_key>
-   bash publish.sh "启用埋点独立通道"
-   ```
-   或用环境变量 `NEXT_PUBLIC_TRACK_ACCESS_KEY`，免发版生效。
-4. 校验隔离状态：
-   ```bash
-   python scripts/set-tracking-key.py --check
-   ```
+| 手段 | 效果 |
+|---|---|
+| 询盘不再单独上报 | 一次真询盘只消耗 **1** 次额度（原为 2 次） |
+| 浏览/点击**批量打包** | 攒够 5 条才发一次，1 次额度换回 5 条数据 |
+| 三层闸门兜底 | 单会话 ≤20 条、单日 ≤80 条、单月 ≤150 条事件 |
 
-⚠️ **Web3Forms 的 access_key 绑定收件邮箱** —— 用哪个邮箱注册，邮件就发到哪个邮箱。
-所以埋点 key 必须用**另一个邮箱**注册，否则等于没隔离。
-`set-tracking-key.py` 会拒绝写入与询盘 key 相同的值。
+批量邮件的 subject 形如 `STAT: batch | 5 event(s)`，
+明细在 `events` 字段的 JSON 里，`scripts/analyze-stats.py` 已适配
+（新旧两种格式都能解析，且 view 事件不再被跳过）。
 
-⚠️ 现状：**stats@ 邮箱尚未创建**（SMTP 探测返回 554 不存在），
-埋点当前处于停用状态。启用前请先完成上面第 1、2 步。
+**开关方式**：
+```bash
+# 想临时停掉埋点（询盘完全不受影响）
+# 方式一：site.config.ts 把 tracking.accessKey 置空并发版
+# 方式二：设环境变量 NEXT_PUBLIC_TRACK_ACCESS_KEY=""（免发版）
+```
+代码保证：埋点 key 为空 → 埋点整体停发，**绝不占用询盘额度**。
+
+⚠️ 埋点邮件与询盘邮件会混在同一个收件箱，靠 `_subject` 的 `STAT:` 前缀区分。
 
 ### 3.5.3 一个月后怎么用数据
 
 ```bash
-# 1. Formspree 后台 → Inbox → 只选 subject 以 STAT: 开头的邮件 → 导出 CSV
-# 2. 分析排名（click 权重 1，inquiry 权重 10）
+# 1. app.web3forms.com → Inbox → 只选 subject 以 STAT: 开头的邮件 → 导出 CSV
+# 2. 分析排名（click 权重 1，view 权重 2，inquiry 权重 10）
 python scripts/analyze-stats.py stats.csv
 
 # 3. 按排名改 set-featured-rank.py 的 RANK，重跑 + 发布
