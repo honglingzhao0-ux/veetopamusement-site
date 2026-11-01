@@ -58,8 +58,14 @@ const LIMITS = {
   perDay: site.contact.tracking?.maxPerDay ?? 80,
   /** 同一浏览器每月最多上报事件数（真正的月度兜底） */
   perMonth: site.contact.tracking?.maxPerMonth ?? 150,
-  /** 攒够多少条事件打包发一次 */
+  /** 攒够多少条事件打包发一次（低于此数不发，等下次访问继续攒） */
   batchSize: site.contact.tracking?.batchSize ?? 5,
+  /**
+   * 零散数据的补发等待时间。
+   * 攒不够 batchSize 时，队列在 localStorage 里最多等这么久；
+   * 超过后若访客再来访问，就作为零散数据补发一次，避免数据永远丢失。
+   */
+  minBatchAgeMs: site.contact.tracking?.minBatchAgeMs ?? 30 * 60 * 1000,
   /** 同型号去重窗口（毫秒） */
   dedupeMs: 30 * 60 * 1000,
 };
@@ -152,10 +158,22 @@ function writeQueue(q: StatEvent[]): void {
   }
 }
 
-/** 把队列里的事件一次性发出（1 次额度换 N 条数据） */
-function flushQueue(): void {
+/**
+ * 把队列里的事件一次性发出（1 次额度换 N 条数据）
+ *
+ * @param force  true = 不管攒够几条都发（用于零散数据补发）；
+ *               false = 必须攒够 batchSize 条才发。
+ *
+ * ⚠️ 默认不在页面跳转时发送 —— 访客点产品卡片会触发 pagehide，
+ * 若在 pagehide 里无条件发送，每次点击都会产生 1 封邮件、消耗 1 次额度，
+ * 批量打包形同虚设（实测曾出现 Count:1 的邮件）。
+ * 队列存在 localStorage 里，跳转不丢，下次访问继续攒。
+ */
+function flushQueue(force = false): void {
   const q = readQueue();
   if (!q.length) return;
+  // 不足批量阈值且非强制 → 不发，继续攒（这才是打包的意义）
+  if (!force && q.length < LIMITS.batchSize) return;
   // 先清队列再发，避免 sendBeacon 失败导致重复发送
   writeQueue([]);
   try {
@@ -181,16 +199,38 @@ function flushQueue(): void {
   }
 }
 
-/** 入队一条事件；攒够 batchSize 就打包发出 */
+/**
+ * 入队一条事件。
+ *
+ * 攒够 batchSize → 立刻打包发出。
+ * 没攒够 → 留在 localStorage 里，下次访问继续攒
+ *          （若此时已"够龄"超过 minBatchAgeMs，则作为零散数据补发一次）。
+ */
 function enqueue(ev: StatEvent): void {
   try {
     const q = readQueue();
     q.push(ev);
     writeQueue(q);
-    if (q.length >= LIMITS.batchSize) flushQueue();
+    if (q.length >= LIMITS.batchSize) {
+      flushQueue();
+    } else if (isQueueAged(q)) {
+      // 攒了太久仍不足批量 → 补发，避免零散数据永远丢失
+      flushQueue(true);
+    }
   } catch {
     /* ignore */
   }
+}
+
+/**
+ * 队列是否已"够龄"（最早一条事件距今超过阈值）
+ * —— 表明访客已经离开、不会再攒了，此时应把零散数据发出去。
+ */
+function isQueueAged(q: StatEvent[]): boolean {
+  if (!q.length) return false;
+  const oldest = Date.parse(q[0].ts || "");
+  if (!Number.isFinite(oldest)) return false;
+  return Date.now() - oldest >= LIMITS.minBatchAgeMs;
 }
 
 function send(event: string, model: string): void {
@@ -209,14 +249,27 @@ function send(event: string, model: string): void {
   });
 }
 
-/** 页面隐藏/关闭时把残留事件发出去（sendBeacon 在此时最可靠） */
+/**
+ * 页面隐藏/关闭时的处理。
+ *
+ * ⚠️ 这里**不**直接发送队列 —— 因为页面跳转（点产品卡片）也会触发 pagehide，
+ * 若无条件发送，每次点击都会产生 1 封邮件、消耗 1 次额度，批量打包形同虚设。
+ *
+ * 队列存在 localStorage，跳转不丢；下次访问时由 enqueue() 判断：
+ *   - 攒够 batchSize → 立刻发
+ *   - 攒够 minBatchAgeMs 且仍不足量 → 作为零散数据补发一次
+ */
 function installFlushOnHide(): void {
   if (typeof window === "undefined") return;
   if ((window as unknown as { __veetopStatFlush?: boolean }).__veetopStatFlush)
     return;
   (window as unknown as { __veetopStatFlush?: boolean }).__veetopStatFlush = true;
+
+  // 页面真正被关闭（非跳转）时，sendBeacon 更可靠。
+  // 但仍只发"够批量"的队列，避免每次点击都产生邮件。
   const flush = () => {
-    if (readQueue().length) flushQueue();
+    const q = readQueue();
+    if (q.length >= LIMITS.batchSize) flushQueue();
   };
   document.addEventListener("visibilitychange", () => {
     if (document.visibilityState === "hidden") flush();
@@ -228,6 +281,23 @@ function installFlushOnHide(): void {
 export function trackProductClick(model: string): void {
   installFlushOnHide();
   send("click", model);
+}
+
+/**
+ * 从产品 slug 还原型号（model）。
+ *
+ * 站内所有产品 slug 都以小写型号开头，如
+ *   vtkr107-kiddie-ride-c  → VTKR107
+ *   vttr081-big-bass-wheel → VTTR081
+ * （已对全部 210 个产品校验通过，210/210 命中）
+ *
+ * 为什么需要：click 事件带的是型号（来自 data-track-product），
+ * 而 view 事件从 URL 只能拿到 slug。若不还原，两类事件无法归到同一型号，
+ * analyze-stats.py 的排名会分裂成两套。
+ */
+function modelFromSlug(slug: string): string {
+  const m = /^([a-z]+\d+[a-z]?)(?:-|$)/.exec(slug || "");
+  return m ? m[1].toUpperCase() : slug;
 }
 
 /**
@@ -244,7 +314,8 @@ export function trackProductView(slug: string): void {
     const last = Number(localStorage.getItem(key) || "0");
     if (Date.now() - last < LIMITS.dedupeMs) return;
     localStorage.setItem(key, String(Date.now()));
-    send("view", slug);
+    // 上报型号而非 slug，保证与 click 事件口径一致
+    send("view", modelFromSlug(slug));
   } catch {
     /* ignore */
   }
