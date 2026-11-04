@@ -570,9 +570,11 @@ ul {
   min-height: 76px;
 }
 
-/* 官方 Logo（2026-10-20 换版）
+/* 官方 Logo（2026-11-02 换版：红金 V 标 + 深蓝衬线字标）
    素材：public/brand/logo-full-dark.png / logo-full-light.png
-   原始比例 650×150（4.33:1），按高度缩放，宽度自动 */
+   原始比例 1012×347（2.92:1），按高度缩放，宽度自动。
+   ⚠️ 新版比旧版（4.33:1）更"高"，同样高度下视觉重量更大，
+      故 header 高度从 34px 降到 30px，与旧版的视觉大小基本持平。 */
 .logo {
   display: inline-flex;
   align-items: center;
@@ -580,21 +582,20 @@ ul {
 
 .logo__img {
   display: block;
-  height: 34px;
+  height: 30px;
   width: auto;
-  /* 官方 Logo 有大量透明留白，缩一点让视觉尺寸更接近字面高度 */
   object-fit: contain;
 }
 
 @media (max-width: 640px) {
   .logo__img {
-    height: 28px;
+    height: 25px;
   }
 }
 
 /* 页脚 Logo 稍大一号，与页脚的段落文字视觉重量匹配 */
 .footer-brand .logo__img {
-  height: 40px;
+  height: 36px;
 }
 
 .site-nav {

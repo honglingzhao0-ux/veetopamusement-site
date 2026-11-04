@@ -413,202 +413,57 @@ git pull --rebase origin main
 图片走站内 `/images`（Vercel 自带 CDN）。若已配置 Cloudflare R2，
 图片还需同步上传到 R2 的 `images/products/` 路径下。
 
-### 5.0.1 品牌 Logo（2026-10-20 换官方版）
+### 5.0.1 品牌 Logo（2026-11-02 换官方红金版）
 
 **素材位置**：`public/brand/`
 
 | 文件 | 用途 | 尺寸 |
 |---|---|---|
-| `logo-full-dark.png` | 蓝版深字（官方原色） | 650×150 |
-| `logo-full-light.png` | 蓝版反白 | 650×150 |
-| `logo-full-dark-orange.png` | 标准橙深字 | 650×150 |
-| `logo-full-light-orange.png` | 标准橙反白 | 650×150 |
-| `logo-full-dark-flame.png` | **火焰橙深字（当前在用）** | 650×150 |
-| `logo-full-light-flame.png` | **火焰橙反白（当前在用）** | 650×150 |
-| `logo-mark.png` / `-orange.png` / `-flame.png` | 仅 V 形标（三种配色） | 215×150 |
+| `logo-full-dark.png` | **红金版深字（当前在用）** | 1012×347 |
+| `logo-full-light.png` | **红金版反白（当前在用，页脚用）** | 1012×347 |
+| `logo-mark.png` | **仅 V 形标（红金版）** | 348×348 |
+| `_logo-src-redgold.png` | 官方原图（源文件，勿删） | 1036×386 |
+| `logo-full-dark-flame.png` 等 | 旧配色（备选，可回退） | 650×150 |
 
 **切换配色**：改 `components/logo.tsx` 里的一个常量即可：
 ```tsx
-const LOGO_VARIANT: "blue" | "orange" | "flame" = "flame";  // 改成 "blue" 即切回官方原色
+const LOGO_VARIANT: "redgold" | "blue" | "orange" | "flame" = "redgold";
 ```
 然后 `bash publish.sh "切换 Logo 配色"`。
 
 **重新生成素材**：
 ```bash
-# 从官方原图切图（去透明、裁留白、生成反白版）
-python scripts/make-logo-assets.py
-# 从蓝版生成橙版 + 火焰橙版（保留渐变层次）
-python scripts/make-logo-orange.py
+python scripts/make-logo-redgold.py   # 红金版（当前在用）
+python scripts/make-favicon.py        # PNG favicon
 ```
 
-**换色原理**（`make-logo-orange.py`）：
-不是简单替换颜色，而是保住渐变结构——
-1. HSL 分离：文字是中性灰（饱和度 <0.16），V 标是蓝色（色相 200-230）
-2. 蓝色像素色相旋转到目标色相区间，饱和度按变体放大
-3. **亮度分段重映射到目标色系舒适区**：
-   直接按原亮度换算会得到大量暗棕（#5c2600），发闷且不像品牌橙；
-   抬高后主色落在目标值，渐变层次完整保留
-4. 文字灰色保持不变（官方 Logo 的字是深灰，换色只针对图形部分）
+#### 处理要点（都踩过坑，勿乱改）
 
-**三个变体的参数**（`VARIANTS` 字典）：
+**① 去白底阈值 = 244，不是 249**
+源图背景不是纯白（250,251,252）且带噪点，亮度分布实测：
+240-259 占 80 万像素（背景+噪点），≤230 才是内容。
+若阈值取 249，只清掉一半背景 → 残留 alpha>0 的噪点
+→ `getbbox()` 返回整张图 → 裁不掉留白。
+（现用「行/列剖面法」裁切，见 `crop_to_content`）
 
-| 变体 | 色相区间 | 饱和度 | 主色 |
-|---|---|---|---|
-| orange | 20-32° | ×1.12 | `#f15700`（≈ accent #ff6a00） |
-| flame | 11-21° | ×1.22 | `#e52f00`（接近 OrangeRed #ff4500） |
+**② 反白版必须整段替换纯白，不能逐像素挑深蓝**
+原字标是**深蓝渐变 + 白色高光边 + 深蓝描边**：
+- 逐像素挑深蓝改白 → 留下原白色高光 → 深底上出现脏光晕
+- 改成「按颜色判定哪些是 V 标」→ 字标的深蓝描边被误判 → 深底上出现暗边
 
-**品牌色**：
+**正确做法：按 x 坐标硬切**——
+切缝取 `x=348`（V 标最右 334 与字标最左 364 之间的 26px 纯空白带）。
+V 标在左保持原色，字标在右整段（含高光、描边、抗锯齿）统统换纯白。
 
-| | 蓝版 | 标准橙 | 火焰橙 |
-|---|---|---|---|
-| 深 | `#002665` | `#9a4500` | `#872500` |
-| 中 | `#0071BD` | `#f15700` | `#e52f00` |
-| 浅 | `#34A2DD` | `#ef5500` | `#f15e3c` |
-| 文字 | `#444444` | `#444444` | `#444444`（未变） |
+**③ favicon 要另画简化版**
+`app/icon.svg` 是手绘的 64×64 简化图形（红金 V + 深底圆角），
+不能直接塞 348px 的 PNG —— 64px 下细节全糊。
+`scripts/make-favicon.py` 用多边形画出几何化的 V，输出 `app/icon.png`（512px）。
 
-**当前配色决策（2026-10-21）**：
-官方 Logo 用**火焰橙版**（更偏红更饱和，接近 OrangeRed #ff4500）。
-⚠️ 站点 accent 仍是标准橙 `#ff6a00`（H=24.9°），与火焰橙 Logo（H=12.3°）
-相差 12.6° —— 并排时可分辨。若要完全统一，把 `--accent` 一族改成火焰橙即可
-（改动集中在 `app/globals.css` 顶部 5 个变量，全站 83 处 accent 自动跟随）。
-
-**显示尺寸**：header 高 34px（移动端 28px），页脚 40px。
-`.logo__img` 按高度缩放、宽度自动（比例 4.33:1）。
-
-⚠️ **favicon 与 OG 分享图未改**（仍用旧橙色 `app/icon.svg` 与
-`public/og/og-default.jpg`）—— 用户当时明确只要改 header 和页脚。
-
-### 5.0 批量上传多图（推荐用这个工具）
-
-图库组件**已完整支持多图**（主图 + 缩略图切换），只要 `images` 数组里有几张就显示几张。
-
-```bash
-# 1. 把照片放进inbox/，文件名带型号
-#    inbox/VTRA010-1.jpg  inbox/VTRA010-2.jpg  inbox/VTRA010-3.jpg
-python scripts/import-product-images.py# 2. 预览（不写文件）
-python scripts/import-product-images.py --apply   # 3. 执行
-bash publish.sh "上传 VTRA010 多图"                # 4. 发布
-```
-
-工具自动完成：
-- **按型号匹配**产品（从文件名提取 `VTRA010` 这类型号）
-- **压缩**到长边 1200px / 质量 82（实测 2000×1600 → 12KB）
-- **黑底自动修白**（复用 `fix-dark-bg.py` 阈值）
-- **序号递增**命名 `<slug>-2.jpeg`、`-3.jpeg`
-- **防重复**：已导入过的源文件记在 `.imported-images.json`，重复放入自动跳过
-
-⚠️ **`images[0]` 是封面图**（列表页卡片、首页 Flagship、OG 分享图都用它），
-第一张应放最有代表性的正面图。建议顺序：正面 → 侧面 → 背面 → 细节 → 场景。
-
-同型号对应多个产品时会提示"需确认"并跳过——这种情况告诉我手工指定。
-
-### 5.0.1 从 X 盘批量导入原图（2026-10-22 新增，已上线 510 张）
-
-X 盘 `X:\Z01_Alycia个人资料\游戏机业务\VEETOPAMUSEMNT.COM\Products\All` 存放着
-全部产品原图（512 张，多角度 / 多配色）。**常规命令读不了这个网络盘的内容**：
-
-| 方式 | 结果 |
-|---|---|
-| PowerShell / Bash / python / tar / robocopy 读内容 | ❌ Access Denied |
-| 目录联接（junction）指向 X 盘 | ❌ reparse 缓冲区无效（SMB 不支持） |
-| `\\?\` 长路径前缀 / `\\?\UNC\...` | ❌ Access Denied |
-| 目录枚举、`os.path.getsize` 取大小 | ✅ 元数据可读 |
-| **Read 工具读 X 盘文件** | ✅ **唯一可用通路** |
-
-原理：Read 工具读 X 盘文件时，会把原图复制到
-`C:\Users\den\.workbuddy\blobs\<xx>\<hash>.png`（同时生成 ~85KB 的 .jpg 缩略图，忽略）。
-**blob 的 png 与源文件字节数完全一致**（差 0KB），所以能用「文件大小」反查源文件名。
-
-**解除图片预算**：默认每轮 128MB（约 12 张图）。
-设环境变量 `CODEBUDDY_CODE_MAX_IMAGE_MB_PER_TURN=0` = **不限**
-（源码 `tryReserveImageBytes` 里 `if(0===i)return!0` 直接放行），
-通过 `settings.json` 的 `env` 块注入。512 张因此 3 轮读完。
-
-完整流程：
-
-```bash
-# 1. 用 Read 工具把 X 盘图片读一遍（Read 会自动落到 blob）
-#    路径：X:\Z01_Alycia个人资料\游戏机业务\VEETOPAMUSEMNT.COM\Products\All\<文件名>
-# 2. 全量扫描 blob 归档到 inbox_x/
-python scripts/collect-blob-images.py
-# 3. 哈希去重 + 应用型号映射（重建干净 inbox_x）
-python scripts/rebuild-inbox.py
-# 4. 预览 → 执行导入（保留原封面、追加新图、sha 去重）
-python scripts/import-multi-images.py
-python scripts/import-multi-images.py --apply
-# 5. 发布
-bash publish.sh "批量补充产品多图"
-```
-
-⚠️ **三个必须注意的坑**：
-
-1. **源文件型号 ≠ 站点 model，必须看图确认**。已核对的映射：
-
-   | 源文件 | 实际产品 | 站点 model |
-   |---|---|---|
-   | VTKR10 | 红色 3D 儿童车 | VTKR108（`vtkr108-3d-car`）|
-   | VTKR109 | 粉色心形转马 | VTKR108（`vtkr108-happy-childhood-3p`）|
-   | VTRA01 | 涂鸦街机 | VTRA010 |
-   | VTSA01 | 极速摩托 | VTSA010 |
-   | VTSA03 | Dirty Drivin | VTSA035 |
-   | VTSB13 / 14 / 020 | 黑框篮球机 | VTSB16 |
-   | VTSB15 | HOOP DREAMS 紫框 | VTSB19 |
-   | VVTSB24 | Super Hoops 蓝框 | VTSB19 |
-   | VTSP011 | 终极大拳 | VTSP003 |
-
-   一个源型号可能对应**站点两个 slug**（VTKR108 同时是 3d-car 和 happy-childhood-3p），
-   靠 `src_model` 区分，不能只看目标 model。
-
-2. **源目录有文件名多打字母的**：`VVTSB24` 其实是 `VTSB24` 重复打字。
-
-3. **收集脚本非幂等**，跑两次 → 994 张（510 唯一 + 484 副本）。必须用 `rebuild-inbox.py`
-   按内容哈希去重。
-
-📌 **`.gitignore` 检查**：新目录 `/inbox_x/` 和 `_jobs/`、`_backup_images_multi/`
-必须加进去，否则 3.3GB 原图会被 `git add -A` 提交进仓库。
-
-✅ **已完成（2026-10-22）**：512 张全部收集 → 去重 510 张 → 导入 510 张。
-产品图 210 → **720 张**，148/210 个产品有多图（最多 21 张）。
-线上验证 `vtsp007-boxing-ib` 渲染出 21 个缩略图按钮。
-
-
-### 5.1 黑底图批量修复（已处理完17 张，备用工具）
-
-2026-10-20 全站扫描发现 **17 张黑底产品图**（`vttr060`~`vttr076` 连续一段，
-纯黑背景板抠图，边缘黑像素 100%），已全部修复为纯白底并上线。
-
-工具保留在仓库，以后换新图时可用：
-
-```bash
-# 1) 扫描全站，找出黑底图
-python scripts/scan-dark-bg.py
-
-# 2) 先预览（不动原图）
-python scripts/fix-dark-bg.py --preview
-#    预览图在 public/images/products/_fixed_preview/
-
-# 3) 确认后应用（会自动备份原图到 _backup_images_black/）
-python scripts/fix-dark-bg.py --apply
-```
-
-**修复原理**：暗且接近中性灰的像素 → 纯白；亮或偏彩色的 → 原样保留。
-
-⚠️ 两个必须保留的调参（踩过坑）：
-- **必须加饱和度判定**（`sat < 42`）：JPEG 在黑边界有彩色振铃噪声，
-  只按亮度提亮会出现红蓝描边
-- **不做连通性限制**：机身背后常有抠图残留黑板，不与画面边缘连通，
-  洪水填充法会漏掉
-
-`_fixed_preview/` 与 `_backup_images_black/` 已加进 `.gitignore`，不会进仓库。
-
-### 5.2 长期方向：补真实白底照片
-
-你已决定后续逐步补真实白底实拍图。替换时注意：
-- 修复后的图是**纯白底、无渐变过渡**，与真实白底照风格一致，可直接逐张替换
-- 建议向画册/工厂提要求：**白底或透明底 PNG，去背干净不带黑边**
-- 深色机身（如 `vttr062` minions 蓝紫渐变）实拍时注意别让产品沉进背景
-
----
+**④ CSS 高度要下调**
+新版比例 2.92:1，比旧版 4.33:1 更"高"。
+同样 34px 高度下视觉重量明显更大 → header 高度改 30px（移动端 25px），
+页脚 36px，与旧版视觉大小基本持平。
 
 ## 6. 本地预览（改完先看效果再上线）
 

@@ -1,5 +1,9 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
   <rect width="64" height="64" rx="14" fill="#0b1b2b"/>
-  <path d="M10 12h17L54 52H37L10 12Z" fill="#f4511e"/>
-  <path d="M29 12h8L59 52h-8L29 12Z" fill="#ffffff" opacity="0.92"/>
+  <!-- 红色 V 左斜面（自左上向右下的长斜条） -->
+  <path d="M8 14h13L54 54H41L8 14Z" fill="#b3121b"/>
+  <path d="M21 14h6l28 40h-6L21 14Z" fill="#e01f27"/>
+  <!-- 金色 V 右侧面（右上竖块） -->
+  <path d="M40 13h14l-3 42-14-6 3-36Z" fill="#f5c518"/>
+  <path d="M40 13h14l-1.5 21-12-3.5L40 13Z" fill="#ffe066"/>
 </svg>
