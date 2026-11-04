@@ -573,8 +573,14 @@ ul {
 /* 官方 Logo（2026-11-02 换版：红金 V 标 + 深蓝衬线字标）
    素材：public/brand/logo-full-dark.png / logo-full-light.png
    原始比例 1012×347（2.92:1），按高度缩放，宽度自动。
-   ⚠️ 新版比旧版（4.33:1）更"高"，同样高度下视觉重量更大，
-      故 header 高度从 34px 降到 30px，与旧版的视觉大小基本持平。 */
+
+   ⚠️ 尺寸换算（实测）：
+     新版比例 2.92:1 比旧版 4.33:1 更"窄"，
+     同样高度下实际占宽差很多：
+       旧 flame 34px → 实际 147px 宽
+       新版     30px → 实际  87px 宽（视觉偏小，用户反馈过）
+       新版     38px → 实际 110px 宽（与旧版视觉重量接近）
+     故 header 取 38px。 */
 .logo {
   display: inline-flex;
   align-items: center;
@@ -582,20 +588,20 @@ ul {
 
 .logo__img {
   display: block;
-  height: 30px;
+  height: 38px;
   width: auto;
   object-fit: contain;
 }
 
 @media (max-width: 640px) {
   .logo__img {
-    height: 25px;
+    height: 30px;
   }
 }
 
 /* 页脚 Logo 稍大一号，与页脚的段落文字视觉重量匹配 */
 .footer-brand .logo__img {
-  height: 36px;
+  height: 42px;
 }
 
 .site-nav {
