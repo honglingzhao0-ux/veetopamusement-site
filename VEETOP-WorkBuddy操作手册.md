@@ -454,6 +454,63 @@ Web3Forms 会对 UA 简陋的请求返 403 + Cloudflare 挑战页
 （用 `Mozilla/5.0` 短 UA 就会中招；完整 Chrome/Safari UA 正常 200）。
 真实浏览器不受影响 —— 但**测试脚本必须写完整 UA**，否则会误判成"通道坏了"。
 
+
+### 3.5.5 分页页码保持与「返回列表」（2026-11-23）
+
+**问题**：用户在品类列表第 3 页找到产品 → 点进详情 → 想回去，
+面包屑只能回到品类页**第 1 页**，要再点两次 Next 才找得到刚才看的机器。
+根因：页码只存在 `useState` 里，页面一重挂载就归 1。
+
+**方案对比**：
+
+| 方案 | 做法 | 优点 | 缺点 |
+|---|---|---|---|
+| **A. URL 带页码**（采用） | 列表页 `?page=3`，产品链接带 `?from=3` | 后退/刷新/分享都正确；SEO 无损 | URL 多一个参数 |
+| B. sessionStorage 记页码 | 记到浏览器里 | URL 干净 | 分享链接给别人无效；换设备失效；多标签页串 |
+| C. 只加「返回列表」按钮 | 不带页码 | 直觉 | 仍回第 1 页，只解决一半 |
+
+**关键洞察**：详情页 URL 已含品类段（`/products/<cat>/<product>/`），
+所以返回时**只需页码**，不必带整条来源路径 —— 实现很轻。
+
+**实现**：
+
+| 文件 | 改动 |
+|---|---|
+| `lib/product-url.ts` | 新增 `productPathWithFrom()` / `categoryPathWithPage()` |
+| `components/paginated-product-grid.tsx` | 页码从 URL 读（`useEffect` 读 `window.location.search`）；切页用 `history.replaceState` 同步 URL |
+| `components/product-card.tsx` | 新增 `fromPage` prop，链接带上 `?from=N` |
+| `components/back-to-list.tsx`（新） | 详情页「← Back to <品类> (page N)」入口 |
+| `app/products/[category]/[product]/page.tsx` | 挂 `BackToList` |
+| `app/globals.css` | `.back-to-list` 样式 |
+
+**关键细节**：
+
+1. **切页用 `replaceState` 而不是 `pushState`**
+   翻页不该往浏览器后退栈塞记录 —— 否则从第 3 页点进产品再「后退」，
+   会先退到第 2 页、再退到第 1 页，而不是直接回到第 3 页。
+
+2. **用 `useEffect` 读 `window.location.search`，不用 `useSearchParams()`**
+   后者在静态导出下必须包 Suspense，会让整页降级为客户端渲染。
+
+3. **SEO 不受影响**
+   - 列表页 canonical 固定 `/products/<cat>/`（不带参）✅
+   - 产品页 canonical 固定 `/products/<cat>/<slug>/`（不带参）✅
+   - 分页的所有产品链接本来就全量渲染在 HTML 里，Google 抓取能力不变
+
+4. **滚动位置能自然恢复**
+   非当前页卡片用 `position:absolute` 移出可视区（不占文档流），
+   每页高度一致 → 页码恢复正确后，浏览器原生 scroll restoration 即生效。
+
+**现在的行为**：
+
+| 操作 | 结果 |
+|---|---|
+| 列表页翻到第 3 页 | URL 变成 `?page=3` |
+| 点某个产品 | 链接带 `?from=3` |
+| 详情页点「← Back to Sports & Skill Games (page 3)」 | 回到第 3 页 ✅ |
+| 详情页按浏览器后退 | 回到第 3 页（原位置）✅ |
+| 刷新列表页 / 分享 `?page=3` 链接 | 停在第 3 页 ✅ |
+
 ## 4. 工作副本 vs Accio Work 目录（重要）
 
 Accio Work 的工作目录在：

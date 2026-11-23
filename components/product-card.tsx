@@ -1,7 +1,7 @@
 import Link from "next/link";
 import type { Product } from "@/lib/products";
 import { cdnUrl } from "@/lib/cdn";
-import { productPath } from "@/lib/product-url";
+import { productPathWithFrom } from "@/lib/product-url";
 
 /**
  * 产品卡片（列表 / 首页推荐 / 相关产品共用）。
@@ -12,6 +12,7 @@ export default function ProductCard({
   product,
   categorySlug,
   offPage = false,
+  fromPage,
 }: {
   product: Product;
   categorySlug: string;
@@ -21,8 +22,15 @@ export default function ProductCard({
    * 只是被 CSS 隐藏（用户看不到）。详见 components/paginated-product-grid.tsx。
    */
   offPage?: boolean;
+  /**
+   * 来源页码（分页列表页第几页）。
+   * 带上后，详情页能生成「← 返回 <品类>（第 N 页）」的链接，
+   * 用户从第 3 页点进产品后能原路返回，不必翻页找回。
+   * 仅在 > 1 时追加参数，避免第一页的链接带上多余 query。
+   */
+  fromPage?: number;
 }) {
-  const href = productPath(categorySlug, product.slug);
+  const href = productPathWithFrom(categorySlug, product.slug, fromPage);
   const cover = product.images[0] ?? "/images/placeholder.svg";
   return (
     <li

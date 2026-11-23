@@ -13,6 +13,7 @@ import {
   type Product,
 } from "@/lib/products";
 import { productPath } from "@/lib/product-url";
+import BackToList from "@/components/back-to-list";
 import JsonLd from "@/components/json-ld";
 import ProductCard from "@/components/product-card";
 
@@ -272,6 +273,16 @@ function ProductView({
             <span className="sep">/</span>
             <span>{product.name}</span>
           </nav>
+
+          {/*
+           * 「← 返回列表（第 N 页）」—— 面包屑只能回到品类页第 1 页，
+           * 用户从第 3 页点进产品后要再翻两页才找得回来。
+           * 列表页点产品时带上了 ?from=N，这里据此生成带页码的返回链接。
+           */}
+          <BackToList
+            categorySlug={categorySlug}
+            categoryName={category?.name ?? "Catalog"}
+          />
 
           <div className="pd-layout">
             {/* gallery */}
