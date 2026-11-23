@@ -41,17 +41,31 @@ const site = {
 
   /* 默认 meta / OG 文案 */
   seo: {
-    title: "VEETOP Amusement | Game & Amusement Equipment Manufacturer",
+    /**
+     * 首页 title。
+     *
+     * ⚠️ 改标题的依据（2026-11 调研 B2B 采购者实际搜索词）：
+     *   买家搜的是「批发限定词 + 品类」，不是通用行业词：
+     *     wholesale / bulk / supplier / distributor / MOQ + 产品词
+     *   同时 B2B 标题要保留信任信号（品牌、CE、OEM、MOQ、供应国），
+     *   过度压缩会削弱点击时的信任度。
+     *   故结构为：核心品类词 + 批发意图词 + 信任信号 + 品牌。
+     */
+    title: "Arcade Machine Manufacturer & Wholesale Supplier | VEETOP",
     description:
-      "Guangzhou Veetop Amusement Technology Co., Ltd. is a CE-certified manufacturer of arcade game machines, redemption machines, claw cranes, kiddie rides and amusement equipment. 21+ years in the industry, exports to 150+ countries, OEM/ODM cooperation available.",
+      "Arcade machines direct from Guangzhou Veetop: simulators, redemption games, claw cranes, kiddie rides. 210 models, CE certified, OEM/ODM. MOQ & FOB on request.",
     keywords: [
       "arcade game machine manufacturer",
+      "arcade game machine wholesale supplier",
       "amusement game machine supplier",
-      "redemption machine",
-      "claw crane machine",
-      "kiddie ride",
-      "coin pusher",
-      "OEM ODM amusement equipment",
+      "bulk arcade machines",
+      "arcade machine distributor",
+      "claw crane machine wholesale",
+      "redemption game machine supplier",
+      "kiddie ride manufacturer",
+      "coin operated machine factory",
+      "amusement equipment OEM ODM",
+      "arcade machine MOQ",
       "VEETOP amusement",
     ],
   },
@@ -169,6 +183,33 @@ const site = {
     /** MOQ 口径：因型号而异，仍引导向报价确认 */
     moqNote:
       "MOQ depends on the model and order type - sample and container orders can both be discussed with our sales team.",
+    /**
+     * 价格口径说明（产品页 trade-card 用）。
+     *
+     * ⚠️ 为什么不直接标数字：
+     *   站内不写具体报价 —— 价格随配置、数量、目的地、贸易条款变动，
+     *   写死会与实际报价单不一致，反伤 B2B 信任（且价格属于需可追溯的事实）。
+     *   这里的做法是：把买家最关心的三件事讲清楚 ——
+     *   ① 报价含哪些内容（FOB/工厂价口径）
+     *   ② 什么会影响最终价格（配置、数量、目的地）
+     *   ③ 多久能拿到（交期）
+     *   —— 这样买家判断"值不值得发一封邮件"时有依据，而不是面对空白。
+     */
+    priceNote:
+      "Factory-direct FOB Guangzhou. Final price depends on configuration, quantity and destination port.",
+    /** 报价包含什么 —— 让买家知道发询盘后能拿到什么 */
+    quoteIncludes: [
+      "FOB unit price for your configuration and quantity",
+      "MOQ and available stock for each model",
+      "Production lead time and shipping options to your port",
+      "CE certification and packing details",
+    ],
+    /** 影响价格的因素 —— 提前说明，减少来回问询 */
+    priceFactors: [
+      "Configuration and cabinet finish",
+      "Order quantity (container vs. sample)",
+      "Destination port and shipping method",
+    ],
   },
 
   /* ------------------------------------------------------------------ */
@@ -222,6 +263,10 @@ const site = {
     {
       q: "How do I get a quotation?",
       a: "Send us the model name or number, your quantity, destination port/country and any customization needs. Our export team will confirm price, lead time and shipping terms.",
+    },
+    {
+      q: "How is the price calculated? Do you publish a price list?",
+      a: "We quote factory-direct FOB Guangzhou. The final unit price depends on configuration and cabinet finish, order quantity (container vs. sample), and destination port and shipping method - so it is confirmed per order rather than published as a fixed list. Your quotation includes the FOB unit price for your configuration and quantity, MOQ and stock availability, production lead time and shipping options, and CE certification and packing details.",
     },
     {
       q: "What payment terms do you accept?",

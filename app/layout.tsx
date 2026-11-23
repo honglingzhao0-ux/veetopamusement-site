@@ -5,6 +5,7 @@ import Header from "@/components/header";
 import Footer from "@/components/footer";
 import JsonLd from "@/components/json-ld";
 import Analytics from "@/components/analytics";
+import WhatsAppFloat from "@/components/whatsapp-float";
 import "./globals.css";
 
 const baseUrl = siteBaseUrl(site.brand.domain);
@@ -107,6 +108,7 @@ export default function RootLayout({
         <Header />
         <main>{children}</main>
         <Footer />
+        <WhatsAppFloat />
         <Analytics />
       </body>
     </html>

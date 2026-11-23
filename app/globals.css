@@ -517,6 +517,153 @@ ul {
   border-color: var(--accent-dark);
 }
 
+/* ==================================================================== */
+/* WhatsApp 浮动询盘按钮（2026-11-08）                                  */
+/*   海外买家习惯直接 WhatsApp 秒回，表单要填 3 个必填项，摩擦高。      */
+/*   固定在右下角，点击展开预填消息的小窗（可编辑后再发）。            */
+/* ==================================================================== */
+.wa-float {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+  z-index: 60;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 18px 12px 15px;
+  border: none;
+  border-radius: 999px;
+  background: #25d366;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 15px;
+  font-weight: 600;
+  line-height: 1;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(37, 211, 102, 0.32);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+.wa-float:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 7px 20px rgba(37, 211, 102, 0.4);
+}
+
+.wa-float:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
+
+.wa-float__icon {
+  flex: none;
+  display: block;
+}
+
+.wa-float.is-open {
+  background: var(--navy-900);
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.3);
+}
+
+/* 展开的小窗 */
+.wa-panel {
+  position: fixed;
+  right: 20px;
+  bottom: 84px;
+  z-index: 61;
+  width: min(330px, calc(100vw - 40px));
+  padding: 18px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg, 12px);
+  background: var(--surface);
+  box-shadow: 0 12px 34px rgba(15, 23, 42, 0.16);
+}
+
+.wa-panel__head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 8px;
+}
+
+.wa-panel__head strong {
+  font-family: var(--font-display);
+  font-size: 1rem;
+  color: var(--ink);
+}
+
+.wa-panel__close {
+  border: none;
+  background: none;
+  color: var(--muted);
+  font-size: 22px;
+  line-height: 1;
+  cursor: pointer;
+  padding: 0 2px;
+}
+
+.wa-panel__hint {
+  margin: 0 0 12px;
+  font-size: 0.82rem;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.wa-panel__msg {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius, 8px);
+  background: var(--bg-soft);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  line-height: 1.5;
+  resize: vertical;
+}
+
+.wa-panel__msg:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+  border-color: var(--accent);
+}
+
+.wa-panel__send {
+  display: block;
+  margin-top: 12px;
+  padding: 11px 16px;
+  border-radius: var(--radius, 8px);
+  background: #25d366;
+  color: #fff;
+  font-family: var(--font-sans);
+  font-size: 14px;
+  font-weight: 600;
+  text-align: center;
+  text-decoration: none;
+  transition: background 0.15s ease;
+}
+
+.wa-panel__send:hover {
+  background: #1eb855;
+}
+
+@media (max-width: 640px) {
+  .wa-float {
+    right: 14px;
+    bottom: 14px;
+    padding: 11px 14px;
+  }
+
+  .wa-float__label {
+    display: none;
+  }
+
+  .wa-panel {
+    right: 14px;
+    bottom: 74px;
+  }
+}
+
 /* 深图/深底上的次级按钮（轮播等） */
 .btn--light {
   background: rgba(255, 255, 255, 0.1);
@@ -1585,6 +1732,35 @@ ul {
   background: var(--accent);
   margin-right: 8px;
   vertical-align: 1px;
+}
+
+/* 报价包含什么（产品页 · 降低询盘摩擦） */
+.quote-includes {
+  margin-top: 18px;
+  padding: 22px 24px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--surface);
+}
+
+.quote-includes .list-check {
+  margin-top: 12px;
+}
+
+.quote-includes__note {
+  margin: 14px 0 0;
+  padding-top: 14px;
+  border-top: 1px solid var(--line-soft);
+  font-size: 13.5px;
+  line-height: 1.6;
+  color: var(--muted);
+}
+
+.quote-includes__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 16px;
 }
 
 .video-frame {

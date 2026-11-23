@@ -363,6 +363,97 @@ python scripts/analyze-stats.py stats.csv
 
 ---
 
+
+### 3.5.4 询盘转化优化（2026-11-08）
+
+**背景**：站点 2026-10-23 上线，17 天真实询盘 0 封。
+全链路实测（robots → Googlebot → canonical → sitemap → CTA → 预填 →
+CORS 预检 → POST success → thank-you）**全部通过**，
+结论：**技术链路无问题，唯一瓶颈是流量太少**（日均自然流量 1-2 次）。
+
+#### 3.5.4.1 WhatsApp 浮动询盘按钮
+
+`components/whatsapp-float.tsx` → 挂在 `app/layout.tsx`。
+
+- 右下角固定，滚动始终可见；桌面 3 秒后自动展开一次（移动端不打扰）
+- 点击展开**预填消息的小窗**（可编辑后再发）—— 直接跳转会让用户不知道该问什么
+- 移动端隐藏文字标签，只留图标，避免遮挡内容
+- 样式在 `app/globals.css`（`.wa-float` / `.wa-panel`）
+
+**为什么做这个**：海外买家习惯直接 WhatsApp 秒回，
+而表单要填 3 个必填项（姓名/邮箱/留言），摩擦高得多。
+
+#### 3.5.4.2 产品页「报价包含什么」
+
+`site.config.ts` 的 `trade` 新增三个字段（全站唯一来源）：
+
+| 字段 | 用途 |
+|---|---|
+| `priceNote` | 价格口径说明（FOB Guangzhou + 什么影响价格） |
+| `quoteIncludes[]` | 报价包含什么（4 条） |
+| `priceFactors[]` | 影响价格的因素（3 条） |
+
+产品页 `trade-card` 的 Unit Price 从 "On request" 改为 `priceNote`，
+下方新增 `.quote-includes` 区块，列出报价包含的内容 + 二次 CTA。
+
+⚠️ **为什么不写具体价格数字**：价格随配置/数量/目的地/贸易条款变动，
+写死会与实际报价单不一致，反伤 B2B 信任（价格属于需可追溯的事实）。
+做法是把买家最关心的三件事讲清楚 —— 报价含什么、什么影响价格、多久能拿到。
+
+#### 3.5.4.3 SEO title / description 长度治理
+
+**依据**：2026-11 调研 B2B 采购者实际搜索行为 ——
+买家搜的是「批发限定词 + 品类」（wholesale / bulk / supplier / MOQ + 产品词），
+而非通用行业词；且 **MOQ / 价格档位是几乎无人竞争的关键词**。
+
+**核心约束（硬指标）**：
+- title ≤ 70 字符
+- description ≤ 160 字符
+- ⚠️ **根布局的 metadata template 会自动追加 " | VEETOP AMUSEMENT"（19 字符）**，
+  所以页面自己写的 title 必须预留这 19 字符，否则超限
+
+**实现要点**：
+
+| 项 | 做法 |
+|---|---|
+| 产品页 title | `<产品名> (<型号>) - Wholesale <短品类>`，短品类用映射表（Arcade Machine / Sports Game / …） |
+| 产品页 desc | `<产品名> (<型号>) - factory-direct <品类>. <规格>. CE certified, OEM/ODM. MOQ & FOB price on request.` |
+| 品类页 | `data/categories.json` 的 `seoTitle` / `metaDescription` |
+| 首页 | `site.config.ts` 的 `seo.title` / `seo.description`（用 `metadata.default`，不加 template） |
+
+**踩过的坑（重要）**：
+1. **长度预算必须算"构造后"的结果**，不能只用公式预估：
+   早期用 `Math.max(16, 70 - 31 - tail - model)` 计算预算，
+   但当公式算出 0 时下限 16 会**强行撑破**限制 → 40 个产品 title 仍超 70。
+   改成「先构造 → 算超出量 → 二次裁剪商品名」才彻底解决。
+2. **`shortenName` 返回值必须严格 ≤ limit**：
+   早期版本追加 "..." 但没把 3 个字符算进预算 → 69/210 超标。
+3. **验收要量解码后的长度**：
+   HTML 里的 `&#x27;` `&amp;` 比原文长，直接量源码会大面积误报。
+   用 `html.unescape()` 后再量才是 Google 实际看到的。
+4. **替换多行字符串会吃掉逗号** —— 脚本批量改 TS 源码后必须跑 `tsc --noEmit` 兜底。
+
+**当前状态（构建产物实测）**：
+- 210 个产品页：title 最长 ≤ 70、desc 最长 ≤ 160
+- 6 个品类页：同上
+- 首页 / about / faq / contact / blog / products 总览：同上
+
+#### 3.5.4.4 新增 FAQ
+
+`site.config.ts` 的 `faqs` 增加一条：
+**"How is the price calculated? Do you publish a price list?"**
+—— 正面回答价格构成 + 列出报价包含什么（同时覆盖 "price" / "MOQ" 两类搜索词）。
+
+#### 3.5.4.5 llms.txt 同步
+
+`app/llms.txt/route.ts` 增加 `Pricing:` 与 `A quotation includes:` 两行 ——
+AI 抓取与采购者都会读这段，是另一种"信任前置"。
+
+⚠️ **测询盘通道必须用完整浏览器 UA**：
+Web3Forms 会对 UA 简陋的请求返 403 + Cloudflare 挑战页
+（用 `Mozilla/5.0` 短 UA 就会中招；完整 Chrome/Safari UA 正常 200）。
+真实浏览器不受影响 —— 但**测试脚本必须写完整 UA**，否则会误判成"通道坏了"。
+
 ## 4. 工作副本 vs Accio Work 目录（重要）
 
 Accio Work 的工作目录在：

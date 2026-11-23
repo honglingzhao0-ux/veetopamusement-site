@@ -3,9 +3,9 @@ import Link from "next/link";
 import { getArticlesBySection } from "@/lib/articles";
 
 export const metadata: Metadata = {
-  title: "Blog & Buying Guides",
+  title: "Blog - Arcade & Amusement Buying Guides",
   description:
-    "Buying guides from VEETOP Amusement: practical advice on choosing claw cranes, arcade simulators, redemption machines and other amusement equipment for your venue.",
+    "Buying guides from VEETOP: practical advice on choosing claw cranes, arcade simulators and redemption machines for your venue.",
   alternates: { canonical: "/blog/" },
 };
 

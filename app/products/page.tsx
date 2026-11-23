@@ -5,9 +5,9 @@ import { getCategories, getAllProducts } from "@/lib/products";
 import ProductExplorer from "@/components/product-explorer";
 
 export const metadata: Metadata = {
-  title: "All Products - Arcade, Crane, Kiddie Rides & Redemption Machines",
+  title: "Arcade & Amusement Machines Catalog - 210 Models",
   description:
-    "Full product catalog of Guangzhou Veetop Amusement Technology Co., Ltd.: arcade simulators and game cabinets, redemption machines, claw cranes, kiddie rides, sports & skill games and prize machines. CE certified, OEM/ODM available.",
+    "210 arcade machines from Guangzhou Veetop: simulators, redemption and claw crane machines, kiddie rides, sports and prize games. CE certified, OEM/ODM.",
   alternates: { canonical: "/products/" },
 };
 

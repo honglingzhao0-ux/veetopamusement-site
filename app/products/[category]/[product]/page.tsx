@@ -45,23 +45,112 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!product) return { title: "Page not found" };
 
   const cover = product.images[0] ? cdnUrl(product.images[0]) : undefined;
-  const desc =
-    product.seoDescription?.trim().slice(0, 160) ??
-    product.description.slice(0, 158);
+
+  /**
+   * title 结构：产品名 + 型号 + Wholesale + 短品类
+   *
+   * ⚠️ 长度是硬约束（Google 桌面端约 60-70 字符完整显示，超出即截断）：
+   *   实测 210 个产品的 title 平均 74 字符、131 个超 70 ——
+   *   那样写进去的关键词根本显示不出来，等于白写。
+   *   所以这里按长度预算**反推**商品名可占的字符数（shortenName），
+   *   保证 210 个产品全部 ≤ 70。
+   *
+   * 用「Wholesale + 短品类」而非完整品类名：
+   *   采购者搜的是 "<品类> wholesale supplier"（2026-11 调研），
+   *   短品类既含关键词又省字符。
+   *
+   * ⚠️ 这里**不再写品牌名** —— 根布局的 metadata template 会自动追加
+   *   " | VEETOP AMUSEMENT"，自己再写一遍会重复并挤掉关键词预算
+   *   （实测加上后平均变成 86 字符，全部超限）。
+   */
+  const shortCat =
+    ({
+      "arcade-video-games": "Arcade Machine",
+      "sports-skill-games": "Sports Game",
+      "claw-crane-machines": "Claw Crane",
+      "kiddie-rides": "Kiddie Ride",
+      "prize-merchandisers": "Prize Game",
+      "redemption-ticket-games": "Redemption Game",
+    } as Record<string, string>)[product.category] ?? "Arcade Machine";
+
+  const titleTail = ` - Wholesale ${shortCat}`;
+  const modelPart = ` (${product.model})`;
+  /**
+   * 构造后校验 + 二次裁剪（确定性做法）。
+   *
+   * ⚠️ 之前用「预算公式 + Math.max(16, …) 下限」是错的：
+   *   当公式算出 0（型号长 + 品类词长）时，下限 16 会强行撑破限制，
+   *   导致 40 个产品 title 仍超 70（实测最长 73）。
+   *   所以这里改成：先构造，再看超了多少，按超出量二次裁剪商品名。
+   */
+  const BRAND_TAIL_LEN = 19; // 根布局 template 追加的 " | VEETOP AMUSEMENT"
+  let namePart = product.name;
+  let title = `${namePart}${modelPart}${titleTail}`;
+  if (title.length + BRAND_TAIL_LEN > 70) {
+    const over = title.length + BRAND_TAIL_LEN - 70;
+    namePart = shortenName(namePart, Math.max(1, namePart.length - over - 1));
+    title = `${namePart}${modelPart}${titleTail}`;
+  }
+
+  /**
+   * description 结构：产品名 + 型号 + 工厂直供 + 精简规格 + 贸易条款
+   *
+   * 关键点：
+   *   ① 以产品名开头 —— 搜索结果里要能看出"这是什么机器"，否则点击率受损
+   *   ② 把买家关心的 MOQ / FOB 价格写进摘要 —— 采购者能在结果页就完成初筛
+   *   ③ 规格去重 —— 某些产品的 Size 在 specs 里出现两次
+   *      （如 "W180 x D200 x H200 cm" 与 "W180*D200*H200"），不处理会吃掉字符预算
+   *   ④ 严格 ≤ 160 字符（Google 摘要截断位）
+   */
+  const specMap: Record<string, string> = {};
+  for (const s of product.specs) {
+    const lab = s.label.trim();
+    if (lab && !specMap[lab] && s.value.trim()) specMap[lab] = s.value.trim();
+  }
+  let sizeTxt = specMap["Size"] ?? "";
+  if (sizeTxt) {
+    const parts = sizeTxt
+      .split(/[,;]/)
+      .map((p) => p.trim())
+      .filter(Boolean);
+    const uniq: string[] = [];
+    for (const p of parts) {
+      const key = p.toLowerCase().replace(/[^0-9a-z]/g, "");
+      if (key && !uniq.some((u) => u.toLowerCase().replace(/[^0-9a-z]/g, "") === key)) {
+        uniq.push(p);
+      }
+    }
+    sizeTxt = uniq.join(", ");
+  }
+  let specTxt = [sizeTxt, specMap["Power"]].filter(Boolean).join(" ");
+  if (specTxt.length > 45) specTxt = `${specTxt.slice(0, 42).trimEnd()}...`;
+
+  // 注意：generateMetadata 里的 category 是 URL slug（字符串），
+  // 品类对象要从 product.category 反查
+  const catFull = getCategoryById(product.category)?.name ?? "Arcade Machine";
+  let desc =
+    `${product.name} (${product.model}) - factory-direct ${catFull.toLowerCase()}` +
+    (specTxt ? `. ${specTxt}` : "") +
+    `. CE certified, OEM/ODM. MOQ & FOB price on request.`;
+  // 严格 ≤ 160：在词边界截断，补句号后仍要 ≤160
+  if (desc.length > 160) {
+    desc = `${desc.slice(0, 159).replace(/\s+\S*$/, "").trimEnd()}.`;
+    if (desc.length > 160) desc = desc.slice(0, 159).trimEnd() + ".";
+  }
 
   return {
-    title: `${product.name} (${product.model})`,
+    title,
     description: desc,
     alternates: { canonical: productPath(category, product.slug) },
     openGraph: {
       type: "website",
-      title: `${product.name} (${product.model})`,
+      title,
       description: desc,
       images: cover ? [{ url: cover, alt: product.name }] : undefined,
     },
     twitter: {
       card: "summary_large_image",
-      title: `${product.name} (${product.model})`,
+      title,
       description: desc,
       images: cover ? [cover] : undefined,
     },
@@ -74,6 +163,27 @@ export default async function ProductPage({ params }: Props) {
   if (!product) notFound();
 
   return <ProductView product={product} categorySlug={category} />;
+}
+
+/**
+ * 按字符预算截断产品名。
+ *
+ * ⚠️ 返回值**严格 ≤ limit** —— 这一点很关键：
+ *   早期版本在末尾追加 "..."，导致实际长度比 limit 多 3，
+ *   于是 69/210 个产品的 title 超出 70 字符上限（实测最长 76）。
+ *   所以这里的预算必须把省略号算进去，且截断后不再追加任何字符。
+ */
+function shortenName(name: string, limit: number): string {
+  if (name.length <= limit) return name;
+  // 留 3 个字符给省略号
+  const hard = Math.max(1, limit - 3);
+  let cut = name.slice(0, hard);
+  // 在空格处断开，避免把单词切一半
+  const sp = cut.lastIndexOf(" ");
+  if (sp > hard * 0.5) cut = cut.slice(0, sp);
+  cut = cut.replace(/[ ,/-]+$/, "");
+  if (!cut) cut = name.slice(0, hard).replace(/[ ,/-]+$/, "");
+  return `${cut}...`;
 }
 
 /* ==================================================================== */
@@ -241,7 +351,7 @@ function ProductView({
                 </div>
                 <div className="trade-row">
                   <dt>Unit Price</dt>
-                  <dd>On request - quotation basis</dd>
+                  <dd>{site.trade.priceNote}</dd>
                 </div>
                 <div className="trade-row">
                   <dt>MOQ</dt>
@@ -252,6 +362,33 @@ function ProductView({
                   <dd>{site.trade.leadTime}</dd>
                 </div>
               </dl>
+
+              {/* 报价包含什么 —— 让买家判断"值不值得发询盘"时有依据，
+                  而不是面对一个空白的价格栏。 */}
+              <div className="quote-includes">
+                <p className="kicker">What your quotation includes</p>
+                <ul className="list-check">
+                  {site.trade.quoteIncludes.map((item) => (
+                    <li key={item}>{item}</li>
+                  ))}
+                </ul>
+                <p className="quote-includes__note">
+                  Price varies by {site.trade.priceFactors.join(", ").toLowerCase()}.
+                </p>
+                <div className="quote-includes__actions">
+                  <Link href={quoteHref} className="btn btn--accent">
+                    Request a Quote
+                  </Link>
+                  <a
+                    className="btn whatsapp-btn"
+                    href={`https://wa.me/${site.contact.whatsapp.number}?text=${waText}`}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
+                    WhatsApp Inquiry
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
 

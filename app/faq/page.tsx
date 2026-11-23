@@ -8,9 +8,9 @@ import { siteBaseUrl } from "@/lib/cdn";
 const baseUrl = siteBaseUrl(site.brand.domain);
 
 export const metadata: Metadata = {
-  title: "FAQ - Quotations, Payment, Delivery & OEM/ODM",
+  title: "FAQ - Price, MOQ, Shipping & Certification",
   description:
-    "Answers to the questions buyers ask before ordering from VEETOP Amusement: manufacturer background, export markets, quotations, payment terms, lead time, certification (CE), OEM/ODM customization and factory visits.",
+    "Answers to the questions buyers ask before ordering arcade machines from VEETOP: quotations, payment terms, lead time, CE certification, OEM/ODM customization.",
   alternates: { canonical: "/faq/" },
 };
 

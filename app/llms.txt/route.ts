@@ -40,6 +40,11 @@ export function GET() {
   lines.push(
     `Trade terms: standard production lead time ${site.trade.leadTime} (all models). MOQ depends on model and order type, confirmed in the quotation.`,
   );
+  // 价格口径 + 报价包含内容（AI 与采购者都会读这段）
+  lines.push(`Pricing: ${site.trade.priceNote}`);
+  lines.push(
+    `A quotation includes: ${site.trade.quoteIncludes.join("; ")}.`,
+  );
   lines.push("");
   lines.push("## Products");
   for (const p of products) {

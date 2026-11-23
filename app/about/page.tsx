@@ -3,9 +3,9 @@ import Link from "next/link";
 import site from "@/site.config";
 
 export const metadata: Metadata = {
-  title: "About Us - Factory, OEM/ODM & Certifications",
+  title: "About the Factory - 21+ Years, CE & OEM/ODM",
   description:
-    "About Guangzhou Veetop Amusement Technology Co., Ltd.: a CE-certified manufacturer of arcade game machines and amusement equipment, 21+ years in the industry, exports to 150+ countries, OEM/ODM cooperation available.",
+    "CE-certified arcade and amusement machine maker in Guangzhou with 21+ years in the industry, exporting to 150+ countries. OEM/ODM projects welcome.",
   alternates: { canonical: "/about/" },
 };
 
