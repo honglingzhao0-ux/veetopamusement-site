@@ -1,0 +1,205 @@
+=== 体检 210 个产品首图 ===
+
+=== 1. 宽高比 ===
+   0.85 :  205 个 (98%)
+   1.00 :    5 个 (2%)
+
+=== 2. 分辨率 ===
+    532×626   :   62 个
+    532×625   :   48 个
+    530×625   :   16 个
+    531×625   :   13 个
+    483×568   :    8 个
+    531×626   :    7 个
+   1200×1200  :    5 个
+    362×426   :    3 个
+    290×341   :    3 个
+    363×427   :    3 个
+    530×627   :    3 个
+    356×419   :    3 个
+  宽度 < 500px 的: 46 个
+    最小: 290×341
+
+=== 3. 背景类型 ===
+  实拍/有色背景         166 个 (79%)
+  白底               44 个 (21%)
+
+=== 4. 「实拍/有色背景」的产品清单 ===
+  共 166 个：
+    VTKR0103   (532, 626)   ratio 0.85  Bear Cup(White)
+    VTKR018    (531, 625)   ratio 0.85  Kiddie Ride I
+    VTKR019    (506, 595)   ratio 0.85  Kiddie Ride J
+    VTKR020    (362, 426)   ratio 0.85  Kiddie Ride K
+    VTKR021    (531, 627)   ratio 0.85  Kiddie Ride L
+    VTKR101    (532, 625)   ratio 0.85  Astronaut Music Cup
+    VTKR104    (532, 626)   ratio 0.85  Kiddie Ride B
+    VTKR105    (518, 609)   ratio 0.85  Kiddie Ride C
+    VTKR106    (531, 625)   ratio 0.85  Kiddie Ride E
+    VTKR107    (532, 626)   ratio 0.85  3D Horse
+    VTKR108    (531, 625)   ratio 0.85  3D Car
+    VTKR108    (532, 625)   ratio 0.85  Happy Childhood 3P
+    VTKR110    (531, 625)   ratio 0.85  Luxury Carousel 3P
+    VTKR112    (531, 625)   ratio 0.85  Palace Carousel 6P
+    VTO010     (532, 625)   ratio 0.85  Tokens/Tickets
+    VTPG010    (532, 625)   ratio 0.85  Mini Crane machine
+    VTPG011    (532, 625)   ratio 0.85  Mini Crane machine
+    VTPG012    (531, 625)   ratio 0.85  Mini Crane machine
+    VTPG013    (498, 586)   ratio 0.85  Mini Crane machine
+    VTPG014    (530, 624)   ratio 0.85  Mini Crane machine
+    VTPG015    (532, 625)   ratio 0.85  Mini Crane machine
+    VTPG016    (532, 626)   ratio 0.85  4P Mini Crane machine A
+    VTPG017    (532, 626)   ratio 0.85  4P Mini Crane machine B
+    VTPG018    (532, 626)   ratio 0.85  4P Mini Crane machine C
+    VTPG019    (532, 625)   ratio 0.85  Love Clip
+    VTPG020    (531, 625)   ratio 0.85  One Clip To The End
+    VTPG021    (532, 625)   ratio 0.85  Pop Clip
+    VTPG022    (532, 626)   ratio 0.85  Crane machine A
+    VTPG023    (532, 625)   ratio 0.85  Crane machine B
+    VTPG024    (498, 586)   ratio 0.85  Crane machine C
+    VTPG025    (531, 625)   ratio 0.85  Crane machine D
+    VTPG026    (532, 625)   ratio 0.85  Crane machine E
+    VTPG027    (531, 625)   ratio 0.85  Crane machine F
+    VTPG028    (290, 341)   ratio 0.85  Mini Key Master
+    VTPG029    (362, 426)   ratio 0.85  Key Master
+    VTPG030    (363, 427)   ratio 0.85  PINK DATE
+    VTPG032    (532, 626)   ratio 0.85  Lucky 7
+    VTPG033    (532, 625)   ratio 0.85  Pink Love Cutting Machine
+    VTPG034    (503, 592)   ratio 0.85  Crane machine G
+    VTPG034    (532, 625)   ratio 0.85  JIAQUSHIQUAN Crane 4P
+    VTPG035    (531, 625)   ratio 0.85  Luxury Twins Crane machine
+    VTRA009    (532, 625)   ratio 0.85  26800 in 1
+    VTRA010    (531, 626)   ratio 0.85  10'' Supreme Arcade Twins
+    VTRA011    (532, 625)   ratio 0.85  Classic Arcade
+    VTRA012    (530, 627)   ratio 0.85  Classic Arcade
+    VTRA013    (532, 625)   ratio 0.85  17'' Arcade Game (Wooden Cabinet)
+    VTRA014    (530, 625)   ratio 0.85  19'' Arcade Game (Wooden Cabinet)
+    VTRA015    (530, 625)   ratio 0.85  22'' Arcade Game (Wooden Cabinet)
+    VTRA016    (530, 625)   ratio 0.85  26'' Arcade Game (Wooden Cabinet)
+    VTRA017    (530, 625)   ratio 0.85  32'' Arcade Game (Wooden Cabinet)
+    VTRA018    (530, 625)   ratio 0.85  32'' Street Fighter IV
+    VTRA019    (530, 625)   ratio 0.85  32'' Street Fighter III
+    VTRA020    (530, 625)   ratio 0.85  32'' Street Fighter II
+    VTRA021    (530, 625)   ratio 0.85  32'' Street Fighter VI
+    VTRA021    (363, 427)   ratio 0.85  Street Fighter 4 55''
+    VTRA021    (363, 427)   ratio 0.85  Tekken 7
+    VTSA010    (515, 606)   ratio 0.85  2 Player Magic hockey
+    VTSA011    (532, 626)   ratio 0.85  2 player Power hockey
+    VTSA011    (532, 626)   ratio 0.85  GP Moto
+    VTSA012    (532, 626)   ratio 0.85  2 player Power Air Hockey
+    VTSA012    (532, 626)   ratio 0.85  Moto DX
+    VTSA013    (482, 567)   ratio 0.85  2 Player Air Hockey
+    VTSA014    (520, 612)   ratio 0.85  4 player Air Hockey
+    VTSA014    (532, 626)   ratio 0.85  Dynamic Moto 5 DX
+    VTSA015    (532, 625)   ratio 0.85  2 player Power Air Hockey
+    VTSA015    (532, 626)   ratio 0.85  Cruis'N Blast Ver.2 Motion
+    VTSA016    (532, 625)   ratio 0.85  2 Player Curved hockey
+    VTSA016    (532, 626)   ratio 0.85  43'' Cruis'N Blast Ver.2 Pro Motio
+    VTSA017    (532, 625)   ratio 0.85  4 player Magic Hockey
+    VTSA017    (532, 626)   ratio 0.85  55'' Cruis'N Blast Ver.3 Motion
+    VTSA018    (532, 625)   ratio 0.85  Super Star Hockey
+    VTSA019    (532, 626)   ratio 0.85  Wild Chariot
+    VTSA020    (532, 626)   ratio 0.85  Forza Motorsport II
+    VTSA021    (532, 626)   ratio 0.85  Kids Jurassic Park Open version
+    VTSA022    (532, 626)   ratio 0.85  Kids Jurassic Park Motion
+    VTSA023    (532, 626)   ratio 0.85  Jurassic Park II
+    VTSA024    (532, 626)   ratio 0.85  Jurassic Park Motion II
+    VTSA025    (532, 626)   ratio 0.85  Walking Dead
+    VTSA027    (532, 626)   ratio 0.85  Pirate Treasure Motion
+    VTSA028    (532, 626)   ratio 0.85  Terminator 4
+    VTSA030    (532, 626)   ratio 0.85  Razing Store
+    VTSA031    (532, 626)   ratio 0.85  Fast&Furious
+    VTSA032    (532, 626)   ratio 0.85  32'' Mario Kart Arcade GP
+    VTSA035    (532, 626)   ratio 0.85  Dirty driving 42'' Car Racing
+    VTSA037    (334, 393)   ratio 0.85  INITIAL D8
+    VTSA038    (532, 626)   ratio 0.85  32'' LCD Outrun Racing car
+    VTSA040    (532, 626)   ratio 0.85  Need For Speed
+    VTSA041    (531, 626)   ratio 0.85  32‘’ TT Moto/ 42'' TT Moto
+    VTSA042    (532, 626)   ratio 0.85  Super Motor III
+    VTSA043    (531, 626)   ratio 0.85  3in1 House of dead 3/Aliens/Paradi
+    VTSA047    (530, 625)   ratio 0.85  Transformer 55'' Shooting
+    VTSA048    (532, 626)   ratio 0.85  Operation Ghost 55'' shooting
+    VTSA050    (532, 626)   ratio 0.85  Dead Storm Pirate Luxury
+    VTSA051    (530, 627)   ratio 0.85  Let's go Jungle 55''
+    VTSA052    (362, 426)   ratio 0.85  Transformer Luxury
+    VTSA101    (532, 626)   ratio 0.85  Candy Hockey
+    VTSA102    (530, 625)   ratio 0.85  Storm Hockey A
+    VTSA103    (530, 625)   ratio 0.85  Storm Hockey B
+    VTSA104    (530, 625)   ratio 0.85  Fun Kids Hockey
+    VTSA105    (530, 625)   ratio 0.85  Battle Hockey
+    VTSA106    (530, 625)   ratio 0.85  Fire Hockey
+    VTSA107    (530, 625)   ratio 0.85  Space Hockey
+    VTSA108    (483, 568)   ratio 0.85  Curved Hockey
+    VTSA109    (532, 626)   ratio 0.85  Football Table
+    VTSA110    (532, 626)   ratio 0.85  Kung Fu Soccer
+    VTSA34     (532, 626)   ratio 0.85  FF Motor
+    VTSA49     (531, 626)   ratio 0.85  Dead Storm Pirate
+    VTSB10     (532, 626)   ratio 0.85  Kids Basketball
+    VTSB11     (532, 626)   ratio 0.85  Kids Basketball
+    VTSB117    (532, 626)   ratio 0.85  Luxury Basketball (Unfolding/Foldi
+    VTSB12     (532, 626)   ratio 0.85  Children Basketball
+    VTSB16     (532, 626)   ratio 0.85  Street Basketball Machine(Unfoldin
+    VTSB21     (532, 626)   ratio 0.85  Interactive Display Basketball I
+    VTSB22     (533, 627)   ratio 0.85  Interactive Display Basketball II
+    VTSB23     (532, 626)   ratio 0.85  Interactive Display Basketball III
+    VTSB24     (532, 626)   ratio 0.85  Interactive Display Basketball IV
+    VTSH001    (290, 341)   ratio 0.85  King of Hammer
+    VTSH003    (290, 341)   ratio 0.85  World Of Champion
+    VTSH004    (532, 626)   ratio 0.85  Boxing Champion II
+    VTSP001    (483, 568)   ratio 0.85  Boxer 1
+    VTSP002    (483, 568)   ratio 0.85  Boxer II
+    VTSP003    (530, 625)   ratio 0.85  Boxing Punching & Kicking
+    VTSP007    (1200, 1200) ratio 1.00  Boxing IB
+    VTSP008    (1200, 1200) ratio 1.00  Boxing ii
+    VTSP009    (532, 626)   ratio 0.85  Hammer Game
+    VTSP009A   (1200, 1200) ratio 1.00  Punching&Kicking IIA
+    VTSP009B   (1200, 1200) ratio 1.00  Punching&Kicking IIB
+    VTTR010    (532, 625)   ratio 0.85  MONSTER REALMS Balls Shotting
+    VTTR011    (532, 625)   ratio 0.85  Crazy Shooting Water II
+    VTTR012    (532, 625)   ratio 0.85  Crazy Shooting Balls II
+    VTTR013    (532, 625)   ratio 0.85  Crazy Shooting Water III
+    VTTR014    (532, 625)   ratio 0.85  Crazy Shooting Balls III
+    VTTR015    (532, 626)   ratio 0.85  Crisis rescue
+    VTTR016    (530, 627)   ratio 0.85  Shooting party(Balls)
+    VTTR017    (532, 625)   ratio 0.85  MECHANIC
+    VTTR018    (532, 625)   ratio 0.85  BOWLING
+    VTTR019    (532, 625)   ratio 0.85  CRAZY TOY
+    VTTR020    (532, 627)   ratio 0.85  Ball Monster
+    VTTR021    (532, 626)   ratio 0.85  Crazy Balls
+    VTTR022    (531, 625)   ratio 0.85  Crazy Balls III 2P
+    VTTR023    (533, 627)   ratio 0.85  Crazy Squirting 2P
+    VTTR024    (532, 625)   ratio 0.85  Travel Around The world
+    VTTR025    (532, 626)   ratio 0.85  Rainbow Castle
+    VTTR026    (532, 625)   ratio 0.85  Forest Bowling
+    VTTR027    (531, 625)   ratio 0.85  Boom Ball
+    VTTR028    (532, 625)   ratio 0.85  Happy Patting
+    VTTR029    (531, 626)   ratio 0.85  Frenzy Clown 2
+    VTTR030    (532, 625)   ratio 0.85  Frenzy Clown 1
+    VTTR031    (532, 625)   ratio 0.85  Funny Carnival
+    VTTR032    (531, 626)   ratio 0.85  Dazzle Ice Hockey
+    VTTR044    (532, 625)   ratio 0.85  Rescue ET
+    VTTR045    (532, 625)   ratio 0.85  All round clown
+    VTTR077    (532, 625)   ratio 0.85  Parkour
+    VTTR078    (532, 625)   ratio 0.85  DOWN THE CLOWN
+    VTTR078    (532, 625)   ratio 0.85  Firewall
+    VTTR080    (532, 625)   ratio 0.85  Shark Park
+    VTTR081    (531, 625)   ratio 0.85  55'' Dance Central
+    VTTR081    (532, 625)   ratio 0.85  Big Bass Wheel
+    VTTR082    (532, 625)   ratio 0.85  47'' Dance Super Station
+    VTTR082    (532, 625)   ratio 0.85  Hockey League
+    VTTR083    (532, 625)   ratio 0.85  55'' Dance Super Station
+    VTTR084    (532, 626)   ratio 0.85  Magic Master
+    VTTR085    (532, 625)   ratio 0.85  Coin Pusher 1P
+    VTTR085    (532, 625)   ratio 0.85  Super Train
+    VTTR086    (531, 626)   ratio 0.85  Happy Castle
+    VTTR33     (532, 625)   ratio 0.85  Crazy Fish bow
+
+=== 5. 交叉：比例 × 背景 ===
+   0.85 + 实拍/有色背景         162 个
+   0.85 + 白底               43 个
+   1.00 + 实拍/有色背景           4 个
+   1.00 + 白底                1 个
+
+=== 6. 1:1 容器里的实际显示（object-fit: contain）===
+  容器是 1:1 正方形，图 contain 适配：
+    比例 0.85 → 高度占满，左右各留白
+    比例 1.00 → 完整占满方框

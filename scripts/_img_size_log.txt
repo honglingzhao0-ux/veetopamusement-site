@@ -1,0 +1,43 @@
+=== 全部 210 个产品首图的宽高比分布 ===
+  有效产品数: 210
+  宽高比 最小 0.85  最大 1.00
+
+=== 宽高比分档（比例 = 宽/高）===
+  横版 (<0.8)                   0 个  (0%)
+  接近方形 (0.8-1.25)           210 个  (100%)
+  竖版 (1.25-1.8)               0 个  (0%)
+  超竖版 (>1.8)                  0 个  (0%)
+
+=== 在 1:1 正方形容器里 contain 适配后的实际占位 ===
+  容器 1:1，图 contain → 图的实际显示高度 = 容器高 × min(1, 1/比例)
+  比例越小（越竖），显示高度越接近容器高、宽度越窄
+
+  model      ratio  源图尺寸         显示高占比      显示宽占比       名称
+  VTRA012      0.85 (530, 627)         100%        85%  Classic Arcade
+  VTSA051      0.85 (530, 627)         100%        85%  Let's go Jungle 55''
+  VTTR016      0.85 (530, 627)         100%        85%  Shooting party(Balls)
+  VTKR021      0.85 (531, 627)         100%        85%  Kiddie Ride L
+  VTSP007      1.00 (1200, 1200)       100%       100%  Boxing IB
+  VTSP008      1.00 (1200, 1200)       100%       100%  Boxing ii
+  VTSP009A     1.00 (1200, 1200)       100%       100%  Punching&Kicking IIA
+  VTSP009B     1.00 (1200, 1200)       100%       100%  Punching&Kicking IIB
+
+=== 图中出现过的具体产品 ===
+  VTTR062      0.85 (342, 403)   高100% 宽 85%  Minions Carnival Chaos
+  VTTR067      0.85 (342, 403)   高100% 宽 85%  Luck Quick Drop
+  VTTR074      0.85 (348, 410)   高100% 宽 85%  55 Flappy Bird HD
+  VTTR064      0.85 (354, 417)   高100% 宽 85%  Piano Keys
+  VTTR065      0.85 (354, 417)   高100% 宽 85%  Crossy
+  VTTR071      0.85 (349, 411)   高100% 宽 85%  Stack Ticket
+  VTTR073      0.85 (349, 411)   高100% 宽 85%  Rail Rush
+  VTTR066      0.85 (355, 418)   高100% 宽 85%  Flappy Bird
+  VTTR068      0.85 (356, 419)   高100% 宽 85%  Lucky Fish Bowl
+  VTTR069      0.85 (356, 419)   高100% 宽 85%  Lucky Fish Bowl 1 group
+  VTTR072      0.85 (356, 419)   高100% 宽 85%  Subway Surfers
+  VTTR063      0.85 (351, 413)   高100% 宽 85%  Pop The Lock
+  VTTR070      0.85 (351, 413)   高100% 宽 85%  Sonic Dash
+  VTTR075      0.85 (340, 400)   高100% 宽 85%  55 Stack Ticket HD
+  VTTR060      0.85 (342, 402)   高100% 宽 85%  Crack The Cube
+  VTTR061      0.85 (342, 402)   高100% 宽 85%  Minions Wheel
+  VTTR076      0.85 (348, 409)   高100% 宽 85%  55 Crossy HD
+  VTTR045      0.85 (532, 625)   高100% 宽 85%  All round clown

@@ -1353,9 +1353,22 @@ ul {
   transform: translateY(-2px);
 }
 
+/*
+ * 产品卡片图片区
+ *
+ * ⚠️ 容器比例必须与素材比例匹配（2026-11-23 调整）：
+ *   全站 210 张产品图里 205 张是 0.85（宽/高），5 张原为 1.00 方图
+ *   （已补白边统一为 0.85）。
+ *   容器若用 1:1，object-fit: contain 会让 0.85 的图宽度只占 85%，
+ *   左右各留 7.5% 白边 —— 机器显得小、卡片里大片空白，网格观感不齐。
+ *   改成 4:5（= 0.8，略窄于素材）后，图片宽度能填满卡片宽度，
+ *   机器视觉尺寸明显变大，且所有卡片高度一致。
+ *
+ * 权衡：卡片变高 25%（240×240 → 240×300），一屏可见的卡片数变少。
+ */
 .pcard__media {
   display: block;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 4 / 5;
   background: #fff;
   border-bottom: 1px solid var(--line-soft);
   overflow: hidden;
@@ -1671,7 +1684,8 @@ ul {
   border-radius: var(--radius-lg);
   background: #fff;
   overflow: hidden;
-  aspect-ratio: 1 / 1;
+  /* 与卡片区一致：4:5 匹配素材 0.85 比例，图片宽度填满不留白边 */
+  aspect-ratio: 4 / 5;
 }
 
 .gallery__main img {
@@ -2844,7 +2858,8 @@ ul {
   }
 
   .pcard__media {
-    aspect-ratio: 1 / 1;
+    /* 移动端单列，图片更小 —— 保持 4:5 与桌面一致，比例统一 */
+    aspect-ratio: 4 / 5;
   }
 
   .cta-band {

@@ -412,5 +412,10 @@
   "app/contact/page.tsx:4f216bde7ef3e8a0": "2026-11-23T03:38:45.418Z",
   "app/about/page.tsx:07166eb71bcd2c07": "2026-11-23T03:45:08.637Z",
   "app/faq/page.tsx:efcfe9d73c53f645": "2026-11-23T03:45:08.637Z",
-  "data/categories.json:61db36beca0453ec": "2026-11-23T03:45:08.637Z"
+  "data/categories.json:61db36beca0453ec": "2026-11-23T03:45:08.637Z",
+  "data/products/vtsp006-boxing-ia.json:2b93184fdcbcf862": "2026-11-23T07:39:27.153Z",
+  "data/products/vtsp007-boxing-ib.json:2deabfd153035b2b": "2026-11-23T07:39:27.153Z",
+  "data/products/vtsp008-boxing-ii.json:b20269535564b904": "2026-11-23T07:39:27.153Z",
+  "data/products/vtsp009a-punching-kicking-iia.json:53e7aa5c1c66171f": "2026-11-23T07:39:27.153Z",
+  "data/products/vtsp009b-punching-kicking-iib.json:08052313a58259c0": "2026-11-23T07:39:27.153Z"
 }

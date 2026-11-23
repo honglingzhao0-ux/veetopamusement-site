@@ -1,0 +1,27 @@
+=== 比例 ≠ 0.85 的图（5 张）===
+  VTSP006    (1200, 1200) ratio 1.00  /images/products/vtsp006-boxing-ia-16.jpeg
+             Boxing IA
+  VTSP007    (1200, 1200) ratio 1.00  /images/products/vtsp007-boxing-ib-20.jpeg
+             Boxing IB
+  VTSP008    (1200, 1200) ratio 1.00  /images/products/vtsp008-boxing-ii-3.jpeg
+             Boxing ii
+  VTSP009A   (1200, 1200) ratio 1.00  /images/products/vtsp009a-punching-kicking-iia-2.jpeg
+             Punching&Kicking IIA
+  VTSP009B   (1200, 1200) ratio 1.00  /images/products/vtsp009b-punching-kicking-iib-9.jpeg
+             Punching&Kicking IIB
+
+=== 处理方案：给方图补白边到 0.85（生成新文件，不覆盖原图）===
+  VTSP006    (1200, 1200) → (1200, 1412)  /images/products/_normalized/vtsp006-boxing-ia-16-n.jpg
+  VTSP007    (1200, 1200) → (1200, 1412)  /images/products/_normalized/vtsp007-boxing-ib-20-n.jpg
+  VTSP008    (1200, 1200) → (1200, 1412)  /images/products/_normalized/vtsp008-boxing-ii-3-n.jpg
+  VTSP009A   (1200, 1200) → (1200, 1412)  /images/products/_normalized/vtsp009a-punching-kicking-iia-2-n.jpg
+  VTSP009B   (1200, 1200) → (1200, 1412)  /images/products/_normalized/vtsp009b-punching-kicking-iib-9-n.jpg
+
+=== 写回产品 JSON ===
+  ✅ VTSP006    Boxing IA
+  ✅ VTSP007    Boxing IB
+  ✅ VTSP008    Boxing ii
+  ✅ VTSP009A   Punching&Kicking IIA
+  ✅ VTSP009B   Punching&Kicking IIB
+
+共更新 5 个产品 JSON
