@@ -59,13 +59,23 @@ const LIMITS = {
   /** 同一浏览器每月最多上报事件数（真正的月度兜底） */
   perMonth: site.contact.tracking?.maxPerMonth ?? 150,
   /** 攒够多少条事件打包发一次（低于此数不发，等下次访问继续攒） */
-  batchSize: site.contact.tracking?.batchSize ?? 5,
+  batchSize: site.contact.tracking?.batchSize ?? 20,
   /**
    * 零散数据的补发等待时间。
    * 攒不够 batchSize 时，队列在 localStorage 里最多等这么久；
    * 超过后若访客再来访问，就作为零散数据补发一次，避免数据永远丢失。
    */
-  minBatchAgeMs: site.contact.tracking?.minBatchAgeMs ?? 30 * 60 * 1000,
+  minBatchAgeMs: site.contact.tracking?.minBatchAgeMs ?? 24 * 60 * 60 * 1000,
+  /**
+   * 单浏览器每天最多发几封埋点邮件（这一项直接对应 Web3Forms 配额消耗）。
+   * 配合 batchSize=20，浏览事件基本攒不满 → 靠 minBatchAgeMs 补发，
+   * 一天最多也就 1 封。
+   */
+  maxSendsPerDay: site.contact.tracking?.maxSendsPerDay ?? 8,
+  /**
+   * 单浏览器每月最多发几封埋点邮件 —— 真询盘额度的最后一道闸门。
+   */
+  maxSendsPerMonth: site.contact.tracking?.maxSendsPerMonth ?? 25,
   /** 同型号去重窗口（毫秒） */
   dedupeMs: 30 * 60 * 1000,
 };
@@ -124,6 +134,63 @@ function withinQuota(): boolean {
 }
 
 /* ------------------------------------------------------------------ */
+/* 发送次数闸门（比事件数闸门更贴近真实配额消耗）                      */
+/* ------------------------------------------------------------------ */
+
+/**
+ * 「发送次数」闸门 —— 这才是真正对应 Web3Forms 配额消耗的计数器。
+ *
+ * 为什么需要第二个闸门（2026-11-24 加）：
+ *   原来的 withinQuota() 计的是**事件条数**，但 Web3Forms 每次 API 调用
+ *   才消耗 1 次配额，两者不是一回事。事件数闸门无法回答
+ *   "这个访客今天让��发了多少封邮件"。
+ *   流量涨起来后，这个差额就是配额被埋点吃光的缺口。
+ */
+function withinSendQuota(): boolean {
+  try {
+    const dKey = `veetop_stat_sends_day_${today()}`;
+    const dCount = Number(localStorage.getItem(dKey) || "0");
+    if (dCount >= LIMITS.maxSendsPerDay) return false;
+
+    const mKey = `veetop_stat_sends_month_${thisMonth()}`;
+    const mCount = Number(localStorage.getItem(mKey) || "0");
+    if (mCount >= LIMITS.maxSendsPerMonth) return false;
+
+    localStorage.setItem(dKey, String(dCount + 1));
+    localStorage.setItem(mKey, String(mCount + 1));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+/**
+ * 立即发送一条事件（不打包、不进队列）。
+ * 仅用于转化类事件 —— 数量少、价值高、必须及时可见。
+ */
+function sendNow(ev: StatEvent): void {
+  try {
+    const fd = new FormData();
+    fd.append("access_key", ACCESS_KEY);
+    fd.append("_subject", `STAT: ${ev.event} | ${ev.model}`);
+    fd.append("event", ev.event);
+    fd.append("model", ev.model);
+    fd.append("count", "1");
+    fd.append("events", JSON.stringify([ev]));
+    fd.append("ts", ev.ts);
+    if (navigator.sendBeacon) {
+      navigator.sendBeacon(FORM_ENDPOINT, fd);
+    } else {
+      fetch(FORM_ENDPOINT, { method: "POST", body: fd, keepalive: true }).catch(
+        () => {}
+      );
+    }
+  } catch {
+    /* 统计失败绝不打扰用户 */
+  }
+}
+
+/* ------------------------------------------------------------------ */
 /* 批量打包                                                            */
 /* ------------------------------------------------------------------ */
 
@@ -174,6 +241,11 @@ function flushQueue(force = false): void {
   if (!q.length) return;
   // 不足批量阈值且非强制 → 不发，继续攒（这才是打包的意义）
   if (!force && q.length < LIMITS.batchSize) return;
+  // 发送次数闸门 —— 真正对应 Web3Forms 配额消耗的那一层
+  if (!withinSendQuota()) {
+    writeQueue([]);
+    return;
+  }
   // 先清队列再发，避免 sendBeacon 失败导致重复发送
   writeQueue([]);
   try {
@@ -243,6 +315,39 @@ function send(event: string, model: string): void {
   enqueue({
     event,
     model,
+    path: window.location.pathname,
+    referrer: document.referrer || "-",
+    ts: new Date().toISOString(),
+  });
+}
+
+/**
+ * 上报一个**转化类**事件（WhatsApp 点击、点报价按钮等）。
+ *
+ * 为什么单独开这个函数（2026-11-24 加）：
+ *   之前的埋点只有 view / click 两类，反映的是"看了什么"。
+ *   但海外买家真正的转化路径往往是**直接 WhatsApp**（不走表单），
+ *   而 WhatsApp 按钮此前**完全没有埋点** —— 结果就是：
+ *   站内发生了真实询盘动作，我们却一条记录都看不到，
+ *   邮箱里也只有表单询盘，于是"只有 1 封询盘"看起来像转化极差，
+ *   实际是**信号缺失**。
+ *
+ * 区别于 send()：这里允许 model 为空（首页/通用页的 WhatsApp 点击没有型号）。
+ *
+ * ⚠️ 走**立即发送**通道，不进批量队列 —— 理由：
+ *   · 转化事件数量极低（真询盘级别），不会成为配额负担
+ *   · 但价值极高，必须及时可见 —— 批量攒 20 条才发会让"今天有人点了 WhatsApp"
+ *     这条关键信息延迟数小时甚至几天
+ */
+export function trackConversion(event: string, model?: string): void {
+  if (typeof window === "undefined") return;
+  if (isDisabled()) return;
+  if (!ACCESS_KEY) return;
+  if (!withinQuota()) return;
+  if (!withinSendQuota()) return;
+  sendNow({
+    event,
+    model: model || "-",
     path: window.location.pathname,
     referrer: document.referrer || "-",
     ts: new Date().toISOString(),

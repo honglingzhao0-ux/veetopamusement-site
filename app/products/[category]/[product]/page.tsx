@@ -319,7 +319,11 @@ function ProductView({
               <p className="pinfo__desc">{product.description}</p>
 
               <div className="pinfo-actions">
-                <Link href={quoteHref} className="btn btn--accent">
+                <Link
+                  href={quoteHref}
+                  className="btn btn--accent"
+                  data-track-quote={product.model}
+                >
                   Request a Quote
                 </Link>
                 <a
@@ -387,7 +391,11 @@ function ProductView({
                   Price varies by {site.trade.priceFactors.join(", ").toLowerCase()}.
                 </p>
                 <div className="quote-includes__actions">
-                  <Link href={quoteHref} className="btn btn--accent">
+                  <Link
+                    href={quoteHref}
+                    className="btn btn--accent"
+                    data-track-quote={product.model}
+                  >
                     Request a Quote
                   </Link>
                   <a

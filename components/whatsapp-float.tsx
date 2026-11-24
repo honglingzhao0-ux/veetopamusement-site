@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import site from "@/site.config";
+import { trackConversion } from "@/lib/track";
 
 /**
  * WhatsApp 浮动询盘按钮
@@ -15,6 +16,13 @@ import site from "@/site.config";
  *   · 点击展开预填消息的小窗（让用户看到会发什么，可编辑后再发）——
  *     直接跳转会丢失上下文，用户不知道该问什么
  *   · 移动端缩小，避免遮挡内容
+ *
+ * ⚠️ 埋点（2026-11-24 补）：此前**完全没有埋点**，
+ *    导致"点开 WhatsApp 并真的发出去"这个最强转化信号在数据里完全消失。
+ *    现在记录两个事件：
+ *      whatsapp_open —— 展开面板（有兴趣）
+ *      whatsapp_send —— 点了 Open WhatsApp（真正发起询盘）
+ *    两者都要记 —— 只有 open 没有 send，说明是"看了又走"。
  *
  * 无障碍：aria-label + title，按钮有可见文字（非纯图标）。
  */
@@ -33,6 +41,16 @@ export default function WhatsAppFloat() {
 
   const number = site.contact.whatsapp.number;
   const href = `https://wa.me/${number}?text=${encodeURIComponent(msg)}`;
+
+  /** 当前页的产品型号（如果有），让询盘能归到具体机型 */
+  function currentModel(): string | undefined {
+    if (typeof document === "undefined") return undefined;
+    // 报价按钮带 data-track-quote，产品卡片带 data-track-product
+    const q = document.querySelector<HTMLElement>("[data-track-quote]");
+    if (q?.dataset.trackQuote) return q.dataset.trackQuote;
+    const p = document.querySelector<HTMLElement>("[data-track-product]");
+    return p?.dataset.trackProduct || undefined;
+  }
 
   return (
     <>
@@ -65,6 +83,7 @@ export default function WhatsAppFloat() {
             href={href}
             target="_blank"
             rel="noreferrer"
+            onClick={() => trackConversion("whatsapp_send", currentModel())}
           >
             Open WhatsApp
           </a>
@@ -74,7 +93,11 @@ export default function WhatsAppFloat() {
       <button
         type="button"
         className={"wa-float" + (open ? " is-open" : "")}
-        onClick={() => setOpen((v) => !v)}
+        onClick={() => {
+          // 只记录"手动点开"，自动展开（3 秒）不记 —— 否则数据全是噪音
+          if (!open) trackConversion("whatsapp_open", currentModel());
+          setOpen((v) => !v);
+        }}
         aria-label="Chat with us on WhatsApp"
         title="Chat with us on WhatsApp"
       >

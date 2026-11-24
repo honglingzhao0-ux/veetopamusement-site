@@ -644,6 +644,87 @@ VTSP004-005），X 盘暂无对应目录，继续列在《待补真实照片清�
 `VEETOPAMUSEMNT.COM\<品类英文名>\<型号>.<ext>`，
 如 `Ticket Redemption Game Machine`、`Punching Boxing Arcade Game Machine`。
 
+
+### 3.5.7 询盘排查与转化信号修复（2026-11-24）
+
+**触发**：用户反馈「最近一个月只收到一个有效询盘」，要求排查原因。
+
+#### 3.5.7.1 排查结论：技术链路全部正常
+
+逐项实测（不是看代码，是真的发请求）：
+
+| 检查项 | 方法 | 结果 |
+|---|---|---|
+| 表单提交（真实路径） | POST JSON body | HTTP 200 `{"success":true}` |
+| 表单提交（urlencoded） | POST form body | HTTP 200 |
+| Web3Forms 配额 | 有效 key vs 无效 key | 有效=200，无效=400 → **配额未耗尽** |
+| CORS 预检 | OPTIONS | 200 + `access-control-allow-origin: *` |
+| botcheck 蜜罐 | 代码审查 | 标准隐藏字段，正常 |
+| Googlebot 抓取 | 真实 Googlebot UA | 首页/列表/产品页全 200，内容完整 |
+| noindex / canonical | HTML 检查 | 无 noindex，canonical + JSON-LD 齐全 |
+| robots.txt | 原始字节 | `Allow: /` + `Sitemap:` **格式正确** |
+| sitemap | XML 解析 | 237 URL，lastmod 齐全 |
+| **内链结构** | 全站链接图 | **210/210 产品页有站内入链，0 孤岛页** |
+| 内容重复度 | desc 归一化 | 204/210 唯一模板，非模板化内容 |
+
+⚠️ **robots.txt 曾误判为格式错误** —— PowerShell 输出把 `\n` 渲染掉了，
+看起来像 `Allow: /Sitemap: ...` 连在一起。**要看原始字节**：
+```python
+repr(raw.decode('utf-8'))
+# 'User-Agent: *\nAllow: /\n\nSitemap: https://...\n'
+```
+
+#### 3.5.7.2 真正的三个问题
+
+| # | 问题 | 证据 |
+|---|---|---|
+| ① | **流量基数太小** | 日均自然流量 1-2 次（Google referrer）。30-60 次访问 × 2% 转化 ≈ 1 封询盘，**与实际完全吻合** |
+| ② | **转化路径太长** | 产品页 `form` 标签数 = **0**，只有按钮跳 contact 页。路径：产品页 → 跳转 → 填 3 个必填项 → 提交 |
+| ③ | **最强转化信号完全没被记录** | WhatsApp 按钮**零埋点** —— 海外买家直接 WhatsApp 询盘，站内发生了询盘动作，邮箱里却一条记录都没有 |
+
+**结论**：不是系统坏了，是「没足够的人来」+「来的人被流程劝退」+「真实动作看不见」。
+1 封询盘不代表转化差，**先把信号补上**，才知道下一步该投哪里。
+
+#### 3.5.7.3 修复内容
+
+**A. 补上转化埋点**（问题 ③）
+
+新增 `lib/track.ts` 的 `trackConversion(event, model?)`：
+- 允许 model 为空（首页的 WhatsApp 点击没有型号）
+- **走立即发送通道**，不进批量队列 —— 转化事件数量少但必须及时可见
+- 新增事件：`whatsapp_open`（展开面板）、`whatsapp_send`（真发出去）、
+  `quote_click`（点 Request a Quote）
+
+**B. 配额保护加固**（防流量涨起来后埋点挤掉真询盘）
+
+⚠️ 原来的闸门计的是**事件条数**，但 Web3Forms **每次 API 调用**才消耗 1 次配额，
+两者不是一回事 —— 这个差额就是配额被吃光的缺口。新增**发送次数闸门**：
+
+| 项 | 旧 | 新 |
+|---|---|---|
+| `batchSize` | 5 | **20**（配额消耗降到 1/4）|
+| `minBatchAgeMs` | 30 分钟 | **24 小时**（batchSize 提大后单访客攒不满，30 分钟阈值会每次"够龄"都发一封）|
+| `maxSendsPerDay` | — | **8**（新增，直接对应配额消耗）|
+| `maxSendsPerMonth` | — | **25**（新增，真询盘额度的最后闸门）|
+
+**C. 产品页报价按钮埋点走事件委托**
+
+⚠️ **产品详情页是 server component，不能写 onClick**（Next.js 构建直接报错：
+`Export encountered an error on /products/[category]/[product]/page`）。
+做法：在按钮上加 `data-track-quote={product.model}`，
+由 `components/analytics.tsx` 统一委托监听 `[data-track-quote]`。
+—— 这是 server component 页面里做点击埋点的唯一干净做法。
+
+#### 3.5.7.4 后续要做（需用户决策）
+
+1. **产品页内嵌询盘表单**（问题 ②）—— 去掉跳转这一步
+2. **独立流量统计通道** —— `www` 子域实际没走 Cloudflare（DNS 指向 Vercel IP，
+   响应头无 `cf-ray`）。若要接 Cloudflare Web Analytics 需先切 DNS。
+   静态导出站没有服务端状态，做不到精确的全局配额控制 ——
+   流量涨到几百独立访客/月时，埋点仍会挤占配额。
+3. **重新提交 sitemap / 请求索引** —— Bing `site:` 查询命中 0 个 URL，
+   Google 缓存的仍是 11-08 之前的旧 title
+
 ## 4. 工作副本 vs Accio Work 目录（重要）
 
 Accio Work 的工作目录在：
